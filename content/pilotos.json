@@ -1,0 +1,32 @@
+[
+  {
+    "province": "Bizkaia",
+    "provinceSlug": "bizkaia",
+    "town": "Zalla",
+    "slug": "zalla"
+  },
+  {
+    "province": "Bizkaia",
+    "provinceSlug": "bizkaia",
+    "town": "Gernika-Lumo",
+    "slug": "gernika-lumo"
+  },
+  {
+    "province": "Gipuzkoa",
+    "provinceSlug": "gipuzkoa",
+    "town": "Eibar",
+    "slug": "eibar"
+  },
+  {
+    "province": "Álava",
+    "provinceSlug": "alava",
+    "town": "Amurrio",
+    "slug": "amurrio"
+  },
+  {
+    "province": "Burgos",
+    "provinceSlug": "burgos",
+    "town": "Medina de Pomar",
+    "slug": "medina-de-pomar"
+  }
+]
