@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';test('cinco pilotos distintos',()=>{const p=JSON.parse(fs.readFileSync('content/pilotos.json'));assert.equal(p.length,5);assert.equal(new Set(p.map(x=>x.provinceSlug+'/'+x.slug)).size,5)});
