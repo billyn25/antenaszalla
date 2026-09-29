@@ -157,7 +157,7 @@ for (const province of provinces) {
   const items = dataset.provinces[province.path] || [];
   for (const item of items) allPages.push(makePage(province, item, usedPaths));
 }
-if (allPages.length < 700) throw new Error(`Solo se han preparado ${allPages.length} páginas locales; se esperaba más de 700.`);
+if (allPages.length !== 623) throw new Error(`Cobertura Zalla incompleta: ${allPages.length}/623 páginas locales para Bizkaia, Gipuzkoa, Álava y Burgos.`);
 
 const root = path.resolve('dist');
 for (const page of allPages) {
