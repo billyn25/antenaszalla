@@ -12,6 +12,6 @@
     "preview": "node scripts/serve.mjs",
     "prepare:production": "node scripts/prepare-production-assets.mjs",
     "audit:production": "node scripts/audit-production-package.mjs",
-    "build:production": "ANTENASRAPID_BUILD_TARGET=production SITE_MODE=preview npm run build && CONFIRM_PRODUCTION_PREP=1 npm run prepare:production && npm run audit:production"
+    "build:production": "ANTENASZALLA_BUILD_TARGET=production SITE_MODE=preview npm run build && CONFIRM_PRODUCTION_PREP=1 npm run prepare:production && npm run audit:production"
   }
 }
