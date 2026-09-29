@@ -115,10 +115,11 @@ for (const page of manifest) {
 
 const cssFile = path.join(root, 'assets', 'site.css');
 const css = fs.readFileSync(cssFile, 'utf8');
-if (!css.includes('Cierre móvil sin scroll lateral')) throw new Error('CSS: falta el cierre móvil sin scroll lateral');
-if (!/@media\(max-width:760px\)[\s\S]*?\.head nav\{[^}]*overflow-x:visible/.test(css)) throw new Error('CSS: el menú móvil sigue dependiendo de scroll horizontal');
-if (!/@media\(max-width:480px\)[\s\S]*?\.strip \.wrap\{[^}]*overflow-x:visible!important/.test(css)) throw new Error('CSS: la tira móvil sigue dependiendo de scroll horizontal');
-if (!/@media\(max-width:640px\)[\s\S]*?\.head nav\{[^}]*grid-template-columns:repeat\(5,minmax\(0,1fr\)\)/.test(css)) throw new Error('CSS: falta el menú móvil compacto de cinco accesos');
-if (!/@media\(max-width:640px\)[\s\S]*?\.hero \.actions\{display:none!important\}/.test(css)) throw new Error('CSS: el hero móvil sigue duplicando los botones de llamada y WhatsApp');
+// Zalla usa una cabecera/hero responsive propios: se auditan sus reglas reales,
+ // no los marcadores CSS heredados de Rapid.
+if (!/@media\(max-width:760px\)[\s\S]*?\.head nav\{[^}]*overflow-x:auto!important/.test(css)) throw new Error('CSS Zalla: falta navegación móvil accesible');
+if (!/@media\(max-width:760px\)[\s\S]*?\.hero-copy\{[^}]*background:rgba\(248,252,255,.96\)!important/.test(css)) throw new Error('CSS Zalla: el hero móvil no garantiza tarjeta legible');
+if (!/@media\(max-width:760px\)[\s\S]*?\.hero \.actions\{[^}]*display:flex!important/.test(css)) throw new Error('CSS Zalla: faltan CTA de llamada/WhatsApp en hero móvil');
+if (!/@media\(max-width:760px\)[\s\S]*?\.strip \.wrap\{[^}]*grid-template-columns:1fr 1fr!important/.test(css)) throw new Error('CSS Zalla: tira móvil no compacta');
 
-console.log(`CIERRE PREPRODUCCIÓN OK: ${manifest.length} páginas locales, ${canonicals} canonicals finales, ${checkedLinks} enlaces internos comprobados, 0 rotos, 0 textos técnicos visibles y móvil compacto sin CTA duplicado.`);
+console.log(`CIERRE PREPRODUCCIÓN OK: ${manifest.length} páginas locales, ${canonicals} canonicals finales, ${checkedLinks} enlaces internos comprobados, 0 rotos, 0 textos técnicos visibles y móvil Zalla legible y responsive.`);
