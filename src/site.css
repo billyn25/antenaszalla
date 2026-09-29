@@ -303,3 +303,14 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 .rapid-stats-grid strong{position:relative;z-index:1;display:block;margin-bottom:9px;color:#0867bd;font-size:42px;font-weight:950;line-height:1}
 .rapid-stats-grid span{position:relative;z-index:1;display:block;color:#183b5b;font-size:14px;font-weight:800}
 @media(max-width:760px){.rapid-stats{padding:42px 0 46px}.rapid-stats-grid{grid-template-columns:1fr;gap:10px}.rapid-stats-grid article{min-height:100px;padding:20px 22px}.rapid-stats-grid strong{font-size:34px}}
+
+/* Pueblos relacionados en páginas locales */
+.related-towns-section{padding:34px 0 42px;background:#f5f9fc;border-top:1px solid #e2ebf3;border-bottom:1px solid #e2ebf3}
+.related-towns{padding:24px 26px!important;border:1px solid #dbe6ef!important;border-radius:15px!important;background:#fff!important;box-shadow:0 10px 28px rgba(8,45,87,.06)!important}
+.related-towns h3{margin:0 0 8px;color:#102943;font-size:20px;line-height:1.25}
+.related-towns p{margin:0 0 16px;color:#607386;font-size:13px;line-height:1.55}
+.related-town-links{display:flex;flex-wrap:wrap;gap:8px}
+.related-town-links a{display:inline-flex;align-items:center;min-height:35px;padding:7px 12px;border:1px solid #d9e6f0;border-radius:999px;background:#f5faff;color:#0b5da8;font-size:12px;font-weight:800;text-decoration:none;transition:background .16s,border-color .16s,transform .16s}
+.related-town-links a::before{content:"Antenista en ";font-weight:650;color:#4f6a82}
+.related-town-links a:hover{transform:translateY(-1px);border-color:#91bfe4;background:#eaf5fd;color:#074f90}
+@media(max-width:760px){.related-towns-section{padding:24px 0 30px}.related-towns{padding:19px 18px!important;border-radius:13px!important}.related-towns h3{font-size:18px}.related-town-links{gap:7px}.related-town-links a{min-height:33px;padding:6px 10px;font-size:11px}}
