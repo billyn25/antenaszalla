@@ -248,3 +248,28 @@ header{background:#fff;color:var(--deep);border-bottom:1px solid #dce7f1;box-sha
  .strip .wrap{grid-template-columns:1fr 1fr;padding-block:12px}.strip span{border-left:0;border-top:1px solid #e3ebf2;padding:10px 8px}.strip span:first-child,.strip span:nth-child(2){border-top:0}
 }
 @media(max-width:420px){.rapid-brand-logo.zalla-brand-logo{font-size:16px}.rapid-brand-logo.zalla-brand-logo>span:first-child{width:34px;height:34px}.contact-top a{font-size:17px}.contact-top strong{font-size:7px}.hero-copy{padding:18px}.strip .wrap{grid-template-columns:1fr}}
+
+
+/* FIX CABECERA ZALLA — prevalece sobre estilos heredados */
+header{position:relative!important;top:auto!important;background:#fff!important;color:#09284d!important;border:0!important;box-shadow:0 2px 12px rgba(9,40,77,.09)!important}
+.top-service{height:30px;background:#0867bd!important;color:#fff!important}
+.top-service .wrap{height:30px;display:flex!important;align-items:center;justify-content:space-between;padding:0!important;font-size:11px}
+.head{height:112px!important;display:grid!important;grid-template-columns:280px minmax(480px,1fr) 245px!important;grid-template-rows:1fr!important;align-items:center!important;gap:28px!important;padding:0!important}
+.brand{position:relative!important;grid-column:1!important;grid-row:1!important;width:260px!important;height:76px!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-self:start!important;gap:12px!important;color:#09284d!important}
+.rapid-brand-logo.zalla-brand-logo{display:flex!important;align-items:center!important;gap:10px!important;width:auto!important;height:auto!important;font-size:inherit!important}
+.zalla-symbol{display:grid;place-items:center;width:54px;height:54px;border:3px solid #0d62b8;border-radius:50%;color:#0d62b8;font-size:35px;font-weight:900;line-height:1;transform:rotate(-25deg)}
+.zalla-wordmark{display:flex;flex-direction:column;line-height:.82;font-weight:900;letter-spacing:-.7px}
+.zalla-wordmark>span{font-size:22px;color:#102943}.zalla-wordmark>b{font-size:36px;color:#0d62b8}
+.brand-tagline{position:absolute!important;left:67px!important;top:61px!important;margin:0!important;font-size:8px!important;color:#66788b!important;letter-spacing:.08em!important;white-space:nowrap!important}
+.head nav{grid-column:2!important;grid-row:1!important;display:flex!important;justify-content:center!important;align-items:center!important;gap:26px!important;margin:0!important;padding:0!important;border:0!important;overflow:visible!important;white-space:nowrap!important}
+.head nav a{display:block!important;min-height:0!important;padding:10px 0!important;color:#102943!important;font-size:13px!important;font-weight:800!important}
+.contact-top{grid-column:3!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:0 0 0 24px!important;border-left:1px solid #d7e1eb!important;min-height:72px!important}
+.contact-top a{font-size:29px!important;line-height:1.05!important;color:#09284d!important;font-weight:900!important}
+.contact-top strong{margin-top:8px!important;background:#ed1533!important;color:#fff!important;font-size:10px!important;padding:4px 13px!important;border-radius:999px!important}
+.contact-top small{margin-top:3px!important;color:#66788b!important;font-size:11px!important}
+.hero{isolation:auto!important}
+.hero-photo{z-index:0!important}
+.hero-inner{position:relative!important;z-index:2!important}
+.hero-copy{position:relative!important;z-index:3!important}
+@media(max-width:1050px){.head{grid-template-columns:220px minmax(360px,1fr) 205px!important;gap:15px!important}.brand{width:210px!important}.head nav{gap:14px!important}.head nav a{font-size:11px!important}.contact-top a{font-size:23px!important}}
+@media(max-width:760px){.top-service{height:26px}.top-service .wrap{height:26px}.head{height:auto!important;min-height:104px!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:62px 42px!important;gap:0 10px!important;padding:0!important}.brand{grid-column:1!important;grid-row:1!important;width:auto!important;height:60px!important}.zalla-symbol{width:38px;height:38px;font-size:25px}.zalla-wordmark>span{font-size:15px}.zalla-wordmark>b{font-size:25px}.brand-tagline{left:50px!important;top:46px!important;font-size:6px!important}.contact-top{grid-column:2!important;grid-row:1!important;min-height:52px!important;padding-left:10px!important}.contact-top a{font-size:18px!important}.contact-top strong{font-size:7px!important;margin-top:4px!important;padding:2px 6px!important}.contact-top small{display:none!important}.head nav{grid-column:1/-1!important;grid-row:2!important;justify-content:flex-start!important;gap:20px!important;overflow-x:auto!important;border-top:1px solid #e4ebf2!important}.head nav a{font-size:11px!important;padding:8px 0!important}.hero-photo{z-index:0!important}}
