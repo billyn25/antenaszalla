@@ -116,15 +116,15 @@ for(const page of localPages){const seg=String(page.path||'').replace(/^\//,'').
 const featuredCards=[...provinceSegments].sort((a,b)=>a.localeCompare(b,'es')).map(seg=>{
  const pagesFor=localByProvince.get(seg)||[],byName=new Map(pagesFor.map(p=>[normTown(p.name),p]));
  const requested=featuredByProvince[seg]||[];
- const chosen=requested.map(n=>byName.get(normTown(n))).filter(Boolean).slice(0,8);
+ const chosen=requested.map(n=>byName.get(normTown(n))).filter(Boolean).slice(0,18);
  const chosenPaths=new Set(chosen.map(p=>p.path));
  const extra=pagesFor.filter(p=>!chosenPaths.has(p.path)).sort((a,b)=>a.name.localeCompare(b.name,'es',{sensitivity:'base'})).slice(0,12);
  const provinceName=seg.replace(/^Antenas-/,'').replace('Guipuzcoa','Gipuzkoa').replace('Alava','Álava').replaceAll('-',' ');
- if(chosen.length<4) throw new Error(`Portada: faltan pueblos destacados válidos para ${seg} (${chosen.length}/8)`);
- if(extra.length<12) throw new Error(`Portada: faltan pueblos adicionales válidos para ${seg} (${extra.length}/12)`);
- return `<article class="featured-province"><h3><a href="/${seg}/">${provinceName}</a></h3><div class="featured-towns">${chosen.map(p=>`<a href="${p.path}">${p.name}</a>`).join('')}</div><details class="featured-more"><summary>Más pueblos con servicio</summary><div class="featured-more-links">${extra.map(p=>`<a href="${p.path}">${p.name}</a>`).join('')}</div></details><a class="featured-all" href="/${seg}/">Ver todos los pueblos →</a></article>`;
+ if(chosen.length<4) throw new Error(`Portada: faltan pueblos destacados válidos para ${seg} (${chosen.length}/12)`);
+ if(extra.length<18) throw new Error(`Portada: faltan pueblos adicionales válidos para ${seg} (${extra.length}/18)`);
+ return `<article class="featured-province"><h3><a href="/${seg}/">${provinceName}</a></h3><div class="featured-towns">${chosen.map(p=>`<a href="${p.path}">Antenista en ${p.name}</a>`).join('')}</div><details class="featured-more"><summary>Más pueblos con servicio</summary><div class="featured-more-links">${extra.map(p=>`<a href="${p.path}">Antenista en ${p.name}</a>`).join('')}</div></details><a class="featured-all" href="/${seg}/">Ver todos los pueblos →</a></article>`;
 }).join('');
-const featuredHtml=`<section class="featured-localities" id="pueblos-destacados"><div class="wrap"><span class="eyebrow">Localidades principales</span><h2>Pueblos y ciudades con servicio</h2><p class="featured-lead">Accesos directos a algunas de las localidades principales de cada provincia. Consulta la provincia para ver el listado completo.</p><div class="featured-province-grid">${featuredCards}</div></div></section>`;
+const featuredHtml=`<section class="featured-localities" id="pueblos-destacados"><div class="wrap"><span class="eyebrow">Localidades principales</span><h2>Pueblos y ciudades con servicio</h2><p class="featured-lead">Accesos directos a más localidades con página propia. Cada enlace abre el servicio de antenista en ese pueblo; consulta la provincia para ver el listado completo.</p><div class="featured-province-grid">${featuredCards}</div></div></section>`;
 
 const statsHtml = `<section class="rapid-stats" id="rapid-stats" aria-labelledby="rapid-stats-title"><div class="wrap"><div class="rapid-stats-head"><span class="eyebrow">Antenas Zalla en cifras</span><h2 id="rapid-stats-title">Servicio organizado por localidades</h2><p>La web reúne páginas locales y servicios técnicos para facilitar la consulta por municipio.</p></div><div class="rapid-stats-grid"><article><strong>${stats.towns.toLocaleString('es-ES')}</strong><span>Pueblos con página local</span></article><article><strong>${stats.provinces}</strong><span>Provincias organizadas</span></article><article><strong>${stats.services}</strong><span>Servicios técnicos</span></article></div></div></section>`;
 const homeFile = path.join(root, 'index.html');
