@@ -171,5 +171,5 @@ assert.ok(zones, 'Portada: falta el acceso a los pueblos');
 for (const province of provinces) {
   assert.equal(zones.split(`href="${province.path}"`).length - 1, 1, `Portada: acceso único a ${province.name}`);
 }
-assert.ok(fs.statSync(path.join(root, 'assets/logo-antenaszalla.webp')).size > 0, 'Falta el archivo de logo publicado');
+assert.equal((home.match(/class="rapid-brand-logo zalla-brand-logo"/g) || []).length, 1, 'Portada: debe publicar una única marca Antenas Zalla');
 console.log(`AUDITORÍA SEO LOCAL OK: ${localPages.length} páginas; ${titlePatterns.size} patrones de title, ${descriptionPatterns.size} metas, ${localVariants.size} variantes de contenido, schema Service sin dirección inventada, Urgencias 24h, URLs históricas de Bilbao/Aranda/Lerma e interlinking provincial.`);
