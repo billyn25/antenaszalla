@@ -116,9 +116,9 @@ for(const page of localPages){const seg=String(page.path||'').replace(/^\//,'').
 const featuredCards=[...provinceSegments].sort((a,b)=>a.localeCompare(b,'es')).map(seg=>{
  const pagesFor=localByProvince.get(seg)||[],byName=new Map(pagesFor.map(p=>[normTown(p.name),p]));
  const requested=featuredByProvince[seg]||[];
- const chosen=requested.map(n=>byName.get(normTown(n))).filter(Boolean).slice(0,18);
+ const chosen=requested.map(n=>byName.get(normTown(n))).filter(Boolean).slice(0,12);
  const chosenPaths=new Set(chosen.map(p=>p.path));
- const extra=pagesFor.filter(p=>!chosenPaths.has(p.path)).sort((a,b)=>a.name.localeCompare(b.name,'es',{sensitivity:'base'})).slice(0,12);
+ const extra=pagesFor.filter(p=>!chosenPaths.has(p.path)).sort((a,b)=>a.name.localeCompare(b.name,'es',{sensitivity:'base'})).slice(0,18);
  const provinceName=seg.replace(/^Antenas-/,'').replace('Guipuzcoa','Gipuzkoa').replace('Alava','Álava').replaceAll('-',' ');
  if(chosen.length<4) throw new Error(`Portada: faltan pueblos destacados válidos para ${seg} (${chosen.length}/12)`);
  if(extra.length<18) throw new Error(`Portada: faltan pueblos adicionales válidos para ${seg} (${extra.length}/18)`);
