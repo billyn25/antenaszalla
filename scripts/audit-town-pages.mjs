@@ -11,6 +11,7 @@ assert.ok(fs.existsSync(manifestPath), 'Falta local-pages-manifest.json');
 const localPages = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const provinces = pages.filter(p => p.type === 'province');
 assert.equal(localPages.length, 1171, `Cobertura Zalla incompleta: ${localPages.length}/1171 páginas locales`);
+assert.equal(provinces.length, 7, `Cobertura provincial incompleta: ${provinces.length}/7`);
 
 const antenistaCercaPhrases = [
   'Servicio de proximidad',
