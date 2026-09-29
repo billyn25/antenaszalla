@@ -19,7 +19,7 @@ header{position:sticky;top:0;z-index:40;background:var(--deep);color:#fff;border
 .brand{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-self:start;min-width:0;width:min(300px,100%);color:#fff;text-decoration:none}
 .brand:hover{text-decoration:none}
 .brand-filter{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
-.rapid-brand-logo{display:block;width:100%;height:auto;aspect-ratio:3;object-fit:contain;filter:url(#rapid-logo-contrast)}
+.zalla-brand-logo-base{display:block;width:100%;height:auto;aspect-ratio:3;object-fit:contain;filter:url(#rapid-logo-contrast)}
 .brand-tagline{display:block;align-self:center;margin:-5px 0 8px;font-size:11px;line-height:1.3;color:#dedde0;white-space:nowrap}
 .contact-top{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:flex-end;text-align:right;min-width:0;padding-left:24px;border-left:1px solid #5a5b60}
 .contact-top a{display:block;color:#fff;font-size:29px;font-weight:900;line-height:1.4;white-space:nowrap;text-decoration:none}
@@ -211,7 +211,7 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 .top-service .wrap{height:30px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;padding:0!important}
 .head{min-height:108px!important;display:grid!important;grid-template-columns:270px minmax(0,1fr) 220px!important;grid-template-rows:108px!important;align-items:center!important;gap:22px!important;padding:0!important}
 .brand{position:relative!important;grid-column:1!important;grid-row:1!important;width:255px!important;height:72px!important;display:flex!important;align-items:center!important;gap:10px!important;color:var(--deep)!important;overflow:visible!important}
-.rapid-brand-logo.zalla-brand-logo{display:flex!important;align-items:center!important;gap:10px!important;width:auto!important;height:auto!important;line-height:1!important}
+.zalla-brand-logo-base.zalla-brand-logo{display:flex!important;align-items:center!important;gap:10px!important;width:auto!important;height:auto!important;line-height:1!important}
 .zalla-symbol{display:grid!important;place-items:center!important;flex:0 0 48px!important;width:48px!important;height:48px!important;border:3px solid var(--brand)!important;border-radius:50%!important;color:var(--brand)!important;font-size:29px!important;font-weight:900!important;transform:rotate(-22deg)}
 .zalla-wordmark{display:flex!important;flex-direction:column!important;line-height:.82!important;font-weight:950!important;letter-spacing:-.5px!important}
 .zalla-wordmark>span{font-size:19px!important;color:#102943!important}.zalla-wordmark>b{font-size:32px!important;color:var(--brand)!important}
@@ -292,17 +292,17 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 @media(max-width:760px){.featured-localities{padding:42px 0}.featured-province-grid{grid-template-columns:1fr;gap:12px}.featured-province{padding:19px}.featured-towns a,.featured-more-links a{font-size:11px;min-height:32px;padding:6px 9px}}
 
 /* Cifras Zalla — bloque visual */
-.rapid-stats{padding:64px 0 70px;background:linear-gradient(180deg,#f7fbfe 0%,#eef5fb 100%);border-top:1px solid #dce8f1;border-bottom:1px solid #dce8f1}
-.rapid-stats-head{max-width:760px;margin-bottom:28px}
-.rapid-stats-head .eyebrow{display:block;margin-bottom:10px;color:#0867bd;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
-.rapid-stats-head h2{margin:0 0 12px;color:#102943;font-size:clamp(30px,3vw,42px);line-height:1.08}
-.rapid-stats-head p{margin:0;color:#52677a;font-size:15px;line-height:1.6}
-.rapid-stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.rapid-stats-grid article{position:relative;min-height:145px;padding:25px 26px;border:1px solid #d9e6f0;border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(8,45,87,.07);overflow:hidden}
-.rapid-stats-grid article::after{content:"";position:absolute;right:-22px;bottom:-32px;width:100px;height:100px;border-radius:50%;background:#eaf4fc}
-.rapid-stats-grid strong{position:relative;z-index:1;display:block;margin-bottom:9px;color:#0867bd;font-size:42px;font-weight:950;line-height:1}
-.rapid-stats-grid span{position:relative;z-index:1;display:block;color:#183b5b;font-size:14px;font-weight:800}
-@media(max-width:760px){.rapid-stats{padding:42px 0 46px}.rapid-stats-grid{grid-template-columns:1fr;gap:10px}.rapid-stats-grid article{min-height:100px;padding:20px 22px}.rapid-stats-grid strong{font-size:34px}}
+.zalla-stats{padding:64px 0 70px;background:linear-gradient(180deg,#f7fbfe 0%,#eef5fb 100%);border-top:1px solid #dce8f1;border-bottom:1px solid #dce8f1}
+.zalla-stats-head{max-width:760px;margin-bottom:28px}
+.zalla-stats-head .eyebrow{display:block;margin-bottom:10px;color:#0867bd;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.zalla-stats-head h2{margin:0 0 12px;color:#102943;font-size:clamp(30px,3vw,42px);line-height:1.08}
+.zalla-stats-head p{margin:0;color:#52677a;font-size:15px;line-height:1.6}
+.zalla-stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.zalla-stats-grid article{position:relative;min-height:145px;padding:25px 26px;border:1px solid #d9e6f0;border-radius:16px;background:#fff;box-shadow:0 10px 28px rgba(8,45,87,.07);overflow:hidden}
+.zalla-stats-grid article::after{content:"";position:absolute;right:-22px;bottom:-32px;width:100px;height:100px;border-radius:50%;background:#eaf4fc}
+.zalla-stats-grid strong{position:relative;z-index:1;display:block;margin-bottom:9px;color:#0867bd;font-size:42px;font-weight:950;line-height:1}
+.zalla-stats-grid span{position:relative;z-index:1;display:block;color:#183b5b;font-size:14px;font-weight:800}
+@media(max-width:760px){.zalla-stats{padding:42px 0 46px}.zalla-stats-grid{grid-template-columns:1fr;gap:10px}.zalla-stats-grid article{min-height:100px;padding:20px 22px}.zalla-stats-grid strong{font-size:34px}}
 
 /* Pueblos relacionados en páginas locales */
 .related-towns-section{padding:34px 0 42px;background:#f5f9fc;border-top:1px solid #e2ebf3;border-bottom:1px solid #e2ebf3}
