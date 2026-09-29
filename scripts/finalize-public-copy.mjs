@@ -65,7 +65,7 @@ for (const file of walk(root)) {
     .replaceAll('La web continúa en modo de revisión y noindex.', '')
     .replace(/<p class="notice">[^<]*(?:vista previa|modo de revisión|noindex|página de prueba|selección parcial|web actual|generada para esa localidad)[^<]*<\/p>/gi, '')
     .replace(/<details><summary>Información de esta vista previa y privacidad<\/summary><p>[\s\S]*?<\/p><\/details>/gi, '')
-    .replaceAll('Antenas Zalla · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.', 'Antenas Zalla · Propiedad de R.F.G. · 946 390 339')
+    .replaceAll('Antenas Zalla · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.', 'Antenas Zalla · Propiedad de R.F.G. · 670 042 626')
     .replaceAll('Página no incluida en esta vista previa', 'Página no disponible')
     .replaceAll('El inventario de la renovación está en revisión. Esto no indica que la página se haya eliminado de la web actual.', 'La dirección solicitada no está disponible. Puedes volver al inicio o contactar con Antenas Zalla.');
 
@@ -126,14 +126,14 @@ const featuredCards=[...provinceSegments].sort((a,b)=>a.localeCompare(b,'es')).m
 }).join('');
 const featuredHtml=`<section class="featured-localities" id="pueblos-destacados"><div class="wrap"><span class="eyebrow">Localidades principales</span><h2>Pueblos y ciudades con servicio</h2><p class="featured-lead">Accesos directos a más localidades con página propia. Cada enlace abre el servicio de antenista en ese pueblo; consulta la provincia para ver el listado completo.</p><div class="featured-province-grid">${featuredCards}</div></div></section>`;
 
-const statsHtml = `<section class="rapid-stats" id="rapid-stats" aria-labelledby="rapid-stats-title"><div class="wrap"><div class="rapid-stats-head"><span class="eyebrow">Antenas Zalla en cifras</span><h2 id="rapid-stats-title">Servicio organizado por localidades</h2><p>La web reúne páginas locales y servicios técnicos para facilitar la consulta por municipio.</p></div><div class="rapid-stats-grid"><article><strong>${stats.towns.toLocaleString('es-ES')}</strong><span>Pueblos con página local</span></article><article><strong>${stats.provinces}</strong><span>Provincias organizadas</span></article><article><strong>${stats.services}</strong><span>Servicios técnicos</span></article></div></div></section>`;
+const statsHtml = `<section class="zalla-stats" id="zalla-stats" aria-labelledby="zalla-stats-title"><div class="wrap"><div class="zalla-stats-head"><span class="eyebrow">Antenas Zalla en cifras</span><h2 id="zalla-stats-title">Servicio organizado por localidades</h2><p>La web reúne páginas locales y servicios técnicos para facilitar la consulta por municipio.</p></div><div class="zalla-stats-grid"><article><strong>${stats.towns.toLocaleString('es-ES')}</strong><span>Pueblos con página local</span></article><article><strong>${stats.provinces}</strong><span>Provincias organizadas</span></article><article><strong>${stats.services}</strong><span>Servicios técnicos</span></article></div></div></section>`;
 const homeFile = path.join(root, 'index.html');
 let homeHtml = fs.readFileSync(homeFile, 'utf8');
 homeHtml=homeHtml.replace('<section class="hero">','<section class="hero home-clean-hero">');
 if (!homeHtml.includes('id="pueblos-destacados"')) { const marker='<section class="section wrap faq" id="preguntas">'; if(!homeHtml.includes(marker)) throw new Error('Portada: no se encontró el punto para insertar pueblos destacados'); homeHtml=homeHtml.replace(marker,featuredHtml+marker); }
-if (!homeHtml.includes('id="rapid-stats"') && homeHtml.includes('<footer class="footer">')) {
+if (!homeHtml.includes('id="zalla-stats"') && homeHtml.includes('<footer class="footer">')) {
   homeHtml = homeHtml.replace('<footer class="footer">', `${statsHtml}<footer class="footer">`);
-} else if (!homeHtml.includes('id="rapid-stats"')) {
+} else if (!homeHtml.includes('id="zalla-stats"')) {
   throw new Error('No se encontró el footer para insertar las cifras de portada');
 }
 fs.writeFileSync(homeFile, homeHtml);
