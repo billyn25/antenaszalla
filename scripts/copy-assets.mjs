@@ -3,8 +3,8 @@ import path from 'node:path';
 
 const root = path.resolve('dist');
 
-const PHONE = '946 390 339';
-const TEL = '+34946390339';
+const PHONE = '670 042 626';
+const TEL = '+34670042626';
 const DOMAIN = 'https://www.antenaszalla.com';
 
 fs.mkdirSync(path.join(root, 'assets'), { recursive: true });
