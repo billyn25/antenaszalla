@@ -202,3 +202,49 @@ body{background:linear-gradient(#fff 0 72%,#fbfaf8 100%)}
   .legal-data>div{grid-template-columns:1fr}.legal-data dt{padding-bottom:5px}.legal-data dd{padding-top:5px}
   .legal-links{gap:6px 12px}.legal-sep{display:none}
 }
+
+/* ZALLA 2026 — identidad clara, luminosa y separada de Rapid */
+:root{--brand:#0d62b8;--deep:#09284d;--soft:#f3f8fd;--line:#d8e4ef;--green:#128548}
+header{background:#fff;color:var(--deep);border-bottom:1px solid #dce7f1;box-shadow:0 5px 22px rgba(9,40,77,.10)}
+.top-service{background:#0d62b8;color:#fff;font-size:11px;font-weight:700}
+.top-service .wrap{display:flex;justify-content:space-between;gap:18px;padding-block:7px}
+.head{grid-template-columns:300px minmax(0,1fr) auto;column-gap:30px;row-gap:0;padding-block:13px}
+.brand{grid-column:1;grid-row:1;color:var(--deep);width:300px;flex-direction:row;align-items:center;gap:9px}
+.rapid-brand-logo.zalla-brand-logo{display:flex;align-items:center;gap:8px;width:auto;height:auto;aspect-ratio:auto;color:var(--deep);font-size:24px;font-weight:900;line-height:1}
+.rapid-brand-logo.zalla-brand-logo>span:first-child{display:grid;place-items:center;width:45px;height:45px;border-radius:50%;background:#e9f3fc;color:#0d62b8;font-size:26px}
+.rapid-brand-logo.zalla-brand-logo b{color:#0d62b8}
+.brand-tagline{position:absolute;left:54px;top:34px;color:#66788b;font-size:9px;margin:0;text-transform:uppercase;letter-spacing:.08em}
+.head nav{grid-column:2;grid-row:1;border:0;overflow:visible;justify-content:center;gap:26px;font-size:13px}
+.head nav a{color:#102943;min-height:48px;font-weight:800}
+.head nav a:hover{color:#0d62b8}
+.contact-top{grid-column:3;grid-row:1;padding-left:25px;border-left:1px solid #d7e1eb}
+.contact-top a{color:#09284d;font-size:30px}
+.contact-top strong{display:inline-flex;margin-top:2px;padding:3px 10px;border-radius:999px;background:#e51d3b;color:#fff;font-size:10px;letter-spacing:.04em}
+.contact-top small{color:#66788b}
+.hero{min-height:520px;color:#09284d;background:#eaf4fd;border-bottom:0}
+.hero::before{display:none}
+.hero-photo{position:absolute;inset:0 0 0 43%;z-index:-1;background:linear-gradient(90deg,#eaf4fd 0%,rgba(234,244,253,.22) 18%,rgba(234,244,253,0) 45%),linear-gradient(0deg,rgba(9,40,77,.12),rgba(9,40,77,0)),url('/assets/hero-zalla.jpg') center/cover no-repeat}
+.hero-inner{grid-template-columns:minmax(0,610px) 1fr;min-height:520px;padding-block:58px}
+.hero-copy{padding:24px 26px 24px 0;background:linear-gradient(90deg,rgba(234,244,253,.98) 0%,rgba(234,244,253,.94) 82%,rgba(234,244,253,0) 100%)}
+.hero .eyebrow{color:#0d62b8;font-size:12px}
+.hero h1{color:#09284d;font-size:clamp(44px,4.8vw,68px);max-width:620px}
+.service-statement{color:#102943;font-size:20px}
+.lead{color:#344d65}
+.hero .btn.call{background:#e51d3b}
+.hero .btn.wa{background:#128548}
+.micro{color:#50677d}.hero .micro a{color:#09284d}.hero-tags{color:#27455f}.hero-tags span::before{color:#0d62b8}
+.strip{border-bottom:1px solid #dbe6f0;box-shadow:0 7px 18px rgba(9,40,77,.05)}
+.strip .wrap{padding-block:19px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.strip span{padding:2px 18px;border-left:1px solid #dbe6f0;color:#163653;font-size:12px}
+.strip span:first-child{border-left:0}
+.eyebrow{color:#0d62b8}.province-card .arrow,.steps li:before,.letter-group h3{color:#0d62b8}
+@media(max-width:1000px){.head{grid-template-columns:230px minmax(0,1fr) auto;column-gap:18px}.head nav{gap:14px;font-size:11px}.brand{width:230px}.contact-top a{font-size:24px}.hero-photo{inset-left:48%}}
+@media(max-width:760px){
+ .top-service .wrap span:last-child{display:none}.top-service .wrap{justify-content:center;padding-block:5px}
+ .head{grid-template-columns:minmax(0,1fr) auto;padding-block:9px}.brand{grid-column:1;width:auto}.rapid-brand-logo.zalla-brand-logo{font-size:19px}.rapid-brand-logo.zalla-brand-logo>span:first-child{width:38px;height:38px;font-size:21px}.brand-tagline{left:46px;top:30px;font-size:7px}
+ .contact-top{grid-column:2;padding-left:10px}.contact-top a{font-size:19px}.contact-top strong{font-size:8px;padding:2px 6px}.contact-top small{display:none}
+ .head nav{grid-column:1/-1;grid-row:2;justify-content:flex-start;border-top:1px solid #e4ebf2;overflow-x:auto;font-size:11px;gap:20px;margin-top:8px}.head nav a{min-height:38px}
+ .hero{min-height:auto}.hero-photo{inset:0;opacity:.28;background-position:65% center}.hero-inner{grid-template-columns:1fr;min-height:auto;padding-block:28px}.hero-copy{padding:22px;background:rgba(244,249,253,.91);border-radius:14px}.hero h1{font-size:clamp(37px,10vw,50px)}.service-statement{font-size:17px}.lead{color:#294760}
+ .strip .wrap{grid-template-columns:1fr 1fr;padding-block:12px}.strip span{border-left:0;border-top:1px solid #e3ebf2;padding:10px 8px}.strip span:first-child,.strip span:nth-child(2){border-top:0}
+}
+@media(max-width:420px){.rapid-brand-logo.zalla-brand-logo{font-size:16px}.rapid-brand-logo.zalla-brand-logo>span:first-child{width:34px;height:34px}.contact-top a{font-size:17px}.contact-top strong{font-size:7px}.hero-copy{padding:18px}.strip .wrap{grid-template-columns:1fr}}
