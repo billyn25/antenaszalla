@@ -268,3 +268,8 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
  .head{padding-inline:8px!important}.contact-top a{font-size:15px!important}.zalla-wordmark>b{font-size:21px!important}
  .hero{min-height:580px!important}.hero-inner{min-height:580px!important;padding:185px 10px 14px!important}.hero-copy{padding:18px 16px!important}.hero h1{font-size:36px!important}.hero .actions{flex-direction:column!important}.hero .btn{width:100%!important}
 }
+
+/* Logo SVG Zalla */
+.zalla-logo-icon{display:block!important;flex:0 0 72px!important;width:72px!important;height:58px!important;color:#0867bd!important;overflow:visible!important}
+@media(max-width:1180px) and (min-width:761px){.zalla-logo-icon{flex-basis:58px!important;width:58px!important;height:48px!important}}
+@media(max-width:760px){.zalla-logo-icon{flex-basis:46px!important;width:46px!important;height:39px!important}}
