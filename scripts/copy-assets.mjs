@@ -2,19 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve('dist');
-const source = path.join('src', 'logo-antenaszalla-clean.webp.b64');
-const target = path.join(root, 'assets', 'logo-antenaszalla.webp');
+
 const PHONE = '946 390 339';
 const TEL = '+34946390339';
 const DOMAIN = 'https://www.antenaszalla.com';
 
-fs.mkdirSync(path.dirname(target), { recursive: true });
-const encoded = fs.readFileSync(source, 'utf8').trim();
-fs.writeFileSync(target, Buffer.from(encoded, 'base64'));
-const heroSource=path.join('src','hero-antenaszalla-HQ.jpg');
-const heroTarget=path.join(root,'assets','hero-antenaszalla-HQ.jpg');
-if(!fs.existsSync(heroSource)) throw new Error('Falta src/hero-antenaszalla-HQ.jpg');
-fs.copyFileSync(heroSource,heroTarget);
+fs.mkdirSync(path.join(root, 'assets'), { recursive: true });
 
 const home = path.join(root, 'index.html');
 if (fs.existsSync(home)) {
