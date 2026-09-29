@@ -11,8 +11,8 @@ test('portada de marca: sin Bizkaia en título, H1, descripción o encabezados',
 });
 test('Lerma conserva Burgos, teléfono y reclamo proporcionado; no inventa tiempos de llegada', () => {
  const p=pages.find(p=>p.name==='Lerma'), m=localMetadata(p,site), h=renderPage(p);
- assert.equal(m.title,'Antenista en Lerma, Burgos | 946 390 339');
- assert.ok(m.description.startsWith('Antenista en Lerma, Burgos. Urgencias 24h. ☎ 946 390 339.'));
+ assert.equal(m.title,'Antenista en Lerma, Burgos | 670 042 626');
+ assert.ok(m.description.startsWith('Antenista en Lerma, Burgos. Urgencias 24h. ☎ 670 042 626.'));
  assert.ok(m.description.includes('Antenas colectivas e individuales'));
  assert.ok(h.includes('<strong>Urgencias 24h</strong>'));
  assert.ok(!/\b(?:30|45) minutos\b/.test(h));
