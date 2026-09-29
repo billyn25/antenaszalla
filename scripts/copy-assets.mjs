@@ -190,10 +190,6 @@ function fixHtml(dir) {
 
       html = html.replaceAll('>Porteros y videoporteros<', '>Porteros automáticos y videoporteros<');
       html = html.replaceAll('<strong>Porteros y videoporteros</strong>', '<strong>Porteros automáticos y videoporteros</strong>');
-
-      if (!html.includes('class="nav-mobile-coverage"')) {
-        html = html.replace('<a href="#porteros-videoporteros">Porteros automáticos y videoporteros</a>', '<a href="#porteros-videoporteros">Porteros automáticos y videoporteros</a><a class="nav-mobile-coverage" href="#cobertura-movil">Antenas 4G/5G y cobertura móvil</a>');
-      }
       if (!html.includes('<span>Cobertura móvil 4G/5G</span>')) {
         html = html.replace('<span>Porteros automáticos y videoporteros</span><span>Instalación y mantenimiento</span>', '<span>Porteros automáticos y videoporteros</span><span>Cobertura móvil 4G/5G</span><span>Instalación y mantenimiento</span>');
       }
