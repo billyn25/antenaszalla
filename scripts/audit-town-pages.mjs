@@ -10,7 +10,7 @@ const manifestPath = path.join(root, 'local-pages-manifest.json');
 assert.ok(fs.existsSync(manifestPath), 'Falta local-pages-manifest.json');
 const localPages = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const provinces = pages.filter(p => p.type === 'province');
-assert.ok(localPages.length >= 700, `Expansión incompleta: solo ${localPages.length} páginas locales`);
+assert.equal(localPages.length, 623, `Cobertura Zalla incompleta: ${localPages.length}/623 páginas locales`);
 
 const antenistaCercaPhrases = [
   'Servicio de proximidad',
