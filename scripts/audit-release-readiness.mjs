@@ -106,7 +106,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'local-pages-manifes
 if (!manifest.length) throw new Error('Manifiesto local vacío');
 const services = JSON.parse(fs.readFileSync(path.resolve('content', 'services.json'), 'utf8'));
 const provinceSegmentsForStats = new Set(manifest.map(page => String(page.path || '').replace(/^\//, '').split('/')[0]).filter(Boolean));
-if (!home.includes('id="rapid-stats"') || !home.includes('id="rapid-stats-title"')) throw new Error('Portada: falta el bloque final de cifras');
+if (!home.includes('id="zalla-stats"') || !home.includes('id="zalla-stats-title"')) throw new Error('Portada: falta el bloque final de cifras');
 if (manifest.length !== 1171) throw new Error(`Cobertura SEO incompleta: ${manifest.length}/1171 páginas locales`);
 if (provinceSegmentsForStats.size !== 7) throw new Error(`Cobertura provincial incompleta: ${provinceSegmentsForStats.size}/7`);
 const expectedStats = [manifest.length.toLocaleString('es-ES'), String(provinceSegmentsForStats.size), String(services.length)];
