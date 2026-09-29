@@ -273,3 +273,30 @@ header{position:relative!important;top:auto!important;background:#fff!important;
 .hero-copy{position:relative!important;z-index:3!important}
 @media(max-width:1050px){.head{grid-template-columns:220px minmax(360px,1fr) 205px!important;gap:15px!important}.brand{width:210px!important}.head nav{gap:14px!important}.head nav a{font-size:11px!important}.contact-top a{font-size:23px!important}}
 @media(max-width:760px){.top-service{height:26px}.top-service .wrap{height:26px}.head{height:auto!important;min-height:104px!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:62px 42px!important;gap:0 10px!important;padding:0!important}.brand{grid-column:1!important;grid-row:1!important;width:auto!important;height:60px!important}.zalla-symbol{width:38px;height:38px;font-size:25px}.zalla-wordmark>span{font-size:15px}.zalla-wordmark>b{font-size:25px}.brand-tagline{left:50px!important;top:46px!important;font-size:6px!important}.contact-top{grid-column:2!important;grid-row:1!important;min-height:52px!important;padding-left:10px!important}.contact-top a{font-size:18px!important}.contact-top strong{font-size:7px!important;margin-top:4px!important;padding:2px 6px!important}.contact-top small{display:none!important}.head nav{grid-column:1/-1!important;grid-row:2!important;justify-content:flex-start!important;gap:20px!important;overflow-x:auto!important;border-top:1px solid #e4ebf2!important}.head nav a{font-size:11px!important;padding:8px 0!important}.hero-photo{z-index:0!important}}
+
+/* CABECERA ZALLA FINAL — sin solapes */
+.hero-photo{background-image:linear-gradient(90deg,#eef6fd 0%,rgba(238,246,253,.34) 23%,rgba(238,246,253,0) 50%),url('/assets/hero-zalla.png')!important;background-position:center!important;background-size:cover!important}
+@media(min-width:1060px){
+ header{overflow:visible!important}
+ .head{height:104px!important;grid-template-columns:300px minmax(520px,1fr) 235px!important;gap:24px!important}
+ .brand{width:280px!important;min-width:0!important}
+ .zalla-symbol{width:50px!important;height:50px!important}
+ .zalla-wordmark>span{font-size:21px!important}.zalla-wordmark>b{font-size:34px!important}
+ .brand-tagline{left:62px!important;top:58px!important}
+ .head nav{gap:24px!important;justify-content:center!important;min-width:0!important}
+ .head nav a{font-size:12px!important;white-space:nowrap!important}
+ .contact-top{min-width:220px!important;width:220px!important;padding-left:20px!important}
+ .contact-top a{font-size:27px!important}
+ .contact-top strong{font-size:9px!important;margin-top:7px!important}
+}
+@media(min-width:1060px) and (max-width:1280px){
+ .head{grid-template-columns:245px minmax(430px,1fr) 205px!important;gap:14px!important}
+ .brand{width:235px!important}
+ .zalla-symbol{width:43px!important;height:43px!important}
+ .zalla-wordmark>span{font-size:18px!important}.zalla-wordmark>b{font-size:29px!important}
+ .brand-tagline{left:53px!important;top:54px!important}
+ .head nav{gap:15px!important}
+ .head nav a{font-size:11px!important}
+ .contact-top{width:195px!important;min-width:195px!important;padding-left:14px!important}
+ .contact-top a{font-size:23px!important}
+}
