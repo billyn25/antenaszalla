@@ -323,3 +323,15 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
  .hero-copy>.actions{display:none!important}
  .hero-copy>.micro{display:none!important}
 }
+
+/* Ajustes finales móvil: navegación sin scroll + chips locales legibles */
+.related-town-links a::before{content:"Antenista en ";margin-right:.28em;font-weight:650;color:#4f6a82}
+@media(max-width:760px){
+ .head{grid-template-rows:64px auto!important}
+ .head nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;width:100%!important;overflow:visible!important;white-space:normal!important;border-top:1px solid #e4ebf2!important}
+ .head nav a{display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;padding:9px 5px!important;border-right:1px solid #e4ebf2!important;border-bottom:1px solid #e4ebf2!important;font-size:9px!important;line-height:1.15!important;text-align:center!important;white-space:normal!important}
+ .head nav a:nth-child(3n){border-right:0!important}
+ .related-town-links{gap:8px!important}
+ .related-town-links a{white-space:normal!important;line-height:1.2!important;padding:8px 11px!important}
+ .related-town-links a::before{margin-right:.32em!important}
+}
