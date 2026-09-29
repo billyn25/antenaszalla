@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const SOURCE = 'https://raw.githubusercontent.com/codeforspain/ds-organizacion-administrativa/1e9c99280ef4d7a12def33cafc3df59d9fc1f688/data/municipios.json';
 const PROVINCES = {
-'01':{name:'Álava',path:'/Antenas-Alava/'},'48':{name:'Bizkaia',path:'/Antenas-Bizkaia/'},'09':{name:'Burgos',path:'/Antenas-Burgos/'},'20':{name:'Gipuzkoa',path:'/Antenas-Guipuzcoa/'}
+'01':{name:'Álava',path:'/Antenas-Alava/'},'48':{name:'Bizkaia',path:'/Antenas-Bizkaia/'},'09':{name:'Burgos',path:'/Antenas-Burgos/'},'39':{name:'Cantabria',path:'/Antenas-Cantabria/'},'20':{name:'Gipuzkoa',path:'/Antenas-Guipuzcoa/'},'31':{name:'Navarra',path:'/Antenas-Navarra/'},'26':{name:'La Rioja',path:'/Antenas-La-Rioja/'}
 };
 
 const response = await fetch(SOURCE, { headers: { 'user-agent': 'AntenasZalla-build' } });
