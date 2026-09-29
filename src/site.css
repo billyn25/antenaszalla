@@ -317,3 +317,9 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 
 .hero-slogan{display:inline-flex;margin:8px 0 2px;padding:7px 12px;border-radius:999px;background:#e7f3fd;color:#075ba8;font-size:14px;font-weight:900;line-height:1.2;letter-spacing:.01em}
 @media(max-width:760px){.hero-slogan{margin-top:6px;padding:6px 10px;font-size:12px}}
+
+/* Móvil: contacto ya está en cabecera/barra inferior; no duplicarlo en hero */
+@media(max-width:760px){
+ .hero-copy>.actions{display:none!important}
+ .hero-copy>.micro{display:none!important}
+}
