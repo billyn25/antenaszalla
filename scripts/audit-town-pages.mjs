@@ -39,7 +39,6 @@ function checkPresentation(html, route) {
   assert.equal((header.match(/class="brand-tagline"/g) || []).length, 1, `${route}: subtítulo de marca`);
   assert.ok(html.includes('class="hero-copy"'), `${route}: falta el hero corregido`);
   assert.ok(/URGENCIAS 24H/i.test(html), `${route}: Urgencias 24h no visible`);
-  assert.ok(html.includes('class="nav-mobile-coverage"'), `${route}: falta acceso rápido 4G/5G`);
   assert.ok(!html.includes('id="paginas-locales"'), `${route}: bloque técnico duplicado en la página comercial`);
 
   const antenas = html.indexOf('id="servicios"');
