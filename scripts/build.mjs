@@ -56,7 +56,7 @@ export function renderPage(page){
 export function build(output='dist', env=process.env){
  const mode=env.SITE_MODE||site.mode;
  if(mode!=='preview'||process.argv.includes('--production'))throw new Error('Producción bloqueada en el generador base: utiliza npm run build:production.');
- const productionPipeline=env.ANTENASRAPID_BUILD_TARGET==='production';
+ const productionPipeline=env.ANTENASZALLA_BUILD_TARGET==='production';
  if(productionPipeline&&env.CONTEXT&&env.CONTEXT!=='production'){
   throw new Error('Producción bloqueada fuera del contexto production.');
  }
