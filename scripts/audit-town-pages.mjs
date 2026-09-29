@@ -35,7 +35,7 @@ const inventedLocalPatterns = [
 function checkPresentation(html, route) {
   const header = html.match(/<header>([\s\S]*?)<\/header>/)?.[1];
   assert.ok(header, `${route}: falta cabecera`);
-  assert.equal((header.match(/class="rapid-brand-logo zalla-brand-logo"/g) || []).length, 1, `${route}: debe haber una sola marca Zalla`);
+  assert.equal((header.match(/class="zalla-brand-logo-base zalla-brand-logo"/g) || []).length, 1, `${route}: debe haber una sola marca Zalla`);
   assert.ok(!/class="wordmark"|<em>RAPID<\/em>/.test(header), `${route}: nombre duplicado junto al logo`);
   assert.equal((header.match(/class="brand-tagline"/g) || []).length, 1, `${route}: subtítulo de marca`);
   assert.ok(html.includes('class="hero-copy"'), `${route}: falta el hero corregido`);
