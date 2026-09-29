@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = path.resolve('dist');
 const manifestFile = path.join(root, 'local-pages-manifest.json');
-const PHONE = '946 390 339';
+const PHONE = '670 042 626';
 const MAX_TITLE = 70;
 const MAX_DESCRIPTION = 165;
 const MIN_DESCRIPTION = 115;
