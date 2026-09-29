@@ -8,6 +8,10 @@ const TEL = '+34946390339';
 const DOMAIN = 'https://www.antenaszalla.com';
 
 fs.mkdirSync(path.join(root, 'assets'), { recursive: true });
+const heroSource=path.join('src','assets','hero-zalla.jpg.png');
+const heroTarget=path.join(root,'assets','hero-zalla.png');
+if(fs.existsSync(heroSource)) fs.copyFileSync(heroSource,heroTarget);
+
 
 const home = path.join(root, 'index.html');
 if (fs.existsSync(home)) {
@@ -48,23 +52,7 @@ if (localPages.length) {
   if (fs.existsSync(previewFile)) fs.writeFileSync(previewFile, replaceHistoricRoutes(fs.readFileSync(previewFile, 'utf8')));
 }
 
-const urgentStyles = `<style id="urgent-24h-style">
-.urgent-line{display:flex!important;align-items:flex-end;gap:6px!important;flex-direction:column;margin-top:6px!important;color:#fff!important}
-.urgent-24h{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:#c3263b;color:#fff;font-size:11px;font-weight:900;line-height:1;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 6px 16px rgba(195,38,59,.25)}
-.urgent-24h:before{content:'●';font-size:8px;color:#ffd2d7}
-.urgent-hero{display:inline-flex;align-items:center;gap:8px;margin:0 0 12px;padding:8px 12px;border-radius:999px;background:#c3263b;color:#fff;font-size:12px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 10px 22px rgba(195,38,59,.2)}
-.urgent-hero:before{content:'●';font-size:8px;color:#ffd2d7}
-.related-towns-section{padding:28px 0 6px;background:#fff}
-.related-towns{margin:0;padding:20px 22px;background:#fff;border:1px solid #e3dedb;border-left:4px solid var(--brand);border-radius:14px;box-shadow:0 8px 24px rgba(29,31,35,.05)}
-.related-towns h3{margin:0 0 5px;font-size:18px;line-height:1.3;color:var(--ink)}
-.related-towns p{margin:0 0 13px;color:var(--muted);font-size:13px}
-.related-town-links{display:flex;flex-wrap:wrap;gap:7px}
-.related-town-links a{display:inline-flex;align-items:center;min-height:34px;padding:6px 10px;border:1px solid #ddd7d3;border-radius:9px;background:#fbfaf9;color:var(--brand);font-size:13px;font-weight:800;transition:background .16s,border-color .16s,transform .16s}
-.related-town-links a:hover{background:#faecef;border-color:#d6b8bd;text-decoration:none;transform:translateY(-1px)}
-.related-towns-section + .faq{padding-top:34px}
-@media(max-width:760px){.urgent-line{align-items:flex-end}.urgent-24h{font-size:10px;padding:4px 8px}.urgent-hero{font-size:11px;padding:7px 10px;margin-bottom:10px}.related-towns-section{padding:20px 0 0}.related-towns{padding:17px 16px;border-radius:12px}.related-town-links{gap:6px}.related-town-links a{font-size:12px;min-height:32px}.related-towns-section + .faq{padding-top:28px}}
-@media(max-width:480px){.urgent-line>span:last-child{display:none}.related-towns h3{font-size:16px}.related-towns p{font-size:12px}}
-</style>`;
+const urgentStyles = '';
 
 function moveSectionBefore(html, sectionId, beforeId) {
   const sectionStart = html.indexOf(`<section class="section wrap" id="${sectionId}">`);
@@ -198,9 +186,7 @@ function fixHtml(dir) {
 
       html = moveSectionBefore(html, 'servicios', 'porteros-videoporteros');
 
-      html = html.replace('<small>Consulta tu instalación</small>', '<small class="urgent-line"><span class="urgent-24h">Urgencias 24h</span><span>Consulta tu instalación</span></small>');
-      html = html.replace(/(<section class="hero"><div class="wrap hero-inner"><div class="hero-copy">)/, '$1<span class="urgent-hero">Urgencias 24h</span>');
-      if (!html.includes('id="urgent-24h-style"')) html = html.replace('</head>', urgentStyles + '</head>');
+                  if (!html.includes('id="urgent-24h-style"')) html = html.replace('</head>', urgentStyles + '</head>');
 
       html = html.replaceAll('>Porteros y videoporteros<', '>Porteros automáticos y videoporteros<');
       html = html.replaceAll('<strong>Porteros y videoporteros</strong>', '<strong>Porteros automáticos y videoporteros</strong>');
