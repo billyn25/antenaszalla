@@ -335,3 +335,15 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
  .related-town-links a{white-space:normal!important;line-height:1.2!important;padding:8px 11px!important}
  .related-town-links a::before{margin-right:.32em!important}
 }
+
+/* Menú móvil compacto Zalla: sin rejilla ni scroll */
+@media(max-width:760px){
+ .head{grid-template-rows:64px auto!important}
+ .head nav{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-items:center!important;gap:5px 7px!important;width:100%!important;padding:7px 0 9px!important;overflow:visible!important;white-space:normal!important;border-top:1px solid #e5edf4!important;background:#fff!important}
+ .head nav a{display:inline-flex!important;flex:0 0 auto!important;min-height:28px!important;padding:6px 9px!important;border:0!important;border-radius:999px!important;background:#f3f8fc!important;color:#173b5b!important;font-size:9px!important;font-weight:850!important;line-height:1!important;white-space:nowrap!important;text-align:center!important}
+ .head nav a:hover,.head nav a:focus-visible{background:#e4f1fb!important;color:#0867bd!important}
+}
+@media(max-width:390px){
+ .head nav{gap:4px!important;padding-inline:2px!important}
+ .head nav a{padding:6px 7px!important;font-size:8.5px!important}
+}
