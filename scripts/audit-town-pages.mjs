@@ -38,7 +38,7 @@ function checkPresentation(html, route) {
   assert.ok(!/class="wordmark"|<em>RAPID<\/em>/.test(header), `${route}: nombre duplicado junto al logo`);
   assert.equal((header.match(/class="brand-tagline"/g) || []).length, 1, `${route}: subtítulo de marca`);
   assert.ok(html.includes('class="hero-copy"'), `${route}: falta el hero corregido`);
-  assert.ok(html.includes('Urgencias 24h'), `${route}: Urgencias 24h no visible`);
+  assert.ok(/URGENCIAS 24H/i.test(html), `${route}: Urgencias 24h no visible`);
   assert.ok(html.includes('class="nav-mobile-coverage"'), `${route}: falta acceso rápido 4G/5G`);
   assert.ok(!html.includes('id="paginas-locales"'), `${route}: bloque técnico duplicado en la página comercial`);
 
