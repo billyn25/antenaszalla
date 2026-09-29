@@ -1,9 +1,15 @@
+# Producción Antenas Zalla: genera, prepara y audita el paquete indexable antes de publicar.
 [build]
-  command = "npm run build"
+  command = "npm run build:production"
   publish = "dist"
-
 [build.environment]
   NODE_VERSION = "22"
-
+  SITE_MODE = "preview"
 [build.processing]
   skip_processing = true
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "public, max-age=0, must-revalidate"
