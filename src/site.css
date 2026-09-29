@@ -314,3 +314,6 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 .related-town-links a::before{content:"Antenista en ";font-weight:650;color:#4f6a82}
 .related-town-links a:hover{transform:translateY(-1px);border-color:#91bfe4;background:#eaf5fd;color:#074f90}
 @media(max-width:760px){.related-towns-section{padding:24px 0 30px}.related-towns{padding:19px 18px!important;border-radius:13px!important}.related-towns h3{font-size:18px}.related-town-links{gap:7px}.related-town-links a{min-height:33px;padding:6px 10px;font-size:11px}}
+
+.hero-slogan{display:inline-flex;margin:8px 0 2px;padding:7px 12px;border-radius:999px;background:#e7f3fd;color:#075ba8;font-size:14px;font-weight:900;line-height:1.2;letter-spacing:.01em}
+@media(max-width:760px){.hero-slogan{margin-top:6px;padding:6px 10px;font-size:12px}}
