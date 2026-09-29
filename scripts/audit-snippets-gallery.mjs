@@ -19,7 +19,7 @@ for (const page of manifest) {
   if (!title.includes(page.name)) throw new Error(`${page.path}: el title ha perdido el nombre de la localidad`);
   if (!/Urgencias 24h/i.test(title)) throw new Error(`${page.path}: title sin Urgencias 24h`);
   if (!description.includes(page.name) || !description.includes(page.province)) throw new Error(`${page.path}: meta sin localidad/provincia`);
-  if (!description.includes('946 390 339')) throw new Error(`${page.path}: meta sin teléfono`);
+  if (!description.includes('670 042 626')) throw new Error(`${page.path}: meta sin teléfono`);
   if (!/Urgencias 24h/i.test(description)) throw new Error(`${page.path}: meta sin Urgencias 24h`);
   if (title.length > 70) throw new Error(`${page.path}: title demasiado largo (${title.length})`);
   if (description.length > 165) throw new Error(`${page.path}: meta description demasiado larga (${description.length})`);
