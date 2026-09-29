@@ -134,7 +134,7 @@ if (/^Disallow:\s*\/$/mi.test(robots)) throw new Error('robots.txt bloquea el ra
 const manifestFile = path.join(root, 'local-pages-manifest.json');
 if (!fs.existsSync(manifestFile)) throw new Error('Falta local-pages-manifest.json');
 const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
-if (manifest.length < 620) throw new Error(`Manifiesto local incompleto: ${manifest.length} páginas`);
+if (manifest.length !== 1171) throw new Error(`Manifiesto local incompleto: ${manifest.length}/1171 páginas`);
 
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const provinceSegments = new Set();
@@ -158,6 +158,7 @@ for (const page of manifest) {
   }
 }
 
+if (provinceSegments.size !== 7) throw new Error(`Cobertura provincial incompleta: ${provinceSegments.size}/7`);
 for (const segment of provinceSegments) {
   if (!home.includes(`href="/${segment}/"`)) throw new Error(`Portada: falta enlace a /${segment}/`);
   const key = segment.replace(/^Antenas-/i, '').toLowerCase();
