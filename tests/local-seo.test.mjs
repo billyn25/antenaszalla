@@ -32,10 +32,10 @@ test('antenas y porteros tienen encabezados propios de cada localidad', () => {
 test('marca local Antenas Zalla, sin imagen remota ni dependencia de Rapid', () => {
  for (const p of pages) {
   const h=renderPage(p);
-  assert.equal((h.match(/class="rapid-brand-logo zalla-brand-logo"/g)||[]).length,1);
+  assert.equal((h.match(/class="zalla-brand-logo-base zalla-brand-logo"/g)||[]).length,1);
   assert.ok(h.includes('aria-label="Antenas Zalla"'));
   assert.ok(h.includes('aria-label="Antenas Zalla, inicio"'));
-  assert.ok(!h.includes('logo-antenasrapid'));
+  assert.ok(!h.includes('logo-antenaszalla'));
   assert.ok(!/<img[^>]+src="https?:\/\//i.test(h));
  }
 });
