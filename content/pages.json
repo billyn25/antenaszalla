@@ -141,6 +141,75 @@
     "evidence": "cached-content"
   },
   {
+    "type": "province",
+    "path": "/Antenas-Cantabria/",
+    "name": "Cantabria",
+    "title": "Antenistas en Cantabria · Porteros y videoporteros | 946 390 339",
+    "heading": "Antenas y porteros en Cantabria",
+    "lead": "Reparación e instalación de antenas TDT, parabólicas, amplificación, porteros y videoporteros. Indica tu municipio al contactar.",
+    "intro": "Antenas Zalla organiza la atención en Cantabria por municipio para averías de señal, instalaciones de televisión y sistemas de portero y videoportero en viviendas y comunidades.",
+    "focus": "Servicio técnico por municipio",
+    "advice": "Indica la localidad, si la instalación es individual o comunitaria y qué síntoma observas. Esa información ayuda a preparar la revisión.",
+    "towns": [
+      "Castro-Urdiales",
+      "Laredo",
+      "Santoña",
+      "Noja",
+      "Santander",
+      "Torrelavega",
+      "Camargo",
+      "Reinosa"
+    ],
+    "source": "municipal-dataset",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
+    "type": "province",
+    "path": "/Antenas-Navarra/",
+    "name": "Navarra",
+    "title": "Antenistas en Navarra · Antenas y porteros | 946 390 339",
+    "heading": "Antenas y porteros en Navarra",
+    "lead": "Servicio técnico de antenas, señal de TV, parabólicas, porteros automáticos y videoporteros organizado por localidad.",
+    "intro": "La cobertura de Antenas Zalla en Navarra se organiza mediante páginas municipales para localizar rápidamente instalación y reparación de antenas, amplificación y sistemas de acceso.",
+    "focus": "Antenas y porteros por localidad",
+    "advice": "Al contactar, indica municipio, tipo de inmueble y si el problema afecta a una sola toma o a varios puntos de la instalación.",
+    "towns": [
+      "Pamplona / Iruña",
+      "Tudela",
+      "Estella-Lizarra",
+      "Tafalla",
+      "Burlada / Burlata",
+      "Barañáin / Barañain",
+      "Zizur Mayor / Zizur Nagusia",
+      "Villava / Atarrabia"
+    ],
+    "source": "municipal-dataset",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
+    "type": "province",
+    "path": "/Antenas-La-Rioja/",
+    "name": "La Rioja",
+    "title": "Antenistas en La Rioja · Antenas y porteros | 946 390 339",
+    "heading": "Antenas y porteros en La Rioja",
+    "lead": "Instalación y reparación de antenas TDT y parabólicas, amplificación, porteros y videoporteros por municipio.",
+    "intro": "Antenas Zalla incorpora La Rioja a su estructura de servicio local, con páginas por municipio para consultas de televisión, antenas, distribución de señal y porteros.",
+    "focus": "Servicio local de antenas",
+    "advice": "Indica tu localidad y describe si se trata de pérdida de señal, instalación nueva o avería de portero o videoportero.",
+    "towns": [
+      "Logroño",
+      "Haro",
+      "Nájera",
+      "Santo Domingo de la Calzada",
+      "Calahorra",
+      "Arnedo",
+      "Alfaro",
+      "Lardero"
+    ],
+    "source": "municipal-dataset",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
     "type": "town",
     "path": "/Antenas-Bizkaia/bilbao.html",
     "parent": "/Antenas-Bizkaia/",
