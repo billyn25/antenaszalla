@@ -1,11 +1,12 @@
+import { brandMark } from './logo.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve('dist');
-const phone = '946 390 339';
-const tel = '+34946390339';
-const whatsapp = '34946390339';
-const domain = 'https://www.antenaszalla.com';
+const phone = '670 042 626';
+const tel = '+34670042626';
+const whatsapp = '34670042626';
+const domain = 'https://antenaszalla.com';
 
 const legalLinks = '<nav class="legal-links" aria-label="Información legal"><a href="/aviso-legal.html">Aviso legal</a><span class="legal-sep" aria-hidden="true">·</span><a href="/privacidad.html">Privacidad y RGPD</a><span class="legal-sep" aria-hidden="true">·</span><a href="/cookies.html">Cookies</a></nav>';
 
@@ -30,7 +31,7 @@ function legalHead(title, description, route) {
 }
 
 function legalHeader() {
-  return `<div class="legal-top"><div class="wrap legal-top-inner"><a class="legal-home" href="/"><strong>ANTENAS RAPID</strong><span>Antenas · Porteros · Videoporteros</span></a><a class="legal-phone" href="tel:${tel}"><small>Contacto directo</small><strong>${phone}</strong></a></div></div>`;
+  return `<div class="legal-top"><div class="wrap legal-top-inner"><a class="legal-home" href="/" aria-label="Antenas Zalla, inicio">${brandMark()}<span class="legal-home-subtitle">Antenas · Porteros · Videoporteros</span></a><a class="legal-phone" href="tel:${tel}"><small>Contacto directo</small><strong>${phone}</strong></a></div></div>`;
 }
 
 function legalFooter() {
@@ -67,7 +68,7 @@ fs.writeFileSync(path.join(root, 'aviso-legal.html'), page({
 <dl class="legal-data">
   <div><dt>Nombre comercial</dt><dd>Antenas Zalla</dd></div>
   <div><dt>Titular</dt><dd>R.F.G.</dd></div>
-  <div><dt>Sitio web</dt><dd>www.antenaszalla.com</dd></div>
+  <div><dt>Sitio web</dt><dd>antenaszalla.com</dd></div>
   <div><dt>Teléfono</dt><dd><a href="tel:${tel}">${phone}</a></dd></div>
   <div><dt>Contacto por mensajería</dt><dd><a href="https://wa.me/${whatsapp}">WhatsApp</a></dd></div>
 </dl>
@@ -95,7 +96,7 @@ fs.writeFileSync(path.join(root, 'privacidad.html'), page({
 <h2>Responsable</h2>
 <dl class="legal-data">
   <div><dt>Responsable</dt><dd>R.F.G. · Antenas Zalla</dd></div>
-  <div><dt>Web</dt><dd>www.antenaszalla.com</dd></div>
+  <div><dt>Web</dt><dd>antenaszalla.com</dd></div>
   <div><dt>Teléfono</dt><dd><a href="tel:${tel}">${phone}</a></dd></div>
   <div><dt>WhatsApp</dt><dd><a href="https://wa.me/${whatsapp}">Abrir conversación</a></dd></div>
 </dl>
