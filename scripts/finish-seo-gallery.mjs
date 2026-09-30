@@ -155,7 +155,7 @@ const galleryStyle = `<style id="zalla-gallery-style">
 
 const galleryHtml = `<section class="gallery-section" id="galeria"><div class="wrap"><div class="gallery-head"><div><span class="eyebrow">Trabajos e instalaciones</span><h2>Galería de trabajos</h2></div><p>Una muestra visual de instalaciones y trabajos técnicos de antena y videoportero.</p></div><div class="gallery-grid">${imported.map(item => `<figure><button class="gallery-open" type="button" data-src="/assets/galeria/${item.name}" data-alt="${item.alt}" aria-label="Ampliar: ${item.alt}"><img src="/assets/galeria/${item.name}" alt="${item.alt}" loading="lazy" decoding="async" width="640" height="480"></button></figure>`).join('')}</div></div></section><dialog class="gallery-lightbox" id="gallery-lightbox" aria-label="Imagen ampliada"><div class="gallery-lightbox-inner"><button class="gallery-lightbox-close" type="button" aria-label="Cerrar imagen">×</button><img src="" alt=""></div></dialog>`;
 
-const galleryScript = `<script id="rapid-gallery-script">
+const galleryScript = `<script id="zalla-gallery-script">
 (()=>{
   const dialog=document.getElementById('gallery-lightbox');
   if(!dialog) return;
@@ -183,7 +183,7 @@ if (!home.includes('id="galeria"')) {
   if (!home.includes(marker)) throw new Error('No se encontró el punto de inserción de la galería en portada');
   home = home.replace(marker, `${galleryHtml}${marker}`);
 }
-if (!home.includes('id="rapid-gallery-script"')) home = home.replace('</body>', `${galleryScript}</body>`);
+if (!home.includes('id="zalla-gallery-script"')) home = home.replace('</body>', `${galleryScript}</body>`);
 fs.writeFileSync(homeFile, home);
 
 console.log(`SEO/GALERÍA OK: ${localPages.length} páginas locales; title máx. ${maxTitle}, meta ${minDescription}-${maxDescription}; 12 imágenes migradas, sin fachada de Antenas Zalla y con zoom modal accesible.`);
