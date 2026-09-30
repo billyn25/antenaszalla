@@ -54,8 +54,8 @@ for (const file of htmlFiles) {
   expectedCanonicals.push(canonical);
 }
 
-if (expectedCanonicals.length < 620) {
-  throw new Error(`Paquete final incompleto: solo ${expectedCanonicals.length} páginas indexables`);
+if (expectedCanonicals.length !== 1179) {
+  throw new Error(`Paquete final incorrecto: ${expectedCanonicals.length}/1179 páginas indexables (1171 pueblos + 7 provincias + portada)`);
 }
 if (new Set(expectedCanonicals).size !== expectedCanonicals.length) {
   throw new Error('Canonicals duplicados en el paquete final');
