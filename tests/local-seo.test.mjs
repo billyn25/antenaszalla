@@ -29,7 +29,7 @@ test('antenas y porteros tienen encabezados propios de cada localidad', () => {
   assert.ok(h.includes(`Servicio en ${p.name} · ${site.phone}`));
  }
 });
-test('marca local Antenas Zalla, sin imagen remota ni dependencia de Rapid', () => {
+test('marca local Antenas Zalla, con identidad local Zalla', () => {
  for (const p of pages) {
   const h=renderPage(p);
   assert.equal((h.match(/class="zalla-brand-logo-base zalla-brand-logo"/g)||[]).length,1);
