@@ -36,14 +36,14 @@ for (const page of manifest) {
 const homeFile = path.join(root, 'index.html');
 const home = fs.readFileSync(homeFile, 'utf8');
 if (!home.includes('id="galeria"')) throw new Error('Portada: falta la galería');
-if (!home.includes('id="rapid-gallery-style"')) throw new Error('Portada: faltan estilos de galería');
+if (!home.includes('id="zalla-gallery-style"')) throw new Error('Portada: faltan estilos de galería');
 const galleryImgs = [...home.matchAll(/<img src="\/assets\/galeria\/([^"]+)"/g)].map(m => m[1]);
 if (galleryImgs.length < 4) throw new Error(`Galería: solo ${galleryImgs.length} imágenes`);
 for (const name of galleryImgs) {
   const file = path.join(root, 'assets', 'galeria', name);
   if (!fs.existsSync(file) || fs.statSync(file).size < 2000) throw new Error(`Galería: imagen local inválida ${name}`);
 }
-if (/www\.antenaszalla\.com\/img\/galeria/i.test(home)) throw new Error('Galería: la portada todavía enlaza imágenes remotas');
+if (/(?:www\.)?antenaszalla\.com\/img\/galeria/i.test(home)) throw new Error('Galería: la portada todavía enlaza imágenes remotas');
 
 if (!home.includes('class="legal-links"')) throw new Error('Portada: faltan enlaces legales');
 if (!home.includes('class="legal-sep"')) throw new Error('Portada: faltan separadores legales controlados');
