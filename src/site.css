@@ -372,3 +372,23 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 @media(max-width:390px){
  .hero-inner{padding-bottom:32px!important}
 }
+
+/* Páginas legales: cabecera blanca y contacto con contraste propio */
+.legal-top{background:#fff!important;border-bottom:3px solid #0867bd!important;box-shadow:0 2px 12px rgba(8,45,87,.10)!important}
+.legal-home{color:#102943!important}
+.legal-home .zalla-brand-logo-base.zalla-brand-logo{color:#0867bd!important}
+.legal-home .zalla-logo-icon{color:#0867bd!important}
+.legal-home .zalla-wordmark>span{color:#102943!important}
+.legal-home .zalla-wordmark>b{color:#0867bd!important}
+.legal-home .legal-home-subtitle{margin-top:3px;color:#607386!important;font-size:10px!important;letter-spacing:.02em}
+.legal-phone{color:#c6283d!important}
+.legal-phone small{color:#607386!important}
+.legal-phone strong{color:#c6283d!important;font-weight:950!important}
+@media(max-width:640px){
+ .legal-top-inner{min-height:76px!important}
+ .legal-home .zalla-logo-icon{flex-basis:42px!important;width:42px!important;height:36px!important}
+ .legal-home .zalla-wordmark>span{font-size:12px!important}
+ .legal-home .zalla-wordmark>b{font-size:20px!important}
+ .legal-home .legal-home-subtitle{font-size:8px!important}
+ .legal-phone strong{font-size:18px!important}
+}
