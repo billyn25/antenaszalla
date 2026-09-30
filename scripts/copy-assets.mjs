@@ -5,7 +5,7 @@ const root = path.resolve('dist');
 
 const PHONE = '670 042 626';
 const TEL = '+34670042626';
-const DOMAIN = 'https://www.antenaszalla.com';
+const DOMAIN = 'https://antenaszalla.com';
 
 fs.mkdirSync(path.join(root, 'assets'), { recursive: true });
 const heroSource=path.join('src','assets','hero-zalla.jpg.png');
