@@ -392,3 +392,11 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
  .legal-home .legal-home-subtitle{font-size:8px!important}
  .legal-phone strong{font-size:18px!important}
 }
+
+/* Hero móvil: tarjeta un poco más alta sobre la foto */
+@media(max-width:760px){
+ .hero-inner{padding-top:185px!important;padding-bottom:58px!important}
+}
+@media(max-width:390px){
+ .hero-inner{padding-top:170px!important;padding-bottom:52px!important}
+}
