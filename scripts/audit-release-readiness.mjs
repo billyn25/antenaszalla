@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve('dist');
-const domain = 'https://www.antenaszalla.com';
+const domain = 'https://antenaszalla.com';
 const forbiddenVisible = [
   /vista previa/i,
   /modo de revisión/i,
