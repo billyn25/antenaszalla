@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(process.env.PRODUCTION_ROOT || 'dist');
-const domain = 'https://www.antenaszalla.com';
+const domain = 'https://antenaszalla.com';
 
 if (!fs.existsSync(root)) throw new Error(`No existe el paquete a auditar: ${root}`);
 
