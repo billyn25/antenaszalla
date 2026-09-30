@@ -364,3 +364,11 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
  .strip .wrap{display:grid!important;grid-template-columns:1fr!important;gap:7px!important;padding:10px 0!important}
  .strip span{display:flex!important;align-items:center!important;width:100%!important;min-height:38px!important;margin:0!important;padding:9px 12px!important;border:1px solid #dce7f0!important;border-radius:999px!important;background:#fff!important;font-size:11px!important;line-height:1.25!important;white-space:normal!important;overflow:visible!important;overflow-wrap:break-word!important}
 }
+
+/* iPhone: subir ligeramente la tarjeta del hero sin alterar desktop */
+@media(max-width:760px){
+ .hero-inner{padding-bottom:38px!important}
+}
+@media(max-width:390px){
+ .hero-inner{padding-bottom:32px!important}
+}
