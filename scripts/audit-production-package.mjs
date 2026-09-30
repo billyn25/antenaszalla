@@ -32,7 +32,11 @@ const expectedCanonicals = [];
 
 for (const file of htmlFiles) {
   const rel = path.relative(root, file).split(path.sep).join('/');
-  const html = fs.readFileSync(file, 'utf8');  if (excluded.has(rel)) continue;
+  const html = fs.readFileSync(file, 'utf8');
+  if (/ANTENAS\s+RAPID|Antenas\s+Rapid/i.test(html)) throw new Error(`${rel}: conserva identidad Antenas Rapid`);
+  if (/946\s*390\s*339|\+?34946390339/.test(html)) throw new Error(`${rel}: conserva el teléfono antiguo`);
+  if (/https:\/\/www\.antenaszalla\.com/i.test(html)) throw new Error(`${rel}: conserva URLs www en lugar del dominio principal`);
+  if (excluded.has(rel)) continue;
 
   if (!html.includes('<meta name="robots" content="index,follow">')) {
     throw new Error(`${rel}: falta index,follow en el paquete final`);
