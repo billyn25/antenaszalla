@@ -1,1 +1,65 @@
-[{"id":"tdt","name":"Antenas TDT","short":"Recuperar canales y señal estable.","text":"Revisión de antenas, conexiones y tomas cuando faltan canales o se corta la imagen. Instalación y orientación de equipos para televisión terrestre.","icon":"antenna"},{"id":"porteros","name":"Porteros automáticos","short":"Llamada, conversación y apertura.","text":"Instalación, reparación y mantenimiento de placas de calle y telefonillos. Revisión de pulsadores, audio, alimentación y apertura para localizar el fallo de tu vivienda o comunidad.","icon":"door"},{"id":"videoporteros","name":"Videoporteros","short":"Ver quién llama y controlar el acceso.","text":"Instalación y renovación de monitores y placas con cámara. Revisión de imagen, audio y llamada, comprobando primero la compatibilidad con el sistema y cableado existentes.","icon":"door"},{"id":"parabolicas","name":"Antenas parabólicas","short":"Instalación y ajuste de satélite.","text":"Montaje y revisión de recepción por satélite, orientación de la parabólica y comprobación del LNB, conectores y recorrido del cable coaxial.","icon":"dish"},{"id":"amplificacion","name":"Amplificación y distribución","short":"La señal, hasta la última toma.","text":"Comprobación de amplificadores, fuentes y distribución para detectar en qué tramo se pierde la señal. Revisión de instalaciones individuales y colectivas.","icon":"signal"},{"id":"cobertura-movil-servicio","name":"Cobertura móvil 4G/5G","short":"Mejora de señal en vivienda individual.","text":"Valoración de soluciones para casas con mala cobertura móvil o de datos. Antenas exteriores para router 4G/5G y revisión de la mejor ubicación y distribución interior según la señal disponible.","icon":"signal"},{"id":"tomas","name":"Tomas y cableado de TV","short":"Una conexión donde la necesitas.","text":"Instalación de nuevas tomas de televisión y adaptación del recorrido del cable. Consulta cómo llevar TV o satélite a otra habitación.","icon":"cable"},{"id":"mantenimiento","name":"Mantenimiento de antenas","short":"Revisiones para tu instalación.","text":"Consulta las condiciones de mantenimiento para vivienda o comunidad. El alcance, la periodicidad y los trabajos incluidos se concretan para cada instalación.","icon":"tools"}]
+[
+  {
+    "id": "tdt",
+    "name": "Antenas TDT",
+    "short": "Recuperar canales y señal estable.",
+    "text": "Revisión de antenas, conexiones y tomas cuando faltan canales o se corta la imagen. Instalación y orientación de equipos para televisión terrestre.",
+    "icon": "antenna"
+  },
+  {
+    "id": "porteros",
+    "name": "Porteros automáticos",
+    "short": "Llamada, conversación y apertura.",
+    "text": "Instalación, reparación y mantenimiento de placas de calle y telefonillos. Revisión de pulsadores, audio, alimentación y apertura para localizar el fallo de tu vivienda o comunidad.",
+    "icon": "door"
+  },
+  {
+    "id": "videoporteros",
+    "name": "Videoporteros",
+    "short": "Ver quién llama y controlar el acceso.",
+    "text": "Instalación y renovación de monitores y placas con cámara. Revisión de imagen, audio y llamada, comprobando primero la compatibilidad con el sistema y cableado existentes.",
+    "icon": "door"
+  },
+  {
+    "id": "parabolicas",
+    "name": "Antenas parabólicas",
+    "short": "Instalación y ajuste de satélite.",
+    "text": "Montaje y revisión de recepción por satélite, orientación de la parabólica y comprobación del LNB, conectores y recorrido del cable coaxial.",
+    "icon": "dish"
+  },
+  {
+    "id": "tdt-satelite",
+    "name": "TDT por satélite HD",
+    "short": "Antena parabólica y receptor TDT por satélite.",
+    "text": "Instalación de antena parabólica y receptor para recibir la TDT por satélite. Configuración y comprobación del equipo compatible con alta definición cuando la emisión y el receptor lo permiten.",
+    "icon": "dish"
+  },
+  {
+    "id": "amplificacion",
+    "name": "Amplificación y distribución",
+    "short": "La señal, hasta la última toma.",
+    "text": "Comprobación de amplificadores, fuentes y distribución para detectar en qué tramo se pierde la señal. Revisión de instalaciones individuales y colectivas.",
+    "icon": "signal"
+  },
+  {
+    "id": "cobertura-movil-servicio",
+    "name": "Cobertura móvil 4G/5G",
+    "short": "Mejora de señal en vivienda individual.",
+    "text": "Valoración de soluciones para casas con mala cobertura móvil o de datos. Antenas exteriores para router 4G/5G y revisión de la mejor ubicación y distribución interior según la señal disponible.",
+    "icon": "signal"
+  },
+  {
+    "id": "tomas",
+    "name": "Tomas y cableado de TV",
+    "short": "Una conexión donde la necesitas.",
+    "text": "Instalación de nuevas tomas de televisión y adaptación del recorrido del cable. Consulta cómo llevar TV o satélite a otra habitación.",
+    "icon": "cable"
+  },
+  {
+    "id": "mantenimiento",
+    "name": "Mantenimiento de antenas",
+    "short": "Revisiones para tu instalación.",
+    "text": "Consulta las condiciones de mantenimiento para vivienda o comunidad. El alcance, la periodicidad y los trabajos incluidos se concretan para cada instalación.",
+    "icon": "tools"
+  }
+]
