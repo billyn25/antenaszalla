@@ -1,0 +1,154 @@
+name: Revisar marca Antenas Zallatel
+on:
+  push:
+    branches: [brand/zallatel-review]
+permissions:
+  contents: write
+jobs:
+  brand:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Comprobar base y guardar rutas y contactos
+        run: |
+          mkdir -p .quality
+          npm run build:production > .quality/base-build.log 2>&1
+          python3 - <<'PY'
+          import json,re,hashlib
+          from pathlib import Path
+          root=Path('dist')
+          def snapshot():
+              html={}
+              for f in sorted(root.rglob('*.html')):
+                  s=f.read_text()
+                  html[str(f.relative_to(root))]={
+                      'canonical':re.findall(r'<link\s+rel="canonical"\s+href="([^"]+)"',s),
+                      'robots':re.findall(r'<meta\s+name="robots"\s+content="([^"]+)"',s),
+                      'h1':re.findall(r'<h1\b[^>]*>([\s\S]*?)</h1>',s),
+                      'contact':sorted(re.findall(r'(?:tel:|https://wa.me/)[+0-9]+',s)),
+                      'images':re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',s)
+                  }
+              xml={str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(root.rglob('*.xml'))}
+              return {'html':html,'xml':xml,'robotsTxt':(root/'robots.txt').read_text()}
+          Path('.quality/baseline.json').write_text(json.dumps(snapshot(),ensure_ascii=False))
+          Path('.quality/base-config.json').write_bytes(Path('config/site.json').read_bytes())
+          Path('.quality/base-services.json').write_bytes(Path('content/services.json').read_bytes())
+          PY
+      - name: Cambiar solo marca comercial y presentación
+        run: |
+          python3 - <<'PY'
+          import re,json,subprocess
+          from pathlib import Path
+          changed=[]
+          for name in subprocess.check_output(['git','ls-files'],text=True).splitlines():
+              f=Path(name)
+              if f.suffix not in {'.mjs','.js','.json','.html','.svg','.md'} or name.startswith('.github/'):
+                  continue
+              old=f.read_text()
+              new=re.sub(r'\bAntenas Zalla\b','Antenas Zallatel',old)
+              new=re.sub(r'\bANTENAS ZALLA\b','ANTENAS ZALLATEL',new)
+              if name=='scripts/logo.mjs':
+                  assert '<b>ZALLA</b>' in new
+                  new=new.replace('<b>ZALLA</b>','<b>ZALLATEL</b>')
+              if name=='scripts/build.mjs':
+                  a='<small class="brand-tagline">Servicio técnico local</small>'
+                  assert new.count(a)==1
+                  new=new.replace(a,'<small class="brand-tagline">Antenas · Porteros · Videoporteros</small>')
+                  a='<p class="micro">Cuéntanos la avería y la localidad. Disponibilidad y condiciones por teléfono.</p>'
+                  assert new.count(a)==1
+                  new=new.replace(a,'<p class="micro"><strong>Trato directo con el técnico profesional.</strong> Cuéntanos la avería y la localidad. Disponibilidad y condiciones por teléfono.</p>')
+              if new!=old:
+                  f.write_text(new)
+                  changed.append(name)
+          test=Path('tests/brand-zallatel.test.mjs')
+          test.write_text('''import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import { brandMark } from '../scripts/logo.mjs';
+          const site=JSON.parse(fs.readFileSync(new URL('../config/site.json',import.meta.url),'utf8'));
+          test('marca comercial Zallatel completa sin cambiar dominio ni contactos',()=>{
+            assert.equal(site.brand,'Antenas Zallatel');
+            assert.equal(site.domain,'https://antenaszalla.com');
+            assert.equal(site.phone,'670 042 626');
+            assert.equal(site.tel,'+34670042626');
+            assert.equal(site.whatsapp,'34670042626');
+            assert.match(brandMark(),/<b>ZALLATEL<\\/b>/);
+            assert.match(brandMark(),/aria-label="Antenas Zallatel"/);
+            assert.ok(!brandMark().includes('<b>ZALLA</b>'));
+          });
+          ''')
+          changed.append(str(test))
+          Path('.quality/changed.json').write_text(json.dumps(changed))
+          print('Archivos del cambio:',', '.join(changed))
+          before=json.loads(Path('.quality/base-config.json').read_text())
+          after=json.loads(Path('config/site.json').read_text())
+          assert {k:v for k,v in before.items() if k!='brand'}=={k:v for k,v in after.items() if k!='brand'}
+          assert Path('.quality/base-services.json').read_bytes()==Path('content/services.json').read_bytes()
+          PY
+          git diff --check
+      - name: Generar producción y verificar conservación de SEO y servicios
+        run: |
+          npm run build:production > .quality/zallatel-build.log 2>&1
+          python3 - <<'PY'
+          import json,re,hashlib
+          from pathlib import Path
+          root=Path('dist')
+          base=json.loads(Path('.quality/baseline.json').read_text())
+          files={str(f.relative_to(root)):f for f in root.rglob('*.html')}
+          assert set(files)==set(base['html']),'Han cambiado las rutas HTML'
+          names=0
+          for name,f in files.items():
+              s=f.read_text(); b=base['html'][name]
+              current={
+                  'canonical':re.findall(r'<link\s+rel="canonical"\s+href="([^"]+)"',s),
+                  'robots':re.findall(r'<meta\s+name="robots"\s+content="([^"]+)"',s),
+                  'h1':re.findall(r'<h1\b[^>]*>([\s\S]*?)</h1>',s),
+                  'contact':sorted(re.findall(r'(?:tel:|https://wa.me/)[+0-9]+',s)),
+                  'images':re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',s)
+              }
+              b['h1']=[re.sub(r'\bAntenas Zalla\b','Antenas Zallatel',v) for v in b['h1']]
+              assert current==b,f'{name}: cambio ajeno a la marca en SEO/contactos/imágenes'
+              assert not re.search(r'\bAntenas Zalla\b',s),f'{name}: nombre comercial antiguo'
+              if 'Antenas Zallatel' in s:
+                  names+=1
+              if name=='index.html' or 'local-service-schema' in s:
+                  assert 'TDT por satélite HD' in s,f'{name}: falta TDT-SAT'
+          xml={str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in root.rglob('*.xml')}
+          assert xml==base['xml'],'Han cambiado los sitemaps'
+          assert (root/'robots.txt').read_text()==base['robotsTxt'],'Ha cambiado robots.txt'
+          legal=(root/'aviso-legal.html').read_text()
+          assert '<dt>Titular</dt><dd>R.F.G.</dd>' in legal
+          home=(root/'index.html').read_text()
+          assert '<b>ZALLATEL</b>' in home
+          assert 'Trato directo con el técnico profesional.' in home
+          report={'passed':True,'html':len(files),'pagesWithNewBrand':names,'routesUnchanged':True,'contactsUnchanged':True,'imagesUnchanged':True,'sitemapsUnchanged':True,'robotsUnchanged':True,'legalOwnerUnchanged':'R.F.G.','branchBase':'rapid-base-zalla'}
+          Path('.quality/report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          print(json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Guardar fuentes y salida para revisión visual
+        if: always()
+        run: |
+          tar --exclude=.git --exclude=.quality --exclude=node_modules -czf .quality/review.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zallatel-review
+          path: .quality/
+          include-hidden-files: true
+      - name: Guardar únicamente los cambios comprobados en la rama de revisión
+        run: |
+          python3 - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          changed=json.loads(Path('.quality/changed.json').read_text())
+          subprocess.run(['git','add','--',*changed],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --check
+          git commit -m 'Unifica nombre comercial Antenas Zallatel, conservando dominio y pueblos'
+          git push origin HEAD:brand/zallatel-review
