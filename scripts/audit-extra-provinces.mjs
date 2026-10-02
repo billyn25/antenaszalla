@@ -1,27 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import pages from '../content/pages.json' with { type: 'json' };
 
 const root = path.resolve('dist');
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'local-pages-manifest.json'), 'utf8'));
 const cache = JSON.parse(fs.readFileSync(path.resolve('.cache/municipios-selected.json'), 'utf8'));
 
-const checks = [
-  { name: 'Álava', route: '/Antenas-Alava/' },
-  { name: 'Bizkaia', route: '/Antenas-Bizkaia/' },
-  { name: 'Burgos', route: '/Antenas-Burgos/' },
-  { name: 'Cantabria', route: '/Antenas-Cantabria/' },
-  { name: 'Gipuzkoa', route: '/Antenas-Guipuzcoa/' },
-  { name: 'Navarra', route: '/Antenas-Navarra/' },
-  { name: 'La Rioja', route: '/Antenas-La-Rioja/' },
-  { name: 'León', route: '/Antenas-Leon/' },
-  { name: 'Valladolid', route: '/Antenas-Valladolid/' },
-  { name: 'Zamora', route: '/Antenas-Zamora/' },
-  { name: 'Ávila', route: '/Antenas-Avila/' },
-  { name: 'Palencia', route: '/Antenas-Palencia/' },
-  { name: 'Salamanca', route: '/Antenas-Salamanca/' },
-  { name: 'Segovia', route: '/Antenas-Segovia/' },
-  { name: 'Soria', route: '/Antenas-Soria/' }
-];
+const checks = pages.filter(p => p.type === 'province').map(p => ({ name: p.name, route: p.path }));
 
 let expectedTotal = 0;
 for (const check of checks) {

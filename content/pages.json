@@ -210,6 +210,75 @@
     "evidence": "municipal-dataset-generated"
   },
   {
+    "type": "province",
+    "path": "/Antenas-Palencia/",
+    "name": "Palencia",
+    "title": "Antenistas en Palencia · Antenas y porteros | 670 042 626",
+    "heading": "Antenas y porteros en Palencia",
+    "lead": "Antenas TDT, parabólicas y porteros en los municipios de Palencia. Consulta la instalación o avería indicando tu localidad y el tipo de inmueble.",
+    "intro": "Antenas Zallatel atiende consultas de instalación y reparación de antenas, TDT por satélite HD, amplificación y porteros en Palencia. Indica si el fallo afecta a una vivienda o a varios vecinos para orientar la revisión y confirmar el desplazamiento antes de la visita.",
+    "focus": "Distinguir una avería de vivienda de un fallo comunitario",
+    "advice": "Explica si faltan todos los canales o solo algunos y si otras tomas funcionan. Para un portero, indica si falla la llamada, el audio o la apertura, sin desmontar el equipo.",
+    "towns": [
+      "Palencia",
+      "Aguilar de Campoo",
+      "Guardo",
+      "Venta de Baños",
+      "Villamuriel de Cerrato",
+      "Cervera de Pisuerga",
+      "Carrión de los Condes",
+      "Dueñas"
+    ],
+    "source": "https://raw.githubusercontent.com/codeforspain/ds-organizacion-administrativa/1e9c99280ef4d7a12def33cafc3df59d9fc1f688/data/municipios.json",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
+    "type": "province",
+    "path": "/Antenas-Valladolid/",
+    "name": "Valladolid",
+    "title": "Antenistas en Valladolid · Antenas y porteros | 670 042 626",
+    "heading": "Antenas y porteros en Valladolid",
+    "lead": "Servicio técnico de antenas, amplificación, porteros automáticos y videoporteros en Valladolid. Localiza tu municipio y consulta las condiciones del trabajo.",
+    "intro": "Para organizar una instalación en Valladolid, Antenas Zallatel revisa las necesidades de recepción y distribución: número de televisores, tomas existentes y equipos que se quieren conservar. También puedes consultar TDT por satélite HD y renovación de porteros indicando el municipio.",
+    "focus": "Preparar una instalación o una ampliación de tomas",
+    "advice": "Indica cuántos televisores necesitas conectar y si ya hay cableado. Si se trata de un videoportero, facilita la marca visible y comenta si la placa es individual o compartida.",
+    "towns": [
+      "Valladolid",
+      "Laguna de Duero",
+      "Medina del Campo",
+      "Arroyo de la Encomienda",
+      "Tordesillas",
+      "Tudela de Duero",
+      "Íscar",
+      "Peñafiel"
+    ],
+    "source": "https://raw.githubusercontent.com/codeforspain/ds-organizacion-administrativa/1e9c99280ef4d7a12def33cafc3df59d9fc1f688/data/municipios.json",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
+    "type": "province",
+    "path": "/Antenas-Leon/",
+    "name": "León",
+    "title": "Antenistas en León · Antenas y porteros | 670 042 626",
+    "heading": "Antenas y porteros en León",
+    "lead": "Consulta instalación y reparación de antenas TDT y parabólicas, TDT por satélite HD, porteros y videoporteros en los municipios de León.",
+    "intro": "Antenas Zallatel organiza las consultas de León por localidad y tipo de instalación. Para recepción por satélite se valora la parabólica, el receptor y el cableado; en una avería de televisión se comprueba si el origen está en la señal o en la distribución interior. La disponibilidad se confirma al contactar.",
+    "focus": "Revisar recepción y equipos antes de comprar recambios",
+    "advice": "Comenta si ya existe una parabólica y qué receptor utilizas. Ante pérdida de señal, indica desde cuándo ocurre y si afecta a todas las tomas. No subas al tejado para comprobarlo.",
+    "towns": [
+      "León",
+      "Ponferrada",
+      "San Andrés del Rabanedo",
+      "Astorga",
+      "La Bañeza",
+      "Villablino",
+      "Bembibre",
+      "Valencia de Don Juan"
+    ],
+    "source": "https://raw.githubusercontent.com/codeforspain/ds-organizacion-administrativa/1e9c99280ef4d7a12def33cafc3df59d9fc1f688/data/municipios.json",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
     "type": "town",
     "path": "/Antenas-Bizkaia/bilbao.html",
     "parent": "/Antenas-Bizkaia/",
