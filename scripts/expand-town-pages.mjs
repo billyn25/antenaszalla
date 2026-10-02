@@ -146,7 +146,7 @@ function insertHomeSummary(html, allPages) {
     const count = allPages.filter(x => x.parent === p.path).length;
     return `<a class="province-card" href="${p.path}"><strong>${esc(p.name)}</strong><span>${count} localidades con página propia</span><span class="arrow" aria-hidden="true">→</span></a>`;
   }).join('');
-  const block = `<section class="section soft" id="paginas-locales"><div class="wrap"><span class="eyebrow">SEO local por municipio</span><h2>${allPages.length} páginas locales preparadas</h2><p class="section-lead">Álava, Bizkaia, Burgos, Cantabria, Gipuzkoa, Navarra, La Rioja, Palencia, Valladolid y León ya se generan automáticamente por localidad, con URL, título, H1, teléfono y servicios locales.</p><div class="province-grid">${cards}</div></div></section>`;
+  const block = `<section class="section soft" id="paginas-locales"><div class="wrap"><span class="eyebrow">SEO local por municipio</span><h2>${allPages.length} páginas locales preparadas</h2><p class="section-lead">Álava, Bizkaia, Burgos, Cantabria, Gipuzkoa, Navarra, La Rioja, Palencia, Valladolid, León y Segovia ya se generan automáticamente por localidad, con URL, título, H1, teléfono y servicios locales.</p><div class="province-grid">${cards}</div></div></section>`;
   if (!html.includes(marker)) throw new Error('Portada: no se encontró el punto para el resumen local');
   return html.replace(marker, block + marker);
 }
@@ -157,7 +157,7 @@ for (const province of provinces) {
   const items = dataset.provinces[province.path] || [];
   for (const item of items) allPages.push(makePage(province, item, usedPaths));
 }
-if (allPages.length !== 1798) throw new Error(`Cobertura Zalla incompleta: ${allPages.length}/1798 páginas locales para Bizkaia, Gipuzkoa, Álava, Burgos, Cantabria, Navarra, La Rioja, Palencia, Valladolid y León.`);
+if (allPages.length !== 2007) throw new Error(`Cobertura Zalla incompleta: ${allPages.length}/2007 páginas locales para Bizkaia, Gipuzkoa, Álava, Burgos, Cantabria, Navarra, La Rioja, Palencia, Valladolid, León y Segovia.`);
 
 const root = path.resolve('dist');
 for (const page of allPages) {

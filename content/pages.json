@@ -279,6 +279,29 @@
     "evidence": "municipal-dataset-generated"
   },
   {
+    "type": "province",
+    "path": "/Antenas-Segovia/",
+    "name": "Segovia",
+    "title": "Antenistas en Segovia · Antenas y porteros | 670 042 626",
+    "heading": "Antenas y porteros en Segovia",
+    "lead": "Servicio técnico de antenas TDT y parabólicas, amplificación, porteros automáticos y videoporteros en los municipios de Segovia. Busca tu localidad y consulta la instalación o avería.",
+    "intro": "En Segovia puedes consultar a Antenas Zallatel la instalación o reparación de antenas, TDT por satélite HD y sistemas de portero. Indica tu municipio, el tipo de vivienda y si el problema afecta a una toma o a toda la instalación para preparar la revisión y confirmar disponibilidad y desplazamiento.",
+    "focus": "Preparar la revisión de señal y distribución en tu municipio",
+    "advice": "Comenta si la vivienda dispone de antena individual o comunitaria, si hay una parabólica y qué mensaje muestra el televisor o receptor. Para porteros, indica la marca visible y si falla la llamada, el audio o la apertura, sin desmontar equipos.",
+    "towns": [
+      "Segovia",
+      "Cuéllar",
+      "El Espinar",
+      "Cantalejo",
+      "Nava de la Asunción",
+      "Riaza",
+      "Carbonero el Mayor",
+      "La Lastrilla"
+    ],
+    "source": "https://raw.githubusercontent.com/codeforspain/ds-organizacion-administrativa/1e9c99280ef4d7a12def33cafc3df59d9fc1f688/data/municipios.json",
+    "evidence": "municipal-dataset-generated"
+  },
+  {
     "type": "town",
     "path": "/Antenas-Bizkaia/bilbao.html",
     "parent": "/Antenas-Bizkaia/",
