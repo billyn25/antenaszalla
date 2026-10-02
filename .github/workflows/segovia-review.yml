@@ -1,0 +1,168 @@
+name: Verificar ampliación Segovia
+on:
+  push:
+    branches: [expand/segovia-zallatel]
+permissions:
+  contents: write
+jobs:
+  segovia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Referencia de producción antes del cambio
+        run: |
+          mkdir -p .quality
+          npm run build:production > .quality/base-build.log 2>&1 || { tail -n 80 .quality/base-build.log; exit 1; }
+          python3 - <<'PY'
+          import json,re,hashlib
+          from pathlib import Path
+          root=Path('dist')
+          fields={
+            'canonical':r'<link\s+rel="canonical"\s+href="([^"]+)"',
+            'robots':r'<meta\s+name="robots"\s+content="([^"]+)"',
+            'title':r'<title>([\s\S]*?)</title>',
+            'description':r'<meta\s+name="description"\s+content="([^"]+)"',
+            'h1':r'<h1\b[^>]*>([\s\S]*?)</h1>',
+            'contacts':r'(?:tel:|https://wa.me/)[+0-9]+',
+            'images':r'<img\b[^>]*\bsrc="([^"]+)"'
+          }
+          baseline={'html':{},'xml':{},'assets':{},'fields':fields}
+          for f in root.rglob('*.html'):
+            s=f.read_text();baseline['html'][str(f.relative_to(root))]={k:re.findall(pattern,s) for k,pattern in fields.items()}
+          for f in root.rglob('*.xml'):
+            if f.name!='sitemap.xml':baseline['xml'][str(f.relative_to(root))]=hashlib.sha256(f.read_bytes()).hexdigest()
+          for f in (root/'assets').rglob('*'):
+            if f.is_file():baseline['assets'][str(f.relative_to(root))]=hashlib.sha256(f.read_bytes()).hexdigest()
+          baseline['robotsTxt']=(root/'robots.txt').read_text()
+          baseline['municipalities']=json.loads((root/'local-pages-manifest.json').read_text())
+          assert len(baseline['municipalities'])==1798
+          Path('.quality/baseline.json').write_text(json.dumps(baseline,ensure_ascii=False))
+          PY
+      - name: Añadir Segovia y ajustar los contadores estrictos
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          def replace(file,old,new,count=None):
+            p=Path(file);s=p.read_text();n=s.count(old)
+            assert n>0 and (count is None or n==count),(file,old,n,count)
+            p.write_text(s.replace(old,new))
+          p=Path('content/pages.json');pages=json.loads(p.read_text())
+          assert not any(x['path']=='/Antenas-Segovia/' for x in pages)
+          towns=['Segovia','Cuéllar','El Espinar','Cantalejo','Nava de la Asunción','Riaza','Carbonero el Mayor','La Lastrilla']
+          segovia={
+            'type':'province','path':'/Antenas-Segovia/','name':'Segovia',
+            'title':'Antenistas en Segovia · Antenas y porteros | 670 042 626',
+            'heading':'Antenas y porteros en Segovia',
+            'lead':'Servicio técnico de antenas TDT y parabólicas, amplificación, porteros automáticos y videoporteros en los municipios de Segovia. Busca tu localidad y consulta la instalación o avería.',
+            'intro':'En Segovia puedes consultar a Antenas Zallatel la instalación o reparación de antenas, TDT por satélite HD y sistemas de portero. Indica tu municipio, el tipo de vivienda y si el problema afecta a una toma o a toda la instalación para preparar la revisión y confirmar disponibilidad y desplazamiento.',
+            'focus':'Preparar la revisión de señal y distribución en tu municipio',
+            'advice':'Comenta si la vivienda dispone de antena individual o comunitaria, si hay una parabólica y qué mensaje muestra el televisor o receptor. Para porteros, indica la marca visible y si falla la llamada, el audio o la apertura, sin desmontar equipos.',
+            'towns':towns,
+            'source':'https://raw.githubusercontent.com/codeforspain/ds-organizacion-administrativa/1e9c99280ef4d7a12def33cafc3df59d9fc1f688/data/municipios.json',
+            'evidence':'municipal-dataset-generated'
+          }
+          pages.insert(next(i for i,x in enumerate(pages) if x['type']=='town'),segovia)
+          p.write_text(json.dumps(pages,ensure_ascii=False,indent=2)+'\n')
+          replace('scripts/fetch-municipalities.mjs',"'24':{name:'León',path:'/Antenas-Leon/'}","'24':{name:'León',path:'/Antenas-Leon/'},'40':{name:'Segovia',path:'/Antenas-Segovia/'}",1)
+          replace('scripts/fetch-municipalities.mjs',"['24','34','47']","['24','34','47','40']",1)
+          for file in ['scripts/expand-town-pages.mjs','scripts/audit-town-pages.mjs','scripts/audit-release-readiness.mjs','scripts/audit-production-package.mjs']:
+            replace(file,'1798','2007')
+          replace('scripts/expand-town-pages.mjs','Palencia, Valladolid y León','Palencia, Valladolid, León y Segovia')
+          replace('scripts/audit-town-pages.mjs','provinces.length, 10,','provinces.length, 11,',1)
+          replace('scripts/audit-town-pages.mjs','${provinces.length}/10','${provinces.length}/11',1)
+          replace('scripts/audit-release-readiness.mjs','provinceSegmentsForStats.size !== 10','provinceSegmentsForStats.size !== 11',1)
+          replace('scripts/audit-release-readiness.mjs','${provinceSegmentsForStats.size}/10','${provinceSegmentsForStats.size}/11',1)
+          replace('scripts/audit-production-package.mjs','1809','2019')
+          replace('scripts/audit-production-package.mjs','2007 pueblos + 10 provincias','2007 pueblos + 11 provincias',1)
+          replace('scripts/audit-production-package.mjs','provinceSegments.size !== 10','provinceSegments.size !== 11',1)
+          replace('scripts/audit-production-package.mjs','${provinceSegments.size}/10','${provinceSegments.size}/11',1)
+          replace('scripts/finalize-public-copy.mjs',"'Antenas-Segovia':['Segovia','Cuéllar','El Espinar','San Ildefonso','Cantalejo','Nava de la Asunción','Riaza','Carbonero el Mayor']","'Antenas-Segovia':['Segovia','Cuéllar','El Espinar','Cantalejo','Nava de la Asunción','Riaza','Carbonero el Mayor','La Lastrilla']",1)
+          replace('tests/expanded-provinces.test.mjs',"['León','/Antenas-Leon/']","['León','/Antenas-Leon/'],['Segovia','/Antenas-Segovia/']",1)
+          replace('tests/expanded-provinces.test.mjs','diez provincias activas, incluidas Palencia Valladolid y León','once provincias activas, incluidas Palencia, Valladolid, León y Segovia',1)
+          replace('tests/expanded-provinces.test.mjs','provinces.length,10','provinces.length,11',1)
+          replace('tests/expanded-provinces.test.mjs','Atención por pueblos · 10 provincias','Atención por pueblos · 11 provincias',1)
+          replace('tests/expanded-provinces.test.mjs','towns.length,24','towns.length,32',1)
+          Path('.quality/featured.json').write_text(json.dumps(towns,ensure_ascii=False))
+          PY
+          git diff --check
+      - name: Construcción completa y conservación de páginas anteriores
+        run: |
+          npm run build:production > .quality/segovia-build.log 2>&1 || { tail -n 100 .quality/segovia-build.log; exit 1; }
+          python3 - <<'PY'
+          import json,re,hashlib,html
+          from pathlib import Path
+          root=Path('dist');base=json.loads(Path('.quality/baseline.json').read_text())
+          files={str(f.relative_to(root)):f for f in root.rglob('*.html')}
+          assert set(base['html']).issubset(files),'Ha desaparecido una ruta anterior'
+          for name,previous in base['html'].items():
+            s=files[name].read_text();current={k:re.findall(pattern,s) for k,pattern in base['fields'].items()}
+            assert current==previous,f'{name}: han cambiado metadatos, contactos o imágenes anteriores'
+          for name,digest in base['xml'].items():
+            assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,f'{name}: sitemap anterior modificado'
+          for name,digest in base['assets'].items():
+            assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,f'{name}: asset anterior modificado'
+          assert (root/'robots.txt').read_text()==base['robotsTxt']
+          manifest=json.loads((root/'local-pages-manifest.json').read_text())
+          byPath={p['path']:p for p in manifest}
+          for p in base['municipalities']:
+            assert byPath.get(p['path'])==p,f'{p["path"]}: registro anterior modificado'
+          seg=[p for p in manifest if p['province']=='Segovia']
+          cache=json.loads(Path('.cache/municipios-selected.json').read_text())['provinces']['/Antenas-Segovia/']
+          assert len(seg)==len(cache)==209,(len(seg),len(cache))
+          assert {p['name'] for p in seg}=={p['name'] for p in cache}
+          assert len(manifest)==2007
+          assert len({p['province'] for p in manifest})==11
+          added=set(files)-set(base['html'])
+          assert len(added)==210 and all(p.startswith('Antenas-Segovia/') for p in added),(len(added),sorted(added)[:5])
+          province=(root/'Antenas-Segovia/index.html').read_text()
+          services=['tdt','porteros','videoporteros','parabolicas','tdt-satelite','amplificacion','cobertura-movil-servicio','tomas','mantenimiento']
+          for p in seg:
+            s=(root/p['path'].lstrip('/')).read_text()
+            assert '<meta name="robots" content="index,follow">' in s,p['path']
+            assert 'Antenas Zallatel' in s and '670 042 626' in s
+            assert 'TDT por satélite HD' in s
+            assert p['name'] in html.unescape(re.search(r'<h1\b[^>]*>([\s\S]*?)</h1>',s)[1])
+            for service in services:assert f'id="{service}"' in s,(p['path'],service)
+            assert f'href="{p["path"]}"' in province,p['path']
+          home=(root/'index.html').read_text()
+          card=next(s for s in re.findall(r'<article class="featured-province">[\s\S]*?</article>',home) if 'href="/Antenas-Segovia/"' in s)
+          visible=re.search(r'<div class="featured-towns">([\s\S]*?)</div>',card)[1]
+          more=re.search(r'<div class="featured-more-links">([\s\S]*?)</div>',card)[1]
+          assert visible.count('<a ')==8 and more.count('<a ')==18
+          for name in json.loads(Path('.quality/featured.json').read_text()):assert name in html.unescape(visible),name
+          sitemap=root/'sitemaps/sitemap-segovia.xml'
+          assert sitemap.exists()
+          urls=re.findall(r'<loc>([^<]+)</loc>',sitemap.read_text())
+          expected={'https://antenaszalla.com/Antenas-Segovia/',*('https://antenaszalla.com'+p['path'] for p in seg)}
+          assert len(urls)==210 and set(urls)==expected
+          assert 'https://antenaszalla.com/sitemaps/sitemap-segovia.xml' in (root/'sitemap.xml').read_text()
+          indexable=sum('<meta name="robots" content="index,follow">' in p.read_text() for p in files.values())
+          report={'passed':True,'baseBranch':'rapid-base-zalla','baseCommit':'abdb06da648e9f788cb9b95ec1a17cb6e0a67a51','addedProvince':'Segovia','addedMunicipalities':len(seg),'totalMunicipalities':len(manifest),'provinces':11,'addedHtml':len(added),'indexableUrls':indexable,'previousMunicipalitiesUnchanged':1798,'previousMetadataContactsImagesAndSitemapsUnchanged':True,'visibleTownsOnHome':8,'moreTownsOnHome':18,'segoviaSitemapUrls':len(urls),'tdtSatelliteRetained':True}
+          Path('.quality/report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          print(json.dumps(report,ensure_ascii=False))
+          PY
+      - name: Guardar solo los cambios comprobados en la rama de revisión
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/pages.json scripts/fetch-municipalities.mjs scripts/expand-town-pages.mjs scripts/audit-town-pages.mjs scripts/audit-release-readiness.mjs scripts/audit-production-package.mjs scripts/finalize-public-copy.mjs tests/expanded-provinces.test.mjs
+          git diff --cached --check
+          git diff --cached --stat > .quality/changes.txt
+          git commit -m 'Añade Segovia: 209 municipios, portada y sitemap provincial; conserva las 1798 localidades anteriores'
+          git push origin HEAD:expand/segovia-zallatel
+          git rev-parse HEAD > .quality/commit.txt
+      - name: Conservar muestra para revisión
+        if: always()
+        run: |
+          tar --exclude=.git --exclude=.quality --exclude=node_modules -czf .quality/review.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zallatel-segovia-verified
+          path: .quality/
+          include-hidden-files: true
