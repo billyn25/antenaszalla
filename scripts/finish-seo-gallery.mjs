@@ -47,7 +47,7 @@ function fitDescription(page) {
     `Antenista en ${page.name}, ${page.province}. Urgencias 24h: ${PHONE}. TDT, parabólicas, amplificación, porteros automáticos y videoporteros.`,
     `Reparación de antenas en ${page.name}, ${page.province}. ${PHONE}. Urgencias 24h, TDT, satélite, amplificación, porteros y videoporteros.`,
     `Técnico de antenas en ${page.name}, ${page.province}. Urgencias 24h: ${PHONE}. TDT, antenas colectivas, parabólicas, porteros y videoporteros.`,
-    `Antenas Zalla en ${page.name}, ${page.province}. ${PHONE}. Urgencias 24h para TDT, parabólicas, señal, porteros automáticos y videoporteros.`,
+    `Antenas Zallatel en ${page.name}, ${page.province}. ${PHONE}. Urgencias 24h para TDT, parabólicas, señal, porteros automáticos y videoporteros.`,
     `Servicio de antenista en ${page.name}, ${page.province}. ${PHONE}. Urgencias 24h. TDT, amplificación, satélite, porteros y videoporteros.`,
     `Antenas y porteros en ${page.name}, ${page.province}. Urgencias 24h: ${PHONE}. TDT, parabólicas, amplificación y videoporteros.`
   ];
@@ -87,9 +87,9 @@ for (const page of localPages) {
 }
 
 // Galería procedente de los recursos fotográficos indicados por el propietario.
-// Las imágenes se descargan durante el build y Antenas Zalla las sirve desde /assets/galeria/;
-// no quedan enlazadas externamente a Antenas Zalla.
-// antena5.jpg se excluye expresamente porque muestra la fachada de Antenas Zalla.
+// Las imágenes se descargan durante el build y Antenas Zallatel las sirve desde /assets/galeria/;
+// no quedan enlazadas externamente a Antenas Zallatel.
+// antena5.jpg se excluye expresamente porque muestra la fachada de Antenas Zallatel.
 const gallerySources = [
   { url: 'https://antenaszalla.netlify.app/assets/galeria/trabajo-01.jpg', alt: 'Videoportero' },
   { url: 'https://antenaszalla.netlify.app/assets/galeria/trabajo-02.jpg', alt: 'Trabajo técnico de antena' },
@@ -186,4 +186,4 @@ if (!home.includes('id="galeria"')) {
 if (!home.includes('id="zalla-gallery-script"')) home = home.replace('</body>', `${galleryScript}</body>`);
 fs.writeFileSync(homeFile, home);
 
-console.log(`SEO/GALERÍA OK: ${localPages.length} páginas locales; title máx. ${maxTitle}, meta ${minDescription}-${maxDescription}; 12 imágenes migradas, sin fachada de Antenas Zalla y con zoom modal accesible.`);
+console.log(`SEO/GALERÍA OK: ${localPages.length} páginas locales; title máx. ${maxTitle}, meta ${minDescription}-${maxDescription}; 12 imágenes migradas, sin fachada de Antenas Zallatel y con zoom modal accesible.`);

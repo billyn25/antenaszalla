@@ -29,12 +29,12 @@ test('antenas y porteros tienen encabezados propios de cada localidad', () => {
   assert.ok(h.includes(`Servicio en ${p.name} · ${site.phone}`));
  }
 });
-test('marca local Antenas Zalla, con identidad local Zalla', () => {
+test('marca local Antenas Zallatel, con identidad local Zalla', () => {
  for (const p of pages) {
   const h=renderPage(p);
   assert.equal((h.match(/class="zalla-brand-logo-base zalla-brand-logo"/g)||[]).length,1);
-  assert.ok(h.includes('aria-label="Antenas Zalla"'));
-  assert.ok(h.includes('aria-label="Antenas Zalla, inicio"'));
+  assert.ok(h.includes('aria-label="Antenas Zallatel"'));
+  assert.ok(h.includes('aria-label="Antenas Zallatel, inicio"'));
   assert.ok(!h.includes('logo-antenaszalla'));
   assert.ok(!/<img[^>]+src="https?:\/\//i.test(h));
  }
@@ -42,7 +42,7 @@ test('marca local Antenas Zalla, con identidad local Zalla', () => {
 test('prioridad a pueblos en portada y navegación, sin destacar capitales', () => {
  const p=pages.find(p=>p.type==='home'), h=renderPage(p), m=localMetadata(p,site);
  assert.equal(m.heading,'Antenistas en tu pueblo');
- assert.ok(m.description.startsWith('Antenas Zalla. Antenistas en tu pueblo.'));
+ assert.ok(m.description.startsWith('Antenas Zallatel. Antenistas en tu pueblo.'));
  assert.ok(h.includes('<h2>Encuentra un antenista en tu pueblo</h2>'));
  assert.ok(h.includes('>Pueblos</a>'));
  assert.ok(!h.includes('<h2>Servicio por provincias</h2>'));

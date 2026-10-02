@@ -9,7 +9,7 @@ const DOMAIN = 'https://antenaszalla.com';
 
 fs.mkdirSync(path.join(root, 'assets'), { recursive: true });
 const heroSource=path.join('src','assets','hero-zalla.jpg.png');
-const heroTarget=path.join(root,'assets','hero-zalla.png');
+const heroTarget=path.join(root,'assets','hero-zallatel.png');
 if(fs.existsSync(heroSource)) fs.copyFileSync(heroSource,heroTarget);
 
 
@@ -115,7 +115,7 @@ function seoDescription(page) {
     `Reparación de antenas en ${page.name}, ${page.province}. Urgencias 24h · ${PHONE}. TDT, satélite, antenas colectivas, porteros automáticos y videoporteros.`,
     `Técnico de antenas en ${page.name}, ${page.province} · ${PHONE}. Urgencias 24h, TDT, parabólicas, amplificación, porteros automáticos y cobertura móvil 4G/5G.`,
     `Servicio de antenista en ${page.name}, ${page.province}. ${PHONE} · Urgencias 24h. Averías de señal, TDT, parabólicas, porteros automáticos y videoporteros.`,
-    `Antenas Zalla en ${page.name}, ${page.province} · Urgencias 24h · ${PHONE}. Antenas individuales y colectivas, TDT, satélite, porteros y videoporteros.`
+    `Antenas Zallatel en ${page.name}, ${page.province} · Urgencias 24h · ${PHONE}. Antenas individuales y colectivas, TDT, satélite, porteros y videoporteros.`
   ];
   return patterns[v];
 }
@@ -131,7 +131,7 @@ function serviceSchema(page) {
     provider: {
       '@type': 'Organization',
       '@id': `${DOMAIN}/#organizacion`,
-      name: 'Antenas Zalla',
+      name: 'Antenas Zallatel',
       url: `${DOMAIN}/`,
       telephone: TEL
     },
