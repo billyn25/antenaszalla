@@ -65,9 +65,9 @@ for (const file of walk(root)) {
     .replaceAll('La web continúa en modo de revisión y noindex.', '')
     .replace(/<p class="notice">[^<]*(?:vista previa|modo de revisión|noindex|página de prueba|selección parcial|web actual|generada para esa localidad)[^<]*<\/p>/gi, '')
     .replace(/<details><summary>Información de esta vista previa y privacidad<\/summary><p>[\s\S]*?<\/p><\/details>/gi, '')
-    .replaceAll('Antenas Zalla · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.', 'Antenas Zalla · Propiedad de R.F.G. · 670 042 626')
+    .replaceAll('Antenas Zallatel · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.', 'Antenas Zallatel · Propiedad de R.F.G. · 670 042 626')
     .replaceAll('Página no incluida en esta vista previa', 'Página no disponible')
-    .replaceAll('El inventario de la renovación está en revisión. Esto no indica que la página se haya eliminado de la web actual.', 'La dirección solicitada no está disponible. Puedes volver al inicio o contactar con Antenas Zalla.');
+    .replaceAll('El inventario de la renovación está en revisión. Esto no indica que la página se haya eliminado de la web actual.', 'La dirección solicitada no está disponible. Puedes volver al inicio o contactar con Antenas Zallatel.');
 
   const visible = visibleText(html);
   for (const pattern of forbiddenVisible) {
@@ -126,7 +126,7 @@ const featuredCards=[...provinceSegments].sort((a,b)=>a.localeCompare(b,'es')).m
 }).join('');
 const featuredHtml=`<section class="featured-localities" id="pueblos-destacados"><div class="wrap"><span class="eyebrow">Localidades principales</span><h2>Pueblos y ciudades con servicio</h2><p class="featured-lead">Accesos directos a más localidades con página propia. Cada enlace abre el servicio de antenista en ese pueblo; consulta la provincia para ver el listado completo.</p><div class="featured-province-grid">${featuredCards}</div></div></section>`;
 
-const statsHtml = `<section class="zalla-stats" id="zalla-stats" aria-labelledby="zalla-stats-title"><div class="wrap"><div class="zalla-stats-head"><span class="eyebrow">Antenas Zalla en cifras</span><h2 id="zalla-stats-title">Servicio organizado por localidades</h2><p>La web reúne páginas locales y servicios técnicos para facilitar la consulta por municipio.</p></div><div class="zalla-stats-grid"><article><strong>${stats.towns.toLocaleString('es-ES')}</strong><span>Pueblos con página local</span></article><article><strong>${stats.provinces}</strong><span>Provincias organizadas</span></article><article><strong>${stats.services}</strong><span>Servicios técnicos</span></article></div></div></section>`;
+const statsHtml = `<section class="zalla-stats" id="zalla-stats" aria-labelledby="zalla-stats-title"><div class="wrap"><div class="zalla-stats-head"><span class="eyebrow">Antenas Zallatel en cifras</span><h2 id="zalla-stats-title">Servicio organizado por localidades</h2><p>La web reúne páginas locales y servicios técnicos para facilitar la consulta por municipio.</p></div><div class="zalla-stats-grid"><article><strong>${stats.towns.toLocaleString('es-ES')}</strong><span>Pueblos con página local</span></article><article><strong>${stats.provinces}</strong><span>Provincias organizadas</span></article><article><strong>${stats.services}</strong><span>Servicios técnicos</span></article></div></div></section>`;
 const homeFile = path.join(root, 'index.html');
 let homeHtml = fs.readFileSync(homeFile, 'utf8');
 homeHtml=homeHtml.replace('<section class="hero">','<section class="hero home-clean-hero">');

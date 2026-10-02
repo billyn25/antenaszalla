@@ -1,4 +1,4 @@
-# Antenas Zalla
+# Antenas Zallatel
 
 Nueva web SEO local para Euskadi y Burgos.
 

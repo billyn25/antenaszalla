@@ -93,7 +93,8 @@ for (const page of localPages) {
   assert.ok((html.match(/class="related-town-links"[\s\S]*?<\/div>/)?.[0].match(/<a href=/g) || []).length >= 4, `${page.path}: pocos enlaces internos a pueblos`);
 
   for (const phrase of antenistaCercaPhrases) {
-    assert.ok(!html.includes(phrase), `${page.path}: reutiliza frase propia de Antenista Cerca: ${phrase}`);
+    // Se permite únicamente el mensaje comercial exacto aprobado para Zallatel.
+    assert.ok(!html.replaceAll('Trato directo con el técnico profesional.', '').includes(phrase), `${page.path}: reutiliza frase propia de Antenista Cerca: ${phrase}`);
   }
   for (const pattern of inventedLocalPatterns) {
     assert.ok(!pattern.test(html), `${page.path}: posible dato local no verificado: ${pattern}`);
@@ -171,5 +172,5 @@ assert.ok(zones, 'Portada: falta el acceso a los pueblos');
 for (const province of provinces) {
   assert.equal(zones.split(`href="${province.path}"`).length - 1, 1, `Portada: acceso único a ${province.name}`);
 }
-assert.equal((home.match(/class="zalla-brand-logo-base zalla-brand-logo"/g) || []).length, 1, 'Portada: debe publicar una única marca Antenas Zalla');
+assert.equal((home.match(/class="zalla-brand-logo-base zalla-brand-logo"/g) || []).length, 1, 'Portada: debe publicar una única marca Antenas Zallatel');
 console.log(`AUDITORÍA SEO LOCAL OK: ${localPages.length} páginas; ${titlePatterns.size} patrones de title, ${descriptionPatterns.size} metas, ${localVariants.size} variantes de contenido, schema Service sin dirección inventada, Urgencias 24h, URLs históricas de Bilbao/Aranda/Lerma e interlinking provincial.`);

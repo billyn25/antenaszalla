@@ -1,6 +1,6 @@
-// Logotipo SVG propio Antenas Zalla: antena TDT + parabólica, sin imagen externa.
+// Logotipo SVG propio Antenas Zallatel: antena TDT + parabólica, sin imagen externa.
 export function brandMark(){
- return `<span class="zalla-brand-logo-base zalla-brand-logo" role="img" aria-label="Antenas Zalla">
+ return `<span class="zalla-brand-logo-base zalla-brand-logo" role="img" aria-label="Antenas Zallatel">
  <svg class="zalla-logo-icon" viewBox="0 0 96 76" aria-hidden="true" focusable="false">
    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
      <path d="M9 66h73" stroke-width="4"/>
@@ -13,6 +13,6 @@ export function brandMark(){
      <path d="M77 18c5 2 9 6 11 11M80 10c8 3 14 9 17 17" stroke-width="3"/>
    </g>
  </svg>
- <span class="zalla-wordmark"><span>ANTENAS</span><b>ZALLA</b></span>
+ <span class="zalla-wordmark"><span>ANTENAS</span><b>ZALLATEL</b></span>
  </span>`;
 }

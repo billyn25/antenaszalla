@@ -29,7 +29,7 @@ const leadVariants = [
   (t,p) => `Servicio de antenista en ${t}, ${p}, para averías de señal, instalaciones nuevas, TDT, parabólicas, amplificación, porteros automáticos y videoporteros.`,
   (t,p) => `¿Necesitas un técnico de antenas en ${t}? Atendemos instalaciones individuales y colectivas, problemas de TDT, satélite, amplificación, porteros y videoporteros en ${p}.`,
   (t,p) => `Instalación y reparación de antenas en ${t}, ${p}. Revisamos recepción TDT, parabólicas, amplificadores, cableado, porteros automáticos, videoporteros y cobertura móvil residencial.`,
-  (t,p) => `Antenas Zalla presta servicio en ${t} para viviendas, comunidades y pequeños negocios: antenas TDT, parabólicas, distribución de señal, porteros y videoporteros.`,
+  (t,p) => `Antenas Zallatel presta servicio en ${t} para viviendas, comunidades y pequeños negocios: antenas TDT, parabólicas, distribución de señal, porteros y videoporteros.`,
   (t,p) => `Técnico antenista en ${t}, ${p}, para localizar averías, mejorar la recepción y resolver trabajos de antena, amplificación, portero automático o videoportero.`,
   (t,p) => `Servicio técnico de antenas en ${t}: instalaciones individuales y comunitarias, TDT, satélite, amplificación y sistemas de portero y videoportero.`
 ];
