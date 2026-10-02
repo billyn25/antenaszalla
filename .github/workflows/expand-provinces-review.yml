@@ -1,0 +1,235 @@
+name: Revisar ampliacion Palencia Valladolid Leon
+on:
+  push:
+    branches: [expand/palencia-valladolid-leon]
+permissions:
+  contents: write
+jobs:
+  expand:
+    if: github.ref == 'refs/heads/expand/palencia-valladolid-leon'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Guardar referencia de produccion existente
+        run: |
+          mkdir -p .quality
+          npm run build:production > .quality/base-build.log 2>&1
+          python3 - <<'PY'
+          import json,re,hashlib
+          from pathlib import Path
+          root=Path('dist')
+          pages={}
+          for f in root.rglob('*.html'):
+              s=f.read_text()
+              pages[str(f.relative_to(root))]={
+                'canonical':re.findall(r'<link rel="canonical" href="([^"]+)"',s),
+                'robots':re.findall(r'<meta name="robots" content="([^"]+)"',s),
+                'h1':re.findall(r'<h1\b[^>]*>([\s\S]*?)</h1>',s),
+                'title':re.findall(r'<title>(.*?)</title>',s),
+                'description':re.findall(r'<meta name="description" content="([^"]+)"',s),
+                'contact':sorted(re.findall(r'(?:tel:|https://wa.me/)[+0-9]+',s)),
+                'images':re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',s)
+              }
+          snap={'html':pages,'manifest':json.loads((root/'local-pages-manifest.json').read_text()),'config':json.loads(Path('config/site.json').read_text()),'services':Path('content/services.json').read_text(),'netlify':Path('netlify.toml').read_text(),'robots':(root/'robots.txt').read_text(),'assets':{str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in (root/'assets').rglob('*') if f.is_file()}}
+          Path('.quality/baseline.json').write_text(json.dumps(snap,ensure_ascii=False))
+          PY
+      - name: Ampliar solo las provincias solicitadas
+        run: |
+          python3 - <<'PY'
+          import json,re,subprocess
+          from pathlib import Path
+          def edit(name,fn):
+              p=Path(name);s=p.read_text();n=fn(s)
+              assert n!=s,'Sin cambio: '+name
+              p.write_text(n)
+          def replace_once(s,a,b):
+              assert s.count(a)==1,'Punto de cambio inesperado: '+a
+              return s.replace(a,b,1)
+          def update_fetch(s):
+              s=replace_once(s,"'26':{name:'La Rioja',path:'/Antenas-La-Rioja/'}","'26':{name:'La Rioja',path:'/Antenas-La-Rioja/'},'34':{name:'Palencia',path:'/Antenas-Palencia/'},'47':{name:'Valladolid',path:'/Antenas-Valladolid/'},'24':{name:'León',path:'/Antenas-Leon/'}")
+              marker='const response = await fetch(SOURCE'
+              helper="function municipalityName(item) {\n  let name = item.nombre.replaceAll('\\\\/', '/');\n  if (['24','34','47'].includes(item.provincia_id)) {\n    name = name.replace(/^(.+),\\s*(El|La|Los|Las)$/, '$2 $1').replace(/^(.+)\\s+\\((El|La|Los|Las)\\)$/, '$2 $1');\n  }\n  return name;\n}\n\n"
+              s=replace_once(s,marker,helper+marker)
+              s=replace_once(s,"name: item.nombre.replaceAll('\\\\/', '/')","name: municipalityName(item)")
+              return s
+          edit('scripts/fetch-municipalities.mjs',update_fetch)
+          subprocess.run(['node','scripts/fetch-municipalities.mjs'],check=True)
+          dataset=json.loads(Path('.cache/municipios-selected.json').read_text())
+          specs=[
+            {'name':'Palencia','route':'/Antenas-Palencia/','count':191,'towns':['Palencia','Aguilar de Campoo','Guardo','Venta de Baños','Villamuriel de Cerrato','Cervera de Pisuerga','Carrión de los Condes','Dueñas'],
+             'lead':'Antenas TDT, parabólicas y porteros en los municipios de Palencia. Consulta la instalación o avería indicando tu localidad y el tipo de inmueble.',
+             'intro':'Antenas Zallatel atiende consultas de instalación y reparación de antenas, TDT por satélite HD, amplificación y porteros en Palencia. Indica si el fallo afecta a una vivienda o a varios vecinos para orientar la revisión y confirmar el desplazamiento antes de la visita.',
+             'focus':'Distinguir una avería de vivienda de un fallo comunitario',
+             'advice':'Explica si faltan todos los canales o solo algunos y si otras tomas funcionan. Para un portero, indica si falla la llamada, el audio o la apertura, sin desmontar el equipo.'},
+            {'name':'Valladolid','route':'/Antenas-Valladolid/','count':225,'towns':['Valladolid','Laguna de Duero','Medina del Campo','Arroyo de la Encomienda','Tordesillas','Tudela de Duero','Íscar','Peñafiel'],
+             'lead':'Servicio técnico de antenas, amplificación, porteros automáticos y videoporteros en Valladolid. Localiza tu municipio y consulta las condiciones del trabajo.',
+             'intro':'Para organizar una instalación en Valladolid, Antenas Zallatel revisa las necesidades de recepción y distribución: número de televisores, tomas existentes y equipos que se quieren conservar. También puedes consultar TDT por satélite HD y renovación de porteros indicando el municipio.',
+             'focus':'Preparar una instalación o una ampliación de tomas',
+             'advice':'Indica cuántos televisores necesitas conectar y si ya hay cableado. Si se trata de un videoportero, facilita la marca visible y comenta si la placa es individual o compartida.'},
+            {'name':'León','route':'/Antenas-Leon/','count':211,'towns':['León','Ponferrada','San Andrés del Rabanedo','Astorga','La Bañeza','Villablino','Bembibre','Valencia de Don Juan'],
+             'lead':'Consulta instalación y reparación de antenas TDT y parabólicas, TDT por satélite HD, porteros y videoporteros en los municipios de León.',
+             'intro':'Antenas Zallatel organiza las consultas de León por localidad y tipo de instalación. Para recepción por satélite se valora la parabólica, el receptor y el cableado; en una avería de televisión se comprueba si el origen está en la señal o en la distribución interior. La disponibilidad se confirma al contactar.',
+             'focus':'Revisar recepción y equipos antes de comprar recambios',
+             'advice':'Comenta si ya existe una parabólica y qué receptor utilizas. Ante pérdida de señal, indica desde cuándo ocurre y si afecta a todas las tomas. No subas al tejado para comprobarlo.'}
+          ]
+          def norm(v):
+              import unicodedata
+              return re.sub(r'[^a-z0-9]+',' ',unicodedata.normalize('NFD',v.lower()).encode('ascii','ignore').decode()).strip()
+          pages=json.loads(Path('content/pages.json').read_text())
+          assert len([p for p in pages if p['type']=='province'])==7
+          for spec in specs:
+              actual=dataset['provinces'][spec['route']]
+              assert len(actual)==spec['count'],(spec['name'],len(actual))
+              by_name={norm(m['name']):m['name'] for m in actual}
+              towns=[by_name[norm(n)] for n in spec['towns']]
+              assert not any(p['path']==spec['route'] for p in pages)
+              page={'type':'province','path':spec['route'],'name':spec['name'],'title':f"Antenistas en {spec['name']} · Antenas y porteros | 670 042 626",'heading':f"Antenas y porteros en {spec['name']}",'lead':spec['lead'],'intro':spec['intro'],'focus':spec['focus'],'advice':spec['advice'],'towns':towns,'source':dataset['source'],'evidence':'municipal-dataset-generated'}
+              index=next((i for i,p in enumerate(pages) if p['type']=='town'),len(pages))
+              pages.insert(index,page)
+          Path('content/pages.json').write_text(json.dumps(pages,ensure_ascii=False,indent=2)+'\n')
+          edit('scripts/build.mjs',lambda s:replace_once(s,'Atención por pueblos · 7 provincias','Atención por pueblos · ${provinces.length} provincias'))
+          for name in ['scripts/expand-town-pages.mjs','scripts/audit-town-pages.mjs','scripts/audit-release-readiness.mjs','scripts/audit-production-package.mjs']:
+              def counts(s):
+                  assert '1171' in s,name
+                  s=s.replace('1171','1798').replace('1179','1809')
+                  s=s.replace('provinces.length, 7,','provinces.length, 10,').replace('${provinces.length}/7','${provinces.length}/10')
+                  s=s.replace('provinceSegmentsForStats.size !== 7','provinceSegmentsForStats.size !== 10').replace('${provinceSegmentsForStats.size}/7','${provinceSegmentsForStats.size}/10')
+                  s=s.replace('provinceSegments.size !== 7','provinceSegments.size !== 10').replace('${provinceSegments.size}/7','${provinceSegments.size}/10')
+                  s=s.replace('las 7 provincias','las ${provinces.length} provincias').replace(' + 7 provincias +',' + 10 provincias +')
+                  s=s.replace('Álava, Bizkaia, Burgos, Cantabria, Gipuzkoa, Navarra y La Rioja ya se generan','Álava, Bizkaia, Burgos, Cantabria, Gipuzkoa, Navarra, La Rioja, Palencia, Valladolid y León ya se generan')
+                  s=s.replace('para Bizkaia, Gipuzkoa, Álava, Burgos, Cantabria, Navarra y La Rioja.','para Bizkaia, Gipuzkoa, Álava, Burgos, Cantabria, Navarra, La Rioja, Palencia, Valladolid y León.')
+                  return s
+              edit(name,counts)
+          # Reutilizar la auditoría municipal existente, limitada a las provincias activas reales.
+          def coverage(s):
+              marker="import path from 'node:path';"
+              s=replace_once(s,marker,marker+"\nimport pages from '../content/pages.json' with { type: 'json' };")
+              s,n=re.subn(r'const checks = \[[\s\S]*?\];',"const checks = pages.filter(p => p.type === 'province').map(p => ({ name: p.name, route: p.path }));",s,count=1)
+              assert n==1
+              return s
+          edit('scripts/audit-extra-provinces.mjs',coverage)
+          package=json.loads(Path('package.json').read_text())
+          package['scripts']['audit:coverage']='node scripts/audit-extra-provinces.mjs'
+          package['scripts']['build:production']+=' && npm run audit:coverage'
+          Path('package.json').write_text(json.dumps(package,ensure_ascii=False,indent=2)+'\n')
+          Path('tests/expanded-provinces.test.mjs').write_text('''import test from 'node:test';
+          import assert from 'node:assert/strict';
+          import { pages, site, renderPage } from '../scripts/build.mjs';
+          import { buildTownPages } from '../scripts/generate-town-pages.mjs';
+          const requested = [['Palencia','/Antenas-Palencia/'],['Valladolid','/Antenas-Valladolid/'],['León','/Antenas-Leon/']];
+          test('diez provincias activas, incluidas Palencia Valladolid y León',()=>{
+            const provinces=pages.filter(p=>p.type==='province');
+            assert.equal(provinces.length,10);
+            const home=renderPage(pages.find(p=>p.type==='home'));
+            for(const [name,route] of requested){
+              const p=provinces.find(p=>p.path===route);
+              assert.equal(p?.name,name);
+              assert.equal(p.towns.length,8);
+              assert.ok(home.includes(`href="${route}"`));
+            }
+            assert.ok(home.includes('Atención por pueblos · 10 provincias'));
+            assert.equal(site.brand,'Antenas Zallatel');
+            assert.equal(site.domain,'https://antenaszalla.com');
+            assert.equal(site.phone,'670 042 626');
+          });
+          test('nuevas localidades usan los mismos servicios y contactos, incluida TDT por satélite HD',()=>{
+            const routes=new Set(requested.map(p=>p[1]));
+            const towns=buildTownPages().filter(p=>routes.has(p.parent));
+            assert.equal(towns.length,24);
+            for(const p of towns){
+              const html=renderPage(p);
+              for(const id of ['tdt','parabolicas','tdt-satelite','amplificacion','porteros','videoporteros','cobertura-movil','electricidad']){
+                assert.ok(html.includes(`id="${id}"`),`${p.path}: servicio ${id}`);
+              }
+              assert.ok(html.includes('TDT por satélite HD'));
+              assert.ok(html.includes(`tel:${site.tel}`));
+              assert.ok(html.includes(`https://wa.me/${site.whatsapp}`));
+              assert.ok(p.seoDescription.includes(p.name));
+            }
+          });
+          ''')
+          # Los IDs se contrastan con el catálogo real, sin inventar nombres de servicio.
+          t=Path('tests/expanded-provinces.test.mjs')
+          s=t.read_text()
+          ids=[x['id'] for x in json.loads(Path('content/services.json').read_text())]
+          s=s.replace("['tdt','parabolicas','tdt-satelite','amplificacion','porteros','videoporteros','cobertura-movil','electricidad']",json.dumps(ids))
+          t.write_text(s)
+          Path('.quality/requested.json').write_text(json.dumps(specs,ensure_ascii=False))
+          print('AMPLIACIÓN: 191 Palencia + 225 Valladolid + 211 León; 627 municipios añadidos.')
+          PY
+          git diff --check
+      - name: Build completo y comprobacion de las paginas nuevas
+        run: |
+          npm run build:production > .quality/expanded-build.log 2>&1
+          python3 - <<'PY'
+          import json,re,hashlib,html as html_lib
+          from pathlib import Path
+          root=Path('dist');base=json.loads(Path('.quality/baseline.json').read_text());specs=json.loads(Path('.quality/requested.json').read_text())
+          current={str(f.relative_to(root)):f for f in root.rglob('*.html')}
+          assert len(current)==len(base['html'])+630,(len(current),len(base['html']))
+          for name,b in base['html'].items():
+              assert name in current,'Ruta desaparecida: '+name
+              s=current[name].read_text()
+              now={'canonical':re.findall(r'<link rel="canonical" href="([^"]+)"',s),'robots':re.findall(r'<meta name="robots" content="([^"]+)"',s),'h1':re.findall(r'<h1\b[^>]*>([\s\S]*?)</h1>',s),'title':re.findall(r'<title>(.*?)</title>',s),'description':re.findall(r'<meta name="description" content="([^"]+)"',s),'contact':sorted(re.findall(r'(?:tel:|https://wa.me/)[+0-9]+',s)),'images':re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',s)}
+              assert now==b,'Cambio ajeno a cobertura: '+name
+          assert json.loads(Path('config/site.json').read_text())==base['config']
+          assert Path('content/services.json').read_text()==base['services']
+          assert Path('netlify.toml').read_text()==base['netlify']
+          assert (root/'robots.txt').read_text()==base['robots']
+          for name,sha in base['assets'].items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==sha,'Imagen o asset modificado: '+name
+          manifest=json.loads((root/'local-pages-manifest.json').read_text());by_path={p['path']:p for p in manifest}
+          assert len(manifest)==1798
+          for p in base['manifest']:
+              assert by_path[p['path']]==p,'Localidad anterior modificada: '+p['path']
+          home=(root/'index.html').read_text();counts={}
+          for spec in specs:
+              route=spec['route'];locals=[p for p in manifest if p['path'].startswith(route)]
+              assert len(locals)==spec['count']
+              counts[spec['name']]=len(locals)
+              province=(root/route.strip('/')/'index.html').read_text()
+              key=route.strip('/').replace('Antenas-','').lower();sm=(root/'sitemaps'/f'sitemap-{key}.xml').read_text()
+              urls=re.findall(r'<loc>(.*?)</loc>',sm)
+              assert len(urls)==spec['count']+1
+              block=next(s for s in re.findall(r'<article class="featured-province">[\s\S]*?</article>',home) if f'href="{route}"' in s)
+              visible=block.split('<details',1)[0]
+              assert len(re.findall(r'<a href="'+re.escape(route)+r'[^"/]+\.html"',visible))>=8,'Faltan ocho pueblos visibles: '+route
+              assert 'Más pueblos con servicio' in block and 'Ver todos los pueblos' in block
+              for p in locals:
+                  s=(root/p['path'].lstrip('/')).read_text()
+                  assert f'href="{p["path"]}"' in province
+                  assert 'https://antenaszalla.com'+p['path'] in urls
+                  assert '<meta name="robots" content="index,follow">' in s
+                  assert 'TDT por satélite HD' in s
+                  assert 'Antenas Zallatel' in s and '670 042 626' in s
+                  assert p['name'] in html_lib.unescape(s)
+                  for raw in re.findall(r'<script[^>]*type="application/ld\+json"[^>]*>([\s\S]*?)</script>',s):json.loads(raw)
+          indexed=sum('<meta name="robots" content="index,follow">' in p.read_text() for p in current.values())
+          report={'passed':True,'branch':'rapid-base-zalla','newMunicipalities':counts,'addedMunicipalities':627,'totalMunicipalities':len(manifest),'provinces':10,'html':len(current),'indexableUrls':indexed,'oldRoutesMetadataContactsAndImagesUnchanged':True,'oldMunicipalities':len(base['manifest']),'newProvincialSitemaps':3,'eightVisiblePlusMorePerNewProvince':True,'brand':'Antenas Zallatel','phone':'670 042 626','tdtSatelliteRetained':True}
+          Path('.quality/report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+      - name: Guardar solamente los cambios comprobados
+        run: |
+          git add content/pages.json scripts/fetch-municipalities.mjs scripts/build.mjs scripts/expand-town-pages.mjs scripts/audit-town-pages.mjs scripts/audit-release-readiness.mjs scripts/audit-production-package.mjs scripts/audit-extra-provinces.mjs package.json tests/expanded-provinces.test.mjs
+          git diff --cached --check
+          git diff --cached --stat > .quality/changes.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Añade Palencia Valladolid y León: 627 municipios y tres índices provinciales'
+          git push origin HEAD:expand/palencia-valladolid-leon
+          git rev-parse HEAD > .quality/commit.txt
+      - name: Conservar fuentes y muestra de la web generada
+        if: always()
+        run: |
+          tar --exclude=.git --exclude=.quality --exclude=node_modules -czf .quality/review.tar.gz .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zallatel-three-provinces
+          path: .quality/
+          include-hidden-files: true
