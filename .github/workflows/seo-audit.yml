@@ -1,0 +1,70 @@
+name: SEO production audit
+on:
+  push:
+    branches: [fix/seo-canonical-20261008, rapid-base-zalla]
+  pull_request:
+    branches: [rapid-base-zalla]
+permissions:
+  contents: read
+concurrency:
+  group: seo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build and audit all municipalities
+        run: npm run build:production
+      - name: Inspect current public redirects (diagnostic, not a deployment)
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          const paths = ['/', '/Antenas-Segovia/castro-de-fuentiduena.html', '/antenas-segovia/castro-de-fuentiduena', '/Antenas-Leon/fuentes-de-carbajal.html', '/Antenas-Segovia/', '/sitemap.xml', '/robots.txt', '/index.htm'];
+          for (const path of paths) {
+            try {
+              let url = 'https://antenaszalla.com' + path;
+              const chain = [];
+              for (let i = 0; i < 6; i++) {
+                const res = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(15000) });
+                chain.push({url, status: res.status, location: res.headers.get('location'), robots: res.headers.get('x-robots-tag')});
+                if ([301,302,303,307,308].includes(res.status) && res.headers.get('location')) {
+                  const next = new URL(res.headers.get('location'), url);
+                  if (!['antenaszalla.com','www.antenaszalla.com'].includes(next.hostname)) throw new Error('Unexpected redirect host');
+                  await res.body?.cancel();
+                  url = next.href;
+                } else {
+                  const text = await res.text();
+                  chain[chain.length - 1].canonical = text.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/)?.[1] || null;
+                  if (path.endsWith('.xml') || path.endsWith('.txt')) chain[chain.length - 1].sample = text.slice(0,1800);
+                  break;
+                }
+              }
+              console.log(JSON.stringify({path, chain}));
+            } catch (error) { console.log(JSON.stringify({path, error: error.message})); }
+          }
+          JS
+      - name: Retain tested sources and output for inspection
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-build-review
+          retention-days: 1
+          include-hidden-files: true
+          path: |
+            config/
+            content/
+            scripts/
+            src/
+            tests/
+            .cache/
+            dist/
+            netlify.toml
+            package.json
+            README.md
