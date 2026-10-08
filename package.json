@@ -11,8 +11,11 @@
     "test": "node --test tests/*.test.mjs",
     "preview": "node scripts/serve.mjs",
     "prepare:production": "node scripts/prepare-production-assets.mjs",
-    "audit:production": "node scripts/audit-production-package.mjs",
-    "build:production": "ANTENASZALLA_BUILD_TARGET=production SITE_MODE=preview npm run build && CONFIRM_PRODUCTION_PREP=1 npm run prepare:production && npm run audit:production && npm run audit:coverage",
-    "audit:coverage": "node scripts/audit-extra-provinces.mjs"
+    "audit:production": "node scripts/audit-production-package.mjs && npm run audit:public-seo",
+    "build:production": "ANTENASZALLA_BUILD_TARGET=production SITE_MODE=preview npm run build && npm run finalize:seo && CONFIRM_PRODUCTION_PREP=1 npm run prepare:production && npm run audit:production && npm run audit:coverage",
+    "audit:coverage": "node scripts/audit-extra-provinces.mjs",
+    "finalize:seo": "node scripts/finalize-public-seo.mjs",
+    "audit:public-seo": "node scripts/audit-public-seo.mjs",
+    "audit:live": "node scripts/audit-live-seo.mjs"
   }
 }
