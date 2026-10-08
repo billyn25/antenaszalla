@@ -1,0 +1,64 @@
+name: SEO production audit
+on:
+  push:
+    branches: [fix/seo-canonical-20261008, rapid-base-zalla]
+  pull_request:
+    branches: [rapid-base-zalla]
+permissions:
+  contents: read
+concurrency:
+  group: seo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Build and audit all municipalities
+        run: |
+          node --check scripts/audit-live-seo.mjs
+          npm run build:production
+      - name: Retain tested sources and output for inspection
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: seo-build-review
+          retention-days: 1
+          include-hidden-files: true
+          path: |
+            config/
+            content/
+            scripts/
+            src/
+            tests/
+            .cache/
+            dist/
+            netlify.toml
+            package.json
+            README.md
+  live-check:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/rapid-base-zalla'
+    needs: production
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Check deployed redirects, canonicals and sitemaps
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if node scripts/audit-live-seo.mjs; then exit 0; fi
+            echo "Public deployment not verified; retry $attempt/6"
+            sleep 10
+          done
+          exit 1

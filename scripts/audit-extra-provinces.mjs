@@ -2,7 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import pages from '../content/pages.json' with { type: 'json' };
 
-const root = path.resolve('dist');
+const root = path.resolve(process.env.PRODUCTION_ROOT || 'dist');
+const publicBuild = fs.existsSync(path.join(root, 'public-seo-manifest.json'));
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'local-pages-manifest.json'), 'utf8'));
 const cache = JSON.parse(fs.readFileSync(path.resolve('.cache/municipios-selected.json'), 'utf8'));
 
@@ -14,7 +15,7 @@ for (const check of checks) {
   if (!expected.length) throw new Error(`${check.name}: el dataset no contiene municipios para ${check.route}`);
   expectedTotal += expected.length;
 
-  const provinceFile = path.join(root, check.route.slice(1), 'index.html');
+  const provinceFile = path.join(root, (publicBuild ? check.route.toLowerCase() : check.route).slice(1), 'index.html');
   if (!fs.existsSync(provinceFile)) throw new Error(`Falta la página provincial de ${check.name}`);
 
   const locals = manifest.filter(p => p.province === check.name);
