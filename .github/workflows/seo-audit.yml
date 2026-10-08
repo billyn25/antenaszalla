@@ -14,44 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
       - name: Build and audit all municipalities
-        run: npm run build:production
-      - name: Inspect current public redirects (diagnostic, not a deployment)
-        if: always()
         run: |
-          node --input-type=module <<'JS'
-          const paths = ['/', '/Antenas-Segovia/castro-de-fuentiduena.html', '/antenas-segovia/castro-de-fuentiduena', '/Antenas-Leon/fuentes-de-carbajal.html', '/Antenas-Segovia/', '/sitemap.xml', '/robots.txt', '/index.htm'];
-          for (const path of paths) {
-            try {
-              let url = 'https://antenaszalla.com' + path;
-              const chain = [];
-              for (let i = 0; i < 6; i++) {
-                const res = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(15000) });
-                chain.push({url, status: res.status, location: res.headers.get('location'), robots: res.headers.get('x-robots-tag')});
-                if ([301,302,303,307,308].includes(res.status) && res.headers.get('location')) {
-                  const next = new URL(res.headers.get('location'), url);
-                  if (!['antenaszalla.com','www.antenaszalla.com'].includes(next.hostname)) throw new Error('Unexpected redirect host');
-                  await res.body?.cancel();
-                  url = next.href;
-                } else {
-                  const text = await res.text();
-                  chain[chain.length - 1].canonical = text.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/)?.[1] || null;
-                  if (path.endsWith('.xml') || path.endsWith('.txt')) chain[chain.length - 1].sample = text.slice(0,1800);
-                  break;
-                }
-              }
-              console.log(JSON.stringify({path, chain}));
-            } catch (error) { console.log(JSON.stringify({path, error: error.message})); }
-          }
-          JS
+          node --check scripts/audit-live-seo.mjs
+          npm run build:production
       - name: Retain tested sources and output for inspection
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: seo-build-review
@@ -68,3 +42,23 @@ jobs:
             netlify.toml
             package.json
             README.md
+  live-check:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/rapid-base-zalla'
+    needs: production
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Check deployed redirects, canonicals and sitemaps
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if node scripts/audit-live-seo.mjs; then exit 0; fi
+            echo "Public deployment not verified; retry $attempt/6"
+            sleep 10
+          done
+          exit 1
