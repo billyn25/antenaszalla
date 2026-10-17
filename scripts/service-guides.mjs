@@ -9,7 +9,7 @@ export {guides};
 export const guideRoute = g => `/servicios/${g.slug}/`;
 export const SERVICE_RELEASE = createHash('sha256').update(JSON.stringify(guides)).update(fs.readFileSync(new URL(import.meta.url))).digest('hex').slice(0,12);
 const byId = new Map(guides.map(g=>[g.id,g]));
-const wa = (g,town) => 'https://wa.me/34670042626?text='+encodeURIComponent(`Hola, necesito consultar ${g.label.toLowerCase()}${town?` en ${town.name}, ${town.province}`:''}. Tipo de inmueble: . El problema es: .`);
+const wa = (g,town) => 'https://wa.me/34670042626?text='+encodeURIComponent(`Hola, necesito consultar ${g.label.toLowerCase()}${town?` en ${town.name}, ${town.province}`:''}. ¿Podéis indicarme disponibilidad y condiciones para revisar la instalación?`);
 const actions = (g,town) => `<div class="actions"><a class="btn call" href="tel:${TEL}">Llamar ${PHONE}</a><a class="btn wa" href="${esc(wa(g,town))}">Consultar por WhatsApp</a></div>`;
 const paragraphs = rows => rows.map(([heading,text])=>`<section><h2>${esc(heading)}</h2><p>${esc(text)}</p></section>`).join('');
 const schema = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;
