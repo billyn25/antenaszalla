@@ -14,6 +14,14 @@ async function text200(url) {
   return response.text();
 }
 
+// Check the mobile header and exact interface assets, including cached deployments.
+const mobileHome = await text200(DOMAIN+'/');
+if (!mobileHome.includes('aria-controls="site-navigation"')) throw new Error('Mobile menu is not public yet');
+for (const asset of ['site.css','site.js']) {
+  const published=await text200(DOMAIN+'/assets/'+asset);
+  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8');
+  if (published!==expected) throw new Error(`Interface asset is not current: ${asset}`);
+}
 // Verify this content release, rather than accepting a healthy but older deployment.
 const serviceIndex = await text200(DOMAIN+'/servicios/');
 if (!serviceIndex.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error('The service content release is not public yet');

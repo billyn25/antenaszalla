@@ -32,6 +32,29 @@
     filter();
   }
 
+  const menuButton = document.querySelector('.menu-toggle');
+  const menuNav = document.querySelector('#site-navigation');
+  if (menuButton && menuNav) {
+    const header = menuButton.closest('header');
+    const setMenu = open => {
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      header.dataset.menuOpen = String(open);
+    };
+    header.dataset.mobileNav = 'ready';
+    setMenu(false);
+    menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+    menuNav.addEventListener('click', event => {
+      if (event.target.closest('a')) setMenu(false);
+    });
+    header.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        menuButton.focus({preventScroll:true});
+      }
+    });
+  }
+
   const privacyKey = 'antenaszalla-cookie-info-v1';
   const notice = document.querySelector('[data-cookie-notice]');
   if (notice) {
