@@ -54,7 +54,22 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       // Keep the existing relevant description and its service focus when it contains the essentials.
       if (![town.name, town.province, PHONE].every(part => description.includes(part))) description = metadata.description;
     } else if (doc.path === '/') {
-      title = `Antenas Zallatel: antenas, porteros y videoporteros | ${PHONE}`;
+      title = `Antenas Zallatel (Antenas Zalla): antenas y porteros | ${PHONE}`;
+      description = `Antenas Zallatel, antes Antenas Zalla en esta web. Instalación y reparación de antenas TDT, porteros automáticos y videoporteros. ${PHONE}.`;
+      html = html.replace('<h1>Antenista barato en tu pueblo</h1>', '<h1>Antenas, porteros y videoporteros en tu pueblo</h1>');
+      if (!html.includes('id="identidad-zalla"')) {
+        const identity = '<p class="micro" id="identidad-zalla">Antenas Zallatel es el nombre actual de esta web, anteriormente presentada como Antenas Zalla. Seguimos en antenaszalla.com, con contacto en el <a href="tel:+34670042626">670 042 626</a>.</p>';
+        html = html.replace('<div class="hero-tags">', identity + '<div class="hero-tags">');
+      }
+      if (!html.includes('id="antenas-zalla-enkarterri"')) {
+        const names = ['Zalla','Balmaseda','Güeñes','Sopuerta','Gordexola','Galdames','Artzentales','Karrantza Harana/Valle de Carranza'];
+        const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+        const links = names.map(name => towns.find(t => t.province === 'Bizkaia' && normalize(t.name) === normalize(name))).filter(Boolean);
+        if (links.length) {
+          const local = `<section class="section soft" id="antenas-zalla-enkarterri"><div class="wrap"><span class="eyebrow">Consulta por localidad</span><h2>Antenas en Zalla y Enkarterri</h2><p class="section-lead">Consulta la instalación o reparación de antenas TDT, porteros automáticos y videoporteros para tu vivienda o comunidad. Elige tu pueblo y confirma disponibilidad y condiciones antes de organizar la visita.</p><nav class="featured-towns" aria-label="Servicio de antenista en Zalla y Enkarterri">${links.map(t => `<a href="${escapeHtml(publicPath(t.path))}">Antenista en ${escapeHtml(t.name)}</a>`).join('')}</nav></div></section>`;
+          html = html.replace('<section class="section soft" id="zonas">', local + '<section class="section soft" id="zonas">');
+        }
+      }
     }
     html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
     if (!errorPage) {
@@ -73,13 +88,14 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       const entities = data['@graph'] || [data];
       for (const entity of entities) {
         if (['WebPage','CollectionPage'].includes(entity['@type'])) Object.assign(entity,{name:title,description,url:canonical,inLanguage:'es'});
-        if (entity['@type'] === 'WebSite') Object.assign(entity,{name:BRAND,url:DOMAIN+'/',publisher:{'@id':DOMAIN+'/#organizacion'}});
+        if (entity['@type'] === 'WebSite') Object.assign(entity,{name:BRAND,alternateName:'Antenas Zalla',url:DOMAIN+'/',publisher:{'@id':DOMAIN+'/#organizacion'}});
+        if (entity['@type'] === 'Organization' && entity['@id'] === DOMAIN+'/#organizacion') Object.assign(entity,{name:BRAND,alternateName:'Antenas Zalla'});
         if (entity['@type'] === 'Service') {
           entity.description = description;
           if (Array.isArray(entity.serviceType) && !entity.serviceType.includes('TDT por satélite HD')) entity.serviceType.push('TDT por satélite HD');
         }
       }
-      if (data['@graph'] && !entities.some(e => e['@id'] === DOMAIN+'/#organizacion')) entities.push({'@type':'Organization','@id':DOMAIN+'/#organizacion',name:BRAND,url:DOMAIN+'/',telephone:TEL});
+      if (data['@graph'] && !entities.some(e => e['@id'] === DOMAIN+'/#organizacion')) entities.push({'@type':'Organization','@id':DOMAIN+'/#organizacion',name:BRAND,alternateName:'Antenas Zalla',url:DOMAIN+'/',telephone:TEL});
       return open + JSON.stringify(data).replace(/</g,'\\u003c') + close;
     });
     if (!html.includes('rel="icon"')) html = html.replace('</head>','<link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>');
