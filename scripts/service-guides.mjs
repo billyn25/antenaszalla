@@ -7,7 +7,7 @@ import services from '../content/services.json' with {type:'json'};
 import {DOMAIN,PHONE,TEL,BRAND,escapeHtml as esc,publicPath} from './public-seo.mjs';
 export {guides};
 export const guideRoute = g => `/servicios/${g.slug}/`;
-export const SERVICE_RELEASE = createHash('sha256').update(JSON.stringify(guides)).update(fs.readFileSync(new URL(import.meta.url))).digest('hex').slice(0,12);
+export const SERVICE_RELEASE = createHash('sha256').update(JSON.stringify(guides)).update(fs.readFileSync(new URL(import.meta.url))).update(fs.readFileSync(new URL('./zalla-problem-focus.mjs',import.meta.url))).digest('hex').slice(0,12);
 const byId = new Map(guides.map(g=>[g.id,g]));
 const wa = (g,town) => 'https://wa.me/34670042626?text='+encodeURIComponent(`Hola, necesito consultar ${g.label.toLowerCase()}${town?` en ${town.name}, ${town.province}`:''}. ¿Podéis indicarme disponibilidad y condiciones para revisar la instalación?`);
 const actions = (g,town) => `<div class="actions"><a class="btn call" href="tel:${TEL}">Llamar ${PHONE}</a><a class="btn wa" href="${esc(wa(g,town))}">Consultar por WhatsApp</a></div>`;
@@ -30,7 +30,12 @@ export function enhanceServiceCards(html,town) {
     return `<article class="service-card" id="${id}" data-service-guide="${g.id}">${body}<a class="service-detail-link" href="${guideRoute(g)}">Ver diagnóstico y opciones de ${esc(g.label.toLowerCase())} →</a></article>`;
   });
   for(const g of guides) if(counts.get(g.id)!==1) throw new Error(`Se esperaba una ficha de ${g.id}${town?' en '+town.name:''}`);
-  if(!html.includes('id="service-catalogue-link"')) html=html.replace('<div class="service-grid">','<p id="service-catalogue-link"><a href="/servicios/">Información completa de los nueve servicios →</a></p><div class="service-grid">');
+  if(!html.includes('id="service-catalogue-link"')) html=html.replace('<div class="service-grid">','<p id="service-catalogue-link"><a href="/servicios/">Averías, cobertura y montaje: todos los servicios →</a></p><div class="service-grid">');
+  html=html.replace(/href="#([^"]+)" data-guide-target="([^"]+)"/g,(_,id,slug)=>{
+    const guide=guides.find(g=>g.slug===slug);
+    if(!guide) throw new Error('Guía de avería desconocida: '+slug);
+    return `href="${guideRoute(guide)}"`;
+  });
   return html;
 }
 
@@ -108,7 +113,7 @@ export function buildServiceGuides(root='dist') {
     fs.writeFileSync(file,html);
   }
   fs.writeFileSync(path.join(root,'assets/service-guides.css'),SERVICE_CSS);
-  console.log(`SERVICIOS LOCALES OK: ${townCount} pueblos con nueve fichas ampliadas, consultas contextualizadas y presupuesto; nueve guías e índice de servicios.`);
+  console.log(`SERVICIOS LOCALES OK: ${townCount} pueblos con ${guides.length} fichas ampliadas, consultas contextualizadas y presupuesto; ${guides.length} guías e índice de servicios.`);
 }
 
 export const SERVICE_CSS=`

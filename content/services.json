@@ -30,8 +30,15 @@
   {
     "id": "tdt-satelite",
     "name": "TDT por satélite HD",
-    "short": "Antena parabólica y receptor TDT por satélite.",
-    "text": "Instalación de antena parabólica y receptor para recibir la TDT por satélite. Configuración y comprobación del equipo compatible con alta definición cuando la emisión y el receptor lo permiten.",
+    "short": "Televisión en zonas sin buena cobertura terrestre.",
+    "text": "Estudio de TDT por satélite HD para viviendas sin cobertura terrestre o con señal muy deficiente, tras descartar averías. Montaje y revisión de parabólica y receptor compatible; condiciones y activación según el sistema SAT-TDT.",
+    "icon": "dish"
+  },
+  {
+    "id": "starlink",
+    "name": "Montaje de antenas Starlink",
+    "short": "Ubicación, soporte y paso del cable.",
+    "text": "Montaje físico del kit Starlink para internet por satélite: ubicación sin obstáculos, fijación del soporte, entrada del cable y comprobación inicial. Consulta equipo, acceso y condiciones del montaje.",
     "icon": "dish"
   },
   {

@@ -120,7 +120,7 @@ const css = fs.readFileSync(cssFile, 'utf8');
 // Zalla usa una cabecera/hero responsive propios: se auditan sus reglas reales,
  // no marcadores CSS heredados.
 if (!/@media\(max-width:760px\)[\s\S]*?\.head nav\{[^}]*overflow-x:auto!important/.test(css)) throw new Error('CSS Zalla: falta navegación móvil accesible');
-if (!/@media\(max-width:760px\)[\s\S]*?\.hero-copy\{[^}]*background:rgba\(248,252,255,.96\)!important/.test(css)) throw new Error('CSS Zalla: el hero móvil no garantiza tarjeta legible');
+if (!css.includes('.hero.zalla-fault-hero{background:#0b2d48!important') || !css.includes('background:none!important;box-shadow:none!important')) throw new Error('CSS Zalla: falta hero de averías con contraste propio');
 if (!/@media\(max-width:760px\)[\s\S]*?\.hero \.actions\{[^}]*display:flex!important/.test(css)) throw new Error('CSS Zalla: faltan CTA de llamada/WhatsApp en hero móvil');
 if (!/@media\(max-width:760px\)[\s\S]*?\.strip \.wrap\{[^}]*grid-template-columns:1fr 1fr!important/.test(css)) throw new Error('CSS Zalla: tira móvil no compacta');
 

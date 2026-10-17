@@ -282,7 +282,7 @@
     "slug": "tdt-por-satelite-hd",
     "name": "TDT por satélite HD: instalación y revisión",
     "label": "TDT por satélite HD",
-    "intro": "Si la recepción terrestre es insuficiente, primero hay que separar una avería de instalación de una falta real de cobertura. Después se estudia qué solución por satélite corresponde, qué receptor requiere y qué condiciones de acceso tiene. SATTDT y otras plataformas satelitales no son el mismo servicio.",
+    "intro": "La TDT por satélite HD es una opción importante para viviendas en zonas sin cobertura terrestre o con recepción muy deficiente. Primero se descarta una avería de antena, alimentación, distribución o receptor. Si procede la solución SAT-TDT, se concretan parabólica, receptor compatible y condiciones de adquisición y activación del sistema; no es lo mismo que un receptor genérico de satélite.",
     "symptoms": [
       [
         "Vivienda con recepción terrestre deficiente",
@@ -343,6 +343,76 @@
       [
         "Ministerio: opciones de televisión por satélite",
         "https://television.digital.gob.es/television-digital/formas-acceso/tv-satelite"
+      ]
+    ]
+  },
+  {
+    "id": "starlink",
+    "slug": "montaje-antenas-starlink",
+    "name": "Montaje e instalación de antenas Starlink",
+    "label": "Montaje de antenas Starlink",
+    "intro": "Montaje del kit Starlink en viviendas y edificios que necesitan una ubicación permanente para internet por satélite. Se valora el modelo, los obstáculos, el soporte y el recorrido del cable antes de concretar la intervención. El servicio de montaje y la contratación del acceso a internet se acuerdan por separado.",
+    "symptoms": [
+      [
+        "Ya tienes el kit y necesitas montarlo",
+        "Indica modelo exacto y accesorios disponibles. Una fotografía desde una zona accesible ayuda a preparar la valoración del soporte y del recorrido."
+      ],
+      [
+        "La ubicación provisional tiene obstáculos",
+        "Cuenta si hay árboles, edificios u otros obstáculos. La herramienta de obstrucciones de la aplicación de Starlink orienta la elección de ubicación; no es necesario acceder al tejado para preparar la consulta."
+      ],
+      [
+        "Necesitas llevar el cable al interior",
+        "Explica dónde estará el router y qué recorrido existe. Se concretan longitud compatible, pasos, fijaciones y tratamiento de la entrada del cable antes de instalar."
+      ]
+    ],
+    "checks": [
+      [
+        "Elegir ubicación y soporte para el modelo",
+        "Starlink necesita vista despejada al cielo. El soporte de montaje y sus accesorios deben corresponder al kit y al lugar elegido; tejado, pared o mástil requieren valorar acceso y fijación. La posición no se elige solo por cercanía al router."
+      ],
+      [
+        "Cableado y entrada a la vivienda",
+        "Se acuerda un recorrido que respete las instrucciones del kit, evite tensiones y proteja la entrada frente al agua. No todos los modelos utilizan el mismo cable o los mismos adaptadores. Perforaciones, medios de acceso y acabados deben figurar en la propuesta."
+      ],
+      [
+        "Conectar y comprobar la instalación acordada",
+        "El alcance puede incluir conexión del kit y comprobación inicial con la aplicación. Cuenta activa, plan, cobertura del servicio y condiciones comerciales corresponden a Starlink. La cobertura WiFi dentro de toda la vivienda puede requerir un trabajo adicional y no se deduce del montaje exterior."
+      ]
+    ],
+    "intake": [
+      "Pueblo, dirección de la instalación y tipo de inmueble.",
+      "Modelo del kit, si ya lo tienes y soporte disponible.",
+      "Ubicación propuesta, obstáculos visibles y lugar previsto para el router."
+    ],
+    "budget": "Distingue mano de obra, soporte y accesorios, recorrido del cable, perforaciones y medios de acceso. Confirma si incluye el suministro del kit o solo su montaje, qué conexión y comprobación se harán y si hay adaptaciones de red interior. La cuota de internet y la contratación de Starlink no se entienden incluidas en el montaje. No se garantiza una velocidad fija ni ausencia de cortes.",
+    "faq": [
+      [
+        "¿Montáis un kit que ya he comprado?",
+        "Consulta el modelo y los accesorios. Se valora la ubicación, el acceso y el soporte necesario antes de confirmar el trabajo."
+      ],
+      [
+        "¿El montaje incluye el kit y la cuota mensual?",
+        "No automáticamente. El presupuesto debe indicar si incluye equipo o accesorios; la cuenta y el plan de Starlink se contratan y gestionan por separado."
+      ],
+      [
+        "¿Se puede colocar en cualquier tejado?",
+        "Hay que comprobar vista del cielo, obstáculos, soporte y acceso seguro. La ubicación adecuada depende del modelo y de las condiciones del inmueble."
+      ]
+    ],
+    "related": [
+      "cobertura-movil-servicio",
+      "tdt-satelite",
+      "parabolicas"
+    ],
+    "sources": [
+      [
+        "Starlink: instalación y elección de ubicación",
+        "https://www.starlink.com/residential/installation"
+      ],
+      [
+        "Starlink: guía oficial de montaje en pared Mini",
+        "https://starlink.com/public-files/installation_guide_mini_wall_mount_es-419.pdf"
       ]
     ]
   },

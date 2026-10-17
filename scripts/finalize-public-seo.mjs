@@ -55,7 +55,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       if (![town.name, town.province, PHONE].every(part => description.includes(part))) description = metadata.description;
     } else if (doc.path === '/') {
       title = `Antenas Zallatel (Antenas Zalla): antenas y porteros | ${PHONE}`;
-      description = `Antenas Zallatel, antes Antenas Zalla en esta web. Instalación y reparación de antenas TDT, porteros automáticos y videoporteros. ${PHONE}.`;
+      description = `Antenas Zallatel, antes Antenas Zalla en esta web. Averías TDT, porteros y videoporteros. TDT por satélite y montaje Starlink. ${PHONE}.`;
       html = html.replace('<h1>Antenista barato en tu pueblo</h1>', '<h1>Antenas, porteros y videoporteros en tu pueblo</h1>');
       if (!html.includes('id="identidad-zalla"')) {
         const identity = '<p class="micro" id="identidad-zalla">Antenas Zallatel es el nombre actual de esta web, anteriormente presentada como Antenas Zalla. Seguimos en antenaszalla.com, con contacto en el <a href="tel:+34670042626">670 042 626</a>.</p>';
@@ -80,7 +80,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
         html = setMeta(html,'og:image',image,true);
         html = setMeta(html,'og:image:alt','Antenas Zallatel: servicio técnico de antenas',true);
         for (const [key,value] of Object.entries({'twitter:card':'summary_large_image','twitter:title':title,'twitter:description':description,'twitter:image':image})) html = setMeta(html,key,value);
-        if (!html.includes('as="image"')) html = html.replace('</head>','<link rel="preload" as="image" href="/assets/hero-zallatel.png" fetchpriority="high"></head>');
+        if (html.includes('class="hero-photo"') && !html.includes('as="image"')) html = html.replace('</head>','<link rel="preload" as="image" href="/assets/hero-zallatel.png" fetchpriority="high"></head>');
       }
     }
     html = html.replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/gi, (_,open,raw,close) => {

@@ -10,10 +10,12 @@ let enquiries=0,links=0;
 for(const town of towns) {
   const html=read(town.publicPath);
   assert(html.includes(`data-service-release="${SERVICE_RELEASE}"`),town.name+': versión');
-  assert.equal((html.match(/data-service-guide=/g)||[]).length,9,town.name+': fichas');
-  assert.equal((html.match(/class="town-service-detail"/g)||[]).length,9,town.name+': diagnóstico');
+  assert.equal((html.match(/data-service-guide=/g)||[]).length,guides.length,town.name+': fichas');
+  assert.equal((html.match(/class="town-service-detail"/g)||[]).length,guides.length,town.name+': diagnóstico');
   assert(html.includes('id="preparar-visita-local"'),town.name+': condiciones');
   assert(html.includes('id="servicios-en-tu-pueblo"'),town.name+': navegación');
+  for(const id of ['averias-tdt','averias-portero','averias-videoportero','soluciones-satelite']) assert(html.includes('id="'+id+'"'),town.name+': orientación por avería');
+  assert(html.includes('/servicios/montaje-antenas-starlink/'),town.name+': Starlink');
   for(const g of guides) {
     assert(html.includes(`href="${guideRoute(g)}"`),town.name+': guía '+g.id); links++;
     const card=html.match(new RegExp(`<article class="service-card" id="${g.id}"[^>]*>[\\s\\S]*?<\\/article>`))?.[0];
@@ -29,7 +31,7 @@ for(const town of towns) {
   for(const [,raw] of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     const d=JSON.parse(raw);
     for(const entity of d['@graph']||[d]) if(entity['@type']==='Service' && entity.hasOfferCatalog) {
-      assert.equal(entity.hasOfferCatalog.itemListElement.length,9);catalog=true;
+      assert.equal(entity.hasOfferCatalog.itemListElement.length,guides.length);catalog=true;
       assert(!entity.address,'No se crea una oficina para el municipio');
     }
   }
