@@ -1,3 +1,4 @@
+import {localEnquiry} from './local-enquiry.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -62,11 +63,11 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
         html = html.replace('<footer class="footer"><div class="wrap">', '<footer class="footer"><div class="wrap">' + identity);
       }
       if (!html.includes('id="antenas-zalla-enkarterri"')) {
-        const names = ['Zalla','Balmaseda','Güeñes','Sopuerta','Gordexola','Galdames','Artzentales','Karrantza Harana/Valle de Carranza'];
+        const names = ['Zalla','Balmaseda','Güeñes','Sopuerta','Gordexola','Galdames','Artzentales','Karrantza Harana/Valle de Carranza','Trucios-Turtzioz','Lanestosa','Muskiz','Abanto y Ciérvana-Abanto Zierbena','Ortuella','Valle de Trápaga-Trapagaran','Barakaldo','Getxo','Portugalete','Santurtzi','Durango','Gernika-Lumo','Mungia','Amorebieta-Etxano','Basauri','Bermeo','Eibar','Elgoibar','Bergara','Beasain','Tolosa','Zarautz','Amurrio','Artziniega','Lerma','Medina de Pomar','Salas de los Infantes','Haro'];
         const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
-        const links = names.map(name => towns.find(t => t.province === 'Bizkaia' && normalize(t.name) === normalize(name))).filter(Boolean);
+        const links = names.map(name => towns.find(t => normalize(t.name) === normalize(name))).filter(Boolean);
         if (links.length) {
-          const local = `<section class="section soft" id="antenas-zalla-enkarterri"><div class="wrap"><span class="eyebrow">Consulta por localidad</span><h2>Antenas en Zalla y Enkarterri</h2><p class="section-lead">Consulta la instalación o reparación de antenas TDT, porteros automáticos y videoporteros para tu vivienda o comunidad. Elige tu pueblo y confirma disponibilidad y condiciones antes de organizar la visita.</p><nav class="featured-towns" aria-label="Servicio de antenista en Zalla y Enkarterri">${links.map(t => `<a href="${escapeHtml(publicPath(t.path))}">Antenista en ${escapeHtml(t.name)}</a>`).join('')}</nav></div></section>`;
+          const local = `<section class="section soft" id="antenas-zalla-enkarterri"><div class="wrap"><span class="eyebrow">Consulta por localidad</span><h2>Encuentra ayuda en tu pueblo</h2><p class="section-lead">Busca entre los 2.007 municipios de nuestras 11 provincias y prepara una consulta de antenas, porteros, TDT por satélite o montaje Starlink.</p>${localEnquiry(towns)}<h3 class="local-enquiry-directory-title">Accesos directos a más pueblos</h3><nav class="featured-towns" aria-label="Accesos directos a pueblos con servicio de antenista">${links.map(t => `<a href="${escapeHtml(publicPath(t.path))}">Antenista en ${escapeHtml(t.name)}</a>`).join('')}</nav><a class="local-enquiry-route" href="#zonas">Ver los municipios de las 11 provincias →</a></div></section>`;
           html = html.replace('<section class="section soft" id="zonas">', local + '<section class="section soft" id="zonas">');
         }
       }
