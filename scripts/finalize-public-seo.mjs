@@ -59,7 +59,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       html = html.replace('<h1>Antenista barato en tu pueblo</h1>', '<h1>Antenas, porteros y videoporteros en tu pueblo</h1>');
       if (!html.includes('id="identidad-zalla"')) {
         const identity = '<p class="micro" id="identidad-zalla">Antenas Zallatel es el nombre actual de esta web, anteriormente presentada como Antenas Zalla. Seguimos en antenaszalla.com, con contacto en el <a href="tel:+34670042626">670 042 626</a>.</p>';
-        html = html.replace('<div class="hero-tags">', identity + '<div class="hero-tags">');
+        html = html.replace('<footer class="footer"><div class="wrap">', '<footer class="footer"><div class="wrap">' + identity);
       }
       if (!html.includes('id="antenas-zalla-enkarterri"')) {
         const names = ['Zalla','Balmaseda','Güeñes','Sopuerta','Gordexola','Galdames','Artzentales','Karrantza Harana/Valle de Carranza'];
