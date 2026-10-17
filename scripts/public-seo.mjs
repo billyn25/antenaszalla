@@ -15,6 +15,7 @@ export function publicPath(value) {
   }
   let result = value.toLowerCase();
   if (/^\/(?:index(?:\.html?)?)?$/.test(result)) return '/';
+  if (result.startsWith('/servicios/')) return result.replace(/\/index(?:\.html?)?$/, '/');
   if (result.startsWith('/antenas-')) {
     result = result.replace(/\/index(?:\.html?)?$/, '/').replace(/\.html?$/, '');
     if (/^\/antenas-[^/]+$/.test(result)) result += '/';

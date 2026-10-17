@@ -101,7 +101,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     if (!html.includes('rel="icon"')) html = html.replace('</head>','<link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>');
     if (doc.path === '/') html = html.replace('href="/antenas-leon/">Leon</a>', 'href="/antenas-leon/">León</a>');
     doc.html = html;
-    report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
+    report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
   // All transformations and collision checks finish before the output is replaced.
   for (const doc of documents) fs.rmSync(path.join(root,doc.legacyFile));

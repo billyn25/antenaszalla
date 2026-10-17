@@ -1,0 +1,620 @@
+[
+  {
+    "id": "tdt",
+    "slug": "reparacion-antenas-tdt",
+    "name": "Reparación e instalación de antenas TDT",
+    "label": "Antenas TDT",
+    "intro": "Si faltan canales o la imagen se corta, interesa localizar dónde se deteriora la señal antes de comprar una antena o un amplificador. La revisión distingue recepción exterior, alimentación, distribución y equipo de televisión, tanto en viviendas como en instalaciones colectivas.",
+    "symptoms": [
+      [
+        "Falla un televisor",
+        "Comunica si otros televisores de la vivienda reciben bien y si el problema empezó tras mover algún equipo."
+      ],
+      [
+        "Fallan varios vecinos",
+        "Indica qué viviendas están afectadas y quién puede facilitar el acceso a la instalación común."
+      ],
+      [
+        "Solo faltan algunos canales",
+        "Anota los canales y si el fallo es continuo o aparece en determinadas horas. No implica por sí solo una antena rota."
+      ]
+    ],
+    "checks": [
+      [
+        "Medir antes de sustituir",
+        "Se comparan la recepción y los puntos de la instalación necesarios para separar un fallo de antena de otro en la fuente, amplificación, conectores o tomas. La revisión y los recambios se concretan según el diagnóstico."
+      ],
+      [
+        "Una búsqueda de canales no repara la instalación",
+        "Resintonizar puede actualizar la lista del televisor, pero no recupera una señal que llega mal. Si el fallo persiste, anota el mensaje y evita repetir búsquedas sin comprobar la recepción."
+      ],
+      [
+        "Interferencias: una consulta específica",
+        "Si se sospecha una afectación por despliegue móvil, Llega700 dispone de su propio procedimiento para comprobarla y atender los casos que correspondan. Es un servicio externo; no toda pérdida de canales es una interferencia 4G o 5G."
+      ]
+    ],
+    "intake": [
+      "Canales que fallan y cuándo empezó el problema.",
+      "Si ocurre en una toma, en varias o también a otros vecinos.",
+      "Tipo de inmueble y persona que puede coordinar los accesos."
+    ],
+    "budget": "Pide que se diferencien desplazamiento, diagnóstico y reparación. Si se propone cambiar material, concreta qué elemento, por qué y qué pruebas de recepción se harán al terminar. El precio depende del acceso, la instalación y el alcance real del trabajo; no basta con contar televisores.",
+    "faq": [
+      [
+        "¿Tengo que cambiar toda la antena?",
+        "No se puede decidir solo por el síntoma. Una conexión, una fuente o un tramo de distribución pueden causar una falta de señal similar."
+      ],
+      [
+        "¿Sirve comprar un televisor nuevo?",
+        "Antes conviene separar una incompatibilidad del receptor de un fallo de recepción. Comunica el modelo visible y si otros equipos funcionan."
+      ],
+      [
+        "¿Podéis revisar una antena comunitaria?",
+        "Consulta el aviso indicando cuántas viviendas fallan. Coordinar zonas comunes y puntos de prueba ayuda a delimitar la intervención."
+      ]
+    ],
+    "related": [
+      "amplificacion",
+      "tomas",
+      "mantenimiento"
+    ],
+    "sources": [
+      [
+        "Ministerio: problemas de recepción TDT",
+        "https://television.digital.gob.es/television-digital/tdt/problemas-recepcion"
+      ],
+      [
+        "Llega700: preguntas frecuentes",
+        "https://www.llega700.es/faq.php"
+      ]
+    ]
+  },
+  {
+    "id": "porteros",
+    "slug": "porteros-automaticos",
+    "name": "Instalación y reparación de porteros automáticos",
+    "label": "Porteros automáticos",
+    "intro": "Un portero puede llamar y no abrir, abrir sin que se escuche la conversación o fallar solo en una vivienda. Separar esas funciones evita atribuir toda la avería al telefonillo y permite preparar una reparación o un cambio compatible con el sistema del edificio.",
+    "symptoms": [
+      [
+        "No suena la llamada",
+        "Indica si falla un pulsador o todas las viviendas y si conversación y apertura siguen funcionando."
+      ],
+      [
+        "No se escucha",
+        "Describe en qué sentido falla el audio: desde la calle hacia la vivienda, al contrario o en ambos."
+      ],
+      [
+        "No abre la puerta",
+        "Aclara si sucede desde todos los telefonillos. El problema puede requerir revisar también alimentación y apertura."
+      ]
+    ],
+    "checks": [
+      [
+        "Identificar el sistema instalado",
+        "La marca y la referencia ayudan, pero la compatibilidad depende del sistema. Un teléfono vendido como universal para instalaciones 4+n no sustituye automáticamente a un terminal digital. Una foto exterior orienta sin desmontar el equipo."
+      ],
+      [
+        "Distinguir la parte particular y la común",
+        "Se revisa el recorrido de llamada, conversación y apertura que corresponda al síntoma. Un fallo compartido por vecinos exige valorar elementos comunes; en una sola vivienda también se comprueba el terminal y su conexión."
+      ],
+      [
+        "Cambiar un telefonillo o renovar el acceso",
+        "Sustituir el terminal interior y renovar placa, alimentación y equipos de varias viviendas son trabajos distintos. Antes de aceptar un recambio conviene saber qué se conserva y qué funciones tendrá el conjunto al terminar."
+      ]
+    ],
+    "intake": [
+      "Función que falla: llamada, audio o apertura.",
+      "Marca o referencia visible y si afecta a otros vecinos.",
+      "Si buscas reparar el equipo actual o renovar la instalación."
+    ],
+    "budget": "Concreta si incluye solo el telefonillo o también placa, alimentación, cableado y apertura. En una comunidad, acuerda quién autoriza el trabajo y facilita el acceso. Pide prueba de llamada, conversación y apertura después de la intervención; no des por incluida una conversión a vídeo.",
+    "faq": [
+      [
+        "¿Cualquier telefonillo universal sirve?",
+        "No. Hay sistemas analógicos y digitales con compatibilidades distintas. Debe identificarse la instalación antes de escoger el recambio."
+      ],
+      [
+        "¿Podéis reparar sin cambiar todos los telefonillos?",
+        "El alcance depende del fallo y de los repuestos compatibles. Se valora si basta una intervención puntual o si existe un problema común."
+      ],
+      [
+        "¿Tengo que abrir el telefonillo para pedir cita?",
+        "No. Facilita la información visible y los síntomas. La comprobación de conexiones corresponde a la revisión técnica."
+      ]
+    ],
+    "related": [
+      "videoporteros",
+      "mantenimiento"
+    ],
+    "sources": [
+      [
+        "Fermax: compatibilidad de telefonillos universales",
+        "https://soporte.fermax.com/portal/es/kb/articles/telefonos-fermax-compatibles-con-otras-marcas"
+      ],
+      [
+        "Fermax: teléfono digital de tres hilos y universal",
+        "https://soporte.fermax.com/portal/es/kb/articles/como-conecto-mi-tel%C3%A9fono-de-3-hilos-al-tel%C3%A9fono-universal"
+      ]
+    ]
+  },
+  {
+    "id": "videoporteros",
+    "slug": "videoporteros",
+    "name": "Instalación y reparación de videoporteros",
+    "label": "Videoporteros",
+    "intro": "Para renovar un videoportero hay que comprobar el conjunto: monitor interior, placa con cámara, alimentación y cableado. El tamaño de pantalla o el aspecto del aparato no determinan si funcionará en tu vivienda o comunidad.",
+    "symptoms": [
+      [
+        "Llama pero no hay imagen",
+        "Explica si el audio funciona y si ocurre con una placa de calle o con todas."
+      ],
+      [
+        "Falla solo un monitor",
+        "Comunica si los demás vecinos reciben imagen y llamada. Es útil distinguir un problema particular de otro común."
+      ],
+      [
+        "Quieres pasar de audio a vídeo",
+        "Indica si la comunidad ya tiene cámara y qué sistema utiliza; cambiar únicamente el terminal puede ser insuficiente."
+      ]
+    ],
+    "checks": [
+      [
+        "Compatibilidad del monitor y de la placa",
+        "La revisión identifica la tecnología instalada y las opciones de sustitución. Incluso dentro de una misma marca hay familias y conectores diferentes. Un monitor actual no es por ese motivo intercambiable con cualquiera antiguo."
+      ],
+      [
+        "Imagen, sonido y apertura se prueban por separado",
+        "Se comprueba qué funciones fallan y desde qué acceso se producen. En edificios con varias entradas importa distinguir la placa principal de las secundarias y verificar el funcionamiento desde cada punto incluido en el trabajo."
+      ],
+      [
+        "Funciones conectadas y uso cotidiano",
+        "Si se solicita desvío al móvil, acuerda qué equipo lo permite, qué conexión necesita y qué servicios dependen del fabricante. No todos los monitores incorporan esa función ni tienen las mismas condiciones de uso."
+      ]
+    ],
+    "intake": [
+      "Modelo visible del monitor y número de accesos al edificio.",
+      "Qué falla: vídeo, audio, llamada, apertura o conexión al móvil.",
+      "Si es una vivienda individual, una sustitución interior o una renovación comunitaria."
+    ],
+    "budget": "Diferencia monitor, placa con cámara, alimentación, adaptaciones y puesta en marcha. Una renovación debe detallar los equipos que se conservan y las pruebas desde los accesos acordados. Si incluye conexión al móvil, pregunta por configuración, cuenta del fabricante y posibles servicios adicionales antes de decidir.",
+    "faq": [
+      [
+        "¿Se puede aprovechar el cableado?",
+        "Se comprueba su estado y su adecuación al sistema elegido. Aprovecharlo puede ser posible, pero no se garantiza sin revisar la instalación."
+      ],
+      [
+        "¿Puedo cambiar solo mi monitor?",
+        "Depende de que exista un recambio compatible con la instalación comunitaria. El cambio individual no debe plantearse únicamente por estética o tamaño."
+      ],
+      [
+        "¿Siempre podré contestar desde el móvil?",
+        "Solo con equipos y configuración compatibles. Conviene concretar los requisitos y las condiciones del fabricante en la propuesta."
+      ]
+    ],
+    "related": [
+      "porteros",
+      "mantenimiento"
+    ],
+    "sources": [
+      [
+        "Fermax: equivalencias de monitores",
+        "https://soporte.fermax.com/portal/es/kb/articles/cual-es-el-equivalente-de-mi-monitor-fermax"
+      ],
+      [
+        "Fermax: cambio de portero a videoportero",
+        "https://soporte.fermax.com/portal/es/kb/articles/es-posible-cambiar-a-videoportero-sin-retocar-la-fachada"
+      ]
+    ]
+  },
+  {
+    "id": "parabolicas",
+    "slug": "antenas-parabolicas",
+    "name": "Instalación y orientación de antenas parabólicas",
+    "label": "Antenas parabólicas",
+    "intro": "Una instalación por satélite empieza por definir qué recepción necesitas y cuántos puntos se utilizarán. Si una parabólica ha dejado de funcionar, la orientación es una comprobación importante, junto con LNB, alimentación, conexiones y recorrido del cable.",
+    "symptoms": [
+      [
+        "No recibe ningún canal",
+        "Indica si la instalación funcionaba antes y qué mensaje presenta el receptor."
+      ],
+      [
+        "Solo falla parte de la recepción",
+        "Anota los canales afectados y si hay otros receptores conectados a la misma instalación."
+      ],
+      [
+        "Instalación nueva",
+        "Comunica la recepción deseada, el equipo disponible y dónde podría colocarse la antena."
+      ]
+    ],
+    "checks": [
+      [
+        "Emplazamiento y montaje",
+        "Se valora la ubicación, su acceso y la fijación adecuada antes de instalar el soporte. El recorrido de cable y las autorizaciones de la propiedad o comunidad se acuerdan previamente. No es necesario acceder a una cubierta para pedir información."
+      ],
+      [
+        "Orientar con comprobación de recepción",
+        "Encontrar un canal no equivale a comprobar el conjunto de la recepción acordada. Tras ajustar la antena se valora la calidad obtenida y se revisan los elementos necesarios del sistema para evitar cambiar piezas sin diagnóstico."
+      ],
+      [
+        "Instalación y contenido de televisión",
+        "La antena, el receptor y cualquier plataforma contratada son elementos distintos. Una instalación no incluye por defecto suscripciones ni garantiza todos los canales. Antes del montaje deben concretarse el servicio deseado y el equipo compatible."
+      ]
+    ],
+    "intake": [
+      "Receptor y recepción que deseas utilizar.",
+      "Si existe parabólica previa y qué dejó de funcionar.",
+      "Número de puntos y condiciones conocidas del acceso."
+    ],
+    "budget": "Aclara soporte, plato, LNB, orientación, cableado y configuración incluidos. Si se conserva material, debe indicarse qué se aprovecha. Consulta los costes de acceso o recorridos especiales y diferencia cualquier receptor o suscripción del propio trabajo de instalación.",
+    "faq": [
+      [
+        "¿Basta con mover la antena?",
+        "No se puede asegurar. Una falta de señal también puede estar relacionada con LNB, conexiones, alimentación o configuración del receptor."
+      ],
+      [
+        "¿Se puede conectar más de un televisor?",
+        "Hay que valorar receptores, salidas y distribución. Añadir un punto no consiste siempre en dividir el cable existente."
+      ],
+      [
+        "¿Una parabólica normal sirve para SATTDT?",
+        "La recepción de SATTDT exige comprobar sus condiciones y su receptor específico. No debe confundirse con cualquier instalación de televisión por satélite."
+      ]
+    ],
+    "related": [
+      "tdt-satelite",
+      "tomas",
+      "amplificacion"
+    ],
+    "sources": [
+      [
+        "Ministerio: recepción de televisión por satélite",
+        "https://television.digital.gob.es/television-digital/formas-acceso/tv-satelite"
+      ],
+      [
+        "Televés: orientación y medición de parabólicas",
+        "https://www.televes.com/es/cat/faqsynotas/general?url=se-puede-orientar-una-antena-parablica-sin-un-medidor-de-campo"
+      ]
+    ]
+  },
+  {
+    "id": "tdt-satelite",
+    "slug": "tdt-por-satelite-hd",
+    "name": "TDT por satélite HD: instalación y revisión",
+    "label": "TDT por satélite HD",
+    "intro": "Si la recepción terrestre es insuficiente, primero hay que separar una avería de instalación de una falta real de cobertura. Después se estudia qué solución por satélite corresponde, qué receptor requiere y qué condiciones de acceso tiene. SATTDT y otras plataformas satelitales no son el mismo servicio.",
+    "symptoms": [
+      [
+        "Vivienda con recepción terrestre deficiente",
+        "Antes de proponer satélite, consulta si el problema se debe a la instalación TDT o a cobertura."
+      ],
+      [
+        "Receptor SATTDT antiguo",
+        "Facilita su referencia y la información de la instalación o activación anterior, si la tienes."
+      ],
+      [
+        "Consulta sobre otra plataforma satelital",
+        "Indica cuál deseas utilizar; el equipo y las condiciones se comprueban para esa plataforma concreta."
+      ]
+    ],
+    "checks": [
+      [
+        "SATTDT como cobertura complementaria",
+        "La información oficial reserva esta solución a zonas sin señal terrestre o con recepción muy deficiente una vez descartado un problema de antena o receptor. La adquisición y activación siguen su procedimiento y sus distribuidores autorizados. La activación debe concretarse con los distribuidores del sistema."
+      ],
+      [
+        "Receptor y alta definición",
+        "En SATTDT, un receptor antiguo limitado a definición estándar requiere estudiar su sustitución por un equipo HD adecuado. No basta con cambiar el televisor ni conectar un receptor genérico. La referencia del equipo ayuda a consultar el caso."
+      ],
+      [
+        "Antena, recepción y puesta en marcha",
+        "Si la solución es procedente, se concreta montaje o revisión de la parabólica, conexiones, cableado y receptor. El listado de canales y las condiciones corresponden a la plataforma; no se promete acceso a todas las emisiones locales o autonómicas."
+      ]
+    ],
+    "intake": [
+      "Localidad y motivo por el que no se recibe correctamente la TDT terrestre.",
+      "Si ya tienes SATTDT u otro servicio por satélite y modelo visible del receptor.",
+      "Número de televisores, instalación previa e información de activación disponible."
+    ],
+    "budget": "Separa revisión de la recepción terrestre, instalación satelital, receptor y gestiones que correspondan. Confirma antes de comprar equipos qué plataforma se propone, si cumples sus condiciones y quién realiza su activación cuando sea necesaria. El alcance de nuestra intervención se concreta al consultar el caso.",
+    "faq": [
+      [
+        "¿Cualquier vivienda puede solicitar SATTDT?",
+        "No debe darse por hecho. La solución oficial de cobertura complementaria tiene condiciones de acceso y requiere descartar una avería de la instalación terrestre."
+      ],
+      [
+        "¿Puedo usar un receptor de satélite cualquiera?",
+        "No presupongas compatibilidad. Hay que identificar la plataforma, el receptor y las condiciones de activación correspondientes."
+      ],
+      [
+        "¿Recibiré todos los canales locales?",
+        "Depende del servicio. SATTDT no reproduce automáticamente toda la oferta local; consulta la información oficial y el listado de la plataforma."
+      ]
+    ],
+    "related": [
+      "tdt",
+      "parabolicas"
+    ],
+    "sources": [
+      [
+        "Ministerio: cobertura complementaria SATTDT",
+        "https://television.digital.gob.es/television-digital/tdt/sattdt"
+      ],
+      [
+        "Ministerio: opciones de televisión por satélite",
+        "https://television.digital.gob.es/television-digital/formas-acceso/tv-satelite"
+      ]
+    ]
+  },
+  {
+    "id": "amplificacion",
+    "slug": "amplificadores-antena",
+    "name": "Amplificadores de antena y distribución de TV",
+    "label": "Amplificación y distribución",
+    "intro": "La amplificación debe corresponder a la señal recibida y a la red que la reparte. Antes de cambiar una fuente, un amplificador o una cabecera conviene comprobar la entrada y la salida del sistema y localizar dónde se pierde recepción.",
+    "symptoms": [
+      [
+        "La señal falla en toda la vivienda",
+        "Comunica si el fallo es total y si hay fuente o amplificador visible."
+      ],
+      [
+        "Unas tomas reciben peor",
+        "Indica cuáles funcionan y cuáles no; la diferencia ayuda a delimitar la distribución."
+      ],
+      [
+        "La comunidad pierde grupos de canales",
+        "Anota los canales y las viviendas afectadas. Se valora la cabecera y la red, sin decidir el recambio solo por ese dato."
+      ]
+    ],
+    "checks": [
+      [
+        "Fuente y amplificador cumplen funciones distintas",
+        "En muchas instalaciones la fuente alimenta por el coaxial un equipo de mástil. Que falte alimentación o exista una conexión deteriorada no demuestra que el amplificador esté averiado. La revisión identifica la configuración existente."
+      ],
+      [
+        "Ajustar la señal a la distribución",
+        "El número de salidas, el recorrido y los elementos de reparto influyen en el nivel que llega a cada toma. La elección y el ajuste del equipo se plantean para esa red; no se recomienda añadir amplificación de forma automática."
+      ],
+      [
+        "Cabeceras y renovaciones comunitarias",
+        "Antes de renovar se concreta qué módulos o equipos se conservan y qué necesita adaptación. Es importante probar el resultado en los puntos acordados del edificio y distinguir la actuación en cabecera de posibles problemas interiores."
+      ]
+    ],
+    "intake": [
+      "Si el fallo afecta a una toma, una vivienda o una comunidad.",
+      "Referencias visibles de fuente, amplificador o cabecera, sin abrirlos.",
+      "Canales afectados y cambios recientes en la instalación."
+    ],
+    "budget": "Pide que consten diagnóstico, equipo propuesto, alimentación y ajustes. Si se interviene en distribución, identifica los tramos o elementos incluidos y las tomas que se comprobarán. Un presupuesto de cabecera no debe darse por equivalente a revisar todos los cables del edificio.",
+    "faq": [
+      [
+        "¿Más amplificación siempre mejora la imagen?",
+        "No se debe elegir el equipo por su ganancia sin valorar la recepción y la distribución. El ajuste adecuado depende de la instalación."
+      ],
+      [
+        "¿Es posible cambiar solo la fuente?",
+        "Si se confirma que es la causa y existe una solución compatible, puede plantearse una reparación puntual. Primero hay que identificar el sistema."
+      ],
+      [
+        "¿Se pueden conservar componentes antiguos?",
+        "Se valora su estado y compatibilidad. La antigüedad por sí sola no determina que todo el conjunto tenga que renovarse."
+      ]
+    ],
+    "related": [
+      "tdt",
+      "tomas",
+      "mantenimiento"
+    ],
+    "sources": [
+      [
+        "Televés: amplificadores de mástil",
+        "https://www.televes.com/es/distribucion-tv/filtrado-y-amplificacion/amplificadores-de-mastil.html"
+      ],
+      [
+        "Televés: fuentes de alimentación",
+        "https://www.televes.com/es/distribucion-tv/filtrado-y-amplificacion/fuentes-de-alimentacion-de-vivienda.html"
+      ],
+      [
+        "Televés: centrales de amplificación",
+        "https://www.televes.com/es/distribucion-tv/filtrado-y-amplificacion/centrales-de-amplificacion.html"
+      ]
+    ]
+  },
+  {
+    "id": "cobertura-movil-servicio",
+    "slug": "cobertura-movil-4g-5g",
+    "name": "Cobertura móvil y antenas para router 4G/5G",
+    "label": "Cobertura móvil 4G/5G",
+    "intro": "Una mala conexión en casa puede tener causas distintas: poca señal móvil exterior, mala recepción del router o una red Wi-Fi que no llega a las habitaciones. Conviene identificar cuál limita el uso antes de elegir una antena o cambiar equipos.",
+    "symptoms": [
+      [
+        "El router móvil funciona mejor en una ventana",
+        "Comunica operador y referencia del router. Se valora recepción exterior y compatibilidad del equipo."
+      ],
+      [
+        "Hay conexión junto al router, pero no lejos",
+        "Puede ser necesario revisar la distribución interior de red o Wi-Fi; no demuestra falta de cobertura móvil."
+      ],
+      [
+        "Fallan llamadas y datos",
+        "Distingue qué ocurre en el teléfono y qué ocurre en el router, tanto dentro como fuera de la vivienda."
+      ]
+    ],
+    "checks": [
+      [
+        "Recepción del operador y red interior",
+        "La consulta separa el enlace móvil del router de la conexión entre ese router y tus dispositivos. Mejorar una parte no corrige automáticamente la otra. Indica dónde funciona mejor y en qué momentos aparecen los cortes."
+      ],
+      [
+        "Compatibilidad de antena y router",
+        "Se comprueban las conexiones admitidas por el equipo, bandas y solución exterior adecuada. Una antena para router necesita una instalación y un cableado compatibles; no se puede prometer mejora por el número de barras de un teléfono."
+      ],
+      [
+        "Montaje y límites de la solución",
+        "La propuesta considera ubicación, cable y reparto interior. No garantiza una velocidad fija ni elimina la dependencia de la red del operador. La instalación de antenas para datos no debe confundirse con una oferta genérica de repetidores para llamadas."
+      ]
+    ],
+    "intake": [
+      "Operador, modelo del router y tipo de conexión utilizada.",
+      "Si fallan llamadas, datos móviles, Wi-Fi o varios servicios.",
+      "Dónde funciona mejor y cuántas estancias o dispositivos necesitas conectar."
+    ],
+    "budget": "Diferencia estudio de recepción, antena exterior, soporte, cableado y mejoras de red interior. Concreta qué equipos aporta cada parte y qué comprobación se hará después del montaje. La contratación del operador y la velocidad de su red no forman parte automáticamente del trabajo técnico.",
+    "faq": [
+      [
+        "¿Una antena exterior mejora el Wi-Fi?",
+        "Actúa sobre la recepción móvil del router si el sistema es compatible. La cobertura Wi-Fi dentro de casa es otra parte de la conexión y puede requerir una actuación distinta."
+      ],
+      [
+        "¿Garantizáis una velocidad concreta?",
+        "No puede fijarse sin conocer el servicio y las condiciones de la red. Se acuerdan la intervención y sus comprobaciones, evitando promesas generales."
+      ],
+      [
+        "¿Sirve una antena para cualquier router?",
+        "Hay que identificar conexiones y compatibilidad. Facilita la referencia visible antes de comprar material."
+      ]
+    ],
+    "related": [
+      "tomas",
+      "mantenimiento"
+    ],
+    "sources": [
+      [
+        "Televés: antenas exteriores para router MIMO 4G",
+        "https://www.televes.com/es/650302-antenas-4g-lte-extension-de-cobertura-4g.html"
+      ]
+    ]
+  },
+  {
+    "id": "tomas",
+    "slug": "tomas-cableado-television",
+    "name": "Instalación de tomas y reparación de cableado de TV",
+    "label": "Tomas y cableado de TV",
+    "intro": "Llevar televisión a otra habitación exige comprobar de dónde sale la señal, cómo se reparte y qué recorrido tendrá el cable. Reparar una toma que falla también requiere distinguir el latiguillo del televisor del cableado fijo y de los elementos comunes.",
+    "symptoms": [
+      [
+        "Falla solo una habitación",
+        "Indica si el mismo servicio funciona en otras tomas y si hubo cambios de muebles o conexiones."
+      ],
+      [
+        "Necesitas un punto nuevo",
+        "Comunica estancia, recorrido deseado y si existe canalización o prefieres una solución vista."
+      ],
+      [
+        "Quieres TV y satélite",
+        "Especifica qué servicios necesitas en cada punto y los receptores que vas a utilizar."
+      ]
+    ],
+    "checks": [
+      [
+        "Recorrido y acabado antes del montaje",
+        "Se acuerda el trazado del cable, los pasos necesarios y el acabado de la toma o canaleta. En trabajos sobre una instalación existente interesa saber qué canalizaciones pueden aprovecharse antes de fijar materiales y alcance."
+      ],
+      [
+        "Repartir señal también introduce pérdidas",
+        "Las salidas y características de un repartidor afectan al conjunto de la red. Añadir un punto puede requerir adaptar el reparto en lugar de colocar una derivación cualquiera. Al terminar conviene comprobar el nuevo punto y los que ya funcionaban."
+      ],
+      [
+        "Identificar toma, conectores y servicio",
+        "Las tomas y los elementos de reparto tienen características distintas según la red y los servicios distribuidos. No todos los conectores aparentemente iguales resuelven el mismo trabajo. La elección se hace para la instalación identificada."
+      ]
+    ],
+    "intake": [
+      "Qué tomas funcionan y en cuál aparece el problema.",
+      "Estancia de destino y preferencia de recorrido o acabado.",
+      "Si necesitas TDT, radio, satélite o más de un servicio."
+    ],
+    "budget": "Pide detalle del recorrido, longitud prevista, tomas, reparto y acabado. Aclara si incluye canaleta, pasos, adaptación de conexiones y comprobación de los puntos existentes. Las obras o acabados adicionales deben concretarse antes, en lugar de darse por incluidos en una toma nueva.",
+    "faq": [
+      [
+        "¿Hace falta cambiar la antena para añadir una toma?",
+        "No por el mero hecho de añadir un punto. Se comprueba la señal disponible y cómo afecta la ampliación a la distribución."
+      ],
+      [
+        "¿Se puede aprovechar el cable actual?",
+        "Depende del estado, el recorrido y el servicio que deba transportar. Se decide después de revisar la instalación."
+      ],
+      [
+        "¿Se puede llevar satélite igual que TDT?",
+        "La distribución debe ser compatible con la recepción y los equipos. Conviene explicar qué se quiere ver en cada punto antes de instalar el reparto."
+      ]
+    ],
+    "related": [
+      "tdt",
+      "parabolicas",
+      "amplificacion"
+    ],
+    "sources": [
+      [
+        "Televés: tomas para redes coaxiales",
+        "https://www.televes.com/es/distribucion-tv/distribucion-de-una-red-coaxial/tomas.html"
+      ],
+      [
+        "Televés: características de repartidores",
+        "https://www.televes.com/es/distribucion-tv/distribucion-de-una-red-coaxial/repartidores.html"
+      ]
+    ]
+  },
+  {
+    "id": "mantenimiento",
+    "slug": "mantenimiento-antenas-comunidades",
+    "name": "Mantenimiento de antenas y sistemas de acceso",
+    "label": "Mantenimiento de antenas",
+    "intro": "Atender una avería puntual y contratar mantenimiento son acuerdos distintos. Para una vivienda o comunidad conviene definir los equipos cubiertos, qué revisiones se harán y cómo se tramitarán las incidencias, sin suponer que todos los recambios o desplazamientos están incluidos.",
+    "symptoms": [
+      [
+        "Incidencias que se repiten",
+        "Reúne fechas, síntomas y actuaciones anteriores. Ese historial ayuda a estudiar por qué vuelve el fallo."
+      ],
+      [
+        "Comunidad con equipos de distintas épocas",
+        "Facilita la información disponible sobre cabecera, distribución y sistemas de acceso sin abrir los recintos."
+      ],
+      [
+        "Quieres comparar propuestas",
+        "Pide que se detallen equipos y trabajos cubiertos para no comparar acuerdos de alcance diferente."
+      ]
+    ],
+    "checks": [
+      [
+        "Inventario y alcance del servicio",
+        "El mantenimiento comienza delimitando qué instalación se incluye. Antena, cabecera, cableado comunitario, tomas particulares y porteros no deben darse por cubiertos bajo una sola palabra. Los accesos y la persona de contacto se acuerdan con la propiedad."
+      ],
+      [
+        "Registrar la revisión y las incidencias",
+        "Conviene conservar qué se revisó, qué síntoma se encontró y qué actuación se realizó. Un registro sencillo permite entender reparaciones anteriores y coordinar una nueva visita sin confundir recomendaciones con trabajos ya ejecutados."
+      ],
+      [
+        "Reparar, mantener o renovar",
+        "Una revisión puede revelar un elemento reparable o una necesidad de renovación. Si se propone cambiar equipos, la propuesta debe explicar el motivo y separar esa inversión del mantenimiento contratado. No se promete eliminar cualquier avería futura."
+      ]
+    ],
+    "intake": [
+      "Tipo de inmueble, equipos a incluir y responsable de coordinación.",
+      "Incidencias recientes y documentación disponible de trabajos anteriores.",
+      "Si necesitas una reparación puntual, una revisión o una propuesta de mantenimiento."
+    ],
+    "budget": "Acuerda periodicidad si la hay, trabajos incluidos, condiciones de asistencia y exclusiones. Distingue mano de obra, desplazamientos, materiales y actuaciones en viviendas particulares. Cualquier compromiso de plazo debe constar en la propuesta, no suponerse por tratarse de mantenimiento.",
+    "faq": [
+      [
+        "¿El mantenimiento incluye todos los recambios?",
+        "Solo lo que se haya acordado. Pide una relación clara de materiales y actuaciones incluidos y excluidos."
+      ],
+      [
+        "¿Puedo solicitar una revisión sin contrato periódico?",
+        "Puedes consultar una intervención puntual y concretar su alcance. No exige por sí misma contratar futuras visitas."
+      ],
+      [
+        "¿Mantenimiento y renovación son lo mismo?",
+        "No. Una renovación cambia elementos del sistema y debe presupuestarse con su alcance propio, aunque se proponga después de una revisión."
+      ]
+    ],
+    "related": [
+      "tdt",
+      "amplificacion",
+      "porteros",
+      "videoporteros"
+    ],
+    "sources": []
+  }
+]

@@ -1,6 +1,7 @@
 // Public HTTP verification. Does not submit indexing requests or modify Search Console.
 import fs from 'node:fs';
 import { DOMAIN, publicPath, metaOf } from './public-seo.mjs';
+import { guides, guideRoute, SERVICE_RELEASE } from './service-guides.mjs';
 
 async function request(url) {
   const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZallatel-SEO-Check/1.0'}});
@@ -13,6 +14,13 @@ async function text200(url) {
   return response.text();
 }
 
+// Verify this content release, rather than accepting a healthy but older deployment.
+const serviceIndex = await text200(DOMAIN+'/servicios/');
+if (!serviceIndex.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error('The service content release is not public yet');
+for (const guide of guides) {
+  const html=await text200(DOMAIN+guideRoute(guide));
+  if (!html.includes(`data-service-release="${SERVICE_RELEASE}"`) || !html.includes('id="presupuesto"')) throw new Error(`Incomplete service guide: ${guide.slug}`);
+}
 // A missing manifest means the tested SEO release has not reached the CDN yet.
 const manifest = JSON.parse(await text200(DOMAIN+'/public-seo-manifest.json'));
 const expected = new Set(manifest.documents.filter(d=>d.indexable).map(d=>DOMAIN+d.path));
@@ -33,6 +41,12 @@ const extra=manifest.documents.filter(d=>d.type==='province').map(d=>DOMAIN+d.pa
   DOMAIN+'/Antenas-Bizkaia/abanto-zierbena.html', DOMAIN+'/Antenas-Burgos/aranda-de-duero.html'
 ]);
 const queue=[...reported,...extra];
+const localManifest=JSON.parse(await text200(DOMAIN+'/local-pages-manifest.json'));
+const townSamples=[...new Map(localManifest.map(t=>[t.province,t])).values()];
+for (const town of townSamples) {
+  const html=await text200(DOMAIN+town.publicPath);
+  if ((html.match(/data-service-guide=/g)||[]).length!==9 || !html.includes('id="preparar-visita-local"') || !html.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error(`Municipal service release missing: ${town.name}`);
+}
 const results=[];
 await Promise.all(Array.from({length:4},async()=>{
   while(queue.length) {
@@ -65,4 +79,4 @@ await Promise.all(Array.from({length:4},async()=>{
     }
   }
 }));
-console.log(JSON.stringify({status:'LIVE SEO OK',reportedUrls:reported.length,totalChecked:results.length,sitemaps:children.length,sitemapUrls:sitemapUrls.length,maxRedirectHops:Math.max(...results.map(r=>r.hops)),results},null,2));
+console.log(JSON.stringify({status:'LIVE SEO OK',serviceRelease:SERVICE_RELEASE,serviceGuides:guides.length,municipalServiceSamples:townSamples.length,reportedUrls:reported.length,totalChecked:results.length,sitemaps:children.length,sitemapUrls:sitemapUrls.length,maxRedirectHops:Math.max(...results.map(r=>r.hops)),results},null,2));
