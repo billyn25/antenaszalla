@@ -601,3 +601,16 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   .province-quick-faq{grid-column:auto}
   .province-diagnostic-main h3{font-size:22px}
 }
+
+/* Enlazado local por zona/comarca */
+.related-area-label{display:inline-flex;align-items:center;min-height:28px;margin-bottom:9px;padding:5px 9px;border-radius:999px;background:#e7f3fb;color:#1f668d;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.related-towns h3{font-size:22px!important}
+.related-town-links a{position:relative;padding-right:30px!important}
+.related-town-links a::after{content:"→";position:absolute;right:11px;color:#2d789f;font-weight:900}
+@media(max-width:760px){
+ .related-area-label{font-size:9px}
+ .related-towns h3{font-size:19px!important}
+ .related-town-links{display:grid!important;grid-template-columns:1fr 1fr!important}
+ .related-town-links a{width:100%!important;border-radius:8px!important;justify-content:flex-start!important}
+}
+@media(max-width:460px){.related-town-links{grid-template-columns:1fr!important}}
