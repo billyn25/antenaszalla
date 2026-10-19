@@ -488,3 +488,46 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 .zallatel-service-signals{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
 .zallatel-service-signals span{display:inline-flex;align-items:center;min-height:36px;padding:8px 11px;border:1px solid #c8d8e2;border-radius:999px;background:#fff;color:#1a4059;font-size:12px;font-weight:800;line-height:1.2}
 @media(max-width:760px){.zallatel-service-signals{display:grid;grid-template-columns:1fr}.zallatel-service-signals span{border-radius:7px}}
+
+/* Identidad visual técnica Zallatel: azul petróleo, lectura por tramos y menos estética comercial. */
+:root{--ink:#173245;--muted:#5b6f7d;--brand:#2d789f;--deep:#0b2d48;--soft:#eef4f7;--line:#cfdde6;--green:#166c42;--white:#fff;--radius:9px}
+header{background:#0b2d48;border-bottom-color:#4f9bc3}
+.head nav{border-top-color:#315168}.head nav a:hover{color:#b9e1f5}
+.contact-top{border-left-color:#315168}
+.hero.zalla-fault-hero{background:linear-gradient(120deg,#071f33 0%,#0b2d48 58%,#113d5d 100%);border-bottom-color:#4f9bc3}
+.hero.zalla-fault-hero::before{background:linear-gradient(90deg,rgba(7,31,51,.96) 0%,rgba(7,31,51,.82) 46%,rgba(7,31,51,.42) 72%,rgba(7,31,51,.15) 100%)}
+.hero.zalla-fault-hero .hero-inner{display:grid!important;grid-template-columns:minmax(0,1.3fr) minmax(330px,.8fr)!important;gap:42px!important;align-items:center!important;min-height:560px}
+.hero.zalla-fault-hero .hero-copy{width:auto!important;max-width:720px;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;text-shadow:none!important}
+.hero.zalla-fault-hero .hero-copy h1{font-size:clamp(40px,4.8vw,66px)!important;max-width:760px}
+.hero.zalla-fault-hero .hero .eyebrow,.hero.zalla-fault-hero .eyebrow{color:#a9d7ee}
+.hero.zalla-fault-hero .btn.call{background:#2d789f}.hero.zalla-fault-hero .btn.wa{background:#166c42}
+.zallatel-tech-panel{align-self:center;background:rgba(255,255,255,.97);color:#173245;border:1px solid rgba(255,255,255,.32);border-radius:14px;box-shadow:0 22px 60px rgba(0,0,0,.22);overflow:hidden}
+.tech-panel-head{display:grid;gap:3px;padding:21px 22px 17px;border-bottom:1px solid #d9e5ec;background:#f7fbfd}
+.tech-panel-head>span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#2d789f;font-weight:900}
+.tech-panel-head>strong{font-size:24px;line-height:1.15;color:#12354f}.tech-panel-head>small{color:#6b7d89;font-size:12px}
+.zallatel-tech-panel ol{margin:0;padding:0;list-style:none}
+.zallatel-tech-panel li{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:center;padding:13px 20px;border-bottom:1px solid #e2ebf0}
+.zallatel-tech-panel li>b{font-size:12px;color:#2d789f;letter-spacing:.08em}
+.zallatel-tech-panel li span strong,.zallatel-tech-panel li span small{display:block}.zallatel-tech-panel li span strong{font-size:14px;color:#173245}.zallatel-tech-panel li span small{font-size:11px;color:#6e808c;margin-top:1px}
+.zallatel-tech-panel>p{margin:0;padding:15px 20px 18px;background:#0b2d48;color:#dce8ef;font-size:12px;line-height:1.55}
+.service-card{box-shadow:none;border-radius:7px;border-left:4px solid #2d789f;padding-left:64px}
+.service-card:hover{border-color:#9ebdce;border-left-color:#2d789f;background:#fbfdfe}
+.service-card .icon-box{color:#2d789f}
+.province-card{box-shadow:none;border-radius:8px;border-top:3px solid #2d789f}
+.province-card:hover{background:#f5fafc}
+.contact-panel{background:#0b2d48;border-left-color:#4f9bc3}
+.footer{background:#0b2d48}
+.fault-columns article{box-shadow:none;border-radius:8px}
+.priority-localities,.home-province-local{box-shadow:none}
+@media(max-width:900px){
+ .hero.zalla-fault-hero .hero-inner{grid-template-columns:1fr!important;min-height:0!important;padding-block:48px 38px!important}
+ .zallatel-tech-panel{width:min(100%,680px)}
+}
+@media(max-width:640px){
+ .hero.zalla-fault-hero .hero-photo{opacity:.42!important}
+ .hero.zalla-fault-hero .hero-inner{padding:34px 16px 26px!important}
+ .hero.zalla-fault-hero .hero-copy h1{font-size:clamp(34px,10vw,48px)!important}
+ .zallatel-tech-panel{border-radius:10px}
+ .tech-panel-head{padding:17px 18px 14px}.tech-panel-head>strong{font-size:21px}
+ .zallatel-tech-panel li{padding:11px 16px}.zallatel-tech-panel>p{padding:13px 16px 15px}
+}
