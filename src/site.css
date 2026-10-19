@@ -531,3 +531,37 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
  .tech-panel-head{padding:17px 18px 14px}.tech-panel-head>strong{font-size:21px}
  .zallatel-tech-panel li{padding:11px 16px}.zallatel-tech-panel>p{padding:13px 16px 15px}
 }
+
+/* Corrección de contraste del hero técnico Zallatel. */
+.hero.zalla-fault-hero .hero-photo{
+  background:
+    linear-gradient(90deg,rgba(4,24,44,.84) 0%,rgba(4,24,44,.74) 30%,rgba(4,24,44,.46) 52%,rgba(4,24,44,.14) 76%,rgba(4,24,44,.04) 100%),
+    url('/assets/hero-zallatel.png') center center/cover no-repeat!important;
+}
+.hero.zalla-fault-hero .hero-copy h1{color:#fff!important;text-shadow:0 2px 18px rgba(0,0,0,.22)!important}
+.hero.zalla-fault-hero .hero-copy .service-statement{color:#f5fbff!important;text-shadow:0 1px 10px rgba(0,0,0,.28)!important}
+.hero.zalla-fault-hero .hero-copy .lead{color:#e1edf4!important;text-shadow:0 1px 8px rgba(0,0,0,.24)!important}
+.hero.zalla-fault-hero .hero-copy .micro{color:#d3e2eb!important;text-shadow:0 1px 7px rgba(0,0,0,.28)!important}
+.hero.zalla-fault-hero .hero-copy .micro strong{color:#fff!important}
+.hero.zalla-fault-hero .hero-copy .micro a{color:#fff!important}
+.hero.zalla-fault-hero .hero-copy .hero-tags{color:#e5f0f6!important;text-shadow:0 1px 7px rgba(0,0,0,.24)!important}
+.hero.zalla-fault-hero .hero-copy .hero-tags span::before{color:#78c4e9!important}
+.hero.zalla-fault-hero .hero-copy .eyebrow{color:#94d0ee!important;text-shadow:0 1px 7px rgba(0,0,0,.28)!important}
+@media(max-width:900px){
+  .hero.zalla-fault-hero .hero-copy{
+    padding:22px 22px!important;
+    background:rgba(5,32,52,.78)!important;
+    border:1px solid rgba(255,255,255,.13)!important;
+    border-radius:12px!important;
+    backdrop-filter:blur(3px)!important;
+  }
+}
+@media(max-width:640px){
+  .hero.zalla-fault-hero .hero-photo{
+    opacity:1!important;
+    background:
+      linear-gradient(180deg,rgba(4,24,44,.30) 0%,rgba(4,24,44,.52) 42%,rgba(4,24,44,.86) 100%),
+      url('/assets/hero-zallatel.png') 66% center/cover no-repeat!important;
+  }
+  .hero.zalla-fault-hero .hero-copy{background:rgba(5,32,52,.88)!important}
+}
