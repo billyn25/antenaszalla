@@ -66,10 +66,32 @@ export function rewriteStructuredData(value) {
   return value;
 }
 
+function metadataHash(value) {
+  let h = 2166136261;
+  for (const ch of String(value)) {
+    h ^= ch.codePointAt(0);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return h >>> 0;
+}
+
 export function townMetadata(town) {
-  const title = `Antenista en ${town.name}, ${town.province} | ${PHONE}`;
-  const description = `Antenista en ${town.name}, ${town.province}. ${PHONE}. Instalación y reparación de antenas TDT, parabólicas, porteros automáticos y videoporteros.`;
-  return {title, description};
+  const h = metadataHash(`${town.province}|${town.name}|zallatel-snippet`);
+  const titles = [
+    `Antenista en ${town.name}, ${town.province} · diagnóstico técnico | ${PHONE}`,
+    `Reparación de antenas en ${town.name}, ${town.province} | ${PHONE}`,
+    `Técnico de antenas en ${town.name}, ${town.province} · Zallatel | ${PHONE}`,
+    `Antenas y porteros en ${town.name}, ${town.province} · ${PHONE}`
+  ];
+  const descriptions = [
+    `Antenista en ${town.name}, ${town.province}. ${PHONE}. Diagnóstico de señal, cabecera, amplificación y distribución; TDT, parabólicas, porteros y videoporteros. Urgencias 24h.`,
+    `Técnico de antenas en ${town.name}, ${town.province}. ${PHONE}. Revisamos recepción, cableado, tomas y elementos comunes antes de sustituir equipos. TDT, satélite y porteros. Urgencias 24h.`,
+    `Reparación de antenas en ${town.name}, ${town.province}. ${PHONE}. Localización de averías de recepción y distribución, antenas colectivas, parabólicas, porteros y videoporteros. Urgencias 24h.`,
+    `Antenas Zallatel en ${town.name}, ${town.province}. ${PHONE}. Servicio técnico para viviendas y comunidades: señal TV, amplificación, satélite, porteros automáticos y videoporteros. Urgencias 24h.`,
+    `Antenista en ${town.name}, ${town.province}. ${PHONE}. Comprobamos si el fallo está en antena, fuente, amplificador, reparto, cableado o toma antes de plantear recambios. Urgencias 24h.`,
+    `Técnico antenista en ${town.name}, ${town.province}. ${PHONE}. Diagnóstico de instalaciones individuales y comunitarias, TDT, parabólicas y sistemas de portero y videoportero. Urgencias 24h.`
+  ];
+  return {title: titles[h % titles.length], description: descriptions[Math.floor(h / 7) % descriptions.length]};
 }
 
 export function redirectRules(documents) {
