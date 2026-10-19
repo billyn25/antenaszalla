@@ -55,8 +55,8 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       // Keep the existing relevant description and its service focus when it contains the essentials.
       if (![town.name, town.province, PHONE].every(part => description.includes(part))) description = metadata.description;
     } else if (doc.path === '/') {
-      title = `Antenas Zallatel (Antenas Zalla): antenas y porteros | ${PHONE}`;
-      description = `Antenas Zallatel, antes Antenas Zalla en esta web. Averías TDT, porteros y videoporteros. TDT por satélite y montaje Starlink. ${PHONE}.`;
+      title = `Antenas Zallatel · diagnóstico de antenas y porteros | ${PHONE}`;
+      description = `Antenas Zallatel. ${PHONE}. Diagnóstico y reparación de antenas, señal TDT, amplificación, porteros y videoporteros; SAT-TDT y montaje Starlink. Antes Antenas Zalla.`;
       html = html.replace('<h1>Antenista barato en tu pueblo</h1>', '<h1>Antenas, porteros y videoporteros en tu pueblo</h1>');
       if (!html.includes('id="identidad-zalla"')) {
         const identity = '<p class="micro" id="identidad-zalla">Antenas Zallatel es el nombre actual de esta web, anteriormente presentada como Antenas Zalla. Seguimos en antenaszalla.com, con contacto en el <a href="tel:+34670042626">670 042 626</a>.</p>';
@@ -122,7 +122,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
   fs.writeFileSync(path.join(root,'_redirects'), '# Generated: old document URLs go directly to their canonical equivalent. No wildcard homepage fallback.\n' + [...rules].map(([from,to])=>`${from} ${DOMAIN}${to} 301!`).join('\n') + '\nhttps://www.antenaszalla.com/* https://antenaszalla.com/:splat 301!\nhttp://www.antenaszalla.com/* https://antenaszalla.com/:splat 301!\nhttp://antenaszalla.com/* https://antenaszalla.com/:splat 301!\n');
   const icon = brandMark().match(/<svg[\s\S]*?<\/svg>/)?.[0];
   if (!icon) throw new Error('Missing existing brand icon');
-  fs.writeFileSync(path.join(root,'favicon.svg'),icon.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" color="#b6292f" ').replace('viewBox="0 0 96 76"','viewBox="0 0 100 100"'));
+  fs.writeFileSync(path.join(root,'favicon.svg'),icon.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" color="#0867bd" ').replace('viewBox="0 0 96 76"','viewBox="0 0 100 100"'));
   console.log(`PUBLIC SEO READY: ${report.filter(d=>d.indexable).length} canonical documents, ${towns.length} municipalities, ${rules.size} direct legacy redirects. Design, contact details and service content preserved.`);
   return {documents:report,redirects:rules};
 }
