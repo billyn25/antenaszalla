@@ -614,3 +614,20 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
  .related-town-links a{width:100%!important;border-radius:8px!important;justify-content:flex-start!important}
 }
 @media(max-width:460px){.related-town-links{grid-template-columns:1fr!important}}
+
+/* Contenido útil local: síntomas y tipo de instalación */
+.zallatel-symptom-guide{margin-top:22px;padding:22px;background:#fff;border:1px solid #d7e2e9;border-radius:10px}
+.zallatel-symptom-heading h3{margin:7px 0 6px;color:#12354f;font-size:23px;line-height:1.25}
+.zallatel-symptom-heading p{margin:0;color:#607386;font-size:13px}
+.zallatel-symptom-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.zallatel-symptom-grid article{padding:16px;border:1px solid #dce7ed;border-radius:8px;background:#f8fbfd}
+.zallatel-symptom-grid h4{margin:0 0 7px;color:#173245;font-size:15px;line-height:1.3}
+.zallatel-symptom-grid p{margin:0;color:#5b6f7d;font-size:13px;line-height:1.6}
+.zallatel-property-note{display:grid;grid-template-columns:minmax(180px,.55fr) minmax(0,1.45fr);gap:14px;margin-top:12px;padding:14px 16px;border-left:4px solid #2d789f;background:#eef5f8}
+.zallatel-property-note strong{color:#173245;font-size:13px}.zallatel-property-note span{color:#5b6f7d;font-size:13px;line-height:1.55}
+@media(max-width:760px){
+ .zallatel-symptom-guide{padding:18px}
+ .zallatel-symptom-grid{grid-template-columns:1fr}
+ .zallatel-property-note{grid-template-columns:1fr}
+ .zallatel-symptom-heading h3{font-size:20px}
+}
