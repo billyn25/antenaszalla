@@ -12,42 +12,42 @@ const normalize = value => String(value || '').toLocaleLowerCase('es').normalize
 const explicitByKey = new Map(explicitTowns.map(p => [`${p.parent}|${normalize(p.name)}`, p]));
 
 const leadVariants = [
-  (t,p) => `Servicio de antenista en ${t}, ${p}, para reparación e instalación de antenas TDT, parabólicas, amplificación, porteros automáticos y videoporteros.`,
-  (t,p) => `Técnico de antenas en ${t}, ${p}, para viviendas, comunidades y pequeños negocios. Revisamos señal, distribución, porteros y cobertura móvil residencial.`,
-  (t,p) => `Instalación y reparación de antenas en ${t}. TDT, satélite, amplificadores, cableado, porteros automáticos y videoporteros con atención por teléfono y WhatsApp.`,
-  (t,p) => `Antenas Zallatel presta servicio en ${t}, ${p}, para averías de señal, instalaciones nuevas, antenas individuales y colectivas, porteros y videoporteros.`,
-  (t,p) => `¿Necesitas antenista en ${t}? Atendemos pérdida de señal, instalaciones TDT y parabólicas, amplificación, telefonillos y videoporteros en ${p}.`,
-  (t,p) => `Servicio técnico de antenas en ${t}, ${p}: diagnóstico, reparación, instalación y mantenimiento de sistemas de televisión, portero y videoportero.`
+  (t,p) => `Antenista en ${t}, ${p}, con revisión orientada a localizar el punto de fallo antes de sustituir equipos: TDT, satélite, amplificación, porteros y videoporteros.`,
+  (t,p) => `Servicio técnico en ${t}, ${p}, para comprobar recepción, cabecera, distribución y tomas cuando la televisión falla o pierde canales.`,
+  (t,p) => `Técnico antenista en ${t}: diagnóstico de señal, antenas individuales y colectivas, parabólicas, porteros automáticos y videoporteros.`,
+  (t,p) => `Antenas Zallatel atiende consultas en ${t}, ${p}, diferenciando primero si la incidencia está en la recepción, la red interior o los elementos comunes.`,
+  (t,p) => `¿Falla la televisión o el portero en ${t}? Preparamos la revisión según el síntoma, el tipo de inmueble y si afecta a una sola vivienda o a varios puntos.`,
+  (t,p) => `Instalación y reparación de antenas en ${t}, ${p}, con especial atención a amplificación, distribución coaxial, satélite y sistemas de acceso.`
 ];
 const introVariants = [
-  t => `En ${t} revisamos primero el origen del problema antes de proponer cambios. Una avería puede estar en la recepción, la antena, la alimentación, la amplificación, el cableado o la distribución interior.`,
-  t => `Para preparar un aviso en ${t}, conviene indicar si se trata de una vivienda, una comunidad o un negocio y si el fallo afecta a una sola toma o a varios puntos de la instalación.`,
-  t => `Trabajamos en ${t} con instalaciones antiguas y actuales. Antes de sustituir material comprobamos qué elemento provoca la avería y qué partes de la instalación pueden mantenerse.`,
-  t => `El servicio en ${t} incluye tanto reparación de instalaciones existentes como nuevas instalaciones de TDT, satélite, amplificación, porteros automáticos y videoporteros.`,
-  t => `En ${t}, una pérdida de canales o una imagen inestable no implica necesariamente cambiar la antena. Se comprueba la instalación para localizar la causa antes de decidir la reparación.`,
-  t => `Atendemos en ${t} consultas de viviendas y comunidades para señal de televisión, antenas, distribución coaxial, porteros y videoporteros, además de cobertura móvil residencial cuando procede.`
+  t => `En ${t} no partimos de que la antena esté averiada. Una pérdida de señal puede venir de recepción, fuente de alimentación, amplificador, repartidor, derivación, toma o cableado; la revisión separa cada tramo.`,
+  t => `Para preparar una intervención en ${t}, interesa saber si el fallo aparece en una sola toma, en toda la vivienda o también en otros vecinos. Esa diferencia cambia por completo el punto de revisión.`,
+  t => `En ${t} trabajamos sobre instalaciones existentes antes de plantear una renovación completa. Si parte del sistema sigue siendo válida, se valora mantenerla y actuar solo sobre el elemento que provoca la incidencia.`,
+  t => `Una instalación de televisión en ${t} se revisa como un recorrido: recepción, amplificación, distribución y puntos finales. En porteros y videoporteros se separan llamada, audio, imagen y apertura.`,
+  t => `Cuando en ${t} desaparecen canales o la imagen se pixela, conviene comparar tomas y comprobar si el problema es individual o comunitario antes de comprar amplificadores o cambiar antenas.`,
+  t => `Antenas Zallatel organiza la atención en ${t} por tipo de avería y de inmueble: vivienda individual, comunidad o pequeño negocio, evitando presupuestar recambios sin haber delimitado antes el fallo.`
 ];
 const adviceVariants = [
-  t => `Antes de llamar desde ${t}, comprueba si el problema aparece en un solo televisor o en varias tomas. Para porteros, indica si falla la llamada, el audio, la imagen o la apertura.`,
-  t => `Para una avería en ${t}, ayuda saber desde cuándo ocurre, qué canales fallan y si otros puntos de la instalación funcionan. No hace falta desmontar equipos para facilitar esos datos.`,
-  t => `Si buscas una instalación nueva en ${t}, indica cuántos televisores o tomas necesitas y si ya existe antena, cableado o una instalación comunitaria.`,
-  t => `Una foto del equipo visible o del mensaje del televisor puede ayudar a preparar la revisión en ${t}. El diagnóstico definitivo se realiza sobre la instalación.`,
-  t => `Si el problema en ${t} afecta a una comunidad, confirma si ocurre en una vivienda o en varias. Esa diferencia orienta la revisión hacia la parte particular o común.`,
-  t => `Para cobertura móvil en una vivienda de ${t}, indica operador y si el problema afecta a llamadas, datos o ambos; la solución depende de la señal disponible.`
+  t => `Antes de llamar desde ${t}, comprueba únicamente si el fallo aparece en uno o varios televisores. No accedas al tejado ni abras amplificadores: esa información básica ya orienta la primera revisión.`,
+  t => `Si la avería está en ${t}, anota qué canales faltan, desde cuándo ocurre y si cambia entre tomas. Para porteros, indica por separado llamada, audio, imagen y apertura.`,
+  t => `Para una instalación nueva en ${t}, indica cuántas tomas necesitas, si existe red coaxial y si la antena es individual o comunitaria. Así se prepara el trabajo sin asumir material innecesario.`,
+  t => `Una fotografía de la placa, monitor, amplificador o receptor visible puede ayudar a identificar el sistema de ${t}; no hace falta desmontar tapas ni desconectar cables.`,
+  t => `Si varios vecinos de ${t} tienen el mismo problema, comunícalo desde el principio. Puede orientar la comprobación hacia cabecera, alimentación o distribución común en lugar de la vivienda.`,
+  t => `En una consulta de cobertura o satélite en ${t}, indica operador o servicio, equipo existente y si antes funcionaba. La solución depende de la señal disponible y de la instalación actual.`
 ];
 const metaVariants = [
-  (t,p) => `Antenista en ${t}, ${p}. ${site.phone}. Reparación e instalación de antenas TDT, colectivas, parabólicas, amplificación, porteros y videoporteros.`,
-  (t,p) => `Técnico de antenas en ${t}, ${p} · ${site.phone}. TDT, parabólicas, amplificadores, antenas colectivas, porteros automáticos y videoporteros.`,
-  (t,p) => `Servicio de antenista en ${t}, ${p}. Tel. ${site.phone}. Averías de señal, instalación de antenas, porteros, videoporteros y cobertura móvil residencial.`,
-  (t,p) => `Reparación e instalación de antenas en ${t}, ${p} | ${site.phone}. TDT, satélite, amplificación, comunidades, porteros y videoporteros.`,
-  (t,p) => `Antenista ${t}, ${p} · ${site.phone}. Antenas TDT y parabólicas, señal, amplificación, porteros automáticos y videoporteros.`
+  (t,p) => `Antenista en ${t}, ${p} · ${site.phone}. Diagnóstico y reparación de TDT, amplificación, antenas colectivas, parabólicas, porteros y videoporteros.`,
+  (t,p) => `Técnico antenista en ${t}, ${p} · ${site.phone}. Revisión de señal, cabecera, cableado, tomas, satélite, porteros automáticos y videoporteros.`,
+  (t,p) => `Reparación de antenas en ${t}, ${p}. ${site.phone}. Localización de averías de recepción y distribución, TDT, parabólicas y sistemas de acceso.`,
+  (t,p) => `Servicio técnico de antenas en ${t}, ${p} | ${site.phone}. Viviendas y comunidades: señal TV, amplificación, porteros, videoporteros y satélite.`,
+  (t,p) => `Antenas Zallatel en ${t}, ${p} · ${site.phone}. Diagnóstico de TDT, red coaxial, antenas colectivas, parabólicas, porteros y videoporteros.`
 ];
 const focusVariants = [
-  t => `Reparación de antenas y señal de TV en ${t}`,
-  t => `Instalación de antena TDT y amplificación en ${t}`,
-  t => `Antenas individuales y colectivas en ${t}`,
-  t => `Averías de antena, portero y videoportero en ${t}`,
-  t => `Servicio técnico para viviendas y comunidades en ${t}`
+  t => `Localizar dónde se pierde la señal en ${t}`,
+  t => `Separar recepción, amplificación y distribución en ${t}`,
+  t => `Diagnóstico de antena individual o colectiva en ${t}`,
+  t => `Comprobar una avería de portero o videoportero en ${t}`,
+  t => `Revisar la instalación antes de sustituir equipos en ${t}`
 ];
 
 function provinceForPath(route) { return provinces.find(p => p.path === route); }
@@ -74,50 +74,47 @@ function makePage(province, item, usedPaths) {
   };
 }
 
-const serviceTextVariants = {
-  repair: [
-    t => `Si la televisión se pixela, desaparecen canales o la señal cambia, revisamos la instalación de ${t} para localizar el origen antes de sustituir material.`,
-    t => `Una avería de antena en ${t} puede estar en recepción, alimentación, amplificación, conectores, cable coaxial o distribución. Se comprueba el conjunto antes de decidir la reparación.`,
-    t => `Atendemos en ${t} pérdidas parciales o totales de señal, cortes de imagen y problemas que aparecen solo en determinadas tomas, tanto en viviendas como en comunidades.`
-  ],
-  tdt: [
-    t => `Para una instalación TDT en ${t} valoramos recepción, recorrido de cable y número de tomas. La amplificación se ajusta a la instalación y no se añade de forma indiscriminada.`,
-    t => `Instalamos y adaptamos antenas TDT en ${t}, revisando también amplificadores, fuentes, cabeceras y distribución cuando una instalación existente necesita recuperar estabilidad.`,
-    t => `En una vivienda o comunidad de ${t}, la solución TDT depende de la señal disponible y de cómo se reparte por el inmueble; se revisan antena, amplificación y red coaxial.`
-  ],
-  collective: [
-    t => `Trabajamos con antenas individuales y colectivas en ${t}. Si el problema afecta a varios vecinos, la revisión se orienta a los elementos comunes; si es una sola vivienda, se comprueba también la parte interior.`,
-    t => `En ${t} atendemos viviendas y comunidades. Diferenciar si la incidencia aparece en una toma, una vivienda o varios vecinos ayuda a localizar si el fallo es individual o colectivo.`,
-    t => `Las instalaciones colectivas de ${t} requieren comprobar cabecera, amplificación y distribución común, mientras que en una vivienda individual se revisa además el recorrido hasta cada toma.`
-  ],
-  satellite: [
-    t => `Para problemas de satélite en ${t} revisamos orientación de la parabólica, LNB, conectores y cableado, valorando el conjunto antes de sustituir componentes.`,
-    t => `Instalamos y revisamos antenas parabólicas en ${t}. Una falta de señal puede estar relacionada con orientación, LNB, una conexión o el recorrido del cable.`,
-    t => `En ${t} podemos valorar una instalación nueva de parabólica o una avería en un sistema existente, comprobando recepción y estado de los elementos accesibles.`
-  ],
-  door: [
-    t => `Reparamos e instalamos porteros automáticos y videoporteros en ${t}. Revisamos llamada, conversación, imagen y apertura y comprobamos compatibilidad antes de proponer recambios.`,
-    t => `Si el portero de ${t} no llama, no se escucha o no abre, distinguimos qué función falla y si ocurre en una vivienda o en toda la comunidad. Trabajamos con equipos antiguos y actuales.`,
-    t => `En ${t} atendemos averías, renovaciones e instalaciones nuevas de portero y videoportero, comprobando sistema y cableado antes de cambiar equipos.`
-  ],
-  mobile: [
-    t => `Cuando una vivienda individual de ${t} tiene mala cobertura de datos, podemos estudiar la señal y valorar una antena exterior para router 4G/5G. Los repetidores de llamadas deben ajustarse a la normativa y al operador.`,
-    t => `En casas de ${t} con señal móvil débil se puede valorar la recepción exterior, ubicación del router y una antena 4G/5G adecuada. Primero se determina qué solución es técnica y normativamente viable.`,
-    t => `La mejora de cobertura móvil en una vivienda de ${t} comienza comprobando operador, señal y uso principal: llamadas, datos o ambos; después se estudia la solución apropiada.`
-  ]
-};
+const diagnosticRoutes = [
+  {
+    key:'senal',
+    title:t=>`¿La televisión pierde señal en ${t}?`,
+    text:t=>`Comparamos lo que ocurre entre tomas y, cuando corresponde, entre viviendas. El objetivo es saber si la incidencia empieza en recepción, amplificación, distribución o en un punto final de la instalación.`
+  },
+  {
+    key:'cabecera',
+    title:t=>`Amplificación y distribución en ${t}`,
+    text:t=>`Fuentes, amplificadores, repartidores, derivadores y cable coaxial forman parte del mismo recorrido. Añadir ganancia sin medir el problema puede empeorar la instalación; primero se delimita el tramo que falla.`
+  },
+  {
+    key:'comunidad',
+    title:t=>`Vivienda o comunidad: no se revisan igual`,
+    text:t=>`Si el fallo afecta a varios vecinos de ${t}, la comprobación se orienta a elementos comunes. Si ocurre solo dentro de una vivienda, se estudian derivación, cableado interior y tomas.`
+  },
+  {
+    key:'acceso',
+    title:t=>`Portero automático y videoportero en ${t}`,
+    text:t=>`Separamos llamada, conversación, imagen y apertura. Antes de cambiar monitor, telefonillo o placa interesa identificar sistema, alimentación y compatibilidad con el cableado existente.`
+  },
+  {
+    key:'satelite',
+    title:t=>`Parabólica, SAT-TDT y Starlink en ${t}`,
+    text:t=>`Para satélite se comprueban equipo, soporte, cableado y recepción. En SAT-TDT y Starlink el montaje físico y las condiciones del servicio se valoran por separado.`
+  }
+];
 
 function localSeoBlock(page) {
-  const h = stableHash(`${page.path}|bloques`);
-  const pick = (key, offset) => serviceTextVariants[key][Math.floor(h / offset) % serviceTextVariants[key].length](page.name);
-  const faq = [
-    [`¿Atendéis una avería aunque no sepa dónde está el fallo en ${page.name}?`, `Sí. Indica qué ocurre y si afecta a una o varias tomas. La revisión sirve precisamente para localizar si el problema está en recepción, amplificación, cableado o distribución.`],
-    [`¿Trabajáis con instalaciones antiguas en ${page.name}?`, `Sí. Revisamos equipos e instalaciones existentes cuando siguen siendo reparables o compatibles y valoramos qué elementos pueden mantenerse antes de renovar.`],
-    [`¿Puedo consultar por WhatsApp antes de una visita en ${page.name}?`, `Sí. Puedes indicar localidad, tipo de inmueble, síntomas y, si ayuda, una foto del equipo visible. No es necesario desmontar tapas ni acceder a cubiertas.`],
-    [`¿Revisáis antenas de comunidades en ${page.name}?`, `Sí. En instalaciones colectivas comprobamos si la incidencia afecta a varios vecinos y revisamos los elementos comunes que correspondan.`]
-  ][h % 4];
-  return `<section class="section soft local-intent-section" id="servicio-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>Servicios de antenista en ${esc(page.name)}</h2><p class="section-lead">Página de servicio para ${esc(page.name)} con información sobre los trabajos que atendemos en la localidad. No representa una oficina o sede física.</p><div class="local-intents"><article><h3>Reparación de antenas en ${esc(page.name)}</h3><p>${esc(pick('repair',3))}</p></article><article><h3>Instalación de antena TDT y amplificación en ${esc(page.name)}</h3><p>${esc(pick('tdt',5))}</p></article><article><h3>Antenas colectivas e individuales en ${esc(page.name)}</h3><p>${esc(pick('collective',7))}</p></article><article><h3>Antenas parabólicas y señal de satélite en ${esc(page.name)}</h3><p>${esc(pick('satellite',11))}</p></article><article><h3>Porteros automáticos y videoporteros en ${esc(page.name)}</h3><p>${esc(pick('door',13))}</p></article><article><h3>Cobertura móvil 4G/5G en vivienda individual en ${esc(page.name)}</h3><p>${esc(pick('mobile',17))}</p></article></div><div class="local-faq"><h3>${esc(faq[0])}</h3><p>${esc(faq[1])}</p></div><div class="local-contact"><strong>Servicio en ${esc(page.name)}</strong><a href="tel:${site.tel}">${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}">WhatsApp</a></div></div></section><style>.local-intents{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}.local-intents article{background:#fff;border:1px solid var(--line);border-top:3px solid var(--brand);padding:22px}.local-intents h3,.local-faq h3{margin:0 0 8px;font-size:20px;line-height:1.25}.local-intents p,.local-faq p{margin:0;color:var(--muted);font-size:14px}.local-faq{margin-top:18px;background:#fff;border-left:4px solid var(--brand);padding:20px}.local-contact{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;margin-top:24px;padding:18px;background:var(--deep);color:#fff}.local-contact a{color:#fff;font-weight:800}.local-contact a:last-child{margin-left:auto}@media(max-width:760px){.local-intents{grid-template-columns:1fr}.local-contact a:last-child{margin-left:0}}</style>`;
+  const h = stableHash(`${page.path}|zallatel-diagnostico`);
+  const ordered = [...diagnosticRoutes.slice(h % diagnosticRoutes.length), ...diagnosticRoutes.slice(0,h % diagnosticRoutes.length)];
+  const visible = ordered.slice(0,4);
+  const checklists = [
+    ['Una toma o varias','Indica si el fallo aparece en un solo televisor o en más puntos.'],
+    ['Vivienda o comunidad','Comenta si otros vecinos observan la misma incidencia.'],
+    ['Qué función falla','En porteros: llamada, audio, imagen o apertura.'],
+    ['Qué equipo existe','Marca o referencia visible, sin desmontar tapas.']
+  ];
+  return `<section class="zallatel-diagnostic section soft" id="diagnostico-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Diagnóstico técnico en ${esc(page.name)}</span><h2>Antes de cambiar equipos, localizamos el punto de fallo</h2><p class="section-lead">En ${esc(page.name)} orientamos la revisión por el recorrido real de la instalación: recepción, amplificación, distribución y equipo final. En porteros y videoporteros se revisa cada función por separado.</p><div class="zallatel-diagnostic-grid">${visible.map(item=>`<article><span class="diag-number">0${diagnosticRoutes.indexOf(item)+1}</span><h3>${esc(item.title(page.name))}</h3><p>${esc(item.text(page.name))}</p></article>`).join('')}</div><aside class="zallatel-intake"><div><span class="eyebrow">Para preparar la visita</span><h3>Cuatro datos que ayudan</h3></div><ul>${checklists.map(([a,b])=>`<li><strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join('')}</ul></aside><div class="zallatel-local-actions"><a href="${page.parent}">Ver todos los municipios de ${esc(page.province)} →</a><a href="tel:${site.tel}">Llamar ${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, necesito revisar una instalación en ${page.name}, ${page.province}. Os indico qué falla y si afecta a una o varias tomas.`)}">Explicar la avería por WhatsApp</a></div></div></section>`;
 }
+
 function injectLocalBlock(html, page) {
   const marker = '<section class="section wrap faq" id="preguntas">';
   if (!html.includes(marker)) throw new Error(`${page.path}: no se encontró el punto de inserción SEO local`);
