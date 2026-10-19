@@ -587,7 +587,7 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
 .province-diagnostic-main p{margin:0;color:#d8e5ed;font-size:14px;line-height:1.72}
 .province-diagnostic .eyebrow{color:#9bc5df}
 .province-service-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}
-.province-service-tags a{display:inline-flex;align-items:center;min-height:32px;padding:6px 9px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.055);font-size:11px;font-weight:800;color:#eef7fb;text-decoration:none}.province-service-tags a:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28)}
+.province-service-tags span{display:inline-flex;align-items:center;min-height:32px;padding:6px 9px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.055);font-size:11px;font-weight:800;color:#eef7fb}
 .province-diagnostic-points{display:grid;grid-template-columns:1fr;gap:9px}
 .province-diagnostic-points span{display:block;padding:12px 13px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(255,255,255,.04);font-size:12px;line-height:1.5;color:#dce8ef}
 .province-diagnostic-points strong{display:block;margin-bottom:3px;color:#fff;font-size:13px}
