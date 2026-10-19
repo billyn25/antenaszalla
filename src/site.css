@@ -479,3 +479,8 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 .zallatel-local-actions a:nth-child(2){background:#0b2d48;color:#fff;border-color:#0b2d48}
 .zallatel-local-actions a:nth-child(3){background:#eaf4ee;color:#17633f;border-color:#c9dfd1}
 @media(max-width:760px){.zallatel-diagnostic-grid{grid-template-columns:1fr}.zallatel-intake{grid-template-columns:1fr}.zallatel-intake ul{grid-template-columns:1fr}.zallatel-diagnostic-grid article{padding:20px 18px 18px 54px}.zallatel-local-actions a{flex:1 1 100%;justify-content:center}}
+
+.province-diagnostic{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;margin:24px 0;padding:24px;background:#0b2d48;color:#fff;border-radius:12px}
+.province-diagnostic h3{margin:8px 0 10px;color:#fff;font-size:24px;line-height:1.28}.province-diagnostic p{margin:0;color:#d7e4ec;line-height:1.7;font-size:14px}.province-diagnostic .eyebrow{color:#9bc5df}
+.province-diagnostic-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.province-diagnostic-points span{display:block;padding:12px;border:1px solid rgba(255,255,255,.13);border-radius:8px;font-size:12px;line-height:1.5}.province-diagnostic-points strong{display:block;margin-bottom:3px;color:#fff;font-size:13px}
+@media(max-width:760px){.province-diagnostic{grid-template-columns:1fr;padding:19px}.province-diagnostic-points{grid-template-columns:1fr}}
