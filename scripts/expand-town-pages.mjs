@@ -102,6 +102,60 @@ const diagnosticRoutes = [
   }
 ];
 
+const symptomGuides = [
+  {
+    title:'Faltan algunos canales',
+    text:'No siempre es un problema de sintonización. Se comprueba si faltan los mismos grupos de canales en varias tomas, porque eso puede orientar hacia recepción, filtrado, cabecera o distribución.'
+  },
+  {
+    title:'La imagen se pixela a ratos',
+    text:'Interesa saber si ocurre con lluvia, viento, a determinadas horas o solo en un televisor. Esa información ayuda a distinguir una recepción con poco margen de una incidencia interior.'
+  },
+  {
+    title:'Una toma tiene señal y otra no',
+    text:'Cuando el resto de la vivienda funciona, la revisión se centra en reparto, derivación, conectores, cable coaxial y toma final antes de tocar la antena exterior.'
+  },
+  {
+    title:'Después de una tormenta dejó de verse',
+    text:'Se revisa el estado visible de antena, mástil, conexiones, alimentación y amplificación. No conviene subir a cubierta ni mover la antena sin medios y medición adecuados.'
+  },
+  {
+    title:'La parabólica ha perdido señal',
+    text:'La comprobación incluye orientación, fijación, LNB, conectores, coaxial y receptor. Una pequeña desviación o una conexión deteriorada puede provocar cortes sin que sea necesario sustituir todo.'
+  },
+  {
+    title:'El portero llama pero no se oye',
+    text:'Se separan llamada y audio para no confundir una avería del terminal con un problema de placa, alimentación o cableado común.'
+  },
+  {
+    title:'El videoportero tiene audio pero no imagen',
+    text:'Se revisan monitor, placa, alimentación y compatibilidad del sistema. En comunidades conviene comprobar si la imagen falla en una sola vivienda o en varias.'
+  },
+  {
+    title:'La señal empeora al conectar varias TV',
+    text:'Puede existir una distribución desequilibrada o una amplificación mal ajustada. Se comprueban niveles y reparto antes de añadir más ganancia.'
+  }
+];
+
+const propertyGuides = [
+  {
+    label:'En vivienda individual',
+    text:'La comprobación puede seguir el recorrido completo desde antena o parabólica hasta repartidores, cableado y tomas interiores.'
+  },
+  {
+    label:'En comunidad de vecinos',
+    text:'Primero se delimita si el problema es común o particular. Cabecera, fuentes, amplificadores, derivadores y montantes pueden afectar a varias viviendas de forma distinta.'
+  },
+  {
+    label:'En una instalación antigua',
+    text:'No se presupone que todo deba renovarse. Se identifica qué elementos siguen funcionando correctamente y cuáles introducen pérdida, ruido o incompatibilidad.'
+  },
+  {
+    label:'Tras ampliar tomas o televisores',
+    text:'Una ampliación puede alterar el reparto de señal. Conviene comprobar niveles, pérdidas y equilibrio de la red antes de añadir amplificadores.'
+  }
+];
+
 function localSeoBlock(page) {
   const h = stableHash(`${page.path}|zallatel-diagnostico`);
   const ordered = [...diagnosticRoutes.slice(h % diagnosticRoutes.length), ...diagnosticRoutes.slice(0,h % diagnosticRoutes.length)];
@@ -117,7 +171,10 @@ function localSeoBlock(page) {
     `Porteros automáticos y videoporteros en ${page.name}`,
     `Cobertura móvil 4G/5G en vivienda individual en ${page.name}`
   ];
-  return `<section class="section soft local-intent-section zallatel-diagnostic" id="diagnostico-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>Antes de cambiar equipos, localizamos el punto de fallo</h2><p class="section-lead">En ${esc(page.name)} orientamos la revisión por el recorrido real de la instalación: recepción, amplificación, distribución y equipo final. En porteros y videoporteros se revisa cada función por separado.</p><nav class="zallatel-service-signals" aria-label="Servicios técnicos en ${esc(page.name)}">${serviceSignals.map(label=>`<span>${esc(label)}</span>`).join('')}</nav><div class="zallatel-diagnostic-grid">${visible.map(item=>`<article><span class="diag-number">0${diagnosticRoutes.indexOf(item)+1}</span><h3>${esc(item.title(page.name))}</h3><p>${esc(item.text(page.name))}</p></article>`).join('')}</div><aside class="zallatel-intake"><div><span class="eyebrow">Para preparar la visita</span><h3>Cuatro datos que ayudan</h3></div><ul>${checklists.map(([a,b])=>`<li><strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join('')}</ul></aside><div class="zallatel-local-actions"><a href="${page.parent}">Ver todos los municipios de ${esc(page.province)} →</a><a href="tel:${site.tel}">Llamar ${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, necesito revisar una instalación en ${page.name}, ${page.province}. Os indico qué falla y si afecta a una o varias tomas.`)}">Explicar la avería por WhatsApp</a></div></div></section>`;
+  const symptomStart = h % symptomGuides.length;
+  const symptoms = [0,1,2].map(i => symptomGuides[(symptomStart + i) % symptomGuides.length]);
+  const property = propertyGuides[Math.floor(h / 11) % propertyGuides.length];
+  return `<section class="section soft local-intent-section zallatel-diagnostic" id="diagnostico-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>Antes de cambiar equipos, localizamos el punto de fallo</h2><p class="section-lead">En ${esc(page.name)} orientamos la revisión por el recorrido real de la instalación: recepción, amplificación, distribución y equipo final. En porteros y videoporteros se revisa cada función por separado.</p><nav class="zallatel-service-signals" aria-label="Servicios técnicos en ${esc(page.name)}">${serviceSignals.map(label=>`<span>${esc(label)}</span>`).join('')}</nav><div class="zallatel-diagnostic-grid">${visible.map(item=>`<article><span class="diag-number">0${diagnosticRoutes.indexOf(item)+1}</span><h3>${esc(item.title(page.name))}</h3><p>${esc(item.text(page.name))}</p></article>`).join('')}</div><section class="zallatel-symptom-guide" aria-label="Síntomas habituales en ${esc(page.name)}"><div class="zallatel-symptom-heading"><span class="eyebrow">Qué nos cuenta la avería</span><h3>Tres síntomas que ayudan a orientar la revisión</h3><p>El síntoma no sustituye una medición, pero sí ayuda a decidir por dónde empezar.</p></div><div class="zallatel-symptom-grid">${symptoms.map(item=>`<article><h4>${esc(item.title)}</h4><p>${esc(item.text)}</p></article>`).join('')}</div><aside class="zallatel-property-note"><strong>${esc(property.label)}</strong><span>${esc(property.text)}</span></aside></section><aside class="zallatel-intake"><div><span class="eyebrow">Para preparar la visita</span><h3>Cuatro datos que ayudan</h3></div><ul>${checklists.map(([a,b])=>`<li><strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join('')}</ul></aside><div class="zallatel-local-actions"><a href="${page.parent}">Ver todos los municipios de ${esc(page.province)} →</a><a href="tel:${site.tel}">Llamar ${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, necesito revisar una instalación en ${page.name}, ${page.province}. Os indico qué falla y si afecta a una o varias tomas.`)}">Explicar la avería por WhatsApp</a></div></div></section>`;
 }
 
 function injectLocalBlock(html, page) {
