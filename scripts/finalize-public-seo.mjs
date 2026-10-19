@@ -4,6 +4,29 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { brandMark } from './logo.mjs';
 import { DOMAIN, PHONE, TEL, BRAND, LEGAL_FILES, publicPath, fileForPublicPath, rewriteUrl, escapeHtml, decodeHtml, titleOf, metaOf, setMeta, rewriteStructuredData, townMetadata, redirectRules } from './public-seo.mjs';
+const PROVINCE_META = {
+  '/antenas-alava/': ['Álava','diagnóstico de señal, antenas colectivas y porteros'],
+  '/antenas-bizkaia/': ['Bizkaia','TDT, cabeceras comunitarias, porteros y videoporteros'],
+  '/antenas-burgos/': ['Burgos','antenas, amplificación, distribución y satélite'],
+  '/antenas-guipuzcoa/': ['Gipuzkoa','señal TV, porteros, videoporteros y comunidades'],
+  '/antenas-cantabria/': ['Cantabria','TDT, parabólicas, amplificación y distribución'],
+  '/antenas-navarra/': ['Navarra','antenas, señal, porteros y sistemas de acceso'],
+  '/antenas-la-rioja/': ['La Rioja','TDT, satélite, amplificación y porteros'],
+  '/antenas-palencia/': ['Palencia','antenas, señal débil, cableado y comunidades'],
+  '/antenas-valladolid/': ['Valladolid','antenas, nuevas tomas, porteros y videoporteros'],
+  '/antenas-leon/': ['León','recepción TV, satélite, instalaciones antiguas y porteros'],
+  '/antenas-segovia/': ['Segovia','TDT, distribución, porteros automáticos y comunidades']
+};
+function provinceMetadata(route) {
+  const info = PROVINCE_META[route];
+  if (!info) return null;
+  const [name,focus] = info;
+  return {
+    title: `Antenista en ${name} · diagnóstico técnico | ${PHONE}`,
+    description: `Antenista en ${name}. ${PHONE}. Antenas Zallatel: ${focus}. Revisamos recepción, amplificación y distribución antes de sustituir equipos. Urgencias 24h.`
+  };
+}
+
 
 export function walk(dir) {
   return fs.readdirSync(dir, {withFileTypes:true}).flatMap(entry => entry.isDirectory() ? walk(path.join(dir,entry.name)) : [path.join(dir,entry.name)]);
@@ -52,8 +75,11 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     if (town) {
       const metadata = townMetadata(town);
       title = metadata.title;
-      // Keep the existing relevant description and its service focus when it contains the essentials.
-      if (![town.name, town.province, PHONE].every(part => description.includes(part))) description = metadata.description;
+      description = metadata.description;
+    } else if (provinceMetadata(doc.path)) {
+      const metadata = provinceMetadata(doc.path);
+      title = metadata.title;
+      description = metadata.description;
     } else if (doc.path === '/') {
       title = `Antenas Zallatel · diagnóstico de antenas y porteros | ${PHONE}`;
       description = `Antenas Zallatel. ${PHONE}. Diagnóstico y reparación de antenas, señal TDT, amplificación, porteros y videoporteros; SAT-TDT y montaje Starlink. Antes Antenas Zalla.`;
