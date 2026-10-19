@@ -565,3 +565,18 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   }
   .hero.zalla-fault-hero .hero-copy{background:rgba(5,32,52,.88)!important}
 }
+
+/* Marca Zallatel unificada: símbolo y wordmark en el mismo azul. */
+.zalla-brand-logo-base.zalla-brand-logo,
+.zalla-logo-icon,
+.zalla-wordmark>span,
+.zalla-wordmark>b{
+  color:#0867bd!important;
+}
+.brand-tagline{color:#66788b!important}
+.legal-home .zalla-brand-logo-base.zalla-brand-logo,
+.legal-home .zalla-logo-icon,
+.legal-home .zalla-wordmark>span,
+.legal-home .zalla-wordmark>b{
+  color:#0867bd!important;
+}
