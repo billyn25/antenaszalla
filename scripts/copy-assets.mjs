@@ -74,17 +74,65 @@ for (const page of localPages) {
 }
 for (const list of byProvince.values()) list.sort((a,b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
 
+const LOCAL_AREAS = [
+  {province:'Bizkaia',name:'Enkarterri',towns:['Zalla','Balmaseda','Güeñes','Sopuerta','Gordexola','Galdames','Artzentales','Karrantza Harana/Valle de Carranza','Trucios-Turtzioz','Lanestosa']},
+  {province:'Bizkaia',name:'Durangaldea',towns:['Durango','Amorebieta-Etxano','Abadiño','Berriz','Elorrio','Iurreta','Atxondo','Garai']},
+  {province:'Bizkaia',name:'Busturialdea',towns:['Gernika-Lumo','Bermeo','Mundaka','Busturia','Forua','Muxika','Sukarrieta','Gautegiz Arteaga']},
+  {province:'Bizkaia',name:'Uribe',towns:['Mungia','Bakio','Plentzia','Gorliz','Lemoiz','Gatika','Laukiz','Urduliz']},
+  {province:'Bizkaia',name:'Nerbioi-Ibaizabal',towns:['Galdakao','Basauri','Arrigorriaga','Etxebarri','Ugao-Miraballes','Zeberio','Zaratamo','Lemoa']},
+  {province:'Bizkaia',name:'Margen Izquierda',towns:['Barakaldo','Portugalete','Santurtzi','Sestao','Valle de Trápaga-Trapagaran','Ortuella','Abanto y Ciérvana-Abanto Zierbena','Muskiz']},
+  {province:'Burgos',name:'Arlanza',towns:['Lerma','Covarrubias','Santa María del Campo','Villalmanzo','Quintanilla del Agua y Tordueles','Madrigal del Monte','Mecerreyes']},
+  {province:'Burgos',name:'Ribera del Duero',towns:['Aranda de Duero','Roa','Gumiel de Izán','Gumiel de Mercado','La Horra','Peñaranda de Duero','Fuentespina','Villalba de Duero']},
+  {province:'Burgos',name:'Las Merindades',towns:['Medina de Pomar','Villarcayo de Merindad de Castilla la Vieja','Espinosa de los Monteros','Frías','Oña','Trespaderne','Valle de Mena','Merindad de Montija']},
+  {province:'Burgos',name:'La Bureba',towns:['Briviesca','Poza de la Sal','Monasterio de Rodilla','Pancorbo','Prádanos de Bureba','Quintanavides','Rojas','Salinillas de Bureba']},
+  {province:'Burgos',name:'Sierra de la Demanda',towns:['Salas de los Infantes','Quintanar de la Sierra','Canicosa de la Sierra','Hontoria del Pinar','Huerta de Rey','Regumiel de la Sierra','Vilviestre del Pinar','Neila']},
+  {province:'Cantabria',name:'Costa Oriental',towns:['Castro-Urdiales','Laredo','Colindres','Limpias','Ampuero','Guriezo','Ramales de la Victoria','Rasines']},
+  {province:'Cantabria',name:'Trasmiera',towns:['Santoña','Noja','Arnuero','Bareyo','Meruelo','Escalante','Bárcena de Cicero','Hazas de Cesto']},
+  {province:'Cantabria',name:'Besaya',towns:['Torrelavega','Cartes','Corrales de Buelna, Los','San Felices de Buelna','Reocín','Polanco','Suances','Santillana del Mar']},
+  {province:'Cantabria',name:'Campoo',towns:['Reinosa','Campoo de Enmedio','Hermandad de Campoo de Suso','Campoo de Yuso','Rozas de Valdearroyo, Las','Valdeolea','Valdeprado del Río','Valderredible']},
+  {province:'Cantabria',name:'Liébana',towns:['Potes','Cillorigo de Liébana','Camaleño','Vega de Liébana','Pesaguero','Tresviso','Peñarrubia']},
+  {province:'Cantabria',name:'Bahía de Santander',towns:['Camargo','Astillero, El','Santa Cruz de Bezana','Piélagos','Marina de Cudeyo','Medio Cudeyo','Ribamontán al Mar','Ribamontán al Monte']}
+];
+
+const normalizeTown = value => String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'');
+
+function areaFor(page) {
+  const key = normalizeTown(page.name);
+  return LOCAL_AREAS.find(area => area.province === page.province && area.towns.some(name => normalizeTown(name) === key));
+}
+
 function relatedTownBlock(page) {
   const list = byProvince.get(page.province) || [];
   if (list.length < 2) return '';
-  const index = list.findIndex(p => p.path === page.path);
+  const byName = new Map(list.map(p => [normalizeTown(p.name),p]));
+  const area = areaFor(page);
   const selected = [];
-  for (const offset of [-3,-2,-1,1,2,3,4,-4]) {
-    if (selected.length >= 6) break;
-    const candidate = list[(index + offset + list.length) % list.length];
-    if (candidate && candidate.path !== page.path && !selected.some(x => x.path === candidate.path)) selected.push(candidate);
+
+  if (area) {
+    for (const name of area.towns) {
+      const candidate = byName.get(normalizeTown(name));
+      if (candidate && candidate.path !== page.path && !selected.some(x => x.path === candidate.path)) selected.push(candidate);
+      if (selected.length >= 6) break;
+    }
   }
-  return `<section class="related-towns-section" aria-label="Otros pueblos de ${page.province}"><div class="wrap"><div class="related-towns"><h3>Servicio de antenista en otros pueblos de ${page.province}</h3><p>Consulta también nuestras páginas de servicio en otros municipios de la provincia.</p><div class="related-town-links">${selected.map(p => `<a href="${p.path}">${p.name}</a>`).join('')}</div></div></div></section>`;
+
+  if (selected.length < 6) {
+    const index = list.findIndex(p => p.path === page.path);
+    const offsets = [-2,-1,1,2,-3,3,-4,4,5,-5];
+    for (const offset of offsets) {
+      if (selected.length >= 6) break;
+      const candidate = list[(index + offset + list.length) % list.length];
+      if (candidate && candidate.path !== page.path && !selected.some(x => x.path === candidate.path)) selected.push(candidate);
+    }
+  }
+
+  const heading = area ? `Antenista en pueblos de ${area.name}` : `Servicio de antenista en otros municipios de ${page.province}`;
+  const intro = area
+    ? `Consulta también localidades de ${area.name} relacionadas con esta zona de ${page.province}.`
+    : `Consulta otras páginas locales de Antenas Zallatel dentro de ${page.province}.`;
+  const label = area ? `Zona: ${area.name}` : `Provincia: ${page.province}`;
+
+  return `<section class="related-towns-section" aria-label="${heading}"><div class="wrap"><div class="related-towns"><span class="related-area-label">${label}</span><h3>${heading}</h3><p>${intro}</p><div class="related-town-links">${selected.map(p => `<a href="${p.path}">${p.name}</a>`).join('')}</div></div></div></section>`;
 }
 
 function stableHash(value) {
