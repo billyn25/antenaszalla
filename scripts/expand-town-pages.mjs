@@ -124,6 +124,45 @@ function injectLocalBlock(html, page) {
   return html.replace(marker, localSeoBlock(page) + marker);
 }
 
+
+const PRIORITY_TOWNS = {
+  'Álava': ['Amurrio','Laudio / Llodio','Artziniega','Laguardia','Agurain / Salvatierra','Alegría-Dulantzi','Ayala / Aiara','Zuia'],
+  'Bizkaia': ['Zalla','Balmaseda','Gernika-Lumo','Durango','Mungia','Bermeo','Lekeitio','Galdakao'],
+  'Burgos': ['Lerma','Aranda de Duero','Medina de Pomar','Miranda de Ebro','Briviesca','Salas de los Infantes','Roa','Villadiego'],
+  'Gipuzkoa': ['Eibar','Tolosa','Zarautz','Oñati','Azpeitia','Bergara','Hondarribia','Elgoibar'],
+  'Cantabria': ['Castro-Urdiales','Laredo','Santoña','Noja','Reinosa','Torrelavega','Camargo','Potes'],
+  'Navarra': ['Tudela','Estella-Lizarra','Tafalla','Sangüesa / Zangoza','Corella','Bera','Baztan','Olite / Erriberri'],
+  'La Rioja': ['Haro','Calahorra','Arnedo','Nájera','Santo Domingo de la Calzada','Alfaro','Ezcaray','Cervera del Río Alhama'],
+  'Palencia': ['Aguilar de Campoo','Guardo','Cervera de Pisuerga','Carrión de los Condes','Dueñas','Venta de Baños','Villamuriel de Cerrato','Saldaña'],
+  'Valladolid': ['Medina del Campo','Tordesillas','Peñafiel','Íscar','Tudela de Duero','Laguna de Duero','Olmedo','Medina de Rioseco'],
+  'León': ['Ponferrada','Astorga','La Bañeza','Bembibre','Villablino','Valencia de Don Juan','Cistierna','La Pola de Gordón'],
+  'Segovia': ['Cuéllar','El Espinar','Riaza','Cantalejo','Nava de la Asunción','Carbonero el Mayor','Sepúlveda','San Ildefonso']
+};
+
+const loose = value => normalize(value).replace(/[^a-z0-9]+/g,'');
+function priorityPages(province, locals, limit=8) {
+  const wanted = PRIORITY_TOWNS[province.name] || [];
+  const byLoose = new Map(locals.map(p => [loose(p.name),p]));
+  const selected = [];
+  for (const name of wanted) {
+    const page = byLoose.get(loose(name));
+    if (page && !selected.some(x => x.path === page.path)) selected.push(page);
+    if (selected.length >= limit) break;
+  }
+  if (selected.length < limit) {
+    for (const page of locals) {
+      if (!selected.some(x => x.path === page.path)) selected.push(page);
+      if (selected.length >= limit) break;
+    }
+  }
+  return selected;
+}
+function priorityBlock(province, locals, limit=8) {
+  const selected = priorityPages(province,locals,limit);
+  if (!selected.length) return '';
+  return `<section class="priority-localities" aria-label="Localidades destacadas de ${esc(province.name)}"><h3>Localidades destacadas en ${esc(province.name)}</h3><p>Acceso directo a páginas de servicio de antenas, porteros automáticos y videoporteros.</p><div class="priority-town-grid">${selected.map(p=>`<a href="${p.path}">Antenista en ${esc(p.name)} <span aria-hidden="true">→</span></a>`).join('')}</div></section>`;
+}
+
 function renderProvinceIndex(province, locals) {
   const sorted = [...locals].sort((a,b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
   const groups = new Map();
@@ -132,7 +171,7 @@ function renderProvinceIndex(province, locals) {
     if (!groups.has(letter)) groups.set(letter, []);
     groups.get(letter).push(p);
   }
-  return `<section class="section soft" id="localidades"><div class="wrap" data-locality-search><span class="eyebrow">Servicio por pueblos</span><h2>Antenistas en los municipios de ${esc(province.name)}</h2><p class="section-lead">${locals.length} localidades con página propia de servicio. Busca tu pueblo y consulta antenas, porteros, videoporteros y cobertura móvil.</p><label class="search-label" for="town-search">Buscar localidad</label><input class="search-field" id="town-search" type="search" placeholder="Escribe el nombre de tu localidad" autocomplete="off"><p class="search-status" role="status" aria-live="polite">${locals.length} localidades</p><nav class="alphabet" aria-label="Inicial de la localidad">${[...groups.keys()].map(l=>`<a href="#letra-${l}">${l}</a>`).join('')}</nav>${[...groups].map(([l,items])=>`<section class="letter-group" id="letra-${l}" data-letter-group><h3>${l}</h3><ul class="town-list">${items.map(p=>`<li data-town="${esc(p.name)}"><a href="${p.path}">${esc(p.name)} →</a></li>`).join('')}</ul></section>`).join('')}<p class="notice">Cada enlace abre una página local generada para esa localidad. La web continúa en modo de revisión y noindex.</p></div></section>`;
+  return `<section class="section soft" id="localidades"><div class="wrap" data-locality-search><span class="eyebrow">Servicio por pueblos</span><h2>Antenista en los municipios de ${esc(province.name)}</h2><p class="section-lead">Busca tu localidad para consultar instalación y reparación de antenas TDT, parabólicas, porteros automáticos y videoporteros.</p>${priorityBlock(province,locals)}<label class="search-label" for="town-search">Buscar localidad</label><input class="search-field" id="town-search" type="search" placeholder="Escribe el nombre de tu localidad" autocomplete="off"><p class="search-status" role="status" aria-live="polite">${locals.length} localidades</p><nav class="alphabet" aria-label="Inicial de la localidad">${[...groups.keys()].map(l=>`<a href="#letra-${l}">${l}</a>`).join('')}</nav>${[...groups].map(([l,items])=>`<section class="letter-group" id="letra-${l}" data-letter-group><h3>${l}</h3><ul class="town-list">${items.map(p=>`<li data-town="${esc(p.name)}"><a href="${p.path}">${esc(p.name)} →</a></li>`).join('')}</ul></section>`).join('')}<p class="notice">Cada enlace abre una página local generada para esa localidad. La web continúa en modo de revisión y noindex.</p></div></section>`;
 }
 function replaceProvinceIndex(html, province, locals) {
   const start = html.indexOf('<section class="section soft" id="localidades">');
@@ -143,10 +182,11 @@ function replaceProvinceIndex(html, province, locals) {
 function insertHomeSummary(html, allPages) {
   const marker = '<section class="section wrap faq" id="preguntas">';
   const cards = provinces.map(p => {
-    const count = allPages.filter(x => x.parent === p.path).length;
-    return `<a class="province-card" href="${p.path}"><strong>${esc(p.name)}</strong><span>${count} localidades con página propia</span><span class="arrow" aria-hidden="true">→</span></a>`;
+    const locals = allPages.filter(x => x.parent === p.path);
+    const direct = priorityPages(p,locals,4);
+    return `<article class="home-province-local"><a class="province-card" href="${p.path}"><strong>Antenista en ${esc(p.name)}</strong><span>${locals.length} localidades</span><span class="arrow" aria-hidden="true">→</span></a><div class="home-priority-links">${direct.map(t=>`<a href="${t.path}">Antenista en ${esc(t.name)}</a>`).join('')}</div></article>`;
   }).join('');
-  const block = `<section class="section soft" id="paginas-locales"><div class="wrap"><span class="eyebrow">SEO local por municipio</span><h2>${allPages.length} páginas locales preparadas</h2><p class="section-lead">Álava, Bizkaia, Burgos, Cantabria, Gipuzkoa, Navarra, La Rioja, Palencia, Valladolid, León y Segovia ya se generan automáticamente por localidad, con URL, título, H1, teléfono y servicios locales.</p><div class="province-grid">${cards}</div></div></section>`;
+  const block = `<section class="section soft" id="paginas-locales"><div class="wrap"><span class="eyebrow">Servicio por localidades</span><h2>Encuentra antenista en tu pueblo</h2><p class="section-lead">Elige provincia o entra directamente en una localidad. Consulta antenas TDT, parabólicas, amplificación, porteros automáticos y videoporteros.</p><div class="home-province-grid">${cards}</div></div></section>`;
   if (!html.includes(marker)) throw new Error('Portada: no se encontró el punto para el resumen local');
   return html.replace(marker, block + marker);
 }
