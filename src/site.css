@@ -484,3 +484,7 @@ header{position:relative!important;top:auto!important;z-index:30;background:#fff
 .province-diagnostic h3{margin:8px 0 10px;color:#fff;font-size:24px;line-height:1.28}.province-diagnostic p{margin:0;color:#d7e4ec;line-height:1.7;font-size:14px}.province-diagnostic .eyebrow{color:#9bc5df}
 .province-diagnostic-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.province-diagnostic-points span{display:block;padding:12px;border:1px solid rgba(255,255,255,.13);border-radius:8px;font-size:12px;line-height:1.5}.province-diagnostic-points strong{display:block;margin-bottom:3px;color:#fff;font-size:13px}
 @media(max-width:760px){.province-diagnostic{grid-template-columns:1fr;padding:19px}.province-diagnostic-points{grid-template-columns:1fr}}
+
+.zallatel-service-signals{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.zallatel-service-signals span{display:inline-flex;align-items:center;min-height:36px;padding:8px 11px;border:1px solid #c8d8e2;border-radius:999px;background:#fff;color:#1a4059;font-size:12px;font-weight:800;line-height:1.2}
+@media(max-width:760px){.zallatel-service-signals{display:grid;grid-template-columns:1fr}.zallatel-service-signals span{border-radius:7px}}
