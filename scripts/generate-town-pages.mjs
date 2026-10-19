@@ -68,6 +68,48 @@ const metaVariants = [
   (t,p,phone) => `Reparación e instalación de antenas en ${t}, ${p} | ${phone}. TDT, satélite, amplificación, comunidades, porteros y videoporteros.`
 ];
 
+const provinceProfiles = {
+  'Álava': 'Servicio organizado por municipios de Álava, con atención a viviendas, comunidades y pequeñas instalaciones que necesitan revisar recepción, distribución, porteros o videoporteros.',
+  'Bizkaia': 'Servicio organizado por municipios de Bizkaia, con atención a instalaciones individuales y comunitarias de TDT, satélite, amplificación, porteros automáticos y videoporteros.',
+  'Burgos': 'Servicio organizado por localidades de Burgos, tanto en núcleos urbanos como en pueblos donde conviene revisar con detalle antena, amplificación, cableado y distribución interior.',
+  'Gipuzkoa': 'Servicio organizado por municipios de Gipuzkoa para viviendas y comunidades que necesitan diagnóstico de señal, antenas, porteros, videoporteros o distribución de televisión.',
+  'Cantabria': 'Servicio organizado por localidades de Cantabria, con revisión de instalaciones de televisión, antenas, amplificación, porteros y videoporteros en viviendas y comunidades.',
+  'Navarra': 'Servicio organizado por municipios de Navarra para consultas de antenas TDT, satélite, amplificación, porteros automáticos, videoporteros y averías de señal.',
+  'La Rioja': 'Servicio organizado por localidades de La Rioja para instalaciones y averías de TDT, parabólica, distribución de señal y sistemas de acceso en viviendas y comunidades.',
+  'Palencia': 'Servicio organizado por municipios de Palencia para revisar antenas, amplificación, cableado, tomas, porteros automáticos y videoporteros según el tipo de inmueble.',
+  'Valladolid': 'Servicio organizado por localidades de Valladolid para averías e instalaciones de antena, TDT, satélite, distribución interior, porteros y videoporteros.',
+  'León': 'Servicio organizado por municipios de León para viviendas y comunidades con problemas de recepción, instalaciones antiguas, amplificación, porteros o videoporteros.',
+  'Segovia': 'Servicio organizado por localidades de Segovia para diagnóstico de señal, antenas TDT, parabólicas, amplificación y sistemas de portero y videoportero.'
+};
+
+const propertyProfiles = [
+  'vivienda unifamiliar',
+  'piso o apartamento',
+  'comunidad de propietarios',
+  'pequeño negocio',
+  'instalación con varias tomas de TV',
+  'instalación antigua que necesita diagnóstico'
+];
+
+const symptomProfiles = [
+  'pérdida de canales o pixelación',
+  'señal inestable en una o varias tomas',
+  'fallo de amplificación o distribución',
+  'parabólica sin señal',
+  'portero que no llama, no se oye o no abre',
+  'videoportero sin imagen o con fallo de apertura'
+];
+
+function localProfile(page, province) {
+  const h = stableHash(`${province.path}|${page.name}|perfil-local`);
+  return {
+    provinceContext: provinceProfiles[province.name] || `Servicio organizado por localidades de ${province.name}.`,
+    property: propertyProfiles[h % propertyProfiles.length],
+    symptom: symptomProfiles[Math.floor(h / 11) % symptomProfiles.length],
+    serviceStart: ['antena TDT','amplificación y distribución','portero automático','videoportero','parabólica','diagnóstico de señal'][Math.floor(h / 23) % 6]
+  };
+}
+
 function provinceFor(page) {
   return provinces.find(p => p.path === page.parent);
 }
@@ -97,6 +139,7 @@ export function buildTownPages() {
       if (usedPaths.has(townPath)) townPath = `${province.path}${slug}-${h % 997}.html`;
       usedPaths.add(townPath);
 
+      const profile = localProfile({name: town}, province);
       const page = {
         type: 'town',
         path: townPath,
@@ -105,12 +148,13 @@ export function buildTownPages() {
         name: town,
         title: `Antenista en ${town}, ${province.name} | ${site.phone}`,
         heading: `Antenista en ${town}, ${province.name}`,
-        lead: leadVariants[h % leadVariants.length](town, province.name),
-        intro: introVariants[Math.floor(h / 7) % introVariants.length](town, province.name),
+        lead: `${leadVariants[h % leadVariants.length](town, province.name)} Primera revisión orientada a ${profile.symptom} en ${profile.property}.`,
+        intro: `${introVariants[Math.floor(h / 7) % introVariants.length](town, province.name)} ${profile.provinceContext}`,
         focus: focusVariants[Math.floor(h / 17) % focusVariants.length](town),
-        advice: adviceVariants[Math.floor(h / 31) % adviceVariants.length](town),
+        advice: `${adviceVariants[Math.floor(h / 31) % adviceVariants.length](town)} Al pedir cita, indica si quieres empezar por ${profile.serviceStart}.`,
+        localProfile: profile,
         source: province.source,
-        evidence: 'generated-preview-from-province-list',
+        evidence: 'generated-from-province-municipality-list',
         generated: true,
         variant: h % 997
       };
@@ -186,13 +230,23 @@ function rotate(items, amount) {
 function otherTownLinks(page, province, localPages) {
   const candidates = localPages.filter(p => p.parent === province.path && normalize(p.name) !== normalize(page.name));
   if (!candidates.length) return '';
-  const h = stableHash(`${page.path}|otros`);
-  const rotated = rotate(candidates, h % candidates.length).slice(0, 6);
-  return `<nav class="other-towns" aria-label="Otros municipios de ${esc(province.name)}">${rotated.map(p => `<a href="${p.path}">Antenista en ${esc(p.name)}</a>`).join('')}</nav>`;
+  const currentIndex = localPages.filter(p => p.parent === province.path).findIndex(p => normalize(p.name) === normalize(page.name));
+  const ordered = [];
+  for (let offset = 1; offset < candidates.length + 2 && ordered.length < 8; offset++) {
+    const sameProvince = localPages.filter(p => p.parent === province.path);
+    const forward = sameProvince[(currentIndex + offset) % sameProvince.length];
+    const backward = sameProvince[(currentIndex - offset + sameProvince.length) % sameProvince.length];
+    for (const item of [forward, backward]) {
+      if (item && normalize(item.name) !== normalize(page.name) && !ordered.some(x => x.path === item.path)) ordered.push(item);
+      if (ordered.length >= 8) break;
+    }
+  }
+  return `<nav class="other-towns" aria-label="Más municipios de ${esc(province.name)}">${ordered.map(p => `<a href="${p.path}">Antenista en ${esc(p.name)}</a>`).join('')}</nav>`;
 }
 
 function localSeoBlock(page, province, allTownPages) {
   const h = stableHash(`${page.path}|contenido-local`);
+  const profile = page.localProfile || localProfile(page, province);
   const modules = rotate(serviceModules, h % serviceModules.length);
   const sectionTitles = [
     `Servicios de antenista en ${page.name}`,
@@ -207,7 +261,10 @@ function localSeoBlock(page, province, allTownPages) {
     [`¿Revisáis antenas de comunidades en ${page.name}?`,`Sí. En instalaciones colectivas comprobamos si la incidencia afecta a varios vecinos y revisamos los elementos comunes que correspondan, además de la derivación hacia la vivienda cuando sea necesario.`]
   ];
   const faq = faqPairs[h % faqPairs.length];
-  return `<section class="section soft local-intent-section" id="servicio-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>${esc(sectionTitles[h % sectionTitles.length])}</h2><p class="section-lead">Consulta por teléfono o WhatsApp indicando ${esc(page.name)}, el tipo de inmueble y el problema observado. El contenido de esta página está orientado a los trabajos que atendemos en la localidad, no a una sede física.</p><div class="local-intents">${modules.map((module, index) => { const text = module.texts[(h + index * 5) % module.texts.length](page.name); return `<article id="${module.id}"><h3>${esc(module.title(page.name))}</h3><p>${esc(text)}</p></article>`; }).join('')}</div><div class="local-faq"><h3>${esc(faq[0])}</h3><p>${esc(faq[1])}</p></div><div class="other-localities"><h3>Otros municipios con servicio en ${esc(province.name)}</h3>${otherTownLinks(page, province, allTownPages)}</div><div class="local-contact"><strong>Servicio en ${esc(page.name)}</strong><a href="tel:${site.tel}">${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}">Consultar por WhatsApp</a></div></div></section><style id="local-intent-style">.local-intents{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}.local-intents article{background:#fff;border:1px solid var(--line);border-top:3px solid var(--brand);padding:22px}.local-intents h3,.local-faq h3,.other-localities h3{margin:0 0 8px;font-size:20px;line-height:1.25}.local-intents p,.local-faq p{margin:0;color:var(--muted);font-size:14px}.local-faq{margin-top:18px;background:#fff;border-left:4px solid var(--brand);padding:20px}.other-localities{margin-top:24px}.other-towns{display:flex;flex-wrap:wrap;gap:8px}.other-towns a{display:inline-flex;padding:8px 11px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:700}.local-contact{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;margin-top:24px;padding:18px;background:var(--deep);color:#fff}.local-contact a{color:#fff;font-weight:800}.local-contact a:last-child{margin-left:auto}@media(max-width:760px){.local-intents{grid-template-columns:1fr}.local-contact a:last-child{margin-left:0}}</style>`;
+  const moduleCount = 4 + (h % 3);
+  const selectedModules = modules.slice(0, moduleCount);
+  const localSummary = `En ${page.name} damos prioridad a consultas de ${profile.symptom} y trabajos de ${profile.serviceStart}. Si el aviso corresponde a ${profile.property}, indícalo al contactar para orientar mejor la revisión.`;
+  return `<section class="section soft local-intent-section" id="servicio-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>${esc(sectionTitles[h % sectionTitles.length])}</h2><p class="section-lead">${esc(localSummary)}</p><p class="local-province-context">${esc(profile.provinceContext)}</p><p><a class="province-context-link" href="${province.path}">Ver localidades y servicio de antenista en ${esc(province.name)} →</a></p><div class="local-intents">${selectedModules.map((module, index) => { const text = module.texts[(h + index * 5) % module.texts.length](page.name); return `<article id="${module.id}"><h3>${esc(module.title(page.name))}</h3><p>${esc(text)}</p></article>`; }).join('')}</div><div class="local-faq"><h3>${esc(faq[0])}</h3><p>${esc(faq[1])}</p></div><div class="other-localities"><h3>Más localidades con servicio en ${esc(province.name)}</h3>${otherTownLinks(page, province, allTownPages)}</div><div class="local-contact"><strong>Servicio en ${esc(page.name)}</strong><a href="tel:${site.tel}">${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}">Consultar por WhatsApp</a></div></div></section><style id="local-intent-style">.local-intents{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}.local-intents article{background:#fff;border:1px solid var(--line);border-top:3px solid var(--brand);padding:22px}.local-intents h3,.local-faq h3,.other-localities h3{margin:0 0 8px;font-size:20px;line-height:1.25}.local-intents p,.local-faq p{margin:0;color:var(--muted);font-size:14px}.local-faq{margin-top:18px;background:#fff;border-left:4px solid var(--brand);padding:20px}.other-localities{margin-top:24px}.other-towns{display:flex;flex-wrap:wrap;gap:8px}.other-towns a{display:inline-flex;padding:8px 11px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:700}.local-contact{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;margin-top:24px;padding:18px;background:var(--deep);color:#fff}.local-contact a{color:#fff;font-weight:800}.local-contact a:last-child{margin-left:auto}@media(max-width:760px){.local-intents{grid-template-columns:1fr}.local-contact a:last-child{margin-left:0}}</style>`;
 }
 
 function injectLocalSeo(html, page, province, allTownPages) {
