@@ -165,8 +165,23 @@ function priorityBlock(province, locals, limit=8) {
   return `<section class="priority-localities" aria-label="Localidades destacadas de ${esc(province.name)}"><h3>Localidades destacadas en ${esc(province.name)}</h3><p>Acceso directo a páginas de servicio de antenas, porteros automáticos y videoporteros.</p><div class="priority-town-grid">${selected.map(p=>`<a href="${p.path}">Antenista en ${esc(p.name)} <span aria-hidden="true">→</span></a>`).join('')}</div></section>`;
 }
 
+const provinceSeoFocus = {
+  'Álava': 'revisiones de señal, instalaciones individuales y comunidades',
+  'Bizkaia': 'averías de TDT, cabeceras comunitarias y sistemas de acceso',
+  'Burgos': 'instalaciones de televisión, amplificación y distribución en vivienda',
+  'Gipuzkoa': 'diagnóstico de señal, porteros y videoporteros en viviendas y comunidades',
+  'Cantabria': 'recepción TDT, parabólica y distribución de señal',
+  'Navarra': 'antenas, amplificación y sistemas de portero por localidad',
+  'La Rioja': 'averías de televisión, satélite y renovación de porteros',
+  'Palencia': 'instalaciones TDT, señal débil y redes interiores de televisión',
+  'Valladolid': 'ampliación de tomas, antenas y sistemas de acceso',
+  'León': 'recepción, satélite y revisión de instalaciones antiguas',
+  'Segovia': 'diagnóstico de señal, distribución y porteros automáticos'
+};
+
 function provinceDiagnosticBlock(province) {
-  return `<section class="province-diagnostic"><div><span class="eyebrow">Cómo se plantea una revisión</span><h3>Antenista en ${esc(province.name)}: primero identificar el tramo que falla</h3><p>No todas las pérdidas de señal se solucionan cambiando la antena. Se diferencia recepción, alimentación, amplificación, distribución y tomas; en comunidades también se comprueba si la incidencia afecta a una sola vivienda o a varios vecinos.</p></div><div class="province-diagnostic-points"><span><strong>TV y TDT</strong> Señal, cabecera, cableado y tomas.</span><span><strong>Comunidades</strong> Elementos comunes frente a distribución interior.</span><span><strong>Porteros</strong> Llamada, audio, imagen y apertura.</span><span><strong>Satélite</strong> Parabólica, receptor, soporte y cableado.</span></div></section>`;
+  const focus = provinceSeoFocus[province.name] || 'diagnóstico de antenas, señal y sistemas de acceso';
+  return `<section class="province-diagnostic"><div class="province-diagnostic-main"><span class="eyebrow">Servicio técnico por municipios</span><h3>Antenista en ${esc(province.name)}: diagnóstico antes de sustituir equipos</h3><p>Antenas Zallatel organiza la atención en ${esc(province.name)} con especial foco en ${esc(focus)}. Antes de proponer un cambio de antena se comprueba si el problema está en recepción, alimentación, amplificación, distribución o en una toma concreta.</p><div class="province-service-tags"><span>TDT y señal</span><span>Antenas colectivas</span><span>Parabólicas</span><span>Porteros</span><span>Videoporteros</span><span>Amplificación</span></div></div><div class="province-diagnostic-points"><span><strong>¿Falla una sola TV?</strong> Puede ser toma, cableado o distribución interior.</span><span><strong>¿Falla a varios vecinos?</strong> Conviene revisar cabecera, alimentación y elementos comunes.</span><span><strong>¿El portero llama pero no abre?</strong> Se separa audio, llamada y apertura para localizar el fallo.</span><span><strong>¿No llega bien la TDT?</strong> Primero se descarta una avería antes de valorar SAT-TDT.</span></div><div class="province-quick-faq"><h4>Antes de pedir visita en ${esc(province.name)}</h4><details><summary>¿Qué datos conviene indicar?</summary><p>Municipio, tipo de inmueble, equipo afectado y si el problema aparece en una sola toma o en varios puntos.</p></details><details><summary>¿Hay que comprar material antes?</summary><p>No. Es mejor identificar primero el origen de la avería para evitar sustituir amplificadores, antenas o terminales sin necesidad.</p></details></div></section>`;
 }
 
 function renderProvinceIndex(province, locals) {
