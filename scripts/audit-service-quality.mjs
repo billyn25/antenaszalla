@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {guides,guideRoute,SERVICE_RELEASE,selectedGuidesForTown} from './service-guides.mjs';
-import {DOMAIN,fileForPublicPath,decodeHtml,publicPath} from './public-seo.mjs';
+import {DOMAIN,PHONE,fileForPublicPath,decodeHtml,publicPath} from './public-seo.mjs';
 const root=path.resolve(process.env.PRODUCTION_ROOT||'dist');
 const towns=JSON.parse(fs.readFileSync(path.join(root,'local-pages-manifest.json'),'utf8'));
 const read=route=>fs.readFileSync(path.join(root,fileForPublicPath(route)),'utf8');
