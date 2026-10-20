@@ -14,12 +14,23 @@ const actions = (g,town) => `<div class="actions"><a class="btn call" href="tel:
 const paragraphs = rows => rows.map(([heading,text])=>`<section><h2>${esc(heading)}</h2><p>${esc(text)}</p></section>`).join('');
 const schema = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;
 
+export function selectedGuidesForTown(town,count=4) {
+  return guides
+    .map(g=>({g,score:createHash('sha256').update(`zallatel-town-services-v2|${town.province}|${town.name}|${g.id}`).digest('hex')}))
+    .sort((a,b)=>a.score.localeCompare(b.score))
+    .slice(0,count)
+    .map(x=>x.g);
+}
+
 export function enhanceServiceCards(html,town) {
   const counts = new Map();
+  const selected=town?selectedGuidesForTown(town):guides;
+  const selectedIds=new Set(selected.map(g=>g.id));
   html=html.replace(/<article class="service-card" id="([^"]+)"(?:\s[^>]*)?>([\s\S]*?)<\/article>/g,(block,id,body)=>{
     const g=byId.get(id);
     if(!g) return block;
     counts.set(id,(counts.get(id)||0)+1);
+    if(town&&!selectedIds.has(id)) return '';
     if(block.includes('data-service-guide=')) return block;
     if(town) {
       body=body.replace(/<h3>[\s\S]*?<\/h3>/,`<h3>${esc(g.label)} en ${esc(town.name)}</h3>`);
@@ -29,7 +40,7 @@ export function enhanceServiceCards(html,town) {
     }
     return `<article class="service-card" id="${id}" data-service-guide="${g.id}">${body}<a class="service-detail-link" href="${guideRoute(g)}">Ver diagnóstico y opciones de ${esc(g.label.toLowerCase())} →</a></article>`;
   });
-  for(const g of guides) if(counts.get(g.id)!==1) throw new Error(`Se esperaba una ficha de ${g.id}${town?' en '+town.name:''}`);
+  for(const g of selected) if(counts.get(g.id)!==1) throw new Error(`Se esperaba una ficha de ${g.id}${town?' en '+town.name:''}`);
   if(!html.includes('id="service-catalogue-link"')) html=html.replace('<div class="service-grid">','<p id="service-catalogue-link"><a href="/servicios/">Averías, cobertura y montaje: todos los servicios →</a></p><div class="service-grid">');
   html=html.replace(/href="#([^"]+)" data-guide-target="([^"]+)"/g,(_,id,slug)=>{
     const guide=guides.find(g=>g.slug===slug);
@@ -43,7 +54,8 @@ export function enhanceTown(html,town) {
   html=html.replace(/<main id="contenido"(?: data-service-release="[^"]*")?>/,`<main id="contenido" data-service-release="${SERVICE_RELEASE}">`);
   html=enhanceServiceCards(html,town);
   if(!html.includes('id="servicios-en-tu-pueblo"')) {
-    const menu=`<nav class="town-service-menu wrap" id="servicios-en-tu-pueblo" aria-label="Servicios en ${esc(town.name)}"><strong>¿Qué necesitas en ${esc(town.name)}?</strong><div>${guides.map(g=>`<a href="#${g.id}">${esc(g.label)}</a>`).join('')}</div></nav>`;
+    const selectedIds=new Set(selectedGuidesForTown(town).map(g=>g.id));
+    const menu=`<nav class="town-service-menu wrap" id="servicios-en-tu-pueblo" aria-label="Servicios en ${esc(town.name)}"><strong>¿Qué necesitas en ${esc(town.name)}?</strong><div>${guides.map(g=>selectedIds.has(g.id)?`<a href="#${g.id}">${esc(g.label)}</a>`:`<a href="${guideRoute(g)}">${esc(g.label)}</a>`).join('')}</div></nav>`;
     const marker='</section><div class="strip">';
     if(!html.includes(marker)) throw new Error(`${town.path}: falta posición del selector de servicio`);
     html=html.replace(marker,'</section>'+menu+'<div class="strip">');
@@ -113,7 +125,7 @@ export function buildServiceGuides(root='dist') {
     fs.writeFileSync(file,html);
   }
   fs.writeFileSync(path.join(root,'assets/service-guides.css'),SERVICE_CSS);
-  console.log(`SERVICIOS LOCALES OK: ${townCount} pueblos con ${guides.length} fichas ampliadas, consultas contextualizadas y presupuesto; ${guides.length} guías e índice de servicios.`);
+  console.log(`SERVICIOS LOCALES OK: ${townCount} pueblos con 4 fichas completas variables y acceso a ${guides.length} guías; catálogo estructurado completo y presupuesto local.`);
 }
 
 export const SERVICE_CSS=`
