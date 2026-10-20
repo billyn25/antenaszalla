@@ -142,6 +142,34 @@ assert.ok(localVariants.size >= 150, `Poca diversidad determinista: solo ${local
 const largestFingerprintGroup = Math.max(...localBodyFingerprints.values());
 assert.ok(largestFingerprintGroup <= 12, `Demasiadas páginas locales con el mismo bloque normalizado: ${largestFingerprintGroup}`);
 
+const shingleSet=(text,size=5)=>{
+  const words=text.toLowerCase().split(/\s+/).filter(Boolean);
+  const set=new Set();
+  for(let i=0;i<=words.length-size;i++) set.add(words.slice(i,i+size).join(' '));
+  return set;
+};
+const jaccard=(a,b)=>{
+  let common=0;
+  for(const value of a) if(b.has(value)) common++;
+  const union=a.size+b.size-common;
+  return union?common/union:0;
+};
+const sampleSize=Math.min(160,localPages.length);
+const similaritySample=Array.from({length:sampleSize},(_,i)=>localPages[Math.floor(i*(localPages.length-1)/(sampleSize-1))]).map(page=>{
+  const html=fs.readFileSync(path.join(root,routeFile(page.path)),'utf8');
+  let normalized=normalizeVisible(html)
+    .replaceAll(page.name,'LOCALIDAD')
+    .replaceAll(page.province||'','PROVINCIA')
+    .replaceAll(site.phone,'PHONE')
+    .replace(/\b\d+[a-z]?\b/gi,'#');
+  return {path:page.path,set:shingleSet(normalized)};
+});
+let highestFullSimilarity={score:0,a:'',b:''};
+for(let i=0;i<similaritySample.length;i++) for(let j=i+1;j<similaritySample.length;j++){
+  const score=jaccard(similaritySample[i].set,similaritySample[j].set);
+  if(score>highestFullSimilarity.score) highestFullSimilarity={score,a:similaritySample[i].path,b:similaritySample[j].path};
+}
+
 const historicalRoutes = [
   { name: 'Bilbao', province: 'Bizkaia', path: '/Antenas-Bizkaia/bilbao.html' },
   { name: 'Aranda de Duero', province: 'Burgos', path: '/Antenas-Burgos/aranda_duero.html' },
@@ -173,4 +201,4 @@ for (const province of provinces) {
   assert.equal(zones.split(`href="${province.path}"`).length - 1, 1, `Portada: acceso único a ${province.name}`);
 }
 assert.equal((home.match(/class="zalla-brand-logo-base zalla-brand-logo"/g) || []).length, 1, 'Portada: debe publicar una única marca Antenas Zallatel');
-console.log(`AUDITORÍA SEO LOCAL OK: ${localPages.length} páginas; ${titlePatterns.size} patrones de title, ${descriptionPatterns.size} metas, ${localVariants.size} variantes de contenido, schema Service sin dirección inventada, Urgencias 24h, URLs históricas de Bilbao/Aranda/Lerma e interlinking provincial.`);
+console.log(`AUDITORÍA SEO LOCAL OK: ${localPages.length} páginas; ${titlePatterns.size} patrones de title, ${descriptionPatterns.size} metas, ${localVariants.size} variantes de contenido, grupo normalizado máx. ${largestFingerprintGroup}, similitud global muestra máx. ${highestFullSimilarity.score.toFixed(3)} (${highestFullSimilarity.a} / ${highestFullSimilarity.b}), schema Service sin dirección inventada, Urgencias 24h, URLs históricas de Bilbao/Aranda/Lerma e interlinking provincial.`);
