@@ -53,7 +53,8 @@ const localManifest=JSON.parse(await text200(DOMAIN+'/local-pages-manifest.json'
 const townSamples=[...new Map(localManifest.map(t=>[t.province,t])).values()];
 for (const town of townSamples) {
   const html=await text200(DOMAIN+town.publicPath);
-  if ((html.match(/data-service-guide=/g)||[]).length!==guides.length || !html.includes('id="preparar-visita-local"') || !html.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error(`Municipal service release missing: ${town.name}`);
+  if ((html.match(/data-service-guide=/g)||[]).length!==4 || !html.includes('id="preparar-visita-local"') || !html.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error(`Municipal service release missing: ${town.name}`);
+  for(const guide of guides) if(!html.includes(`href="${guideRoute(guide)}"`)) throw new Error(`Municipal guide link missing: ${town.name} / ${guide.id}`);
 }
 const results=[];
 await Promise.all(Array.from({length:4},async()=>{
