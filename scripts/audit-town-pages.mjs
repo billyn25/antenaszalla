@@ -126,7 +126,7 @@ for (const page of localPages) {
   const variant = html.match(/data-local-variant="(\d+)"/)?.[1];
   if (variant) localVariants.add(variant);
 
-  const localBlock = html.match(/<section class="section soft local-intent-section"[\s\S]*?<\/section>/)?.[0] || '';
+  const localBlock = html.match(/<section\b[^>]*class="[^"]*\blocal-intent-section\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
   const normalized = normalizeVisible(localBlock)
     .replaceAll(page.name, 'LOCALIDAD')
     .replaceAll(page.province || '', 'PROVINCIA');
@@ -139,6 +139,7 @@ for (const page of localPages) {
 assert.ok(titlePatterns.size >= 4, `Poca variedad de title SEO: ${titlePatterns.size} patrones`);
 assert.ok(descriptionPatterns.size >= 6, `Poca variedad de meta descriptions: ${descriptionPatterns.size} patrones`);
 assert.ok(localVariants.size >= 150, `Poca diversidad determinista: solo ${localVariants.size} variantes`);
+assert.ok(localBodyFingerprints.size>0,'No se pudo medir el bloque local variable');
 const largestFingerprintGroup = Math.max(...localBodyFingerprints.values());
 assert.ok(largestFingerprintGroup <= 12, `Demasiadas páginas locales con el mismo bloque normalizado: ${largestFingerprintGroup}`);
 
