@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import { pages, site, renderPage, routeFile, esc } from './build.mjs';
 import { stableHash, slugifyTown } from './generate-town-pages.mjs';
 
@@ -99,6 +100,51 @@ const diagnosticRoutes = [
     key:'satelite',
     title:t=>`Parabólica, SAT-TDT y Starlink en ${t}`,
     text:t=>`Para satélite se comprueban equipo, soporte, cableado y recepción. En SAT-TDT y Starlink el montaje físico y las condiciones del servicio se valoran por separado.`
+  },
+  {
+    key:'mastil',
+    title:t=>`Mástil, torreta y fijaciones en ${t}`,
+    text:t=>`Después de viento fuerte se revisan verticalidad, anclajes, tensores y orientación. Una antena movida o un mástil cedido no se corrigen aumentando amplificación.`
+  },
+  {
+    key:'humedad',
+    title:t=>`Previo de mástil y humedad exterior en ${t}`,
+    text:t=>`Un previo sulfatado, una caja mojada o un coaxial con entrada de agua pueden provocar pérdidas intermitentes. Se comprueban alimentación, conectores y estanqueidad.`
+  },
+  {
+    key:'tomas',
+    title:t=>`Tomas de TV y cableado interior en ${t}`,
+    text:t=>`Si solo falla una habitación, se revisan toma de pared, conector, derivación y cable coaxial antes de intervenir la antena o la cabecera común.`
+  },
+  {
+    key:'cofdm',
+    title:t=>`HDMI y distribución COFDM en locales de ${t}`,
+    text:t=>`En bares u oficinas se puede estudiar un recorrido HDMI largo o distribuir una fuente de vídeo autorizada por la red coaxial mediante modulación COFDM HD, según distancia y equipos.`
+  },
+  {
+    key:'wifi',
+    title:t=>`Cobertura Wi‑Fi con puntos de acceso en ${t}`,
+    text:t=>`Si Internet llega correctamente al router pero hay zonas sin cobertura, se separa el problema Wi‑Fi de la señal exterior y se valora cableado y puntos de acceso Reyee o equivalentes.`
+  },
+  {
+    key:'cerradura',
+    title:t=>`Cerradura eléctrica y abrepuertas en ${t}`,
+    text:t=>`Cuando llamada y audio funcionan pero la puerta no abre, se revisan tensión, orden de apertura, cerradero y ajuste mecánico antes de sustituir placa o telefonillo.`
+  },
+  {
+    key:'accesibilidad',
+    title:t=>`Puerta de portal motorizada y accesibilidad en ${t}`,
+    text:t=>`En comunidades se puede valorar la automatización de una puerta para facilitar el acceso de personas con movilidad reducida, comprobando peso, recorrido, maniobra y elementos de seguridad.`
+  },
+  {
+    key:'fuente-cabecera',
+    title:t=>`Fuente, módulos y central de cabecera en ${t}`,
+    text:t=>`Si varios vecinos pierden el mismo grupo de canales, se comprueban fuente, central programable o módulos, comparando niveles de entrada y salida antes de renovar toda la cabecera.`
+  },
+  {
+    key:'resintonizacion',
+    title:t=>`Resintonización TDT y compatibilidad UHD en ${t}`,
+    text:t=>`Cuando cambian emisiones o faltan servicios se puede hacer una nueva búsqueda de canales y comprobar compatibilidad del receptor; resintonizar no corrige una avería de señal ni un equipo incompatible.`
   }
 ];
 
@@ -134,7 +180,14 @@ const symptomGuides = [
   {
     title:'La señal empeora al conectar varias TV',
     text:'Puede existir una distribución desequilibrada o una amplificación mal ajustada. Se comprueban niveles y reparto antes de añadir más ganancia.'
-  }
+  },
+  {title:'La avería apareció después de lluvia',text:'La humedad en conectores, cajas, previos de mástil o coaxial exterior puede degradar la señal de forma intermitente aunque la antena siga orientada.'},
+  {title:'El mástil o la antena se mueven con viento',text:'Se comprueban soporte, anclajes y orientación antes de reajustar la señal. Un problema mecánico no debe compensarse con más ganancia.'},
+  {title:'El abrepuertas recibe orden pero no libera',text:'Se diferencia alimentación y bobina del cerradero de problemas mecánicos como holgura, puerta descolgada o pestillo desalineado.'},
+  {title:'Hay Internet pero el Wi‑Fi no llega a varias zonas',text:'Se separa la conexión de entrada de la cobertura interior y se valora la ubicación del router, cableado o puntos de acceso adicionales.'},
+  {title:'El mismo canal falla en varias viviendas',text:'Ese patrón orienta hacia recepción, cabecera, fuente o módulo común antes de intervenir en televisores o tomas particulares.'},
+  {title:'Se quiere llevar una fuente HD a varias pantallas',text:'En un local se comprueban distancia, resolución y red disponible para decidir entre HDMI directo y distribución interna mediante modulación COFDM.'},
+  {title:'Una toma de pared está floja o deteriorada',text:'Se revisa mecanismo, conexión y cable coaxial porque una toma final puede introducir pérdidas aunque el resto de la instalación funcione.'}
 ];
 
 const propertyGuides = [
@@ -156,10 +209,16 @@ const propertyGuides = [
   }
 ];
 
+function rankForPage(items,page,salt,count){
+  return items
+    .map((item,index)=>({item,score:createHash('sha256').update(`${salt}|${page.path}|${item.key||item.title}|${index}`).digest('hex')}))
+    .sort((a,b)=>a.score.localeCompare(b.score))
+    .slice(0,count)
+    .map(x=>x.item);
+}
 function localSeoBlock(page) {
   const h = stableHash(`${page.path}|zallatel-diagnostico`);
-  const ordered = [...diagnosticRoutes.slice(h % diagnosticRoutes.length), ...diagnosticRoutes.slice(0,h % diagnosticRoutes.length)];
-  const visible = ordered.slice(0,4);
+  const visible = rankForPage(diagnosticRoutes,page,'diagnostico-v4',4);
   const checklists = [
     ['Una toma o varias','Indica si el fallo aparece en un solo televisor o en más puntos.'],
     ['Vivienda o comunidad','Comenta si otros vecinos observan la misma incidencia.'],
@@ -171,10 +230,9 @@ function localSeoBlock(page) {
     `Porteros automáticos y videoporteros en ${page.name}`,
     `Cobertura móvil 4G/5G en vivienda individual en ${page.name}`
   ];
-  const symptomStart = h % symptomGuides.length;
-  const symptoms = [0,1,2].map(i => symptomGuides[(symptomStart + i) % symptomGuides.length]);
-  const property = propertyGuides[Math.floor(h / 11) % propertyGuides.length];
-  return `<section class="section soft local-intent-section zallatel-diagnostic" id="diagnostico-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>Antes de cambiar equipos, localizamos el punto de fallo</h2><p class="section-lead">En ${esc(page.name)} orientamos la revisión por el recorrido real de la instalación: recepción, amplificación, distribución y equipo final. En porteros y videoporteros se revisa cada función por separado.</p><nav class="zallatel-service-signals" aria-label="Servicios técnicos en ${esc(page.name)}">${serviceSignals.map(label=>`<span>${esc(label)}</span>`).join('')}</nav><div class="zallatel-diagnostic-grid">${visible.map(item=>`<article><span class="diag-number">0${diagnosticRoutes.indexOf(item)+1}</span><h3>${esc(item.title(page.name))}</h3><p>${esc(item.text(page.name))}</p></article>`).join('')}</div><section class="zallatel-symptom-guide" aria-label="Síntomas habituales en ${esc(page.name)}"><div class="zallatel-symptom-heading"><span class="eyebrow">Qué nos cuenta la avería</span><h3>Tres síntomas que ayudan a orientar la revisión</h3><p>El síntoma no sustituye una medición, pero sí ayuda a decidir por dónde empezar.</p></div><div class="zallatel-symptom-grid">${symptoms.map(item=>`<article><h4>${esc(item.title)}</h4><p>${esc(item.text)}</p></article>`).join('')}</div><aside class="zallatel-property-note"><strong>${esc(property.label)}</strong><span>${esc(property.text)}</span></aside></section><aside class="zallatel-intake"><div><span class="eyebrow">Para preparar la visita</span><h3>Cuatro datos que ayudan</h3></div><ul>${checklists.map(([a,b])=>`<li><strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join('')}</ul></aside><div class="zallatel-local-actions"><a href="${page.parent}">Ver todos los municipios de ${esc(page.province)} →</a><a href="tel:${site.tel}">Llamar ${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, necesito revisar una instalación en ${page.name}, ${page.province}. Os indico qué falla y si afecta a una o varias tomas.`)}">Explicar la avería por WhatsApp</a></div></div></section>`;
+  const symptoms = rankForPage(symptomGuides,page,'sintomas-v4',3);
+  const property = rankForPage(propertyGuides,page,'inmueble-v4',1)[0];
+  return `<section class="section soft local-intent-section zallatel-diagnostic" id="diagnostico-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>Antes de cambiar equipos, localizamos el punto de fallo</h2><p class="section-lead">En ${esc(page.name)} orientamos la revisión por el recorrido real de la instalación: recepción, amplificación, distribución y equipo final. En porteros y videoporteros se revisa cada función por separado.</p><nav class="zallatel-service-signals" aria-label="Servicios técnicos en ${esc(page.name)}">${serviceSignals.map(label=>`<span>${esc(label)}</span>`).join('')}</nav><div class="zallatel-diagnostic-grid">${visible.map((item,index)=>`<article><span class="diag-number">0${index+1}</span><h3>${esc(item.title(page.name))}</h3><p>${esc(item.text(page.name))}</p></article>`).join('')}</div><section class="zallatel-symptom-guide" aria-label="Síntomas habituales en ${esc(page.name)}"><div class="zallatel-symptom-heading"><span class="eyebrow">Qué nos cuenta la avería</span><h3>Tres síntomas que ayudan a orientar la revisión</h3><p>El síntoma no sustituye una medición, pero sí ayuda a decidir por dónde empezar.</p></div><div class="zallatel-symptom-grid">${symptoms.map(item=>`<article><h4>${esc(item.title)}</h4><p>${esc(item.text)}</p></article>`).join('')}</div><aside class="zallatel-property-note"><strong>${esc(property.label)}</strong><span>${esc(property.text)}</span></aside></section><aside class="zallatel-intake"><div><span class="eyebrow">Para preparar la visita</span><h3>Cuatro datos que ayudan</h3></div><ul>${checklists.map(([a,b])=>`<li><strong>${esc(a)}</strong><span>${esc(b)}</span></li>`).join('')}</ul></aside><div class="zallatel-local-actions"><a href="${page.parent}">Ver todos los municipios de ${esc(page.province)} →</a><a href="tel:${site.tel}">Llamar ${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`Hola, necesito revisar una instalación en ${page.name}, ${page.province}. Os indico qué falla y si afecta a una o varias tomas.`)}">Explicar la avería por WhatsApp</a></div></div></section>`;
 }
 
 function injectLocalBlock(html, page) {
