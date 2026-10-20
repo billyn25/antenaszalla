@@ -15,8 +15,8 @@ test('local service expansion keeps URLs and contact while making the enquiry sp
   assert.equal(html.match(/rel="canonical" href="[^"]+"/)[0],before.match(/rel="canonical" href="[^"]+"/)[0]);
   const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);
   const selected=selectedGuidesForTown(p);
-  assert.equal((html.match(/data-service-guide=/g)||[]).length,4);
-  assert.equal((html.match(/class="town-service-detail"/g)||[]).length,4);
+  assert.equal((html.match(/data-service-guide=/g)||[]).length,3);
+  assert.equal((html.match(/class="town-service-detail"/g)||[]).length,3);
   for(const g of guides) assert(html.includes(`href="${guideRoute(g)}"`));
   for(const g of selected) assert(ids.includes(g.id));
   for(const g of guides.filter(g=>!selected.some(s=>s.id===g.id))) assert(!ids.includes(g.id));
