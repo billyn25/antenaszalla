@@ -40,6 +40,22 @@ for(const town of towns) {
   }
   assert(catalog,town.name+': catálogo estructurado');
 }
+const stripText=html=>decodeHtml(String(html).replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ')).replace(/\s+/g,' ').trim().toLowerCase();
+const shingles=(text,size=5)=>{const words=text.split(/\s+/).filter(Boolean);const set=new Set();for(let i=0;i<=words.length-size;i++)set.add(words.slice(i,i+size).join(' '));return set;};
+const jaccard=(a,b)=>{let common=0;for(const x of a)if(b.has(x))common++;const union=a.size+b.size-common;return union?common/union:0;};
+const sampleSize=Math.min(160,towns.length);
+const sample=Array.from({length:sampleSize},(_,i)=>towns[Math.floor(i*(towns.length-1)/(sampleSize-1))]).map(town=>{
+  let normalized=stripText(read(town.publicPath));
+  for(const value of [town.name,town.province,PHONE].filter(Boolean)) normalized=normalized.replaceAll(String(value).toLowerCase(),'{local}');
+  normalized=normalized.replace(/\b\d+[a-z]?\b/gi,'#');
+  return {path:town.publicPath,set:shingles(normalized)};
+});
+let highestSimilarity={score:0,a:'',b:''};
+for(let i=0;i<sample.length;i++)for(let j=i+1;j<sample.length;j++){
+  const score=jaccard(sample[i].set,sample[j].set);
+  if(score>highestSimilarity.score)highestSimilarity={score,a:sample[i].path,b:sample[j].path};
+}
+
 for(const g of guides) {
   const html=read(guideRoute(g));
   assert(html.includes(`data-service-release="${SERVICE_RELEASE}"`));
@@ -49,5 +65,5 @@ for(const g of guides) {
   assert(html.includes(`href="${DOMAIN+guideRoute(g)}"`));
   for(const [label,url] of g.sources) {assert.equal(new URL(url).protocol,'https:');assert(html.includes(label));}
 }
-const report={towns:towns.length,fullServiceCardsPerTown:4,availableGuideLinksPerTown:guides.length,contextualEnquiries:enquiries,guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',release:SERVICE_RELEASE};
+const report={towns:towns.length,fullServiceCardsPerTown:4,availableGuideLinksPerTown:guides.length,contextualEnquiries:enquiries,guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
 console.log('CALIDAD DE SERVICIOS OK: '+JSON.stringify(report));
