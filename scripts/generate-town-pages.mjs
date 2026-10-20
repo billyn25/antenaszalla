@@ -219,6 +219,78 @@ const serviceModules = [
       t => `En casas de ${t} con señal móvil débil se puede valorar la recepción exterior, la ubicación del router y una antena 4G/5G adecuada. No instalamos repetidores de llamadas de forma indiscriminada: primero se determina qué solución es técnicamente y normativamente viable.`,
       t => `La mejora de cobertura móvil en una vivienda de ${t} comienza comprobando operador, señal y uso principal: llamadas, datos o ambos. Según el caso se estudia antena exterior para router, ubicación interior y las limitaciones que correspondan a equipos repetidores.`
     ]
+  },
+  {
+    id: 'mastiles-estructura-local',
+    title: t => `Mástiles, torretas y antenas desplazadas en ${t}`,
+    texts: [
+      t => `Si en ${t} un temporal ha doblado un mástil, desplazado una antena o aflojado una fijación, se revisan estabilidad, anclajes, orientación y estado del conjunto antes de volver a ajustar la recepción.`,
+      t => `Una antena puede seguir dando señal en ${t} aunque el mástil haya cedido o el soporte se haya movido. Se comprueba primero la parte mecánica para no compensar con amplificación un problema de estructura.`,
+      t => `En instalaciones elevadas de ${t} también se valora el estado de tensores, herrajes y corrosión. Ganar altura solo tiene sentido si la medición demuestra una mejora y la estructura puede quedar estable.`
+    ]
+  },
+  {
+    id: 'humedad-previos-local',
+    title: t => `Previos de mástil, humedad y conexiones exteriores en ${t}`,
+    texts: [
+      t => `Un previo de mástil sulfatado o una caja exterior con humedad puede provocar cortes intermitentes en ${t}. Se revisan alimentación, conectores, estanqueidad y estado del equipo antes de cambiar la antena.`,
+      t => `Cuando una instalación de ${t} empeora después de lluvia, interesa revisar amplificador exterior, caja de conexión, coaxial y conectores. El agua puede degradar la señal aunque la orientación siga siendo correcta.`,
+      t => `En ${t} un amplificador de mástil puede fallar por corrosión, alimentación deficiente o entrada de humedad. Medir entrada, salida y tensión ayuda a separar la avería del resto de la instalación.`
+    ]
+  },
+  {
+    id: 'cabecera-local',
+    title: t => `Cabecera comunitaria y amplificación en ${t}`,
+    texts: [
+      t => `Si varios vecinos de ${t} pierden los mismos canales, se revisan antena, fuente, central programable o módulos de cabecera antes de intervenir vivienda por vivienda.`,
+      t => `En una comunidad de ${t} conviene medir entrada y salida de la cabecera y comprobar fuentes, previos y módulos cuando el fallo afecta a un grupo concreto de canales.`,
+      t => `Una central de amplificación de ${t} puede necesitar reajuste, filtrado o revisión de alimentación. No se aumenta ganancia sin comprobar antes nivel y calidad de la señal.`
+    ]
+  },
+  {
+    id: 'tomas-tv-local',
+    title: t => `Cambio y ampliación de tomas de TV en ${t}`,
+    texts: [
+      t => `Una toma de pared deteriorada en ${t} puede introducir pérdidas o falsos contactos. Se comprueba mecanismo, conector y cable antes de sustituirla o crear una nueva derivación.`,
+      t => `Para mover una televisión o añadir otra toma en ${t}, se revisa cómo está repartida la señal y qué pérdidas añadirá el nuevo recorrido para no perjudicar los puntos existentes.`,
+      t => `En ${t} también se pueden renovar tomas antiguas y ordenar el cableado final cuando el problema está en la conexión de pared y no en la antena exterior.`
+    ]
+  },
+  {
+    id: 'audiovisual-cofdm-local',
+    title: t => `HDMI largo y distribución de vídeo en locales de ${t}`,
+    texts: [
+      t => `En bares, oficinas o locales de ${t} se pueden preparar recorridos HDMI de mayor longitud con la solución adecuada a la distancia, evitando empalmes improvisados y comprobando la señal antes de cerrar canaletas.`,
+      t => `Cuando un local de ${t} necesita mostrar una misma fuente de vídeo autorizada en varias televisiones, se puede estudiar una distribución por modulador COFDM HD y red coaxial existente.`,
+      t => `Para llevar una fuente HDMI contratada o propia a varias pantallas de un establecimiento de ${t}, se revisan distancias, resolución, cableado disponible y distribución interna antes de elegir HDMI directo o modulación COFDM.`
+    ]
+  },
+  {
+    id: 'wifi-profesional-local',
+    title: t => `Cobertura Wi‑Fi con puntos de acceso en ${t}`,
+    texts: [
+      t => `Si el problema en ${t} es la cobertura Wi‑Fi interior y no la señal del operador, se puede plantear una red con puntos de acceso Reyee o equipos equivalentes colocados según la vivienda o negocio.`,
+      t => `En viviendas y pequeños negocios de ${t}, varios puntos de acceso cableados pueden dar una cobertura más estable que repetir una señal débil. Se valora ubicación, cableado y zonas que necesitan servicio.`,
+      t => `Una instalación Wi‑Fi de ${t} se estudia separando primero Internet de entrada y cobertura interior. Después se decide si conviene reubicar el router, añadir cableado o instalar puntos de acceso.`
+    ]
+  },
+  {
+    id: 'cerraduras-portero-local',
+    title: t => `Cerraduras eléctricas y apertura de portero en ${t}`,
+    texts: [
+      t => `Si el portero de ${t} llama y se escucha pero la puerta no abre, se revisan alimentación, orden de apertura, cerradero eléctrico y ajuste mecánico antes de cambiar el telefonillo.`,
+      t => `En ${t} también se puede sustituir un abrepuertas o cerradura eléctrica deteriorada cuando la avería está en el mecanismo y no en la placa o el terminal interior.`,
+      t => `Una puerta de portal en ${t} puede necesitar ajuste mecánico además de reparación eléctrica. Holguras, desalineación y desgaste pueden impedir que el cerradero cierre o libere correctamente.`
+    ]
+  },
+  {
+    id: 'portal-accesibilidad-local',
+    title: t => `Automatización de puertas de portal en ${t}`,
+    texts: [
+      t => `En comunidades de ${t} se puede valorar la automatización de una puerta de portal para facilitar el acceso de personas con movilidad reducida, estudiando motor, maniobra, seguridad y pulsadores adecuados.`,
+      t => `Cuando una puerta comunitaria de ${t} resulta pesada o difícil de manejar, la motorización se estudia según peso, recorrido, tipo de hoja y elementos de seguridad necesarios.`,
+      t => `La automatización de acceso en ${t} debe coordinar apertura, cierre y seguridad del paso. Antes de instalar un motor se revisa el estado mecánico de la puerta y el espacio disponible.`
+    ]
   }
 ];
 
@@ -247,7 +319,10 @@ function otherTownLinks(page, province, localPages) {
 function localSeoBlock(page, province, allTownPages) {
   const h = stableHash(`${page.path}|contenido-local`);
   const profile = page.localProfile || localProfile(page, province);
-  const modules = rotate(serviceModules, h % serviceModules.length);
+  const modules = serviceModules
+    .map(module=>({module,score:stableHash(`${page.path}|modulo|${module.id}`)}))
+    .sort((a,b)=>a.score-b.score)
+    .map(x=>x.module);
   const sectionTitles = [
     `Servicios de antenista en ${page.name}`,
     `Reparación e instalación de antenas en ${page.name}`,
@@ -261,7 +336,7 @@ function localSeoBlock(page, province, allTownPages) {
     [`¿Revisáis antenas de comunidades en ${page.name}?`,`Sí. En instalaciones colectivas comprobamos si la incidencia afecta a varios vecinos y revisamos los elementos comunes que correspondan, además de la derivación hacia la vivienda cuando sea necesario.`]
   ];
   const faq = faqPairs[h % faqPairs.length];
-  const moduleCount = 4 + (h % 3);
+  const moduleCount = 4;
   const selectedModules = modules.slice(0, moduleCount);
   const localSummary = `En ${page.name} damos prioridad a consultas de ${profile.symptom} y trabajos de ${profile.serviceStart}. Si el aviso corresponde a ${profile.property}, indícalo al contactar para orientar mejor la revisión.`;
   return `<section class="section soft local-intent-section" id="servicio-local" data-local-variant="${h % 997}"><div class="wrap"><span class="eyebrow">Servicio en ${esc(page.name)} · ${esc(site.phone)}</span><h2>${esc(sectionTitles[h % sectionTitles.length])}</h2><p class="section-lead">${esc(localSummary)}</p><p class="local-province-context">${esc(profile.provinceContext)}</p><p><a class="province-context-link" href="${province.path}">Ver localidades y servicio de antenista en ${esc(province.name)} →</a></p><div class="local-intents">${selectedModules.map((module, index) => { const text = module.texts[(h + index * 5) % module.texts.length](page.name); return `<article id="${module.id}"><h3>${esc(module.title(page.name))}</h3><p>${esc(text)}</p></article>`; }).join('')}</div><div class="local-faq"><h3>${esc(faq[0])}</h3><p>${esc(faq[1])}</p></div><div class="other-localities"><h3>Más localidades con servicio en ${esc(province.name)}</h3>${otherTownLinks(page, province, allTownPages)}</div><div class="local-contact"><strong>Servicio en ${esc(page.name)}</strong><a href="tel:${site.tel}">${esc(site.phone)}</a><a href="https://wa.me/${site.whatsapp}">Consultar por WhatsApp</a></div></div></section><style id="local-intent-style">.local-intents{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}.local-intents article{background:#fff;border:1px solid var(--line);border-top:3px solid var(--brand);padding:22px}.local-intents h3,.local-faq h3,.other-localities h3{margin:0 0 8px;font-size:20px;line-height:1.25}.local-intents p,.local-faq p{margin:0;color:var(--muted);font-size:14px}.local-faq{margin-top:18px;background:#fff;border-left:4px solid var(--brand);padding:20px}.other-localities{margin-top:24px}.other-towns{display:flex;flex-wrap:wrap;gap:8px}.other-towns a{display:inline-flex;padding:8px 11px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:700}.local-contact{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;margin-top:24px;padding:18px;background:var(--deep);color:#fff}.local-contact a{color:#fff;font-weight:800}.local-contact a:last-child{margin-left:auto}@media(max-width:760px){.local-intents{grid-template-columns:1fr}.local-contact a:last-child{margin-left:0}}</style>`;
