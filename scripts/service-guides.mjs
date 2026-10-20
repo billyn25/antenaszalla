@@ -14,7 +14,7 @@ const actions = (g,town) => `<div class="actions"><a class="btn call" href="tel:
 const paragraphs = rows => rows.map(([heading,text])=>`<section><h2>${esc(heading)}</h2><p>${esc(text)}</p></section>`).join('');
 const schema = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;
 
-export function selectedGuidesForTown(town,count=4) {
+export function selectedGuidesForTown(town,count=3) {
   return guides
     .map(g=>({g,score:createHash('sha256').update(`zallatel-town-services-v2|${town.province}|${town.name}|${g.id}`).digest('hex')}))
     .sort((a,b)=>a.score.localeCompare(b.score))
@@ -127,7 +127,7 @@ export function buildServiceGuides(root='dist') {
     fs.writeFileSync(file,html);
   }
   fs.writeFileSync(path.join(root,'assets/service-guides.css'),SERVICE_CSS);
-  console.log(`SERVICIOS LOCALES OK: ${townCount} pueblos con 4 fichas completas variables y acceso a ${guides.length} guías; catálogo estructurado completo y presupuesto local.`);
+  console.log(`SERVICIOS LOCALES OK: ${townCount} pueblos con 3 fichas completas variables y acceso a ${guides.length} guías; catálogo estructurado completo y presupuesto local.`);
 }
 
 export const SERVICE_CSS=`
