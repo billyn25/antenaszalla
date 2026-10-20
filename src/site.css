@@ -734,3 +734,104 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   header[data-mobile-nav] .contact-top a{font-size:18px!important}
   header[data-mobile-nav] .contact-top small{display:none!important}
 }
+
+
+/* Portada móvil: prioriza la fotografía y reduce el peso visual del texto inicial. */
+@media(max-width:640px){
+  .hero.zalla-fault-hero.zallatel-home-hero{
+    min-height:0!important;
+    background:#0b2d48!important;
+    overflow:visible!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-photo{
+    position:relative!important;
+    inset:auto!important;
+    z-index:0!important;
+    display:block!important;
+    width:100%!important;
+    height:232px!important;
+    opacity:1!important;
+    background:
+      linear-gradient(180deg,rgba(4,24,44,.06) 0%,rgba(4,24,44,.12) 58%,rgba(4,24,44,.38) 100%),
+      url('/assets/hero-zallatel.png') 66% 34%/cover no-repeat!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-inner{
+    position:relative!important;
+    z-index:2!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:16px!important;
+    min-height:0!important;
+    margin-top:-54px!important;
+    padding:0 14px 26px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy{
+    width:100%!important;
+    max-width:none!important;
+    padding:19px 19px 17px!important;
+    background:rgba(5,32,52,.94)!important;
+    border:1px solid rgba(255,255,255,.13)!important;
+    border-radius:14px!important;
+    box-shadow:0 12px 30px rgba(3,22,38,.24)!important;
+    backdrop-filter:none!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .eyebrow{
+    font-size:9px!important;
+    line-height:1.45!important;
+    letter-spacing:.12em!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy h1{
+    margin:8px 0 12px!important;
+    font-size:clamp(33px,9.2vw,40px)!important;
+    line-height:1.01!important;
+    letter-spacing:-1.1px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .service-statement{
+    margin:0 0 10px!important;
+    font-size:15px!important;
+    line-height:1.38!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .lead{
+    display:-webkit-box!important;
+    overflow:hidden!important;
+    -webkit-box-orient:vertical!important;
+    -webkit-line-clamp:2!important;
+    margin:0!important;
+    font-size:12.5px!important;
+    line-height:1.5!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .actions,
+  .hero.zalla-fault-hero.zallatel-home-hero .micro{
+    display:none!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-tags{
+    margin-top:13px!important;
+    gap:6px 12px!important;
+    font-size:9.5px!important;
+    line-height:1.4!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .zallatel-tech-panel{
+    width:100%!important;
+    margin:0!important;
+    border-radius:12px!important;
+    box-shadow:0 10px 26px rgba(4,24,44,.14)!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .tech-panel-head{
+    padding:15px 17px 12px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .tech-panel-head>strong{
+    font-size:20px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .zallatel-tech-panel li{
+    padding:10px 15px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .zallatel-tech-panel>p{
+    display:none!important;
+  }
+}
+@media(max-width:390px){
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-photo{height:215px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-inner{margin-top:-46px!important;padding-inline:10px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy{padding:17px 16px 15px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy h1{font-size:32px!important}
+}
