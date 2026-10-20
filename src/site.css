@@ -835,3 +835,129 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   .hero.zalla-fault-hero.zallatel-home-hero .hero-copy{padding:17px 16px 15px!important}
   .hero.zalla-fault-hero.zallatel-home-hero .hero-copy h1{font-size:32px!important}
 }
+
+
+/* Hero de pueblos: misma jerarquía visual que portada, con la V Zenit original sobre fondo blanco. */
+.hero.zalla-fault-hero.zallatel-town-hero{
+  background:#0b2d48!important;
+  overflow:hidden!important;
+}
+.hero.zalla-fault-hero.zallatel-town-hero::before{display:none!important}
+.hero.zalla-fault-hero.zallatel-town-hero .hero-photo{
+  position:absolute!important;
+  inset:0!important;
+  opacity:1!important;
+  background:
+    linear-gradient(90deg,#071f33 0%,rgba(7,31,51,.98) 38%,rgba(7,31,51,.87) 53%,rgba(7,31,51,.28) 68%,rgba(255,255,255,0) 78%),
+    #fff url('https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg') 89% 50%/43% auto no-repeat!important;
+}
+.hero.zalla-fault-hero.zallatel-town-hero .hero-inner{
+  grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr)!important;
+  gap:34px!important;
+  min-height:540px!important;
+}
+.hero.zalla-fault-hero.zallatel-town-hero .hero-copy{
+  position:relative!important;
+  z-index:2!important;
+  max-width:700px!important;
+}
+.hero.zalla-fault-hero.zallatel-town-hero .zallatel-tech-panel{
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+@media(max-width:900px) and (min-width:641px){
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-photo{
+    background:
+      linear-gradient(90deg,#071f33 0%,rgba(7,31,51,.96) 47%,rgba(7,31,51,.40) 68%,rgba(255,255,255,0) 82%),
+      #fff url('https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg') 91% 50%/47% auto no-repeat!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-inner{
+    grid-template-columns:minmax(0,.95fr) minmax(280px,.75fr)!important;
+    min-height:500px!important;
+    padding-block:38px!important;
+  }
+}
+
+/* En móvil replica la portada: foto primero y tarjeta de texto solapada debajo. */
+@media(max-width:640px){
+  .hero.zalla-fault-hero.zallatel-town-hero{
+    min-height:0!important;
+    background:#0b2d48!important;
+    overflow:visible!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-photo{
+    position:relative!important;
+    inset:auto!important;
+    z-index:0!important;
+    display:block!important;
+    width:100%!important;
+    height:232px!important;
+    opacity:1!important;
+    border-bottom:1px solid #dfe7ed!important;
+    background:
+      #fff url('https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg') 50% 48%/contain no-repeat!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-inner{
+    position:relative!important;
+    z-index:2!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:0!important;
+    min-height:0!important;
+    margin-top:-54px!important;
+    padding:0 14px 26px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-copy{
+    width:100%!important;
+    max-width:none!important;
+    padding:19px 19px 17px!important;
+    background:rgba(5,32,52,.95)!important;
+    border:1px solid rgba(255,255,255,.13)!important;
+    border-radius:14px!important;
+    box-shadow:0 12px 30px rgba(3,22,38,.24)!important;
+    backdrop-filter:none!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .eyebrow{
+    font-size:9px!important;
+    line-height:1.45!important;
+    letter-spacing:.12em!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-copy h1{
+    margin:8px 0 12px!important;
+    font-size:clamp(33px,9.2vw,40px)!important;
+    line-height:1.01!important;
+    letter-spacing:-1.1px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .service-statement{
+    margin:0 0 10px!important;
+    font-size:15px!important;
+    line-height:1.38!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .lead{
+    display:-webkit-box!important;
+    overflow:hidden!important;
+    -webkit-box-orient:vertical!important;
+    -webkit-line-clamp:2!important;
+    margin:0!important;
+    font-size:12.5px!important;
+    line-height:1.5!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .actions,
+  .hero.zalla-fault-hero.zallatel-town-hero .micro,
+  .hero.zalla-fault-hero.zallatel-town-hero .zallatel-tech-panel{
+    display:none!important;
+  }
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-tags{
+    margin-top:13px!important;
+    gap:6px 12px!important;
+    font-size:9.5px!important;
+    line-height:1.4!important;
+  }
+}
+@media(max-width:390px){
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-photo{height:215px!important}
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-inner{margin-top:-46px!important;padding-inline:10px!important}
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-copy{padding:17px 16px 15px!important}
+  .hero.zalla-fault-hero.zallatel-town-hero .hero-copy h1{font-size:32px!important}
+}
