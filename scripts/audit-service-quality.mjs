@@ -11,8 +11,8 @@ for(const town of towns) {
   const html=read(town.publicPath);
   assert(html.includes(`data-service-release="${SERVICE_RELEASE}"`),town.name+': versión');
   const selected=selectedGuidesForTown(town);
-  assert.equal((html.match(/data-service-guide=/g)||[]).length,4,town.name+': fichas');
-  assert.equal((html.match(/class="town-service-detail"/g)||[]).length,4,town.name+': diagnóstico');
+  assert.equal((html.match(/data-service-guide=/g)||[]).length,3,town.name+': fichas');
+  assert.equal((html.match(/class="town-service-detail"/g)||[]).length,3,town.name+': diagnóstico');
   assert(html.includes('id="preparar-visita-local"'),town.name+': condiciones');
   assert(html.includes('id="servicios-en-tu-pueblo"'),town.name+': navegación');
   for(const id of ['averias-tdt','averias-portero','averias-videoportero','soluciones-satelite']) assert(html.includes('id="'+id+'"'),town.name+': orientación por avería');
@@ -65,5 +65,5 @@ for(const g of guides) {
   assert(html.includes(`href="${DOMAIN+guideRoute(g)}"`));
   for(const [label,url] of g.sources) {assert.equal(new URL(url).protocol,'https:');assert(html.includes(label));}
 }
-const report={towns:towns.length,fullServiceCardsPerTown:4,availableGuideLinksPerTown:guides.length,contextualEnquiries:enquiries,guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
+const report={towns:towns.length,fullServiceCardsPerTown:3,availableGuideLinksPerTown:guides.length,contextualEnquiries:enquiries,guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
 console.log('CALIDAD DE SERVICIOS OK: '+JSON.stringify(report));
