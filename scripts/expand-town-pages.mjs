@@ -145,6 +145,46 @@ const diagnosticRoutes = [
     key:'resintonizacion',
     title:t=>`Resintonización TDT y compatibilidad UHD en ${t}`,
     text:t=>`Cuando cambian emisiones o faltan servicios se puede hacer una nueva búsqueda de canales y comprobar compatibilidad del receptor; resintonizar no corrige una avería de señal ni un equipo incompatible.`
+  },
+  {
+    key:'antena-activa-pasiva',
+    title:t=>`Antena pasiva o con dipolo activo en ${t}`,
+    text:t=>`La elección se hace según la señal medida. En algunos casos conviene una antena pasiva sin dipolo activo; en otros puede tener sentido un dipolo activo si hay alimentación compatible y margen real para mejorar la recepción.`
+  },
+  {
+    key:'directiva-rebotes',
+    title:t=>`Antena directiva frente a rebotes en ${t}`,
+    text:t=>`Cuando llegan señales desde varios recorridos o repetidores, una antena más directiva puede ayudar a discriminar direcciones no deseadas. Se decide por calidad y dirección de señal, no solo por la ganancia anunciada.`
+  },
+  {
+    key:'lte5g',
+    title:t=>`Filtrado LTE/5G para proteger la TDT en ${t}`,
+    text:t=>`Si la medición detecta señales móviles fuertes cerca de la banda de televisión, se valora una antena con rechazo integrado o un filtro LTE/5G adecuado, evitando filtrar sin comprobar antes la causa.`
+  },
+  {
+    key:'diplexor-tdt-sat',
+    title:t=>`Mezcla TDT y satélite con diplexores en ${t}`,
+    text:t=>`Cuando se quiere aprovechar un mismo coaxial para televisión terrestre y satélite, se estudian diplexores compatibles con frecuencias, paso de corriente y equipos existentes para separar después ambas señales correctamente.`
+  },
+  {
+    key:'coaxial-exterior',
+    title:t=>`Cable negro de polietileno para exterior en ${t}`,
+    text:t=>`En tramos expuestos al sol y la intemperie se puede utilizar coaxial con cubierta negra de polietileno preparado para exterior, reduciendo el deterioro prematuro frente a cable interior instalado a la vista.`
+  },
+  {
+    key:'conectores-blindados',
+    title:t=>`Conectores blindados y protegidos en ${t}`,
+    text:t=>`Las terminaciones exteriores se revisan igual que la antena. Conectores blindados y una protección adecuada ayudan a evitar falsos contactos, entrada de humedad y pérdidas en puntos críticos del recorrido.`
+  },
+  {
+    key:'promax',
+    title:t=>`Medición profesional con Promax en ${t}`,
+    text:t=>`La orientación y el resultado final se comprueban con medidor de campo profesional Promax, observando nivel, calidad y margen de recepción antes de decidir antena, filtrado o amplificación.`
+  },
+  {
+    key:'garantia',
+    title:t=>`Garantía del trabajo realizado en ${t}`,
+    text:t=>`La intervención y los materiales instalados quedan sujetos a las condiciones de garantía indicadas en el presupuesto y a la garantía aplicable del fabricante de cada equipo.`
   }
 ];
 
@@ -187,7 +227,11 @@ const symptomGuides = [
   {title:'Hay Internet pero el Wi‑Fi no llega a varias zonas',text:'Se separa la conexión de entrada de la cobertura interior y se valora la ubicación del router, cableado o puntos de acceso adicionales.'},
   {title:'El mismo canal falla en varias viviendas',text:'Ese patrón orienta hacia recepción, cabecera, fuente o módulo común antes de intervenir en televisores o tomas particulares.'},
   {title:'Se quiere llevar una fuente HD a varias pantallas',text:'En un local se comprueban distancia, resolución y red disponible para decidir entre HDMI directo y distribución interna mediante modulación COFDM.'},
-  {title:'Una toma de pared está floja o deteriorada',text:'Se revisa mecanismo, conexión y cable coaxial porque una toma final puede introducir pérdidas aunque el resto de la instalación funcione.'}
+  {title:'Una toma de pared está floja o deteriorada',text:'Se revisa mecanismo, conexión y cable coaxial porque una toma final puede introducir pérdidas aunque el resto de la instalación funcione.'},
+  {title:'La señal es fuerte pero la calidad es mala',text:'Más nivel no siempre significa mejor recepción. Rebotes, interferencias o exceso de amplificación pueden obligar a cambiar orientación, directividad o filtrado.'},
+  {title:'La instalación mezcla TDT y satélite',text:'Conviene identificar diplexores, paso de corriente y recorrido del coaxial para evitar que una modificación en uno de los servicios perjudique al otro.'},
+  {title:'El cable exterior está cuarteado por el sol',text:'Un coaxial no preparado para intemperie puede degradarse con radiación y humedad. Se revisa el recorrido y se valora cable exterior con cubierta adecuada.'},
+  {title:'La avería aparece cerca de equipos o antenas móviles',text:'Antes de instalar filtros se mide si existe realmente interferencia LTE/5G y qué margen tiene la señal TDT.'}
 ];
 
 const propertyGuides = [
