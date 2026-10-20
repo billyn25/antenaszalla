@@ -837,50 +837,88 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
 }
 
 
-/* Hero de pueblos: misma jerarquía visual que portada, con la V Zenit original sobre fondo blanco. */
-.hero.zalla-fault-hero.zallatel-town-hero{
-  background:#0b2d48!important;
-  overflow:hidden!important;
-}
-.hero.zalla-fault-hero.zallatel-town-hero::before{display:none!important}
+/* Pueblos: el hero reutiliza exactamente el tratamiento móvil de portada.
+   La V Zenit baja a un bloque visual propio, sobre blanco, justo después del hero. */
 .hero.zalla-fault-hero.zallatel-town-hero .hero-photo{
-  position:absolute!important;
-  inset:0!important;
-  opacity:1!important;
   background:
-    linear-gradient(90deg,#071f33 0%,rgba(7,31,51,.98) 38%,rgba(7,31,51,.87) 53%,rgba(7,31,51,.28) 68%,rgba(255,255,255,0) 78%),
-    #fff url('https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg') 89% 50%/43% auto no-repeat!important;
-}
-.hero.zalla-fault-hero.zallatel-town-hero .hero-inner{
-  grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr)!important;
-  gap:34px!important;
-  min-height:540px!important;
-}
-.hero.zalla-fault-hero.zallatel-town-hero .hero-copy{
-  position:relative!important;
-  z-index:2!important;
-  max-width:700px!important;
-}
-.hero.zalla-fault-hero.zallatel-town-hero .zallatel-tech-panel{
-  visibility:hidden!important;
-  pointer-events:none!important;
+    linear-gradient(90deg,rgba(4,24,44,.84) 0%,rgba(4,24,44,.74) 30%,rgba(4,24,44,.46) 52%,rgba(4,24,44,.14) 76%,rgba(4,24,44,.04) 100%),
+    url('/assets/hero-zallatel.png') center center/cover no-repeat!important;
 }
 
-@media(max-width:900px) and (min-width:641px){
-  .hero.zalla-fault-hero.zallatel-town-hero .hero-photo{
-    background:
-      linear-gradient(90deg,#071f33 0%,rgba(7,31,51,.96) 47%,rgba(7,31,51,.40) 68%,rgba(255,255,255,0) 82%),
-      #fff url('https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg') 91% 50%/47% auto no-repeat!important;
-  }
-  .hero.zalla-fault-hero.zallatel-town-hero .hero-inner{
-    grid-template-columns:minmax(0,.95fr) minmax(280px,.75fr)!important;
-    min-height:500px!important;
-    padding-block:38px!important;
-  }
+.town-antenna-showcase{
+  padding:34px 0;
+  background:#fff;
+  border-bottom:1px solid #dfe8ee;
+}
+.town-antenna-showcase-grid{
+  display:grid;
+  grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);
+  gap:38px;
+  align-items:center;
+}
+.town-antenna-product{
+  margin:0;
+  min-width:0;
+  padding:20px;
+  border:1px solid #e1e7eb;
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 10px 28px rgba(8,45,87,.06);
+}
+.town-antenna-product img{
+  display:block;
+  width:100%;
+  max-height:320px;
+  object-fit:contain;
+  background:#fff;
+}
+.town-antenna-product figcaption{
+  margin-top:10px;
+  color:#607386;
+  font-size:11px;
+  font-weight:800;
+  text-align:center;
+}
+.town-antenna-copy h2{
+  margin:8px 0 12px;
+  color:#102943;
+  font-size:clamp(28px,3vw,40px);
+  line-height:1.08;
+  letter-spacing:-.025em;
+}
+.town-antenna-copy>p{
+  max-width:780px;
+  margin:0;
+  color:#52677a;
+  font-size:15px;
+  line-height:1.7;
+}
+.town-antenna-points{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:18px 0 14px;
+}
+.town-antenna-points span{
+  display:inline-flex;
+  align-items:center;
+  min-height:34px;
+  padding:7px 11px;
+  border:1px solid #d7e5ee;
+  border-radius:999px;
+  background:#f7fbfe;
+  color:#173b5b;
+  font-size:12px;
+  font-weight:800;
+}
+.town-antenna-copy .town-antenna-note{
+  margin-top:10px;
+  color:#385267;
+  font-size:12.5px;
+  line-height:1.6;
 }
 
-/* En móvil replica la portada: foto primero y tarjeta de texto solapada debajo. */
-@media(max-width:640px){
+@media(max-width:760px){
   .hero.zalla-fault-hero.zallatel-town-hero{
     min-height:0!important;
     background:#0b2d48!important;
@@ -894,16 +932,16 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
     width:100%!important;
     height:232px!important;
     opacity:1!important;
-    border-bottom:1px solid #dfe7ed!important;
     background:
-      #fff url('https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg') 50% 48%/contain no-repeat!important;
+      linear-gradient(180deg,rgba(4,24,44,.06) 0%,rgba(4,24,44,.12) 58%,rgba(4,24,44,.38) 100%),
+      url('/assets/hero-zallatel.png') 66% 34%/cover no-repeat!important;
   }
   .hero.zalla-fault-hero.zallatel-town-hero .hero-inner{
     position:relative!important;
     z-index:2!important;
     display:grid!important;
     grid-template-columns:1fr!important;
-    gap:0!important;
+    gap:16px!important;
     min-height:0!important;
     margin-top:-54px!important;
     padding:0 14px 26px!important;
@@ -912,7 +950,7 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
     width:100%!important;
     max-width:none!important;
     padding:19px 19px 17px!important;
-    background:rgba(5,32,52,.95)!important;
+    background:rgba(5,32,52,.94)!important;
     border:1px solid rgba(255,255,255,.13)!important;
     border-radius:14px!important;
     box-shadow:0 12px 30px rgba(3,22,38,.24)!important;
@@ -944,8 +982,7 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
     line-height:1.5!important;
   }
   .hero.zalla-fault-hero.zallatel-town-hero .actions,
-  .hero.zalla-fault-hero.zallatel-town-hero .micro,
-  .hero.zalla-fault-hero.zallatel-town-hero .zallatel-tech-panel{
+  .hero.zalla-fault-hero.zallatel-town-hero .micro{
     display:none!important;
   }
   .hero.zalla-fault-hero.zallatel-town-hero .hero-tags{
@@ -954,10 +991,54 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
     font-size:9.5px!important;
     line-height:1.4!important;
   }
+  .hero.zalla-fault-hero.zallatel-town-hero .zallatel-tech-panel{
+    width:100%!important;
+    margin:0!important;
+    border-radius:12px!important;
+    box-shadow:0 10px 26px rgba(4,24,44,.14)!important;
+  }
+
+  .town-antenna-showcase{
+    padding:22px 0 28px;
+  }
+  .town-antenna-showcase-grid{
+    grid-template-columns:1fr;
+    gap:17px;
+  }
+  .town-antenna-product{
+    padding:12px 16px 14px;
+    border-radius:13px;
+    box-shadow:none;
+  }
+  .town-antenna-product img{
+    max-height:245px;
+  }
+  .town-antenna-copy h2{
+    margin-top:7px;
+    font-size:28px;
+  }
+  .town-antenna-copy>p{
+    font-size:13.5px;
+    line-height:1.6;
+  }
+  .town-antenna-points{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin:15px 0 12px;
+  }
+  .town-antenna-points span{
+    min-height:42px;
+    border-radius:8px;
+    font-size:11px;
+    line-height:1.25;
+  }
 }
 @media(max-width:390px){
   .hero.zalla-fault-hero.zallatel-town-hero .hero-photo{height:215px!important}
   .hero.zalla-fault-hero.zallatel-town-hero .hero-inner{margin-top:-46px!important;padding-inline:10px!important}
   .hero.zalla-fault-hero.zallatel-town-hero .hero-copy{padding:17px 16px 15px!important}
   .hero.zalla-fault-hero.zallatel-town-hero .hero-copy h1{font-size:32px!important}
+  .town-antenna-product img{max-height:220px}
+  .town-antenna-points{grid-template-columns:1fr}
 }
