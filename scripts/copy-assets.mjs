@@ -12,6 +12,26 @@ const heroSource=path.join('src','assets','hero-zalla.jpg.png');
 const heroTarget=path.join(root,'assets','hero-zallatel.png');
 if(fs.existsSync(heroSource)) fs.copyFileSync(heroSource,heroTarget);
 
+const zenitUrl='https://www.suministroselectricos.es/20691-home_default/antena-v-zenit-uhf-2o-dividendo-digital-lte700-televes-149221.jpg';
+const zenitTarget=path.join(root,'assets','televes-v-zenit-149221.jpg');
+async function fetchAsset(url,target,label){
+  let last;
+  for(let attempt=1;attempt<=3;attempt++){
+    try{
+      const response=await fetch(url,{headers:{'user-agent':'Mozilla/5.0 AntenasZallatel/1.0'}});
+      if(!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data=Buffer.from(await response.arrayBuffer());
+      if(data.length<5000) throw new Error(`archivo demasiado pequeño (${data.length} bytes)`);
+      fs.writeFileSync(target,data);
+      return;
+    }catch(error){
+      last=error;
+      if(attempt<3) await new Promise(resolve=>setTimeout(resolve,500*attempt));
+    }
+  }
+  throw new Error(`No se pudo preparar ${label}: ${last?.message||last}`);
+}
+await fetchAsset(zenitUrl,zenitTarget,'foto original de la Televés V Zenit 149221');
 
 const home = path.join(root, 'index.html');
 if (fs.existsSync(home)) {
