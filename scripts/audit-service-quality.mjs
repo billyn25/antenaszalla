@@ -6,10 +6,16 @@ import {DOMAIN,PHONE,fileForPublicPath,decodeHtml,publicPath} from './public-seo
 const root=path.resolve(process.env.PRODUCTION_ROOT||'dist');
 const towns=JSON.parse(fs.readFileSync(path.join(root,'local-pages-manifest.json'),'utf8'));
 const read=route=>fs.readFileSync(path.join(root,fileForPublicPath(route)),'utf8');
-let enquiries=0,links=0;
+let links=0;
+const contactCounts=[];
 for(const town of towns) {
   const html=read(town.publicPath);
   assert(html.includes(`data-service-release="${SERVICE_RELEASE}"`),town.name+': versión');
+  const calls=(html.match(/href="tel:/g)||[]).length;
+  const whatsapp=(html.match(/href="https:\/\/wa.me\//g)||[]).length;
+  assert.equal(calls,3,town.name+': llamada solo al inicio, cierre y barra móvil');
+  assert.equal(whatsapp,3,town.name+': WhatsApp solo al inicio, cierre y barra móvil');
+  contactCounts.push({calls,whatsapp});
   const selected=selectedGuidesForTown(town);
   assert.equal((html.match(/data-service-guide=/g)||[]).length,3,town.name+': fichas');
   assert.equal((html.match(/class="town-service-detail"/g)||[]).length,3,town.name+': diagnóstico');
@@ -23,12 +29,9 @@ for(const town of towns) {
   for(const g of selected) {
     const card=html.match(new RegExp(`<article class="service-card" id="${g.id}"[^>]*>[\\s\\S]*?<\\/article>`))?.[0];
     assert(card,town.name+': servicio seleccionado '+g.id);
-    const href=decodeHtml(card.match(/class="service-enquiry" href="([^"]+)"/)?.[1]||'');
-    const url=new URL(href);
-    assert.equal(url.hostname,'wa.me');assert.equal(url.pathname,'/34670042626');
-    const message=url.searchParams.get('text');
-    assert(message.includes(`${town.name}, ${town.province}`),town.name+': contexto del aviso');
-    assert(message.includes(g.label.toLowerCase()),town.name+': servicio del aviso');enquiries++;
+    assert(!/href="(?:https:\/\/wa.me|tel:)/.test(card),town.name+': ficha sin contactos repetidos');
+    assert(card.includes(`href="${guideRoute(g)}"`),town.name+': guía técnica');
+
   }
   let catalog=false;
   for(const [,raw] of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
@@ -51,8 +54,10 @@ const sample=Array.from({length:sampleSize},(_,i)=>towns[Math.floor(i*(towns.len
   return {path:town.publicPath,set:shingles(normalized)};
 });
 let highestSimilarity={score:0,a:'',b:''};
+let similarityTotal=0,similarityPairs=0;
 for(let i=0;i<sample.length;i++)for(let j=i+1;j<sample.length;j++){
   const score=jaccard(sample[i].set,sample[j].set);
+  similarityTotal+=score;similarityPairs++;
   if(score>highestSimilarity.score)highestSimilarity={score,a:sample[i].path,b:sample[j].path};
 }
 
@@ -65,5 +70,5 @@ for(const g of guides) {
   assert(html.includes(`href="${DOMAIN+guideRoute(g)}"`));
   for(const [label,url] of g.sources) {assert.equal(new URL(url).protocol,'https:');assert(html.includes(label));}
 }
-const report={towns:towns.length,fullServiceCardsPerTown:3,availableGuideLinksPerTown:guides.length,contextualEnquiries:enquiries,guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
+const report={towns:towns.length,fullServiceCardsPerTown:3,availableGuideLinksPerTown:guides.length,directContactLinksPerTown:contactCounts[0],guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',sampleTowns:sampleSize,comparedPairs:similarityPairs,finalSampleMeanSimilarity:+(similarityTotal/similarityPairs).toFixed(3),finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
 console.log('CALIDAD DE SERVICIOS OK: '+JSON.stringify(report));

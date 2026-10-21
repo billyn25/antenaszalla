@@ -1,3 +1,4 @@
+import {simplifyContacts} from './contact-policy.mjs';
 import {localEnquiry} from './local-enquiry.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -127,6 +128,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     });
     if (!html.includes('rel="icon"')) html = html.replace('</head>','<link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>');
     if (doc.path === '/') html = html.replace('href="/antenas-leon/">Leon</a>', 'href="/antenas-leon/">León</a>');
+    if (!legal && !errorPage) html = simplifyContacts(html);
     doc.html = html;
     report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
