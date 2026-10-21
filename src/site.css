@@ -1095,10 +1095,33 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
 
 .zalla-footer-wordmark{display:grid;line-height:1.05;letter-spacing:-1px}.zalla-footer-wordmark>span{color:#8ac9e9;font-size:15px;font-weight:800;letter-spacing:.12em}.zalla-footer-wordmark>b{color:#fff;font-size:32px}
 
-/* Mapa territorial del pie: localidad real de referencia, sin dirección ficticia. */
-.zalla-footer-map{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.8fr);gap:26px;align-items:center;padding:26px 0;margin:0 0 22px;border-top:1px solid #ffffff24}
-.zalla-footer-map h3{margin:10px 0;color:#fff;font-size:26px;line-height:1.2}
-.zalla-footer-map p{color:#bdd0df;max-width:300px}
-.zalla-footer-map-copy>a{display:inline-flex;align-items:center;gap:18px;min-height:44px;font-size:13px;font-weight:800;text-underline-offset:4px}
-.zalla-footer-map iframe{display:block;width:100%;height:280px;border:1px solid #ffffff35;border-radius:12px;background:#e5edf1}
-@media(max-width:600px){.zalla-footer-map{grid-template-columns:1fr;gap:16px;padding:24px 0}.zalla-footer-map iframe{height:245px}.zalla-footer-map p{max-width:100%}}
+
+
+/* Cartograma original de Zallatel, con enlaces directos a las provincias. */
+.zalla-footer-coverage{padding:8px 0 34px;margin-bottom:30px;border-bottom:1px solid #ffffff24}
+.zalla-coverage-intro{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:28px}
+.zalla-coverage-intro h3{margin:12px 0;color:#fff;font-size:clamp(32px,4vw,50px);line-height:1.07;letter-spacing:-1.5px}
+.zalla-coverage-intro h3>span{color:#8ac9e9}
+.zalla-coverage-intro p{margin:0;color:#bdd0df;font-size:14px}
+.coverage-area-count{display:flex;align-items:center;gap:17px;padding:20px 26px;border-left:1px solid #ffffff26;flex-shrink:0}
+.coverage-area-count>strong{color:#fff;font-size:72px;line-height:1;font-weight:850;letter-spacing:-5px}
+.coverage-area-count>span{color:#9abccf;font-size:12px;line-height:1.7}
+.zalla-coverage-atlas{position:relative;overflow:hidden;padding:22px 26px 18px;border:1px solid #5685a04d;border-radius:22px;background:radial-gradient(ellipse at 55% 15%,#23577766,transparent 65%),repeating-linear-gradient(0deg,transparent 0 31px,#d8eeff06 31px 32px),repeating-linear-gradient(90deg,transparent 0 31px,#d8eeff06 31px 32px),#061927;box-shadow:inset 0 1px 0 #ffffff0d,0 18px 42px #020e1730}
+.coverage-atlas-top,.coverage-atlas-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;color:#8eaabd;font-size:11px;line-height:1.5}
+.coverage-atlas-top{padding-bottom:18px;border-bottom:1px solid #ffffff12}
+.coverage-atlas-key{display:inline-flex;align-items:center;gap:7px}
+.coverage-atlas-key>i{width:7px;height:7px;border-radius:50%;background:#83d5ff;box-shadow:0 0 12px #83d5ff55}
+.coverage-atlas-bottom{padding-top:18px;border-top:1px solid #ffffff12}
+.coverage-tile-map{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-areas:'. . cantabria bizkaia gipuzkoa navarra' 'leon palencia burgos alava rioja .' '. valladolid segovia . . .';gap:10px;padding:28px 0 24px}
+.footer .coverage-tile{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:13px;min-width:0;min-height:118px;padding:15px 12px 12px;border:1px solid #5996b55c;border-top:3px solid #74c8f0;border-radius:6px 16px 6px 6px;background:linear-gradient(145deg,#24526e,#12354b);color:#eaf6fd;text-decoration:none;box-shadow:0 5px 0 #041321,0 8px 14px #0002;transition:transform .16s,background .16s,box-shadow .16s}
+.coverage-tile-region{font-size:8px;line-height:1.4;letter-spacing:.04em;color:#8eb6cd;white-space:normal}
+.coverage-tile>strong{color:#fff;font-size:16px;line-height:1.15;overflow-wrap:anywhere}
+.coverage-tile-action{display:flex;align-items:center;justify-content:space-between;gap:4px;color:#a7cee3;font-size:9px;line-height:1.3}
+.coverage-tile-action>b{font-size:17px;line-height:1;color:#86d7ff}
+.footer .coverage-tile:hover,.footer .coverage-tile:focus-visible{transform:translateY(-4px);background:linear-gradient(145deg,#34769a,#1a4c69);box-shadow:0 8px 0 #041321,0 12px 24px #0004;border-color:#83d5ff;outline:2px solid #83d5ff;outline-offset:3px}
+.coverage-tile-cantabria{grid-area:cantabria}.coverage-tile-bizkaia{grid-area:bizkaia}.coverage-tile-gipuzkoa{grid-area:gipuzkoa}.coverage-tile-navarra{grid-area:navarra}.coverage-tile-leon{grid-area:leon}.coverage-tile-palencia{grid-area:palencia}.coverage-tile-burgos{grid-area:burgos}.coverage-tile-alava{grid-area:alava}.coverage-tile-rioja{grid-area:rioja}.coverage-tile-valladolid{grid-area:valladolid}.coverage-tile-segovia{grid-area:segovia}
+.zalla-footer-coverage>.zalla-coverage-note{margin:14px 0 0;color:#91afc2;font-size:11px}
+.footer .zalla-footer-grid{grid-template-columns:1fr 1fr}
+@media(max-width:900px) and (min-width:601px){.coverage-tile-map{gap:8px}.footer .coverage-tile{padding:12px 8px;min-height:110px}.coverage-tile>strong{font-size:13px}.coverage-tile-action{font-size:8px}.zalla-coverage-atlas{padding-inline:18px}}
+@media(max-width:600px){.zalla-coverage-intro{align-items:flex-start;gap:12px}.zalla-coverage-intro h3{font-size:32px;letter-spacing:-1px}.zalla-coverage-intro p{font-size:12px}.coverage-area-count{padding:7px 0 0 14px;gap:0;flex-direction:column;align-items:flex-start}.coverage-area-count>strong{font-size:50px;letter-spacing:-3px}.coverage-area-count>span{font-size:9px;line-height:1.5}.zalla-coverage-atlas{padding:16px;border-radius:16px}.coverage-atlas-top{align-items:flex-start;flex-direction:column;gap:8px;padding-bottom:14px}.coverage-tile-map{grid-template-columns:1fr 1fr;grid-template-areas:none;gap:10px;padding:18px 0}.footer .coverage-tile{grid-area:auto;min-height:112px;padding:13px;gap:12px}.coverage-tile-region{font-size:9px}.coverage-tile>strong{font-size:17px}.coverage-tile-action{font-size:10px}.coverage-atlas-bottom{flex-direction:column;align-items:flex-start;gap:5px;padding-top:14px}.footer .zalla-footer-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.footer .coverage-tile{transition:none}.footer .coverage-tile:hover,.footer .coverage-tile:focus-visible{transform:none}}
