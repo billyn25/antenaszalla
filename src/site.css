@@ -1062,3 +1062,35 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   .hero.zalla-fault-hero.zallatel-home-hero .service-statement{min-height:5.52em!important}
   .hero.zalla-fault-hero.zallatel-home-hero .lead{min-height:3em!important}
 }
+
+/* Pie común Zallatel: navegación territorial y una única llamada a la consulta. */
+.footer{padding:0 0 26px;background:radial-gradient(ellipse at 100% 0%,#154765 0%,transparent 55%),#071f32;border-top:3px solid #58a5ce;color:#c3d6e3}
+.footer>.wrap{padding-top:36px}
+.zalla-footer-heading{display:flex;align-items:center;justify-content:space-between;gap:28px;padding-bottom:30px;margin-bottom:34px;border-bottom:1px solid #ffffff24}
+.zalla-footer-kicker{display:block;color:#8ac9e9;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.zalla-footer-heading h2{margin:9px 0;color:#fff;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-.7px}
+.zalla-footer-heading p{margin:0;color:#bdd0df}
+.footer .zalla-footer-cta{display:inline-flex;justify-content:space-between;align-items:center;gap:24px;flex-shrink:0;min-height:48px;padding:12px 18px;border:1px solid #78badb;border-radius:10px;background:#d5eefb;color:#0b2d48;font-size:14px;font-weight:850;text-decoration:none}
+.footer .zalla-footer-cta:hover{background:#fff;transform:translateY(-2px)}
+.zalla-footer-grid{grid-template-columns:minmax(0,.95fr) minmax(0,.9fr) minmax(0,1.5fr);gap:38px;margin-bottom:28px}
+.zalla-footer-brand{display:flex;align-items:center;gap:12px;max-width:245px;min-height:64px;text-decoration:none}
+.zalla-footer-brand .zalla-wordmark{color:#fff!important}
+.zalla-footer-brand .zalla-wordmark>span{color:#8ac9e9!important}
+.zalla-footer-brand .zalla-logo-icon{width:52px;height:52px;flex:0 0 52px;color:#8ac9e9}
+.zalla-footer-about p{max-width:280px;margin:14px 0 18px}
+.zalla-footer-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid #ffffff26;border-radius:7px;color:#b9d5e6;font-size:11px}
+.zalla-footer-grid h3{margin:0 0 15px;color:#fff;font-size:15px;line-height:1.4}
+.zalla-footer-services>a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;padding:7px 0;border-bottom:1px solid #ffffff14;color:#c3d6e3;font-size:13px;text-decoration:none}
+.zalla-footer-services>a span{color:#7cb7d6}
+.zalla-footer-provinces ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.zalla-footer-provinces a{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;padding:10px 12px;border:1px solid #ffffff20;border-radius:8px;background:#ffffff05;font-size:13px;text-decoration:none}
+.zalla-footer-provinces a span{color:#79b9dc}
+.zalla-footer-provinces a:hover,.zalla-footer-services>a:hover{background:#ffffff0e;color:#fff;border-color:#69adcf}
+.footer a:focus-visible{outline:3px solid #9bdcff;outline-offset:4px}
+.footer>.wrap>.legal-links{display:flex;flex-wrap:wrap;gap:12px;padding-top:20px;border-top:1px solid #ffffff24;font-size:12px}
+.footer .fine{margin-top:14px;color:#91afc2}
+.footer #identidad-zalla{max-width:780px;margin:0 0 22px;color:#91afc2;font-size:11px;line-height:1.6}
+@media(max-width:900px){.zalla-footer-grid{grid-template-columns:1fr 1fr;gap:28px}.zalla-footer-provinces{grid-column:1/-1}.zalla-footer-provinces ul{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.footer>.wrap{padding-top:28px}.zalla-footer-heading{align-items:stretch;flex-direction:column;gap:18px;margin-bottom:26px;padding-bottom:24px}.zalla-footer-cta{width:100%}.zalla-footer-grid{grid-template-columns:1fr;gap:26px}.zalla-footer-provinces{grid-column:auto}.zalla-footer-provinces ul{grid-template-columns:repeat(2,minmax(0,1fr))}.zalla-footer-about p{max-width:100%}.footer .legal-sep{display:none}}
+
+.zalla-footer-wordmark{display:grid;line-height:1.05;letter-spacing:-1px}.zalla-footer-wordmark>span{color:#8ac9e9;font-size:15px;font-weight:800;letter-spacing:.12em}.zalla-footer-wordmark>b{color:#fff;font-size:32px}

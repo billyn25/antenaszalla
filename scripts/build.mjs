@@ -1,3 +1,4 @@
+import {footer} from './footer.mjs';
 import {faultHero,problemSections} from './zalla-problem-focus.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -64,7 +65,7 @@ function practicalFaq(page){
     .map(x=>x.item);
   return `<section class="section wrap faq" id="preguntas"><span class="eyebrow">Antes de llamar</span><h2>Preguntas prácticas en ${esc(page.name)}</h2>${selected.map(([q,a])=>`<details><summary>${esc(q(page.name))}</summary><p>${esc(a(page.name))}</p></details>`).join('')}</section>`;
 }
-function footer(){return `<footer class="footer"><div class="wrap"><div class="foot-grid"><div><strong>${esc(site.brand)}</strong><p>Instalación, reparación y mantenimiento de antenas TDT, parabólicas, porteros automáticos y videoporteros.</p></div><div><strong>Contacto</strong><p><a href="${tel()}">${esc(site.phone)}</a><br><a href="${wa()}">Abrir WhatsApp</a></p></div><div><strong>Provincias</strong><p>${provinces.map(p=>`<a href="${p.path}">${esc(p.name)}</a>`).join(' · ')}</p></div></div><details><summary>Información de esta vista previa y privacidad</summary><p>Esta versión de revisión no carga analítica, no incorpora formularios ni utiliza cookies o almacenamiento del navegador para medir visitas. Los enlaces de teléfono y WhatsApp contactan con el servicio real; WhatsApp es externo. El alojamiento recibe las conexiones técnicas necesarias para mostrar la página. La información completa del titular, privacidad y condiciones se revisará antes de sustituir la web actual.</p></details><p class="fine">Antenas Zallatel · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.</p></div></footer><div class="mobilebar"><a href="${tel()}">☎ ${esc(site.phone)}</a><a href="${wa()}">WhatsApp</a></div>`;}
+
 export function renderPage(page){
  const { title, description, heading, statement } = localMetadata(page, site);
  const parent=pages.find(p=>p.path===page.parent);

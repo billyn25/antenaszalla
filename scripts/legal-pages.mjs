@@ -1,3 +1,4 @@
+import {footer} from './footer.mjs';
 import { brandMark } from './logo.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -34,12 +35,9 @@ function legalHeader() {
   return `<div class="legal-top"><div class="wrap legal-top-inner"><a class="legal-home" href="/" aria-label="Antenas Zallatel, inicio">${brandMark()}<span class="legal-home-subtitle">Antenas · Porteros · Videoporteros</span></a><a class="legal-phone" href="tel:${tel}"><small>Contacto directo</small><strong>${phone}</strong></a></div></div>`;
 }
 
-function legalFooter() {
-  return `<footer class="footer legal-footer"><div class="wrap"><div class="foot-grid"><div><strong>Antenas Zallatel</strong><p>Instalación y reparación de antenas, porteros automáticos y videoporteros.</p></div><div><strong>Contacto</strong><p><a href="tel:${tel}">${phone}</a><br><a href="https://wa.me/${whatsapp}">WhatsApp</a></p></div><div><strong>Información</strong>${legalLinks}</div></div><p class="fine">Antenas Zallatel · Propiedad de R.F.G. · ${phone}</p></div></footer><div class="mobilebar"><a href="tel:${tel}">☎ ${phone}</a><a href="https://wa.me/${whatsapp}">WhatsApp</a></div>`;
-}
 
 function page({title, description, route, kicker, lead, body}) {
-  return `${legalHead(title, description, route)}<body>${legalHeader()}<main class="legal-page"><section class="legal-hero"><div class="wrap"><span class="eyebrow">${kicker}</span><h1>${title}</h1><p>${lead}</p></div></section><section class="legal-content"><div class="wrap legal-layout"><article class="legal-copy">${body}<p class="legal-updated">Última actualización: 23 de septiembre de 2026.</p></article><aside class="legal-aside"><strong>Información legal</strong><p>Documentación del sitio y tratamiento de la información.</p><a href="/aviso-legal.html"${route==='/aviso-legal.html'?' aria-current="page"':''}>Aviso legal</a><a href="/privacidad.html"${route==='/privacidad.html'?' aria-current="page"':''}>Privacidad y RGPD</a><a href="/cookies.html"${route==='/cookies.html'?' aria-current="page"':''}>Cookies</a><a href="/">Volver a la web</a></aside></div></section></main>${legalFooter()}${cookieNotice}</body></html>`;
+  return `${legalHead(title, description, route)}<body>${legalHeader()}<main class="legal-page"><section class="legal-hero"><div class="wrap"><span class="eyebrow">${kicker}</span><h1>${title}</h1><p>${lead}</p></div></section><section class="legal-content"><div class="wrap legal-layout"><article class="legal-copy">${body}<p class="legal-updated">Última actualización: 23 de septiembre de 2026.</p></article><aside class="legal-aside"><strong>Información legal</strong><p>Documentación del sitio y tratamiento de la información.</p><a href="/aviso-legal.html"${route==='/aviso-legal.html'?' aria-current="page"':''}>Aviso legal</a><a href="/privacidad.html"${route==='/privacidad.html'?' aria-current="page"':''}>Privacidad y RGPD</a><a href="/cookies.html"${route==='/cookies.html'?' aria-current="page"':''}>Cookies</a><a href="/">Volver a la web</a></aside></div></section></main>${footer()}${cookieNotice}</body></html>`;
 }
 
 function walk(dir) {
