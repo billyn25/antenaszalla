@@ -6,10 +6,11 @@ const root=path.resolve('dist'), titles=new Set();let links=0;
 for(const page of pages){
  const h=fs.readFileSync(path.join(root,routeFile(page.path)),'utf8');
  assert.equal((h.match(/<h1\b/g)||[]).length,1,page.path+': H1');
- assert.equal((h.match(/<title>/g)||[]).length,1,page.path+': title');
+ const head=h.match(/<head\b[^>]*>([\s\S]*?)<\/head>/i)?.[1]||'';
+ assert.equal((head.match(/<title>/g)||[]).length,1,page.path+': title');
  assert.match(h,/<meta name="robots" content="noindex,nofollow">/);
  assert.ok(h.includes(`href="${new URL(page.path,site.domain).href}"`),page.path+': canonical');
- const title=h.match(/<title>(.*?)<\/title>/)[1];assert.ok(!titles.has(title),'Título duplicado');titles.add(title);
+ const title=head.match(/<title>(.*?)<\/title>/)[1];assert.ok(!titles.has(title),'Título duplicado');titles.add(title);
  assert.ok(h.includes('tel:'+site.tel)&&h.includes('https://wa.me/'+site.whatsapp),'Contactos');
  assert.ok(!/antenistacerca|G-W8L23NJLP6|googletagmanager|google-analytics|\{\{/i.test(h),'Identidad o script ajeno');
  for(const raw of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(raw[1]);
