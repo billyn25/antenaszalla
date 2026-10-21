@@ -77,7 +77,7 @@ fs.writeFileSync(path.join(root, 'aviso-legal.html'), page({
 <h2>Propiedad intelectual</h2>
 <p>Los textos, diseño, elementos gráficos, marca y demás contenidos propios de la web están protegidos por la normativa aplicable. No se autoriza su explotación fuera de los usos permitidos legalmente sin autorización del titular.</p>
 <h2>Enlaces y servicios externos</h2>
-<p>La web facilita enlaces a servicios externos, como WhatsApp. Al utilizarlos abandonas el entorno controlado por Antenas Zallatel y pasan a aplicarse también las condiciones y políticas del proveedor correspondiente.</p>
+<p>La web facilita enlaces a servicios externos, como WhatsApp, e integra un mapa de Google Maps. Al utilizarlos abandonas el entorno controlado por Antenas Zallatel y pasan a aplicarse también las condiciones y políticas del proveedor correspondiente.</p>
 <h2>Responsabilidad</h2>
 <p>Antenas Zallatel procura mantener la información accesible y actualizada, pero no puede garantizar la ausencia absoluta de interrupciones, errores técnicos o cambios en servicios de terceros.</p>
 <h2>Legislación aplicable</h2>
@@ -127,7 +127,7 @@ fs.writeFileSync(path.join(root, 'cookies.html'), page({
 <h2>Almacenamiento técnico del aviso</h2>
 <p>Cuando pulsas “Entendido” en el aviso de privacidad, el navegador guarda localmente la clave <code>antenaszalla-cookie-info-v1</code> para recordar que ya has cerrado ese mensaje. Esta preferencia no se utiliza para medir visitas, crear perfiles ni mostrar publicidad.</p>
 <h2>Servicios externos</h2>
-<p>La web contiene enlaces a servicios externos, como WhatsApp. Las cookies o tecnologías que esos proveedores utilicen cuando accedes a sus plataformas dependen de sus propias políticas.</p>
+<p>La web contiene enlaces a servicios externos, como WhatsApp, y un mapa integrado de Google Maps. Al cargar el mapa, el navegador conecta con Google, que recibe datos técnicos de la conexión y aplica sus propias políticas. Las cookies o tecnologías que esos proveedores utilicen cuando accedes a sus plataformas dependen de sus propias políticas.</p>
 <h2>Gestión desde el navegador</h2>
 <p>Los navegadores permiten consultar, bloquear o eliminar cookies y otros datos almacenados desde sus opciones de privacidad y configuración.</p>
 <h2>Cambios futuros</h2>

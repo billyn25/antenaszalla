@@ -1094,3 +1094,11 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
 @media(max-width:600px){.footer>.wrap{padding-top:28px}.zalla-footer-heading{align-items:stretch;flex-direction:column;gap:18px;margin-bottom:26px;padding-bottom:24px}.zalla-footer-cta{width:100%}.zalla-footer-grid{grid-template-columns:1fr;gap:26px}.zalla-footer-provinces{grid-column:auto}.zalla-footer-provinces ul{grid-template-columns:repeat(2,minmax(0,1fr))}.zalla-footer-about p{max-width:100%}.footer .legal-sep{display:none}}
 
 .zalla-footer-wordmark{display:grid;line-height:1.05;letter-spacing:-1px}.zalla-footer-wordmark>span{color:#8ac9e9;font-size:15px;font-weight:800;letter-spacing:.12em}.zalla-footer-wordmark>b{color:#fff;font-size:32px}
+
+/* Mapa territorial del pie: localidad real de referencia, sin dirección ficticia. */
+.zalla-footer-map{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.8fr);gap:26px;align-items:center;padding:26px 0;margin:0 0 22px;border-top:1px solid #ffffff24}
+.zalla-footer-map h3{margin:10px 0;color:#fff;font-size:26px;line-height:1.2}
+.zalla-footer-map p{color:#bdd0df;max-width:300px}
+.zalla-footer-map-copy>a{display:inline-flex;align-items:center;gap:18px;min-height:44px;font-size:13px;font-weight:800;text-underline-offset:4px}
+.zalla-footer-map iframe{display:block;width:100%;height:280px;border:1px solid #ffffff35;border-radius:12px;background:#e5edf1}
+@media(max-width:600px){.zalla-footer-map{grid-template-columns:1fr;gap:16px;padding:24px 0}.zalla-footer-map iframe{height:245px}.zalla-footer-map p{max-width:100%}}
