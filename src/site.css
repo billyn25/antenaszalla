@@ -736,8 +736,8 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
 }
 
 
-/* Portada móvil: prioriza la fotografía y reduce el peso visual del texto inicial. */
-@media(max-width:640px){
+/* Alturas móviles compartidas por portada, provincias y pueblos. */
+@media(max-width:760px){
   .hero.zalla-fault-hero.zallatel-home-hero{
     min-height:0!important;
     background:#0b2d48!important;
@@ -1041,4 +1041,24 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   .hero.zalla-fault-hero.zallatel-town-hero .hero-copy h1{font-size:32px!important}
   .town-antenna-product img{max-height:220px}
   .town-antenna-points{grid-template-columns:1fr}
+}
+
+/* Reserva el mismo alto para el texto del hero a igual ancho de pantalla.
+   El contenido puede crecer con ampliación de texto, sin recortarlo. */
+@media(max-width:760px){
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy{
+    min-height:390px!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy h1{
+    min-height:4.04em!important;
+  }
+  .hero.zalla-fault-hero.zallatel-home-hero .eyebrow{
+    display:block!important;
+    min-height:2.9em!important;
+  }
+}
+
+@media(max-width:760px){
+  .hero.zalla-fault-hero.zallatel-home-hero .service-statement{min-height:5.52em!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .lead{min-height:3em!important}
 }
