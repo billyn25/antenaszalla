@@ -1,3 +1,4 @@
+import {townReception,RECEPTION_CSS} from './town-reception.mjs';
 import {simplifyContacts} from './contact-policy.mjs';
 import {localEnquiry} from './local-enquiry.mjs';
 import fs from 'node:fs';
@@ -77,6 +78,10 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       const metadata = townMetadata(town);
       title = metadata.title;
       description = metadata.description;
+      if (!html.includes('id="recepcion-tdt-local"')) {
+        html = html.replace(/(<section class="section wrap" id="servicios">[\s\S]*?<\/section>)/, section => section + townReception(town));
+      }
+      if (!html.includes('/assets/town-reception.css')) html=html.replace('</head>','<link rel="stylesheet" href="/assets/town-reception.css?v=zallatel-recepcion-v1"></head>');
     } else if (provinceMetadata(doc.path)) {
       const metadata = provinceMetadata(doc.path);
       title = metadata.title;
@@ -128,10 +133,12 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     });
     if (!html.includes('rel="icon"')) html = html.replace('</head>','<link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>');
     if (doc.path === '/') html = html.replace('href="/antenas-leon/">Leon</a>', 'href="/antenas-leon/">León</a>');
+    html=html.replace(/<div class="strip"><div class="wrap">[\s\S]*?<\/div><\/div>/g,'');
     if (!legal && !errorPage) html = simplifyContacts(html);
     doc.html = html;
     report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
+  fs.writeFileSync(path.join(root,'assets/town-reception.css'),RECEPTION_CSS);
   // All transformations and collision checks finish before the output is replaced.
   for (const doc of documents) fs.rmSync(path.join(root,doc.legacyFile));
   for (const doc of byPath.values()) {
