@@ -95,7 +95,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
         const links = names.map(name => towns.find(t => normalize(t.name) === normalize(name))).filter(Boolean);
         if (links.length) {
           const local = `<section class="section soft" id="antenas-zalla-enkarterri"><div class="wrap"><span class="eyebrow">Consulta por localidad</span><h2>Encuentra ayuda en tu pueblo</h2><p class="section-lead">Busca entre los 2.007 municipios de nuestras 11 provincias y prepara una consulta de antenas, porteros, TDT por satélite o montaje Starlink.</p>${localEnquiry(towns)}<h3 class="local-enquiry-directory-title">Accesos directos a más pueblos</h3><nav class="featured-towns" aria-label="Accesos directos a pueblos con servicio de antenista">${links.map(t => `<a href="${escapeHtml(publicPath(t.path))}">Antenista en ${escapeHtml(t.name)}</a>`).join('')}</nav><a class="local-enquiry-route" href="#zonas">Ver los municipios de las 11 provincias →</a></div></section>`;
-          html = html.replace('<section class="section soft" id="zonas">', local + '<section class="section soft" id="zonas">');
+          html = html.replace('</main>', local + '</main>');
         }
       }
     }
