@@ -59,6 +59,13 @@ for (const page of localPages) {
   page.path = historic;
 }
 
+// Special historical pages may already use their canonical filename in the
+// manifest while the generic generator also emitted a slug alias. Do not ship
+// that second, indexable copy; public redirects cover the alias later.
+for (const [from,to] of historicRoutes) {
+  if (fs.existsSync(path.join(root,to.slice(1))) && fs.existsSync(path.join(root,from.slice(1)))) fs.unlinkSync(path.join(root,from.slice(1)));
+}
+
 function replaceHistoricRoutes(text) {
   for (const [from, to] of historicRoutes) {
     text = text.replaceAll(from, to).replaceAll(`${DOMAIN}${from}`, `${DOMAIN}${to}`);
@@ -271,5 +278,10 @@ function fixHtml(dir) {
   }
 }
 fixHtml(root);
+// Remove aliases again after all HTML transforms, before release audits.
+for (const [from,to] of historicRoutes) {
+ if (fs.existsSync(path.join(root,to.slice(1))) && fs.existsSync(path.join(root,from.slice(1)))) fs.unlinkSync(path.join(root,from.slice(1)));
+}
+
 
 console.log(`ASSET/HTML OK: ${localPages.length} páginas locales con bloque de pueblos centrado, titles/metas variados, schema Service sin dirección ficticia, interlinking provincial, Urgencias 24h y URLs históricas preservadas.`);

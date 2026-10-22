@@ -92,7 +92,7 @@ if (fs.existsSync(headersFile)) {
 }
 
 const previewManifest = path.join(root, 'preview-manifest.json');
-if (fs.existsSync(previewManifest)) fs.rmSync(previewManifest);
+if (fs.existsSync(previewManifest)) fs.unlinkSync(previewManifest);
 
 const provinceCount = [...groups.keys()].filter(key => key !== 'core').length;
 console.log(`PRODUCCIÓN PREPARADA: ${unique.length} URLs indexables repartidas en ${provinceCount} sitemaps provinciales + core; sitemap index y robots.txt listos en ${root}. El noindex global de netlify.toml se retira únicamente en el cambio final del dominio.`);
