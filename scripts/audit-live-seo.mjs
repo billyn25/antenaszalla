@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import { DOMAIN, publicPath, metaOf } from './public-seo.mjs';
 import { guides, guideRoute, SERVICE_RELEASE } from './service-guides.mjs';
+import { EDITORIAL_CSS } from './reduce-town-boilerplate.mjs';
 
 async function request(url) {
   const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZallatel-SEO-Check/1.0'}});
@@ -17,9 +18,9 @@ async function text200(url) {
 // Check the mobile header and exact interface assets, including cached deployments.
 const mobileHome = await text200(DOMAIN+'/');
 if (!mobileHome.includes('aria-controls="site-navigation"')) throw new Error('Mobile menu is not public yet');
-for (const asset of ['site.css','site.js']) {
+for (const asset of ['site.css','site.js','zallatel-content.css']) {
   const published=await text200(DOMAIN+'/assets/'+asset);
-  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8');
+  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8')+(asset==='site.css'?EDITORIAL_CSS:'');
   if (published!==expected) throw new Error(`Interface asset is not current: ${asset}`);
 }
 // Verify this content release, rather than accepting a healthy but older deployment.

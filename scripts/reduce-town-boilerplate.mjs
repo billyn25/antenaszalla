@@ -5,6 +5,7 @@ import {pathToFileURL} from 'node:url';
 
 // Consolidate repeated explanations; do not invent municipal faults or hide copy.
 const release='20261022';
+export const EDITORIAL_CSS='\n.editorial-single-work{grid-template-columns:1fr!important;max-width:900px}.editorial-single-work article{border-left:0!important}.mobile-coverage>.wrap>.section-lead{max-width:920px}\n';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const hash=s=>{let n=2166136261;for(const c of s)n=Math.imul(n^c.charCodeAt(0),16777619);return n>>>0;};
 export function replaceSection(html,id,transform){
@@ -94,7 +95,7 @@ export function reduceTown(html,page){
 export function apply(root='dist'){
  const manifest=JSON.parse(fs.readFileSync(path.join(root,'local-pages-manifest.json'),'utf8'));
  for(const page of manifest){const file=path.join(root,page.path.slice(1));fs.writeFileSync(file,reduceTown(fs.readFileSync(file,'utf8'),page));}
- fs.appendFileSync(path.join(root,'assets/site.css'),'\n.editorial-single-work{grid-template-columns:1fr!important;max-width:900px}.editorial-single-work article{border-left:0!important}.mobile-coverage>.wrap>.section-lead{max-width:920px}\n');
+ fs.appendFileSync(path.join(root,'assets/site.css'),EDITORIAL_CSS);
  console.log(`CONSOLIDACIÓN EDITORIAL OK: ${manifest.length} pueblos; metadatos, fotos, servicios y contacto conservados.`);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href)apply();
