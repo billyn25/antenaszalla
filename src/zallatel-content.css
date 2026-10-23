@@ -1,0 +1,53 @@
+/* Body-only presentation. Header, hero, logo, global tokens and photos stay intact. */
+[data-zallatel-flow] .zallatel-page-route{display:flex;flex-wrap:wrap;gap:10px;padding-block:22px;border-bottom:1px solid var(--line)}
+[data-zallatel-flow] .zallatel-page-route a{display:flex;align-items:center;gap:10px;min-height:44px;padding:9px 15px;border:1px solid #d9e5eb;border-radius:5px;background:#f4f8fa;color:#123b50;font-size:14px;font-weight:750;text-decoration:none}
+[data-zallatel-flow] .zallatel-page-route span{color:#397a98;font-size:11px;font-weight:800}
+[data-zallatel-flow] .zallatel-page-route a:hover{background:#e7f1f6;border-color:#6e9fb6}
+[data-zallatel-flow] .zallatel-page-route a:focus-visible{outline:3px solid #2d789f;outline-offset:3px}
+[data-zallatel-flow] .zallatel-service-groups{display:grid;gap:30px;margin-top:28px}
+[data-zallatel-flow] .zallatel-service-family{display:grid;grid-template-columns:minmax(160px,220px) minmax(0,1fr);gap:28px;padding-top:24px;border-top:2px solid #c7dce7;min-width:0}
+[data-zallatel-flow] .zallatel-family-heading{padding:15px 18px;background:#edf5f9;border-left:3px solid #2d789f;align-self:start;border-radius:0 5px 5px 0}
+[data-zallatel-flow] .zallatel-family-heading>span{font-size:12px;color:#496d80;font-weight:700}
+[data-zallatel-flow] .zallatel-family-heading h3{margin:8px 0 0;font-size:23px;line-height:1.25;color:#153d52;overflow-wrap:anywhere}
+[data-zallatel-flow] .zallatel-service-family .service-grid{display:block;min-width:0}
+[data-zallatel-flow] .zallatel-service-family .service-card{padding:22px 18px 23px 54px;margin:0;min-width:0;border:0;border-bottom:1px solid #dce7ed;border-radius:0;background:#fff;box-shadow:none;transform:none}
+[data-zallatel-flow] .zallatel-service-family .service-card:first-child{padding-top:4px}
+[data-zallatel-flow] .zallatel-service-family .icon-box{display:none}
+[data-zallatel-flow] .zallatel-service-number{position:absolute;left:0;top:24px;color:#3e809e;font-size:13px;font-weight:800;letter-spacing:.08em}
+[data-zallatel-flow] .zallatel-service-family .service-card:first-child .zallatel-service-number{top:6px}
+[data-zallatel-flow] .zallatel-service-family h4{font-size:22px;line-height:1.3;margin:0 0 9px;color:#14394c;overflow-wrap:anywhere}
+[data-zallatel-flow] .zallatel-service-family .short{display:block;font-size:14px;line-height:1.5}
+[data-zallatel-flow] .zallatel-service-family p{font-size:15px;line-height:1.7;margin:10px 0}
+[data-zallatel-flow] .zallatel-service-family a{display:block;width:fit-content;max-width:100%;margin-top:12px;line-height:1.5;border-bottom:1px solid #91b8cc}
+[data-zallatel-flow] .zallatel-service-family .town-service-detail{margin-top:16px;background:#f5f8fa;border-color:#d6e3ea}
+[data-zallatel-flow] #galeria .gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+[data-zallatel-flow] #galeria figure{aspect-ratio:auto;border:1px solid #d9e5eb;border-radius:5px;box-shadow:none;background:#fff}
+[data-zallatel-flow] #galeria .gallery-open{height:auto;aspect-ratio:4/3}
+[data-zallatel-flow] #galeria .gallery-open img{height:100%;width:100%;object-fit:cover}
+[data-zallatel-flow] #galeria figcaption{display:flex;gap:12px;padding:12px 14px;line-height:1.5;font-size:13px;color:#37596b}
+[data-zallatel-flow] #galeria figcaption span{font-weight:800;color:#2d789f}
+[data-zallatel-flow] .service-catalogue{display:block}
+[data-zallatel-flow] .zallatel-directory-family{display:grid;grid-template-columns:minmax(180px,260px) minmax(0,1fr);gap:32px;padding-block:30px;border-bottom:1px solid #c7dce7}
+[data-zallatel-flow] .zallatel-directory-family>h2{font-size:28px;line-height:1.2;color:#173e52;margin:0}
+[data-zallatel-flow] .zallatel-directory-family article{border:0;border-bottom:1px solid #e2e9ed;border-radius:0;padding:0 0 20px;margin-bottom:24px;background:#fff}
+[data-zallatel-flow] .zallatel-directory-family h3{font-size:23px;margin:0 0 12px;line-height:1.3}
+[data-zallatel-flow]>section[id],[data-zallatel-flow] .service-card[id],[data-zallatel-flow] .service-layout section[id]{scroll-margin-top:150px}
+[data-zallatel-flow] #zonas .province-card{border:1px solid #d3e2eb;border-left:3px solid #3c82a2;border-radius:4px;background:#f7fafc;box-shadow:none;transition:background .18s,border-color .18s;transform:none}
+[data-zallatel-flow] #zonas .province-card:hover{background:#e9f3f8;border-color:#629ab4;transform:none}
+[data-zallatel-flow] #zonas .province-card .arrow{color:#397f9f}
+[data-zallatel-flow] #diagnostico-averias article{border:1px solid #d6e4ed;border-top:3px solid #337b9e;border-radius:5px;box-shadow:none;background:#fff}
+[data-zallatel-flow] #diagnostico-averias article>h3{color:#173e52}
+[data-zallatel-flow] #soluciones-satelite article{border-radius:5px;border:1px solid #d4e3eb;box-shadow:none}
+[data-zallatel-flow] #porteros-videoporteros .doorphone-work{border-radius:5px;box-shadow:none;border-color:#d4e3eb}
+[data-zallatel-flow] #experiencia article{border-radius:4px;box-shadow:none;border-color:#d6e4ed}
+[data-zallatel-flow] .featured-localities article{border:1px solid #d6e4ed;border-radius:4px;box-shadow:none;background:#f9fbfc}
+@media(max-width:760px){
+ [data-zallatel-flow] .zallatel-service-family,[data-zallatel-flow] .zallatel-directory-family{grid-template-columns:minmax(0,1fr);gap:20px}
+ [data-zallatel-flow] .zallatel-family-heading{padding:14px 16px}
+ [data-zallatel-flow] .zallatel-service-family .service-card{padding-right:0;padding-left:37px}
+ [data-zallatel-flow] .zallatel-service-family h4{font-size:21px}
+ [data-zallatel-flow] .zallatel-page-route{gap:8px;padding-block:16px}
+ [data-zallatel-flow] .zallatel-page-route a{flex:1 1 135px;padding:10px;font-size:13px}
+ [data-zallatel-flow] #galeria .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ [data-zallatel-flow] #galeria figcaption{padding:9px;font-size:12px;gap:7px}
+}

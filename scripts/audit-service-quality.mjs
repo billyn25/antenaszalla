@@ -17,7 +17,7 @@ for(const town of towns) {
   assert.equal(whatsapp,3,town.name+': WhatsApp solo al inicio, cierre y barra móvil');
   contactCounts.push({calls,whatsapp});
   const selected=selectedGuidesForTown(town);
-  assert.equal((html.match(/data-service-guide=/g)||[]).length,3,town.name+': fichas');
+  assert.equal((html.match(/data-service-guide=/g)||[]).length,10,town.name+': fichas completas');
   assert.equal((html.match(/class="town-service-detail"/g)||[]).length,3,town.name+': diagnóstico');
   assert(html.includes('id="preparar-visita-local"'),town.name+': condiciones');
   assert(html.includes('id="servicios-en-tu-pueblo"'),town.name+': navegación');
@@ -25,6 +25,8 @@ for(const town of towns) {
   assert(html.includes('/servicios/montaje-antenas-starlink/'),town.name+': Starlink');
   for(const g of guides) {
     assert(html.includes(`href="${guideRoute(g)}"`),town.name+': guía '+g.id); links++;
+    const completeCard=html.match(new RegExp(`<article class="service-card" id="${g.id}"[^>]*>[\\s\\S]*?<\\/article>`))?.[0];
+    assert(completeCard && /<p>[^<]+<\/p>/.test(completeCard),town.name+': explicación completa '+g.id);
   }
   for(const g of selected) {
     const card=html.match(new RegExp(`<article class="service-card" id="${g.id}"[^>]*>[\\s\\S]*?<\\/article>`))?.[0];
@@ -70,5 +72,5 @@ for(const g of guides) {
   assert(html.includes(`href="${DOMAIN+guideRoute(g)}"`));
   for(const [label,url] of g.sources) {assert.equal(new URL(url).protocol,'https:');assert(html.includes(label));}
 }
-const report={towns:towns.length,fullServiceCardsPerTown:3,availableGuideLinksPerTown:guides.length,directContactLinksPerTown:contactCounts[0],guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',sampleTowns:sampleSize,comparedPairs:similarityPairs,finalSampleMeanSimilarity:+(similarityTotal/similarityPairs).toFixed(3),finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
+const report={towns:towns.length,fullServiceCardsPerTown:10,extendedDiagnosticsPerTown:3,availableGuideLinksPerTown:guides.length,directContactLinksPerTown:contactCounts[0],guideLinksFromTowns:links,guides:guides.length,index:'/servicios/',sampleTowns:sampleSize,comparedPairs:similarityPairs,finalSampleMeanSimilarity:+(similarityTotal/similarityPairs).toFixed(3),finalSampleMaxSimilarity:+highestSimilarity.score.toFixed(3),similarityPair:[highestSimilarity.a,highestSimilarity.b],release:SERVICE_RELEASE};
 console.log('CALIDAD DE SERVICIOS OK: '+JSON.stringify(report));
