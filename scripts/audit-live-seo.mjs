@@ -1,5 +1,6 @@
 // Public HTTP verification. Does not submit indexing requests or modify Search Console.
 import fs from 'node:fs';
+import {COVERAGE_CSS,COVERAGE_RELEASE} from './municipal-coverage.mjs';
 import { DOMAIN, publicPath, metaOf } from './public-seo.mjs';
 import { guides, guideRoute, SERVICE_RELEASE } from './service-guides.mjs';
 import { EDITORIAL_CSS } from './reduce-town-boilerplate.mjs';
@@ -20,7 +21,7 @@ const mobileHome = await text200(DOMAIN+'/');
 if (!mobileHome.includes('aria-controls="site-navigation"')) throw new Error('Mobile menu is not public yet');
 for (const asset of ['site.css','site.js','zallatel-content.css']) {
   const published=await text200(DOMAIN+'/assets/'+asset);
-  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8')+(asset==='site.css'?EDITORIAL_CSS:'');
+  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8')+(asset==='site.css'?EDITORIAL_CSS+COVERAGE_CSS:'');
   if (published!==expected) throw new Error(`Interface asset is not current: ${asset}`);
 }
 // Verify this content release, rather than accepting a healthy but older deployment.
@@ -32,6 +33,9 @@ for (const guide of guides) {
 }
 // A missing manifest means the tested SEO release has not reached the CDN yet.
 const manifest = JSON.parse(await text200(DOMAIN+'/public-seo-manifest.json'));
+const coverage=JSON.parse(await text200(DOMAIN+'/coverage-manifest.json'));
+if(coverage.release!==COVERAGE_RELEASE||coverage.total!==2007||coverage.retained!==manifest.towns)throw new Error('Consolidated municipality release not published');
+const redirects=new Map(manifest.redirects.map(r=>[r.from,r.to]));
 const expected = new Set(manifest.documents.filter(d=>d.indexable).map(d=>DOMAIN+d.path));
 const index = await text200(DOMAIN+'/sitemap.xml');
 const children = [...index.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
@@ -49,7 +53,7 @@ const reported=JSON.parse(fs.readFileSync(new URL('../tests/fixtures/search-cons
 const extra=manifest.documents.filter(d=>d.type==='province').map(d=>DOMAIN+d.path).concat([
   DOMAIN+'/Antenas-Bizkaia/abanto-zierbena.html', DOMAIN+'/Antenas-Burgos/aranda-de-duero.html'
 ]);
-const queue=[...reported,...extra];
+const queue=[...reported,...extra,...coverage.assignments.filter(t=>t.original!==t.destination).slice(0,6).map(t=>DOMAIN+t.original)];
 const localManifest=JSON.parse(await text200(DOMAIN+'/local-pages-manifest.json'));
 const townSamples=[...new Map(localManifest.map(t=>[t.province,t])).values()];
 for (const town of townSamples) {
@@ -61,7 +65,9 @@ const results=[];
 await Promise.all(Array.from({length:4},async()=>{
   while(queue.length) {
     const source=queue.shift();
-    const finalExpected=DOMAIN+publicPath(new URL(source).pathname);
+    const originalPath=new URL(source).pathname;
+    const canonicalPath=publicPath(originalPath);
+    const finalExpected=DOMAIN+(redirects.get(originalPath)||redirects.get(canonicalPath)||canonicalPath);
     let current=source, hops=0;
     const seen=new Set();
     for(;;) {

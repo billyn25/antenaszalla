@@ -1,3 +1,9 @@
+# Cobertura municipal actual — noviembre de 2026
+
+La versión publicada se desarrolla sobre `rapid-base-zalla`. La consolidación conserva **228 páginas municipales**, cubre los **2.007 municipios de 11 provincias** y agrupa **1.779 localidades** mediante redirecciones permanentes. El sitemap contiene **251 URLs indexables**.
+
+Consulta [el criterio y la migración](docs/consolidacion-municipal.md) y [la asignación completa por municipio](docs/cobertura-municipal.csv). Las cifras de auditorías anteriores corresponden a versiones previas a esta consolidación.
+
 # Antenas Zallatel
 
 Nueva web SEO local para Euskadi y Burgos.
