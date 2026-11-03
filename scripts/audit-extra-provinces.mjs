@@ -3,6 +3,8 @@ import path from 'node:path';
 import pages from '../content/pages.json' with { type: 'json' };
 
 const root = path.resolve(process.env.PRODUCTION_ROOT || 'dist');
+const coverageFile=path.join(root,'coverage-manifest.json');
+const coverage=fs.existsSync(coverageFile)?JSON.parse(fs.readFileSync(coverageFile,'utf8')):null;
 const publicBuild = fs.existsSync(path.join(root, 'public-seo-manifest.json'));
 const manifest = JSON.parse(fs.readFileSync(path.join(root, 'local-pages-manifest.json'), 'utf8'));
 const cache = JSON.parse(fs.readFileSync(path.resolve('.cache/municipios-selected.json'), 'utf8'));
@@ -18,7 +20,7 @@ for (const check of checks) {
   const provinceFile = path.join(root, (publicBuild ? check.route.toLowerCase() : check.route).slice(1), 'index.html');
   if (!fs.existsSync(provinceFile)) throw new Error(`Falta la página provincial de ${check.name}`);
 
-  const locals = manifest.filter(p => p.province === check.name);
+  const locals = (coverage?coverage.assignments:manifest).filter(p => p.province === check.name);
   if (locals.length !== expected.length) {
     throw new Error(`${check.name}: generados ${locals.length} de ${expected.length} municipios del dataset`);
   }
@@ -30,13 +32,15 @@ for (const check of checks) {
   }
 
   for (const page of locals) {
-    const file = path.join(root, page.path.slice(1));
-    if (!fs.existsSync(file)) throw new Error(`${check.name}: falta HTML local ${page.path}`);
+    const destination=coverage?manifest.find(t=>t.publicPath===page.destination):page;
+    if(!destination)throw new Error(`${check.name}: falta el destino de ${page.name}`);
+    const file = path.join(root,destination.path.slice(1));
+    if (!fs.existsSync(file)) throw new Error(`${check.name}: falta HTML local ${destination.path}`);
   }
 }
 
-if (manifest.length !== expectedTotal) {
+if ((coverage?coverage.total:manifest.length) !== expectedTotal) {
   throw new Error(`Total local incorrecto: generados ${manifest.length}, dataset ${expectedTotal}`);
 }
 
-console.log(`COBERTURA MUNICIPAL OK: ${checks.map(c => `${c.name}=${manifest.filter(p => p.province === c.name).length}`).join(', ')} · total=${manifest.length}. Ningún municipio del dataset queda fuera.`);
+console.log(`COBERTURA MUNICIPAL OK: ${checks.map(c => `${c.name}=${(coverage?coverage.assignments:manifest).filter(p => p.province === c.name).length}`).join(', ')} · total=${coverage?coverage.total:manifest.length}. Ningún municipio del dataset queda fuera.`);
