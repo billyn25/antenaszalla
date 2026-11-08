@@ -3,6 +3,9 @@ import backup from './novedades-tdt-backup.json' with { type: 'json' };
 
 const source = 'https://www.mundoplus.tv';
 const sections = ['tv-digital', 'tecnologia'];
+const uhdSpain = 'https://www.uhdspain.com';
+const ses = 'https://www.ses.com';
+const satelliteMaxAge = 180 * 24 * 60 * 60 * 1000;
 const maxAge = 30 * 24 * 60 * 60 * 1000;
 
 const officialSources = [
@@ -29,14 +32,14 @@ function topicFor(title) {
   return null;
 }
 
-function parseFeed(xml, now) {
+function parseFeed(xml, now, origin = source) {
   const parser = new SaxesParser();
   const tags = [];
   const entries = [];
   let item;
   parser.on('opentag', ({ name }) => {
     tags.push(name);
-    if (tags.join('/') === 'rss/channel/item') item = { title: '', link: '', pubDate: '' };
+    if (tags.join('/') === 'rss/channel/item') item = { title: '', link: '', pubDate: '', description: '' };
   });
   const readText = value => {
     const field = tags.at(-1);
@@ -52,13 +55,22 @@ function parseFeed(xml, now) {
     tags.pop();
   });
   parser.write(xml).close();
-  return entries.flatMap(({ title, link, pubDate }) => {
-    const topic = topicFor(title);
+  return entries.flatMap(({ title, link, pubDate, description }) => {
+    const topic = topicFor(title) || (origin === uhdSpain && /\b(?:canales?|emisiones?|atresmedia|3cat|rtve)\b/i.test(title) && /\bUHD\b/i.test(title) ? { type: 'UHD' } : null);
     const date = Date.parse(pubDate);
     const url = URL.parse(link.trim());
     if (!topic || !Number.isFinite(date) || date > now || now - date > maxAge ||
-      url?.origin !== source || !/^\/(tv-digital|tecnologia)\/[^/]+\/$/.test(url.pathname)) return [];
-    return [{ ...topic, url: url.origin + url.pathname, date: new Date(date).toISOString() }];
+      url?.origin !== origin || !(origin === source ? /^\/(tv-digital|tecnologia)\/[^/]+\/$/ : /^\/[^/]+\/$/).test(url.pathname)) return [];
+    const item = { ...topic, url: url.origin + url.pathname, date: new Date(date).toISOString() };
+    if (origin === uhdSpain) {
+      const headline = textFromHtml(title);
+      const label = headline === headline.toUpperCase()
+        ? headline.slice(0, 1) + headline.slice(1).toLowerCase().replace(/\b(?:uhd|tdt|rtve|hdr)\b/g, word => word.toUpperCase())
+        : headline;
+      const clean = description.split(/<p\b[^>]*>\s*(?:La entrada|The post)\b/i)[0];
+      return [{ ...item, label, publisher: 'UHD Spain', ...briefExcerpt(textFromHtml(clean)) }];
+    }
+    return [item];
   });
 }
 
@@ -102,8 +114,35 @@ function parseOfficialNews(html, official, now) {
   });
 }
 
+function briefExcerpt(text) {
+  const words = text.split(/\s+/).filter(Boolean);
+  if (words.length < 8) return {};
+  return {
+    paragraphs: [words.length > 25 ? words.slice(0, 25).join(' ') + '…' : text],
+    excerptType: 'Extracto breve de la publicación'
+  };
+}
+
+function parseSes(html, now) {
+  const cards = html.split(/<datetime\b[^>]*class="card__subtitle"[^>]*>/i).slice(1);
+  return cards.flatMap(card => {
+    const date = Date.parse(card.match(/<time\s+datetime="([^"]+)"/i)?.[1]);
+    const heading = card.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i);
+    const label = heading ? textFromHtml(heading[1]) : '';
+    if (!/\bASTRA TV\b/i.test(label) || !/\b(?:Spain|Spanish|España)\b/i.test(label) ||
+      !Number.isFinite(date) || date > now || now - date > satelliteMaxAge) return [];
+    const article = card.match(/href="((?:https:\/\/www\.ses\.com)?\/news\/(?:news-flash|press-release|press-releases)\/[^"#?]+)"/i);
+    if (!article) return [];
+    const url = new URL(article[1], ses).href;
+    const summary = url.endsWith('/ses-expands-astra-tv-offering-in-spain')
+      ? { paragraphs: ['SES anunció la incorporación de 14 canales autonómicos a Astra TV en España, entre ellos ETB 1, Telemadrid y Canal Sur. El comunicado también presenta nuevos receptores híbridos que combinan la señal de satélite con servicios por Internet.'], excerptType: 'Resumen del comunicado' }
+      : {};
+    return [{ type: 'Satélite', label, publisher: 'SES / Astra TV', url, date: new Date(date).toISOString(), ...summary }];
+  });
+}
+
 async function addOfficialText(item) {
-  if (!item.publisher) return item;
+  if (!officialSources.some(source => source.publisher === item.publisher)) return item;
   const slug = new URL(item.url).pathname.split('/').at(-1);
   if (Object.hasOwn(verifiedSummaries, slug)) {
     return { ...item, paragraphs: [verifiedSummaries[slug]], excerptType: 'Resumen del aviso' };
@@ -159,7 +198,19 @@ export async function handler(event) {
     if (!response.ok) throw new Error(`Portal oficial: HTTP ${response.status}`);
     return parseOfficialNews(await response.text(), official, now);
   });
-  const results = await Promise.allSettled([...rssRequests, ...officialRequests]);
+  const uhdRequest = (async () => {
+    const response = await fetch(uhdSpain + '/feed/', { signal: AbortSignal.timeout(9000) });
+    if (!response.ok) throw new Error('UHD Spain: HTTP ' + response.status);
+    return parseFeed(await response.text(), now, uhdSpain);
+  })();
+  const sesRequests = [0, 1, 2, 3].map(async page => {
+    const response = await fetch(ses + '/news/news-releases' + (page ? '?page=' + page : ''), {
+      signal: AbortSignal.timeout(9000)
+    });
+    if (!response.ok) throw new Error('SES: HTTP ' + response.status);
+    return parseSes(await response.text(), now);
+  });
+  const results = await Promise.allSettled([...rssRequests, ...officialRequests, uhdRequest, ...sesRequests]);
   const available = results.filter(result => result.status === 'fulfilled');
   const news = available.flatMap(feed => feed.value);
   if (!news.length && available.length < results.length) {
@@ -178,7 +229,10 @@ export async function handler(event) {
   headers['X-Zallatel-RSS'] = officialNews ? (rssNews ? 'mixto' : 'oficial') : 'directo';
 
   const unique = new Map(news.map(item => [item.url, item]));
-  const latest = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url)).slice(0, 5);
+  const ordered = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
+  const latest = ordered.slice(0, 5);
+  const satellite = ordered.find(item => item.type === 'Satélite');
+  if (satellite && !latest.some(item => item.type === 'Satélite')) latest[latest.length - 1] = satellite;
   const items = await Promise.all(latest.map(addOfficialText));
   headers['Netlify-CDN-Cache-Control'] = officialNews || available.length === results.length
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
