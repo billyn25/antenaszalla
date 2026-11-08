@@ -5,6 +5,7 @@ const source = 'https://www.mundoplus.tv';
 const sections = ['tv-digital', 'tecnologia'];
 const uhdSpain = 'https://www.uhdspain.com';
 const ses = 'https://www.ses.com';
+const kingOfSat = 'https://es.kingofsat.tv';
 const satelliteMaxAge = 180 * 24 * 60 * 60 * 1000;
 const maxAge = 30 * 24 * 60 * 60 * 1000;
 
@@ -32,7 +33,7 @@ function topicFor(title) {
   return null;
 }
 
-function parseFeed(xml, now, origin = source) {
+function readRss(xml) {
   const parser = new SaxesParser();
   const tags = [];
   const entries = [];
@@ -55,7 +56,11 @@ function parseFeed(xml, now, origin = source) {
     tags.pop();
   });
   parser.write(xml).close();
-  return entries.flatMap(({ title, link, pubDate, description }) => {
+  return entries;
+}
+
+function parseFeed(xml, now, origin = source) {
+  return readRss(xml).flatMap(({ title, link, pubDate, description }) => {
     const topic = topicFor(title) || (origin === uhdSpain && /\b(?:canales?|emisiones?|atresmedia|3cat|rtve)\b/i.test(title) && /\bUHD\b/i.test(title) ? { type: 'UHD' } : null);
     const date = Date.parse(pubDate);
     const url = URL.parse(link.trim());
@@ -72,6 +77,34 @@ function parseFeed(xml, now, origin = source) {
     }
     return [item];
   });
+}
+
+function filterSatelliteChanges(entries, now) {
+  const changes = entries.flatMap(({ title, description, pubDate }) => {
+    const orbital = /\((?:Astra|Hispasat)\b[^()]*\s(19\.2E|30(?:\.0)?W),\s+\d{4}-\d{2}-\d{2}/i.exec(textFromHtml(description))?.[1];
+    const event = /^(.+?):\s*([^()]+?)\s+\((?:Astra|Hispasat)\b[^()]*\)\s*$/i.exec(title.trim());
+    const date = Date.parse(pubDate);
+    if (!orbital || !event || !Number.isFinite(date) || date > now || now - date > maxAge) return [];
+    const channel = event[1].trim();
+    const normalized = channel.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[\s-]+/g, '');
+    const name = normalized.replace(/(?:uhd|fhd|hd|sd|4k)$/, '');
+    if (!/^(?:la[12]|la2cat|antena3|cuatro|telecinco|lasexta|24h|canal24horas|teledeporte|clan|trece|realmadridtv|boing|energy|atreseries|fdf|neox|divinity|nova|mega|bemad|dkiss|laseptima|etb[12]|canalsur(?:andalucia)?|telemadrid(?:int)?|aragontv|tpa|ib3|televisioncanaria|tvcanaria|cmm|cyltv|tv3(?:cat)?|tvg(?:europa)?|la7regiondemurcia|tvextremadura|apunt)$/.test(name)) return [];
+    const action = event[2].trim().toLowerCase();
+    let change;
+    if (/^(?:nueva frecuencia|new frequency)$/.test(action)) change = 'Cambio de frecuencia';
+    if (/^(?:nuevo canal|new channel)$/.test(action)) change = 'Nuevo canal';
+    if (/^(?:ha dejado de emitir|left|removed|ceased broadcasting|fin de emisi[oó]n)$/.test(action)) change = 'Fin de emisión';
+    if (!change) return [];
+    const astra = orbital === '19.2E';
+    return [{ channel, change, position: astra ? 'Astra 19,2° Este' : 'Hispasat 30° Oeste',
+      date: new Date(date).toISOString(), url: kingOfSat + (astra ? '/news19.2E' : '/news30W') }];
+  }).sort((a, b) => b.date.localeCompare(a.date));
+  const unique = new Map();
+  for (const change of changes) {
+    const key = [change.channel, change.change, change.position].join('|');
+    if (!unique.has(key)) unique.set(key, change);
+  }
+  return [...unique.values()].slice(0, 5);
 }
 
 const verifiedSummaries = {
@@ -210,7 +243,15 @@ export async function handler(event) {
     if (!response.ok) throw new Error('SES: HTTP ' + response.status);
     return parseSes(await response.text(), now);
   });
-  const results = await Promise.allSettled([...rssRequests, ...officialRequests, uhdRequest, ...sesRequests]);
+  const kingRequest = (async () => {
+    const response = await fetch(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(9000) });
+    if (!response.ok) throw new Error('KingOfSat: HTTP ' + response.status);
+    const xml = await response.text();
+    if (!/<rss\b/i.test(xml)) throw new Error('KingOfSat no devolvió RSS');
+    return filterSatelliteChanges(readRss(xml), now);
+  })();
+  const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests]);
+  const satelliteChanges = kingResult.status === 'fulfilled' ? kingResult.value : null;
   const available = results.filter(result => result.status === 'fulfilled');
   const news = available.flatMap(feed => feed.value);
   if (!news.length && available.length < results.length) {
@@ -222,7 +263,7 @@ export async function handler(event) {
     const items = backup.items.filter(item => now - Date.parse(item.date) <= maxAge);
     headers['X-Zallatel-RSS'] = `reserva; ${failures.join(', ')}`;
     headers['Netlify-CDN-Cache-Control'] = 'public, durable, s-maxage=300';
-    return { statusCode: items.length ? 200 : 503, headers, body: JSON.stringify({ items, backup: true }) };
+    return { statusCode: items.length || satelliteChanges?.length ? 200 : 503, headers, body: JSON.stringify({ items, satelliteChanges, backup: true }) };
   }
   const officialNews = news.some(item => item.publisher);
   const rssNews = news.some(item => !item.publisher);
@@ -230,12 +271,12 @@ export async function handler(event) {
 
   const unique = new Map(news.map(item => [item.url, item]));
   const ordered = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
-  const latest = ordered.slice(0, 10);
+  const latest = ordered.slice(0, 15);
   const satellite = ordered.find(item => item.type === 'Satélite');
   if (satellite && !latest.some(item => item.type === 'Satélite')) latest[latest.length - 1] = satellite;
   const items = await Promise.all(latest.map(addOfficialText));
   headers['Netlify-CDN-Cache-Control'] = officialNews || available.length === results.length
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
     : 'public, durable, s-maxage=300';
-  return { statusCode: 200, headers, body: JSON.stringify({ items }) };
+  return { statusCode: 200, headers, body: JSON.stringify({ items, satelliteChanges }) };
 }

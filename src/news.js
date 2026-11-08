@@ -39,7 +39,26 @@
     return footer;
   }
 
-  const items = news.status === 'fulfilled' ? news.value.items : [];
+  const data = news.status === 'fulfilled' ? news.value : {};
+  if (Array.isArray(data.satelliteChanges)) {
+    const changes = document.querySelector('#satellite-changes');
+    const empty = document.querySelector('#satellite-changes-empty');
+    changes.replaceChildren(...data.satelliteChanges.map(item => {
+      const row = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = item.url;
+      link.textContent = item.change + ' · ' + item.channel;
+      const date = document.createElement('time');
+      date.dateTime = item.date;
+      date.textContent = dateFormat.format(new Date(item.date));
+      row.append(link, ' · ' + item.position + ' · ', date);
+      return row;
+    }));
+    changes.hidden = !data.satelliteChanges.length;
+    empty.hidden = Boolean(data.satelliteChanges.length);
+  }
+
+  const items = data.items || [];
   if (items.length) {
     list.replaceChildren(...items.map(item => {
       const row = document.createElement('li');
