@@ -4,15 +4,16 @@ on:
     branches: [main]
     paths: ['.github/workflows/verificar-zallatel-feed.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   verificar:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Comprobar la selección publicada
         run: |
-          node --input-type=module <<'JS'
+          node --input-type=module <<'JS' | tee zallatel-feed-probe.txt
           for (let i = 0; i < 12; i++) {
             try {
               const [blog, feed] = await Promise.all([
@@ -34,3 +35,10 @@ jobs:
           }
           process.exit(1);
           JS
+
+      - name: Guardar resultado temporal
+        if: always()
+        run: |
+          git add zallatel-feed-probe.txt
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Registra la comprobación temporal de fuentes'
+          git push origin HEAD:main
