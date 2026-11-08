@@ -1,0 +1,36 @@
+name: Verificar novedades de Zallatel en producción
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/verificar-zallatel-feed.yml']
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Comprobar la selección publicada
+        run: |
+          node --input-type=module <<'JS'
+          for (let i = 0; i < 12; i++) {
+            try {
+              const [blog, feed] = await Promise.all([
+                fetch('https://antenaszalla.com/blog/?probe=' + Date.now(), {signal: AbortSignal.timeout(12000)}),
+                fetch('https://antenaszalla.com/.netlify/functions/novedades-tdt?probe=' + Date.now(), {signal: AbortSignal.timeout(22000)})
+              ]);
+              const page = await blog.text();
+              const {items = []} = await feed.json();
+              const publishers = items.map(item => item.publisher || 'Mundoplus');
+              console.log(i, blog.status, feed.status, feed.headers.get('X-Zallatel-RSS'), publishers);
+              if (page.includes('https://www.uhdspain.com/noticias/') && publishers.includes('UHD Spain') && publishers.includes('SES / Astra TV')) {
+                console.log(items.map(({publisher, label, date}) => ({publisher, label, date})));
+                process.exit(0);
+              }
+            } catch (error) {
+              console.log(i, error.message);
+            }
+            await new Promise(resolve => setTimeout(resolve, 10000));
+          }
+          process.exit(1);
+          JS
