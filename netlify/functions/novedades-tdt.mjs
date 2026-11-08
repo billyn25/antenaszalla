@@ -6,6 +6,7 @@ const sections = ['tv-digital', 'tecnologia'];
 const uhdSpain = 'https://www.uhdspain.com';
 const ses = 'https://www.ses.com';
 const kingOfSat = 'https://es.kingofsat.tv';
+const satCesc = 'https://satcesc.com';
 const satelliteMaxAge = 180 * 24 * 60 * 60 * 1000;
 const maxAge = 30 * 24 * 60 * 60 * 1000;
 
@@ -76,6 +77,37 @@ function parseFeed(xml, now, origin = source) {
       return [{ ...item, label, publisher: 'UHD Spain', ...briefExcerpt(textFromHtml(clean)) }];
     }
     return [item];
+  });
+}
+
+function satCescTopic(title, section) {
+  const headline = title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+  if (/\b(?:audiencia|audiencias|arrasa|aniversario|como ver|donde ver|por television en directo)\b/.test(headline)) return null;
+  if (section === 'movistar-tv') {
+    const change = /\b(?:llega|llegada|regreso|vuelve|nuevo|nueva|nuevos|nuevas|cambia\w*|incorpora\w*|elimina\w*|renueva\w*|reorganiza\w*|integra\w*|retira\w*|recupera\w*|desaparece\w*|estrena\w*|lanza\w*|arranca\w*|cesa\w*|deja de emitir)\b/.test(headline);
+    return change && /\b(?:canal(?:es)?|dial|parrilla|paquetes?)\b/.test(headline) ? 'Movistar Plus+' : null;
+  }
+  if (section === 'transpondedores') {
+    const change = /\b(?:frecuencias?|transpondedores?|incorpora\w*|altas?|bajas?|deja de emitir|cesa\w*|desaparece\w*|abandona\w*|nuev[oa]s? canales?|emite en abierto)\b/.test(headline);
+    return change && /\b(?:astra|hispasat)\b/.test(headline) ? 'Satélite' : null;
+  }
+  const reception = /\b(?:sintoniz\w*|resintoniz\w*|frecuencias?|dvb[\s‑–-]*t2|uhd|4k|cambios?)\b/.test(headline);
+  const launch = /\b(?:canal(?:es)?|la septima)\b/.test(headline) && /\b(?:nace|nacido|llega|estrena|nuevo|nuevos|nuevas|comienza|arranca)\b/.test(headline);
+  if ((reception && /\b(?:tdt|television digital terrestre|frecuencias?|dvb[\s‑–-]*t2)\b/.test(headline)) || launch) return 'TDT';
+  return null;
+}
+
+function parseSatCesc(xml, section, now) {
+  return readRss(xml).flatMap(({ title, link, pubDate, description }) => {
+    const label = textFromHtml(title);
+    const type = satCescTopic(label, section);
+    const date = Date.parse(pubDate);
+    const url = URL.parse(link.trim());
+    if (!type || !Number.isFinite(date) || date > now || now - date > maxAge ||
+      url?.origin !== satCesc || !/^\/\d{4}\/\d{2}\/\d{2}\/[^/]+\/$/.test(url.pathname)) return [];
+    const lead = description.match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
+    return [{ type, label, publisher: 'SatCesc', url: url.origin + url.pathname, date: new Date(date).toISOString(),
+      ...briefExcerpt(textFromHtml(lead).replace(/\[\s*…\s*\]$/, '…')) }];
   });
 }
 
@@ -243,6 +275,13 @@ export async function handler(event) {
     if (!response.ok) throw new Error('SES: HTTP ' + response.status);
     return parseSes(await response.text(), now);
   });
+  const satCescRequests = ['tdt', 'transpondedores', 'movistar-tv'].map(async section => {
+    const response = await fetch(satCesc + '/' + section + '/feed/', {
+      signal: AbortSignal.timeout(9000), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
+    });
+    if (!response.ok) throw new Error('SatCesc: HTTP ' + response.status);
+    return parseSatCesc(await response.text(), section, now);
+  });
   const kingRequest = (async () => {
     const response = await fetch(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(9000) });
     if (!response.ok) throw new Error('KingOfSat: HTTP ' + response.status);
@@ -250,7 +289,7 @@ export async function handler(event) {
     if (!/<rss\b/i.test(xml)) throw new Error('KingOfSat no devolvió RSS');
     return filterSatelliteChanges(readRss(xml), now);
   })();
-  const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests]);
+  const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests, ...satCescRequests]);
   const satelliteChanges = kingResult.status === 'fulfilled' ? kingResult.value : null;
   const available = results.filter(result => result.status === 'fulfilled');
   const news = available.flatMap(feed => feed.value);
