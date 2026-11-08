@@ -49,7 +49,7 @@
     for (const char of seed) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
     const start = (hash >>> 0) % towns.value.length;
     const step = Math.floor(towns.value.length / 3);
-    townLinks.prepend(...[0, 1, 2].map(index => {
+    townLinks.replaceChildren(...[0, 1, 2].map(index => {
       const town = towns.value[(start + index * step) % towns.value.length];
       const link = document.createElement('a');
       link.href = town.route;
