@@ -33,7 +33,9 @@
       return row;
     }));
     list.hidden = false;
-    status.hidden = true;
+    const backup = news.value.backup;
+    status.textContent = backup ? 'Última selección disponible. La fuente está temporalmente inaccesible.' : '';
+    status.hidden = !backup;
   } else {
     status.textContent = news.status === 'fulfilled'
       ? 'No hay novedades recientes de TDT o satélite en este momento.'

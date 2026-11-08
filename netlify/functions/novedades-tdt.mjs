@@ -1,4 +1,5 @@
 import { SaxesParser } from 'saxes';
+import backup from './novedades-tdt-backup.json' with { type: 'json' };
 
 const source = 'https://www.mundoplus.tv';
 const sections = ['tv-digital', 'tecnologia'];
@@ -60,12 +61,29 @@ export async function handler(event) {
   if (event.httpMethod !== 'GET') return { statusCode: 405, headers: { ...headers, Allow: 'GET' }, body: '{}' };
   const now = Date.now();
   const results = await Promise.allSettled(sections.map(async section => {
-    const response = await fetch(`${source}/seccion/${section}/feed/`, { signal: AbortSignal.timeout(12000) });
+    const response = await fetch(`${source}/seccion/${section}/feed/`, {
+      signal: AbortSignal.timeout(12000),
+      headers: {
+        Accept: 'application/rss+xml, application/xml, text/xml',
+        'User-Agent': 'AntenasZallatel/1.0 (+https://antenaszalla.com/blog/)'
+      }
+    });
     if (!response.ok) throw new Error(`RSS ${section}: HTTP ${response.status}`);
     return parseFeed(await response.text(), now);
   }));
   const feeds = results.filter(result => result.status === 'fulfilled');
-  if (!feeds.length) return { statusCode: 503, headers, body: '{"items":[]}' };
+  if (!feeds.length) {
+    const failures = results.map(({ reason }) => {
+      const http = /HTTP (\d{3})$/.exec(reason.message)?.[1];
+      return http ? `http-${http}` : reason.cause?.code || reason.name;
+    });
+    console.warn('No se pudo leer el RSS de Mundoplus', failures);
+    const items = backup.items.filter(item => now - Date.parse(item.date) <= maxAge);
+    headers['X-Zallatel-RSS'] = `reserva; ${failures.join(', ')}`;
+    headers['Netlify-CDN-Cache-Control'] = 'public, durable, s-maxage=300';
+    return { statusCode: items.length ? 200 : 503, headers, body: JSON.stringify({ items, backup: true }) };
+  }
+  headers['X-Zallatel-RSS'] = feeds.length === sections.length ? 'directo' : 'parcial';
 
   const unique = new Map(feeds.flatMap(feed => feed.value).map(item => [item.url, item]));
   const items = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url)).slice(0, 5);
