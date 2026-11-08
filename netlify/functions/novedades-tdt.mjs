@@ -230,7 +230,7 @@ export async function handler(event) {
 
   const unique = new Map(news.map(item => [item.url, item]));
   const ordered = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
-  const latest = ordered.slice(0, 5);
+  const latest = ordered.slice(0, 10);
   const satellite = ordered.find(item => item.type === 'Satélite');
   if (satellite && !latest.some(item => item.type === 'Satélite')) latest[latest.length - 1] = satellite;
   const items = await Promise.all(latest.map(addOfficialText));
