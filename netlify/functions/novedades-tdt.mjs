@@ -14,7 +14,9 @@ const officialSources = [
   { origin: 'https://television.digital.gob.es', path: '/atencion-a-la-ciudadania/notas-prensa', publisher: 'Televisión Digital' },
   { origin: 'https://digital.gob.es', path: '/comunicacion', articlePath: '/comunicacion/notas-prensa/', publisher: 'Ministerio para la Transformación Digital' }
 ];
-const officialMaxAge = 90 * 24 * 60 * 60 * 1000;
+const newsMaxAge = 90 * 24 * 60 * 60 * 1000;
+const pageSize = 15;
+const maxNews = 45;
 
 function topicFor(title) {
   const text = title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
@@ -65,7 +67,7 @@ function parseFeed(xml, now, origin = source) {
     const topic = topicFor(title) || (origin === uhdSpain && /\b(?:canales?|emisiones?|atresmedia|3cat|rtve)\b/i.test(title) && /\bUHD\b/i.test(title) ? { type: 'UHD' } : null);
     const date = Date.parse(pubDate);
     const url = URL.parse(link.trim());
-    if (!topic || !Number.isFinite(date) || date > now || now - date > maxAge ||
+    if (!topic || !Number.isFinite(date) || date > now || now - date > newsMaxAge ||
       url?.origin !== origin || !(origin === source ? /^\/(tv-digital|tecnologia)\/[^/]+\/$/ : /^\/[^/]+\/$/).test(url.pathname)) return [];
     const item = { ...topic, url: url.origin + url.pathname, date: new Date(date).toISOString() };
     if (origin === uhdSpain) {
@@ -103,7 +105,7 @@ function parseSatCesc(xml, section, now) {
     const type = satCescTopic(label, section);
     const date = Date.parse(pubDate);
     const url = URL.parse(link.trim());
-    if (!type || !Number.isFinite(date) || date > now || now - date > maxAge ||
+    if (!type || !Number.isFinite(date) || date > now || now - date > newsMaxAge ||
       url?.origin !== satCesc || !/^\/\d{4}\/\d{2}\/\d{2}\/[^/]+\/$/.test(url.pathname)) return [];
     const lead = description.match(/<p\b[^>]*>([\s\S]*?)<\/p>/i)?.[1] || '';
     return [{ type, label, publisher: 'SatCesc', url: url.origin + url.pathname, date: new Date(date).toISOString(),
@@ -166,7 +168,7 @@ function parseOfficialNews(html, official, now) {
     const date = Date.parse(`${year}-${month}-${day}T12:00:00Z`);
     const url = new URL(link[1], official.origin);
     const articlePath = official.articlePath || official.path + '/';
-    if (!Number.isFinite(date) || date > now || now - date > officialMaxAge ||
+    if (!Number.isFinite(date) || date > now || now - date > newsMaxAge ||
       url.origin !== official.origin || !url.pathname.startsWith(articlePath)) return [];
     const label = textFromHtml(link[2]);
     if (/\bRNE\s+Accesible\b/i.test(label)) return [];
@@ -310,9 +312,14 @@ export async function handler(event) {
 
   const unique = new Map(news.map(item => [item.url, item]));
   const ordered = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
-  const latest = ordered.slice(0, 15);
+  const latest = ordered.slice(0, maxNews);
   const satellite = ordered.find(item => item.type === 'Satélite');
-  if (satellite && !latest.some(item => item.type === 'Satélite')) latest[latest.length - 1] = satellite;
+  if (satellite && !latest.slice(0, pageSize).some(item => item.type === 'Satélite')) {
+    const previous = latest.indexOf(satellite);
+    if (previous >= 0) latest.splice(previous, 1);
+    latest.splice(pageSize - 1, 0, satellite);
+    if (latest.length > maxNews) latest.pop();
+  }
   const items = await Promise.all(latest.map(addOfficialText));
   headers['Netlify-CDN-Cache-Control'] = officialNews || available.length === results.length
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'

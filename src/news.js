@@ -72,32 +72,59 @@
 
   const items = data.items || [];
   if (items.length) {
-    list.replaceChildren(...items.map(item => {
-      const row = document.createElement('li');
-      const content = document.createElement('div');
-      const date = document.createElement('time');
-      date.dateTime = item.date;
-      date.textContent = `${item.type} · ${dateFormat.format(new Date(item.date))}`;
-      const link = document.createElement('a');
-      link.href = item.url;
-      link.textContent = item.label + ' · ' + (item.publisher || 'Mundoplus');
-      content.append(date, document.createElement('br'), link);
-      if (item.paragraphs?.length) {
-        const context = document.createElement('small');
-        context.textContent = item.excerptType + (item.modified ? ' · Actualizado el ' + item.modified : '');
-        content.append(document.createElement('br'), context);
-        for (const text of item.paragraphs) {
-          const paragraph = document.createElement('p');
-          paragraph.textContent = text;
-          content.append(paragraph);
+    const pageSize = 15;
+    const pageCount = Math.ceil(items.length / pageSize);
+    const pagination = document.querySelector('#news-pagination');
+    const previous = document.querySelector('#news-previous');
+    const next = document.querySelector('#news-next');
+    const status = document.querySelector('#news-page-status');
+    const heading = document.querySelector('#noticias-tdt');
+    let page = 0;
+    function renderPage() {
+      featured.clear();
+      const start = page * pageSize;
+      const pageItems = items.slice(start, start + pageSize);
+      list.replaceChildren(...pageItems.map(item => {
+        const row = document.createElement('li');
+        const content = document.createElement('div');
+        const date = document.createElement('time');
+        date.dateTime = item.date;
+        date.textContent = `${item.type} · ${dateFormat.format(new Date(item.date))}`;
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.textContent = item.label + ' · ' + (item.publisher || 'Mundoplus');
+        content.append(date, document.createElement('br'), link);
+        if (item.paragraphs?.length) {
+          const context = document.createElement('small');
+          context.textContent = item.excerptType + (item.modified ? ' · Actualizado el ' + item.modified : '');
+          content.append(document.createElement('br'), context);
+          for (const text of item.paragraphs) {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = text;
+            content.append(paragraph);
+          }
         }
-      }
-      const footer = townLinksFor(item.url);
-      if (footer) content.append(footer);
-      row.append(content);
-      return row;
-    }));
-    list.hidden = false;
+        const footer = townLinksFor(item.url);
+        if (footer) content.append(footer);
+        row.append(content);
+        return row;
+      }));
+      list.hidden = false;
+      previous.disabled = page === 0;
+      next.disabled = page === pageCount - 1;
+      status.textContent = `Página ${page + 1} de ${pageCount} · ${items.length} noticias`;
+    }
+    function changePage(step) {
+      const target = page + step;
+      if (target < 0 || target >= pageCount) return;
+      page = target;
+      renderPage();
+      heading.focus();
+    }
+    previous.addEventListener('click', () => changePage(-1));
+    next.addEventListener('click', () => changePage(1));
+    pagination.hidden = pageCount < 2;
+    renderPage();
   }
 
 })();
