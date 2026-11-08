@@ -90,7 +90,7 @@ function protectedMarkup(html) {
 }
 
 export function organizeDocument(html,doc,town) {
-  if(html.includes(`data-zallatel-flow="${FLOW_RELEASE}"`))return html;
+  if(doc.type==='blog'||html.includes(`data-zallatel-flow="${FLOW_RELEASE}"`))return html;
   const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/);assert.ok(main,doc.path);
   const blocks=childBlocks(main[1]);
   const heroes=blocks.filter(n=>hasClass(n,'hero')||hasClass(n,'service-hero'));

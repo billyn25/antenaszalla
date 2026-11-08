@@ -60,6 +60,8 @@ manifest.documents=docs;manifest.towns=retained.length;manifest.coveredMunicipal
 manifest.redirects=[...redirects].map(([from,to])=>({from,to}));
 fs.writeFileSync(path.join(root,'public-seo-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 fs.writeFileSync(path.join(root,'local-pages-manifest.json'),JSON.stringify(retained,null,2)+'\n');
+const newsTowns=retained.map(t=>({name:t.name,route:t.publicPath}));
+fs.writeFileSync(path.join(root,'assets/news-towns.json'),JSON.stringify(newsTowns)+'\n');
 fs.writeFileSync(path.join(root,'_redirects'),'# Historical and consolidated municipalities: direct permanent destinations.\n'+[...redirects].map(([from,to])=>`${from} ${DOMAIN}${to} 301!`).join('\n')+'\nhttps://www.antenaszalla.com/* https://antenaszalla.com/:splat 301!\nhttp://www.antenaszalla.com/* https://antenaszalla.com/:splat 301!\nhttp://antenaszalla.com/* https://antenaszalla.com/:splat 301!\n');
 const coverage={release:COVERAGE_RELEASE,policy,source:geo.source,edition:geo.edition,total:towns.length,retained:retained.length,redirected:retired.length,provinces:[...new Set(towns.map(t=>t.province))].map(province=>({province,total:towns.filter(t=>t.province===province).length,retained:retained.filter(t=>t.province===province).length})),assignments:assignments.map(({town,hub,distanceKm})=>({code:town.code,name:town.name,province:town.province,population:town.population,original:town.publicPath,originalFile:town.path,destination:hub.publicPath,hub:hub.name,url:hub.publicPath+(town.code===hub.code?'':`#cobertura-${town.code}`),distanceKm:Number(distanceKm.toFixed(3))}))};
 fs.writeFileSync(path.join(root,'coverage-manifest.json'),JSON.stringify(coverage,null,2)+'\n');

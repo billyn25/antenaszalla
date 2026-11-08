@@ -136,7 +136,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     html=html.replace(/<div class="strip"><div class="wrap">[\s\S]*?<\/div><\/div>/g,'');
     if (!legal && !errorPage) html = simplifyContacts(html);
     doc.html = html;
-    report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
+    report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path==='/blog/'?'blog':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
   fs.writeFileSync(path.join(root,'assets/town-reception.css'),RECEPTION_CSS);
   // All transformations and collision checks finish before the output is replaced.
