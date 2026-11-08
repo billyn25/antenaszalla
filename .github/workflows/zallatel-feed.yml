@@ -1,0 +1,51 @@
+name: Actualizar noticias de TDT y satélite
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/zallatel-feed.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zallatel-feed
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: rapid-base-zalla
+          path: zallatel-site
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Leer y filtrar el RSS
+        run: |
+          npm ci --ignore-scripts --prefix zallatel-site
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import { handler } from './zallatel-site/netlify/functions/novedades-tdt.mjs';
+          const result = await handler({ httpMethod: 'GET' });
+          const source = result.headers['X-Zallatel-RSS'];
+          if (result.statusCode !== 200 || source !== 'directo') {
+            throw new Error('No se pudieron actualizar ambos canales RSS: ' + source);
+          }
+          fs.mkdirSync('datos', { recursive: true });
+          fs.writeFileSync('datos/novedades-tdt.json', result.body + '\n');
+          JS
+      - name: Publicar si cambia la selección
+        run: |
+          git add datos/novedades-tdt.json
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Actualiza la selección de noticias de TDT y satélite'
+          git push origin HEAD:main
