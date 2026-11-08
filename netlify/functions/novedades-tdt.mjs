@@ -5,6 +5,12 @@ const source = 'https://www.mundoplus.tv';
 const sections = ['tv-digital', 'tecnologia'];
 const maxAge = 30 * 24 * 60 * 60 * 1000;
 
+const officialSources = [
+  { origin: 'https://television.digital.gob.es', path: '/atencion-a-la-ciudadania/notas-prensa', publisher: 'Televisión Digital' },
+  { origin: 'https://digital.gob.es', path: '/comunicacion', articlePath: '/comunicacion/notas-prensa/', publisher: 'Ministerio para la Transformación Digital' }
+];
+const officialMaxAge = 90 * 24 * 60 * 60 * 1000;
+
 function topicFor(title) {
   const text = title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
   if (/\b(?:tdt[-\s‑–]*sat|satelites?|astra|hispasat|parabolicas?|dvb[-\s‑–]*s2|transpondedores?)\b/.test(text)) {
@@ -56,11 +62,36 @@ function parseFeed(xml, now) {
   });
 }
 
+function parseOfficialNews(html, official, now) {
+  const articles = [...html.matchAll(/<article\b[^>]*class="[^"]*\bdnt-card-news\b[^"]*"[^>]*>([\s\S]*?)<\/article>/gi)];
+  if (!articles.length) throw new Error('No se encontraron las tarjetas del portal oficial');
+  const entities = { amp: '&', quot: '"', apos: "'", nbsp: ' ', '#34': '"', '#39': "'" };
+  return articles.flatMap(([, article]) => {
+    const dateParts = article.match(/class="[^"]*\bdnt-date\b[^"]*"[^>]*>\s*(\d{2})\/(\d{2})\/(\d{4})\s*</i);
+    const link = article.match(/class="dnt-title"[^>]*>\s*<a\s+href="([^"]+)"[^>]*>\s*<span>([^<]+)<\/span>/i);
+    if (!dateParts || !link) return [];
+    const [, day, month, year] = dateParts;
+    const date = Date.parse(`${year}-${month}-${day}T12:00:00Z`);
+    const url = new URL(link[1], official.origin);
+    const articlePath = official.articlePath || official.path + '/';
+    if (!Number.isFinite(date) || date > now || now - date > officialMaxAge ||
+      url.origin !== official.origin || !url.pathname.startsWith(articlePath)) return [];
+    const label = link[2].replace(/&(amp|quot|apos|nbsp|#34|#39);/g, (_, key) => entities[key]).replace(/\s+/g, ' ').trim();
+    if (/\bRNE\s+Accesible\b/i.test(label)) return [];
+    const topic = topicFor(label) || (/\b(?:sintoniz\w*|canales?)\b.*\bUHD\b/i.test(label)
+      ? { type: 'UHD', label: 'Novedades de televisión en ultra alta definición' }
+      : null);
+    if (!topic) return [];
+    return [{ type: topic.type, label, noteKey: topic.label, publisher: official.publisher,
+      url: url.origin + url.pathname, date: new Date(date).toISOString() }];
+  });
+}
+
 export async function handler(event) {
   const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache' };
   if (event.httpMethod !== 'GET') return { statusCode: 405, headers: { ...headers, Allow: 'GET' }, body: '{}' };
   const now = Date.now();
-  const results = await Promise.allSettled(sections.map(async section => {
+  const rssRequests = sections.map(async section => {
     const response = await fetch(`${source}/seccion/${section}/feed/`, {
       signal: AbortSignal.timeout(12000),
       headers: {
@@ -70,24 +101,36 @@ export async function handler(event) {
     });
     if (!response.ok) throw new Error(`RSS ${section}: HTTP ${response.status}`);
     return parseFeed(await response.text(), now);
-  }));
-  const feeds = results.filter(result => result.status === 'fulfilled');
-  if (!feeds.length) {
-    const failures = results.map(({ reason }) => {
+  });
+  const officialRequests = officialSources.map(async official => {
+    const response = await fetch(official.origin + official.path, {
+      signal: AbortSignal.timeout(12000),
+      headers: { Accept: 'text/html' }
+    });
+    if (!response.ok) throw new Error(`Portal oficial: HTTP ${response.status}`);
+    return parseOfficialNews(await response.text(), official, now);
+  });
+  const results = await Promise.allSettled([...rssRequests, ...officialRequests]);
+  const available = results.filter(result => result.status === 'fulfilled');
+  const news = available.flatMap(feed => feed.value);
+  if (!news.length && available.length < results.length) {
+    const failures = results.filter(result => result.status === 'rejected').map(({ reason }) => {
       const http = /HTTP (\d{3})$/.exec(reason.message)?.[1];
       return http ? `http-${http}` : reason.cause?.code || reason.name;
     });
-    console.warn('No se pudo leer el RSS de Mundoplus', failures);
+    console.warn('Fuentes de novedades no disponibles', failures);
     const items = backup.items.filter(item => now - Date.parse(item.date) <= maxAge);
     headers['X-Zallatel-RSS'] = `reserva; ${failures.join(', ')}`;
     headers['Netlify-CDN-Cache-Control'] = 'public, durable, s-maxage=300';
     return { statusCode: items.length ? 200 : 503, headers, body: JSON.stringify({ items, backup: true }) };
   }
-  headers['X-Zallatel-RSS'] = feeds.length === sections.length ? 'directo' : 'parcial';
+  const officialNews = news.some(item => item.publisher);
+  const rssNews = news.some(item => !item.publisher);
+  headers['X-Zallatel-RSS'] = officialNews ? (rssNews ? 'mixto' : 'oficial') : 'directo';
 
-  const unique = new Map(feeds.flatMap(feed => feed.value).map(item => [item.url, item]));
+  const unique = new Map(news.map(item => [item.url, item]));
   const items = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url)).slice(0, 5);
-  headers['Netlify-CDN-Cache-Control'] = feeds.length === sections.length
+  headers['Netlify-CDN-Cache-Control'] = officialNews || available.length === results.length
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
     : 'public, durable, s-maxage=300';
   return { statusCode: 200, headers, body: JSON.stringify({ items }) };

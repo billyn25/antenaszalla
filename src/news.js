@@ -60,10 +60,10 @@
       date.textContent = `${item.type} · ${dateFormat.format(new Date(item.date))}`;
       const link = document.createElement('a');
       link.href = item.url;
-      link.textContent = item.label + ' · Mundoplus';
+      link.textContent = item.label + ' · ' + (item.publisher || 'Mundoplus');
       content.append(date, document.createElement('br'), link);
       const note = document.createElement('p');
-      note.textContent = receptionNotes[item.label] || '';
+      note.textContent = receptionNotes[item.noteKey || item.label] || '';
       if (note.textContent) content.append(note);
       const footer = townLinksFor(item.url);
       if (footer) content.append(footer);
