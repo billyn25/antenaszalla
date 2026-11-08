@@ -43,15 +43,27 @@
   if (Array.isArray(data.satelliteChanges)) {
     const changes = document.querySelector('#satellite-changes');
     const empty = document.querySelector('#satellite-changes-empty');
+    const eventText = {
+      'Cambio de frecuencia': 'cambió de frecuencia en',
+      'Nuevo canal': 'se incorporó a las emisiones de',
+      'Fin de emisión': 'dejó de emitir en'
+    };
     changes.replaceChildren(...data.satelliteChanges.map(item => {
       const row = document.createElement('li');
       const link = document.createElement('a');
       link.href = item.url;
-      link.textContent = item.change + ' · ' + item.channel;
+      link.textContent = 'Consultar el listado en KingOfSat';
       const date = document.createElement('time');
       date.dateTime = item.date;
       date.textContent = dateFormat.format(new Date(item.date));
-      row.append(link, ' · ' + item.position + ' · ', date);
+      const heading = document.createElement('strong');
+      heading.textContent = item.channel + ' · ' + item.change;
+      const summary = document.createElement('p');
+      const event = eventText[item.change];
+      summary.textContent = event
+        ? 'KingOfSat registró que ' + item.channel + ' ' + event + ' ' + item.position + '.'
+        : 'Aviso de KingOfSat para ' + item.channel + ' en ' + item.position + '.';
+      row.append(heading, ' · ', date, summary, link);
       return row;
     }));
     changes.hidden = !data.satelliteChanges.length;
