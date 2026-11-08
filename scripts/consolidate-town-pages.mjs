@@ -61,7 +61,14 @@ manifest.redirects=[...redirects].map(([from,to])=>({from,to}));
 fs.writeFileSync(path.join(root,'public-seo-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 fs.writeFileSync(path.join(root,'local-pages-manifest.json'),JSON.stringify(retained,null,2)+'\n');
 const newsTowns=retained.map(t=>({name:t.name,route:t.publicPath}));
-fs.writeFileSync(path.join(root,'assets/news-towns.json'),JSON.stringify(newsTowns)+'\n');
+const newsTownCounts=new Map();
+const importantNewsTowns=retained.slice().sort((a,b)=>b.population-a.population||a.name.localeCompare(b.name,'es')).filter(t=>{
+ const count=newsTownCounts.get(t.province)||0;
+ if(count>=3&&t.name!=='Zalla')return false;
+ if(t.name!=='Zalla')newsTownCounts.set(t.province,count+1);
+ return true;
+}).map(t=>({name:t.name,route:t.publicPath}));
+fs.writeFileSync(path.join(root,'assets/news-towns.json'),JSON.stringify(importantNewsTowns)+'\n');
 const newsPage=docs.find(doc=>doc.type==='blog');
 if(newsPage){
  const file=path.join(root,newsPage.file);
