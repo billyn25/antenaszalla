@@ -99,8 +99,8 @@ function satCescTopic(title, section) {
   return null;
 }
 
-function parseSatCesc(xml, section, now) {
-  return readRss(xml).flatMap(({ title, link, pubDate, description }) => {
+function parseSatCesc(entries, section, now) {
+  return entries.flatMap(({ title, link, pubDate, description }) => {
     const label = textFromHtml(title);
     const type = satCescTopic(label, section);
     const date = Date.parse(pubDate);
@@ -277,12 +277,28 @@ export async function handler(event) {
     if (!response.ok) throw new Error('SES: HTTP ' + response.status);
     return parseSes(await response.text(), now);
   });
-  const satCescRequests = ['tdt', 'transpondedores', 'movistar-tv'].map(async section => {
-    const response = await fetch(satCesc + '/' + section + '/feed/', {
-      signal: AbortSignal.timeout(9000), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
-    });
-    if (!response.ok) throw new Error('SatCesc: HTTP ' + response.status);
-    return parseSatCesc(await response.text(), section, now);
+  const satCescCategories = { tdt: 13, transpondedores: 6, 'movistar-tv': 5962 };
+  const satCescRequests = Object.entries(satCescCategories).map(async ([section, category]) => {
+    try {
+      const response = await fetch(satCesc + '/' + section + '/feed/', {
+        signal: AbortSignal.timeout(4500), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
+      });
+      if (!response.ok) throw new Error('RSS HTTP ' + response.status);
+      const xml = await response.text();
+      if (!/<rss\b/i.test(xml)) throw new Error('Respuesta no RSS');
+      return parseSatCesc(readRss(xml), section, now);
+    } catch (error) {
+      console.warn('RSS de SatCesc no disponible', section, error.message);
+      const response = await fetch(satCesc + '/wp-json/wp/v2/posts?categories=' + category + '&per_page=26&_fields=date_gmt,link,title,excerpt', {
+        signal: AbortSignal.timeout(5000), headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) throw new Error('SatCesc API: HTTP ' + response.status);
+      const posts = await response.json();
+      if (!Array.isArray(posts)) throw new Error('SatCesc API sin artículos');
+      const entries = posts.map(post => ({ title: post.title?.rendered || '', link: post.link || '',
+        pubDate: post.date_gmt ? post.date_gmt + 'Z' : '', description: post.excerpt?.rendered || '' }));
+      return parseSatCesc(entries, section, now);
+    }
   });
   const kingRequest = (async () => {
     const response = await fetch(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(9000) });
@@ -292,6 +308,8 @@ export async function handler(event) {
     return filterSatelliteChanges(readRss(xml), now);
   })();
   const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests, ...satCescRequests]);
+  const satCescAvailable = results.slice(-satCescRequests.length).filter(result => result.status === 'fulfilled').length;
+  headers['X-Zallatel-SatCesc'] = satCescAvailable + '/' + satCescRequests.length;
   const satelliteChanges = kingResult.status === 'fulfilled' ? kingResult.value : null;
   const available = results.filter(result => result.status === 'fulfilled');
   const news = available.flatMap(feed => feed.value);
@@ -321,7 +339,7 @@ export async function handler(event) {
     if (latest.length > maxNews) latest.pop();
   }
   const items = await Promise.all(latest.map(addOfficialText));
-  headers['Netlify-CDN-Cache-Control'] = officialNews || available.length === results.length
+  headers['Netlify-CDN-Cache-Control'] = satCescAvailable === satCescRequests.length && (officialNews || available.length === results.length)
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
     : 'public, durable, s-maxage=300';
   return { statusCode: 200, headers, body: JSON.stringify({ items, satelliteChanges }) };
