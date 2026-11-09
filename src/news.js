@@ -1,3 +1,5 @@
+import { satCescCategories, fetchSatCescPosts, selectNews, pageSize } from './news-sources.mjs?v=1';
+
 (async () => {
   const list = document.querySelector('#news-items');
   const dateFormat = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', timeZone: 'Europe/Madrid' });
@@ -70,9 +72,15 @@
     empty.hidden = Boolean(data.satelliteChanges.length);
   }
 
-  const items = data.items || [];
+  const missing = news.status === 'fulfilled' ? data.satCescMissing || [] : Object.keys(satCescCategories);
+  let items = data.items || [];
+  if (missing.length) {
+    const now = Date.now();
+    const results = await Promise.allSettled(missing.map(section => fetchSatCescPosts(section, now)));
+    const recovered = results.flatMap(result => result.status === 'fulfilled' ? result.value : []);
+    if (recovered.length) items = selectNews([...items, ...recovered]);
+  }
   if (items.length) {
-    const pageSize = 15;
     const pageCount = Math.ceil(items.length / pageSize);
     const pagination = document.querySelector('#news-pagination');
     const previous = document.querySelector('#news-previous');
