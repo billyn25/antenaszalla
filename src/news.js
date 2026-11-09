@@ -65,6 +65,10 @@ import { satCescCategories, mundoCategories, fetchSatCescPosts, fetchMundoPosts,
       summary.textContent = event
         ? 'KingOfSat registró que ' + item.channel + ' ' + event + ' ' + item.position + '.'
         : 'Aviso de KingOfSat para ' + item.channel + ' en ' + item.position + '.';
+      if (item.frequency && item.polarization) {
+        const polarization = item.polarization === 'V' ? 'vertical' : 'horizontal';
+        summary.append(' Emisión en abierto en ' + item.frequency + ' MHz, polarización ' + polarization + '.');
+      }
       row.append(heading, ' · ', date, summary, link);
       return row;
     }));

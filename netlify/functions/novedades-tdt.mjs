@@ -7,6 +7,8 @@ const sections = Object.keys(mundoCategories);
 const uhdSpain = 'https://www.uhdspain.com';
 const ses = 'https://www.ses.com';
 const kingOfSat = 'https://es.kingofsat.tv';
+const satellitePositions = { '19.2E': 'Astra 19,2° Este', '30W': 'Hispasat 30° Oeste' };
+const kingMonths = 'enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre'.split(' ');
 const satelliteMaxAge = 180 * 24 * 60 * 60 * 1000;
 const maxAge = 30 * 24 * 60 * 60 * 1000;
 
@@ -62,7 +64,7 @@ function parseFeed(xml, now, origin = source) {
 }
 
 function filterSatelliteChanges(entries, now) {
-  const changes = entries.flatMap(({ title, description, pubDate }) => {
+  return entries.flatMap(({ title, description, pubDate }) => {
     const orbital = /\((?:Astra|Hispasat)\b[^()]*\s(19\.2E|30(?:\.0)?W),\s+\d{4}-\d{2}-\d{2}/i.exec(textFromHtml(description))?.[1];
     const event = /^(.+?):\s*([^()]+?)\s+\((?:Astra|Hispasat)\b[^()]*\)\s*$/i.exec(title.trim());
     const date = Date.parse(pubDate);
@@ -77,13 +79,79 @@ function filterSatelliteChanges(entries, now) {
     if (/^(?:nuevo canal|new channel)$/.test(action)) change = 'Nuevo canal';
     if (/^(?:ha dejado de emitir|left|removed|ceased broadcasting|fin de emisi[oó]n)$/.test(action)) change = 'Fin de emisión';
     if (!change) return [];
-    const astra = orbital === '19.2E';
-    return [{ channel, change, position: astra ? 'Astra 19,2° Este' : 'Hispasat 30° Oeste',
-      date: new Date(date).toISOString(), url: kingOfSat + (astra ? '/news19.2E' : '/news30W') }];
-  }).sort((a, b) => b.date.localeCompare(a.date));
+    const orbit = orbital === '19.2E' ? orbital : '30W';
+    return [{ channel, change, position: satellitePositions[orbit],
+      date: new Date(date).toISOString(), url: kingOfSat + '/news' + orbit }];
+  });
+}
+
+function readOpenSatelliteChanges(html, orbit, now) {
+  const changes = [];
+  const url = kingOfSat + '/news' + orbit;
+  const sections = html.split(/<h4\b[^>]*>([\s\S]*?)<\/h4>/i);
+  for (let index = 1; index < sections.length; index += 2) {
+    const heading = textFromHtml(sections[index]).toLowerCase();
+    const dateParts = /\b(\d{1,2})\s+(?:de\s+)?([a-z]+)\s+(?:de\s+)?(\d{4})\b/.exec(heading);
+    if (!dateParts) continue;
+    const month = kingMonths.indexOf(dateParts[2]);
+    if (month < 0) continue;
+    const date = Date.UTC(Number(dateParts[3]), month, Number(dateParts[1]));
+    if (date > now || now - date > maxAge) continue;
+
+    for (const paragraph of sections[index + 1].split(/<p\b[^>]*>|<\/div>/i)) {
+      const event = /^\s*(Nueva frecuencia para|Inicio de)\s*<a\b[^>]*\bhref=["']detail-[^"']+["'][^>]*>([\s\S]*?)<\/a>/i.exec(paragraph);
+      if (!event) continue;
+      const details = textFromHtml(paragraph.slice(event[0].length));
+      const tuning = /(\d{4,5}(?:[.,]\d+)?)\s*MHz,\s*pol\.\s*([HV])\b/i.exec(details);
+      const channel = textFromHtml(event[2]);
+      if (!channel || !tuning || !/\ben abierto\b/i.test(details)) continue;
+      if (/\b(?:eroti[ck]\w*|xxx|adult(?:s|os)?|hot babes)\b/i.test(channel)) continue;
+      changes.push({
+        channel,
+        change: /^inicio/i.test(event[1]) ? 'Nuevo canal' : 'Cambio de frecuencia',
+        position: satellitePositions[orbit],
+        date: new Date(date).toISOString(),
+        url,
+        frequency: tuning[1].replace('.', ','),
+        polarization: tuning[2].toUpperCase()
+      });
+    }
+  }
+  return changes;
+}
+
+async function fetchSatelliteChanges(now) {
+  const rssRequest = (async () => {
+    const response = await fetch(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(9000) });
+    if (!response.ok) throw new Error('KingOfSat RSS: HTTP ' + response.status);
+    const xml = await response.text();
+    if (!/<rss\b/i.test(xml)) throw new Error('KingOfSat no devolvió RSS');
+    return filterSatelliteChanges(readRss(xml), now);
+  })();
+  const positionRequests = Object.keys(satellitePositions).map(async orbit => {
+    const response = await fetch(kingOfSat + '/news' + orbit, {
+      signal: AbortSignal.timeout(6000), headers: { Accept: 'text/html' }
+    });
+    if (!response.ok) throw new Error('KingOfSat ' + orbit + ': HTTP ' + response.status);
+    const html = await response.text();
+    const heading = textFromHtml(/<h1\b[^>]*>[\s\S]*?<\/h1>/i.exec(html)?.[0] || '');
+    if (!heading.endsWith('(' + orbit + ')')) {
+      throw new Error('KingOfSat no devolvió el listado de ' + orbit);
+    }
+    return readOpenSatelliteChanges(html, orbit, now);
+  });
+  const results = await Promise.allSettled([rssRequest, ...positionRequests]);
+  const available = results.filter(result => result.status === 'fulfilled');
+  if (!available.length) throw new Error('KingOfSat no está disponible');
+
+  const changes = available.flatMap(result => result.value).sort((a, b) =>
+    b.date.slice(0, 10).localeCompare(a.date.slice(0, 10)) ||
+    Number(Boolean(b.frequency)) - Number(Boolean(a.frequency)) ||
+    b.date.localeCompare(a.date)
+  );
   const unique = new Map();
   for (const change of changes) {
-    const key = [change.channel, change.change, change.position].join('|');
+    const key = [change.channel.toLowerCase(), change.change, change.position].join('|');
     if (!unique.has(key)) unique.set(key, change);
   }
   return [...unique.values()].slice(0, 5);
@@ -222,13 +290,7 @@ export async function handler(event) {
       return fetchSatCescPosts(section, now, 5000);
     }
   });
-  const kingRequest = (async () => {
-    const response = await fetch(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(9000) });
-    if (!response.ok) throw new Error('KingOfSat: HTTP ' + response.status);
-    const xml = await response.text();
-    if (!/<rss\b/i.test(xml)) throw new Error('KingOfSat no devolvió RSS');
-    return filterSatelliteChanges(readRss(xml), now);
-  })();
+  const kingRequest = fetchSatelliteChanges(now);
   const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests, ...satCescRequests]);
   const mundoMissing = sections.filter((_, index) => results[index].status === 'rejected');
   const satCescResults = results.slice(-satCescRequests.length);
