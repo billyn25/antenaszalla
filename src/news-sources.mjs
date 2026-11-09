@@ -1,4 +1,6 @@
 export const satCesc = 'https://satcesc.com';
+const mundoPlus = 'https://www.mundoplus.tv';
+export const mundoCategories = { 'tv-digital': 40, tecnologia: 6042 };
 export const satCescCategories = { tdt: 13, transpondedores: 6, 'movistar-tv': 5962 };
 export const newsMaxAge = 90 * 24 * 60 * 60 * 1000;
 export const pageSize = 15;
@@ -20,6 +22,24 @@ export function briefExcerpt(text) {
     paragraphs: [words.length > 25 ? words.slice(0, 25).join(' ') + '…' : text],
     excerptType: 'Extracto breve de la publicación'
   };
+}
+
+export function topicFor(title) {
+  const text = title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+  if (/\b(?:tdt[-\s‑–]*sat|satelites?|astra|hispasat|parabolicas?|dvb[-\s‑–]*s2|transpondedores?)\b/.test(text)) {
+    return { type: 'Satélite', label: /frecuen|transpondedor/.test(text) ? 'Cambios de frecuencia por satélite' : 'Novedades de recepción por satélite' };
+  }
+  if (/\b(?:tdt|dvb[-\s‑–]*t2|resintoniz\w*|television digital terrestre)\b/.test(text)) {
+    if (/\bradio\b/.test(text)) return null;
+    if (/\buhd spain\b/.test(text)) return { type: 'TDT', label: 'Cambios en las emisiones de prueba en UHD' };
+    if (/\bfrecuencias?\b/.test(text)) return { type: 'TDT', label: 'Cambios de frecuencias en la TDT' };
+    if (/\buhd\b/.test(text) && /\bcalidad\b/.test(text)) return { type: 'UHD', label: 'Calidad de imagen y sonido en los canales UHD' };
+    return { type: 'TDT', label: 'Novedades de sintonización y canales TDT' };
+  }
+  if (/\b(?:lasexta|telecinco|antena 3|la [12]|canales?|senal)\s+uhd\b|\buhd\s+spain\b/.test(text)) {
+    return { type: 'UHD', label: /\blasexta\b/.test(text) ? 'Recepción de laSexta en ultra alta definición' : 'Novedades de televisión en ultra alta definición' };
+  }
+  return null;
 }
 
 function satCescTopic(title, section) {
@@ -54,17 +74,34 @@ export function parseSatCesc(entries, section, now) {
   });
 }
 
-export async function fetchSatCescPosts(section, now) {
-  const category = satCescCategories[section];
-  const response = await fetch(satCesc + '/wp-json/wp/v2/posts?categories=' + category + '&per_page=26&_fields=date_gmt,link,title,excerpt', {
-    signal: AbortSignal.timeout(5000), headers: { Accept: 'application/json' }
+async function fetchWordPressPosts(origin, category, query, timeout) {
+  const response = await fetch(origin + '/wp-json/wp/v2/posts?categories=' + category + '&' + query, {
+    signal: AbortSignal.timeout(timeout), headers: { Accept: 'application/json' }
   });
-  if (!response.ok) throw new Error('SatCesc API: HTTP ' + response.status);
+  if (!response.ok) throw new Error(origin + ': HTTP ' + response.status);
   const posts = await response.json();
-  if (!Array.isArray(posts)) throw new Error('SatCesc API sin artículos');
-  const entries = posts.map(post => ({ title: post.title?.rendered || '', link: post.link || '',
+  if (!Array.isArray(posts)) throw new Error(origin + ': respuesta sin artículos');
+  return posts.map(post => ({ title: post.title?.rendered || '', link: post.link || '',
     pubDate: post.date_gmt ? post.date_gmt + 'Z' : '', description: post.excerpt?.rendered || '' }));
+}
+
+export async function fetchSatCescPosts(section, now, timeout = 8500) {
+  const entries = await fetchWordPressPosts(satCesc, satCescCategories[section], 'per_page=26&_fields=date_gmt,link,title,excerpt', timeout);
   return parseSatCesc(entries, section, now);
+}
+
+export async function fetchMundoPosts(section, now) {
+  const entries = await fetchWordPressPosts(mundoPlus, mundoCategories[section], 'per_page=10&_fields=date_gmt,link,title', 8500);
+  return entries.flatMap(({ title, link, pubDate }) => {
+    const label = textFromHtml(title);
+    const topic = topicFor(label);
+    const date = Date.parse(pubDate);
+    let url;
+    try { url = new URL(link); } catch { return []; }
+    if (!topic || !Number.isFinite(date) || date > now || now - date > newsMaxAge ||
+      url.origin !== mundoPlus || !/^\/(?:tv-digital|tecnologia)\/[^/]+\/$/.test(url.pathname)) return [];
+    return [{ type: topic.type, label, publisher: 'Mundoplus', url: url.origin + url.pathname, date: new Date(date).toISOString() }];
+  });
 }
 
 export function selectNews(news) {

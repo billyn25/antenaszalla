@@ -1,4 +1,4 @@
-import { satCescCategories, fetchSatCescPosts, selectNews, pageSize } from './news-sources.mjs?v=1';
+import { satCescCategories, mundoCategories, fetchSatCescPosts, fetchMundoPosts, selectNews, pageSize } from './news-sources.mjs?v=2';
 
 (async () => {
   const list = document.querySelector('#news-items');
@@ -72,11 +72,15 @@ import { satCescCategories, fetchSatCescPosts, selectNews, pageSize } from './ne
     empty.hidden = Boolean(data.satelliteChanges.length);
   }
 
-  const missing = news.status === 'fulfilled' ? data.satCescMissing || [] : Object.keys(satCescCategories);
+  const satMissing = news.status === 'fulfilled' ? data.satCescMissing || [] : Object.keys(satCescCategories);
+  const mundoMissing = news.status === 'fulfilled' ? data.mundoMissing || [] : Object.keys(mundoCategories);
   let items = data.items || [];
-  if (missing.length) {
+  if (satMissing.length || mundoMissing.length) {
     const now = Date.now();
-    const results = await Promise.allSettled(missing.map(section => fetchSatCescPosts(section, now)));
+    const results = await Promise.allSettled([
+      ...satMissing.map(section => fetchSatCescPosts(section, now)),
+      ...mundoMissing.map(section => fetchMundoPosts(section, now))
+    ]);
     const recovered = results.flatMap(result => result.status === 'fulfilled' ? result.value : []);
     if (recovered.length) items = selectNews([...items, ...recovered]);
   }

@@ -1,9 +1,9 @@
 import { SaxesParser } from 'saxes';
-import { satCesc, satCescCategories, newsMaxAge, textFromHtml, briefExcerpt, parseSatCesc, fetchSatCescPosts, selectNews } from '../../src/news-sources.mjs';
+import { satCesc, satCescCategories, mundoCategories, topicFor, newsMaxAge, textFromHtml, briefExcerpt, parseSatCesc, fetchSatCescPosts, selectNews } from '../../src/news-sources.mjs';
 import backup from './novedades-tdt-backup.json' with { type: 'json' };
 
 const source = 'https://www.mundoplus.tv';
-const sections = ['tv-digital', 'tecnologia'];
+const sections = Object.keys(mundoCategories);
 const uhdSpain = 'https://www.uhdspain.com';
 const ses = 'https://www.ses.com';
 const kingOfSat = 'https://es.kingofsat.tv';
@@ -14,24 +14,6 @@ const officialSources = [
   { origin: 'https://television.digital.gob.es', path: '/atencion-a-la-ciudadania/notas-prensa', publisher: 'Televisión Digital' },
   { origin: 'https://digital.gob.es', path: '/comunicacion', articlePath: '/comunicacion/notas-prensa/', publisher: 'Ministerio para la Transformación Digital' }
 ];
-
-function topicFor(title) {
-  const text = title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
-  if (/\b(?:tdt[-\s‑–]*sat|satelites?|astra|hispasat|parabolicas?|dvb[-\s‑–]*s2|transpondedores?)\b/.test(text)) {
-    return { type: 'Satélite', label: /frecuen|transpondedor/.test(text) ? 'Cambios de frecuencia por satélite' : 'Novedades de recepción por satélite' };
-  }
-  if (/\b(?:tdt|dvb[-\s‑–]*t2|resintoniz\w*|television digital terrestre)\b/.test(text)) {
-    if (/\bradio\b/.test(text)) return null;
-    if (/\buhd spain\b/.test(text)) return { type: 'TDT', label: 'Cambios en las emisiones de prueba en UHD' };
-    if (/\bfrecuencias?\b/.test(text)) return { type: 'TDT', label: 'Cambios de frecuencias en la TDT' };
-    if (/\buhd\b/.test(text) && /\bcalidad\b/.test(text)) return { type: 'UHD', label: 'Calidad de imagen y sonido en los canales UHD' };
-    return { type: 'TDT', label: 'Novedades de sintonización y canales TDT' };
-  }
-  if (/\b(?:lasexta|telecinco|antena 3|la [12]|canales?|senal)\s+uhd\b|\buhd\s+spain\b/.test(text)) {
-    return { type: 'UHD', label: /\blasexta\b/.test(text) ? 'Recepción de laSexta en ultra alta definición' : 'Novedades de televisión en ultra alta definición' };
-  }
-  return null;
-}
 
 function readRss(xml) {
   const parser = new SaxesParser();
@@ -237,7 +219,7 @@ export async function handler(event) {
       return parseSatCesc(readRss(xml), section, now);
     } catch (error) {
       console.warn('RSS de SatCesc no disponible', section, error.message);
-      return fetchSatCescPosts(section, now);
+      return fetchSatCescPosts(section, now, 5000);
     }
   });
   const kingRequest = (async () => {
@@ -248,6 +230,7 @@ export async function handler(event) {
     return filterSatelliteChanges(readRss(xml), now);
   })();
   const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests, ...satCescRequests]);
+  const mundoMissing = sections.filter((_, index) => results[index].status === 'rejected');
   const satCescResults = results.slice(-satCescRequests.length);
   const satCescMissing = satCescSections.filter((_, index) => satCescResults[index].status === 'rejected');
   const satCescAvailable = satCescSections.length - satCescMissing.length;
@@ -264,7 +247,7 @@ export async function handler(event) {
     const items = backup.items.filter(item => now - Date.parse(item.date) <= maxAge);
     headers['X-Zallatel-RSS'] = `reserva; ${failures.join(', ')}`;
     headers['Netlify-CDN-Cache-Control'] = 'public, durable, s-maxage=300';
-    return { statusCode: items.length || satelliteChanges?.length ? 200 : 503, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing, backup: true }) };
+    return { statusCode: items.length || satelliteChanges?.length ? 200 : 503, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing, mundoMissing, backup: true }) };
   }
   const officialNews = news.some(item => item.publisher);
   const rssNews = news.some(item => !item.publisher);
@@ -274,5 +257,5 @@ export async function handler(event) {
   headers['Netlify-CDN-Cache-Control'] = satCescAvailable === satCescRequests.length && (officialNews || available.length === results.length)
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
     : 'public, durable, s-maxage=300';
-  return { statusCode: 200, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing }) };
+  return { statusCode: 200, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing, mundoMissing }) };
 }
