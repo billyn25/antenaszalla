@@ -1,5 +1,10 @@
 {
   "brand": "Antenas Zallatel",
+  "business": {
+    "name": "Antenas Zalla",
+    "owner": "C. Fuentes",
+    "address": "Barrio El Baular s/n, C. Eroski, 48860 Zalla, Bizkaia, España"
+  },
   "domain": "https://antenaszalla.com",
   "phone": "670 042 626",
   "tel": "+34670042626",

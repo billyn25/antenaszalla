@@ -1,5 +1,7 @@
 import {footer} from './footer.mjs';
 import { brandMark } from './logo.mjs';
+import site from '../config/site.json' with { type: 'json' };
+import { escapeHtml as esc } from './public-seo.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -36,8 +38,8 @@ function legalHeader() {
 }
 
 
-function page({title, description, route, kicker, lead, body}) {
-  return `${legalHead(title, description, route)}<body>${legalHeader()}<main class="legal-page"><section class="legal-hero"><div class="wrap"><span class="eyebrow">${kicker}</span><h1>${title}</h1><p>${lead}</p></div></section><section class="legal-content"><div class="wrap legal-layout"><article class="legal-copy">${body}<p class="legal-updated">Última actualización: 23 de septiembre de 2026.</p></article><aside class="legal-aside"><strong>Información legal</strong><p>Documentación del sitio y tratamiento de la información.</p><a href="/aviso-legal.html"${route==='/aviso-legal.html'?' aria-current="page"':''}>Aviso legal</a><a href="/privacidad.html"${route==='/privacidad.html'?' aria-current="page"':''}>Privacidad y RGPD</a><a href="/cookies.html"${route==='/cookies.html'?' aria-current="page"':''}>Cookies</a><a href="/">Volver a la web</a></aside></div></section></main>${footer()}${cookieNotice}</body></html>`;
+function page({title, description, route, kicker, lead, body, updated = '23 de septiembre de 2026'}) {
+  return `${legalHead(title, description, route)}<body>${legalHeader()}<main class="legal-page"><section class="legal-hero"><div class="wrap"><span class="eyebrow">${kicker}</span><h1>${title}</h1><p>${lead}</p></div></section><section class="legal-content"><div class="wrap legal-layout"><article class="legal-copy">${body}<p class="legal-updated">Última actualización: ${updated}.</p></article><aside class="legal-aside"><strong>Información legal</strong><p>Documentación del sitio y tratamiento de la información.</p><a href="/aviso-legal.html"${route==='/aviso-legal.html'?' aria-current="page"':''}>Aviso legal</a><a href="/privacidad.html"${route==='/privacidad.html'?' aria-current="page"':''}>Privacidad y RGPD</a><a href="/cookies.html"${route==='/cookies.html'?' aria-current="page"':''}>Cookies</a><a href="/">Volver a la web</a></aside></div></section></main>${footer()}${cookieNotice}</body></html>`;
 }
 
 function walk(dir) {
@@ -60,12 +62,14 @@ fs.writeFileSync(path.join(root, 'aviso-legal.html'), page({
   description:'Aviso legal de Antenas Zallatel con los datos disponibles del titular, medios de contacto, condiciones de uso y responsabilidad del sitio web.',
   route:'/aviso-legal.html',
   kicker:'Información del titular',
+  updated:'10 de noviembre de 2026',
   lead:'Datos disponibles del responsable de antenaszalla.com y condiciones generales de uso de la web.',
   body:`
 <h2>Datos disponibles del titular</h2>
 <dl class="legal-data">
-  <div><dt>Nombre comercial</dt><dd>Antenas Zallatel</dd></div>
-  <div><dt>Titular</dt><dd>R.F.G.</dd></div>
+  <div><dt>Nombre comercial</dt><dd>${esc(site.business.name)}</dd></div>
+  <div><dt>Titular de la web</dt><dd>${esc(site.business.owner)}</dd></div>
+  <div><dt>Dirección</dt><dd>${esc(site.business.address)}</dd></div>
   <div><dt>Sitio web</dt><dd>antenaszalla.com</dd></div>
   <div><dt>Teléfono</dt><dd><a href="tel:${tel}">${phone}</a></dd></div>
   <div><dt>Contacto por mensajería</dt><dd><a href="https://wa.me/${whatsapp}">WhatsApp</a></dd></div>
@@ -89,11 +93,13 @@ fs.writeFileSync(path.join(root, 'privacidad.html'), page({
   description:'Política de privacidad de Antenas Zallatel: datos tratados al contactar, finalidades, base jurídica, conservación, destinatarios y derechos.',
   route:'/privacidad.html',
   kicker:'Protección de datos',
+  updated:'10 de noviembre de 2026',
   lead:'Explicamos qué información puede tratarse cuando contactas con Antenas Zallatel y para qué se utiliza.',
   body:`
 <h2>Responsable</h2>
 <dl class="legal-data">
-  <div><dt>Responsable</dt><dd>R.F.G. · Antenas Zallatel</dd></div>
+  <div><dt>Responsable</dt><dd>${esc(site.business.owner)} · ${esc(site.business.name)}</dd></div>
+  <div><dt>Dirección</dt><dd>${esc(site.business.address)}</dd></div>
   <div><dt>Web</dt><dd>antenaszalla.com</dd></div>
   <div><dt>Teléfono</dt><dd><a href="tel:${tel}">${phone}</a></dd></div>
   <div><dt>WhatsApp</dt><dd><a href="https://wa.me/${whatsapp}">Abrir conversación</a></dd></div>
@@ -134,4 +140,4 @@ fs.writeFileSync(path.join(root, 'cookies.html'), page({
 <p>Si Antenas Zallatel incorpora en el futuro analítica, publicidad u otras tecnologías que requieran consentimiento, el sistema de información y elección se modificará antes de activarlas.</p>`
 }));
 
-console.log('LEGAL/PRIVACIDAD OK: R.F.G., teléfono, WhatsApp, políticas ampliadas y aviso informativo sin rastreo.');
+console.log('LEGAL/PRIVACIDAD OK: titular, dirección, teléfono, WhatsApp y políticas.');

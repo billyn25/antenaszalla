@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import site from '../config/site.json' with { type: 'json' };
+import { escapeHtml as esc } from './public-seo.mjs';
 
 const root = path.resolve('dist');
 
@@ -65,7 +67,7 @@ for (const file of walk(root)) {
     .replaceAll('La web continúa en modo de revisión y noindex.', '')
     .replace(/<p class="notice">[^<]*(?:vista previa|modo de revisión|noindex|página de prueba|selección parcial|web actual|generada para esa localidad)[^<]*<\/p>/gi, '')
     .replace(/<details><summary>Información de esta vista previa y privacidad<\/summary><p>[\s\S]*?<\/p><\/details>/gi, '')
-    .replaceAll('Antenas Zallatel · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.', 'Antenas Zallatel · Propiedad de R.F.G. · 670 042 626')
+    .replaceAll('Antenas Zallatel · Versión de revisión. La web actual permanece en su alojamiento. Fotografías y listado completo de localidades pendientes de revisión.', `Antenas Zallatel · Titular de la web: ${esc(site.business.owner)} · 670 042 626`)
     .replaceAll('Página no incluida en esta vista previa', 'Página no disponible')
     .replaceAll('El inventario de la renovación está en revisión. Esto no indica que la página se haya eliminado de la web actual.', 'La dirección solicitada no está disponible. Puedes volver al inicio o contactar con Antenas Zallatel.');
 
