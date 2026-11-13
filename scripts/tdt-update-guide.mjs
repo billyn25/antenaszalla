@@ -72,7 +72,7 @@ export function buildTdtUpdateGuide(root=process.env.PRODUCTION_ROOT||'dist') {
   const file=path.join(root,TDT_GUIDE_ROUTE.slice(1),'index.html');
   fs.mkdirSync(path.dirname(file),{recursive:true});
   fs.writeFileSync(file,renderTdtGuide({header,footer:footer+mobilebar,towns,provinces}));
-  const pages=[{file:'index.html'},...towns.map(t=>({file:t.path.slice(1),name:t.name})),...provinces.map(p=>({file:p.path.slice(1)+'index.html'})),{file:'servicios/index.html'},{file:'servicios/reparacion-antenas-tdt/index.html'},{file:'servicios/amplificadores-antena/index.html'},{file:'blog/index.html'}];
+  const pages=[{file:'index.html'},...towns.map(t=>({file:t.path.slice(1),name:t.name})),...provinces.map(p=>({file:p.path.slice(1)+'index.html'})),{file:'servicios/index.html'},{file:'servicios/reparacion-antenas-tdt/index.html'},{file:'servicios/amplificadores-antena/index.html'},{file:'servicios/mantenimiento-antenas-comunidades/index.html'},{file:'blog/index.html'}];
   for(const page of pages){
     const local=path.join(root,page.file);
     let html=addTdtGuideTeaser(fs.readFileSync(local,'utf8'),page.name);
