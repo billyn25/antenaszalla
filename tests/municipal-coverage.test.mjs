@@ -49,6 +49,21 @@ test('Basque expansion restores 26 pages and preserves all 228 existing municipa
 });
 test('Getaria aliases preserve one canonical destination for both spellings',()=>{
  assert.equal(new Set(GETARIA_ALIASES).size,GETARIA_ALIASES.length);
+ assert.equal(GETARIA_ALIASES.length,23);
  assert(!GETARIA_ALIASES.includes(GETARIA_CANONICAL_PATH));
- for(const route of ['/antenas-guipuzcoa/guetaria','/Antenas-Guipuzcoa/getaria.html','/antenas-gipuzkoa/getaria/'])assert(GETARIA_ALIASES.includes(route));
+ for(const route of ['/antenas-guipuzcoa/guetaria','/Antenas-Guipuzcoa/getaria.html','/antenas-gipuzkoa/getaria'])assert(GETARIA_ALIASES.includes(route));
+});
+test('Getaria cannot match its own forced redirect after Netlify trailing-slash normalization',()=>{
+ // Netlify ignores a trailing slash during rule matching, but preserves case.
+ const routeKey=route=>route.replace(/\/+$/,'')||'/';
+ const rules=new Map(GETARIA_ALIASES.map(alias=>[routeKey(alias),GETARIA_CANONICAL_PATH]));
+ for(const canonical of [GETARIA_CANONICAL_PATH,GETARIA_CANONICAL_PATH+'/']){
+  assert(!rules.has(routeKey(canonical)),`Canonical URL would loop: ${canonical}`);
+ }
+ for(const alias of GETARIA_ALIASES){
+  assert(!alias.endsWith('/'),'A trailing-slash variant duplicates a Netlify rule');
+  assert.notEqual(routeKey(alias),routeKey(GETARIA_CANONICAL_PATH));
+  assert.equal(rules.get(routeKey(alias+'/')),GETARIA_CANONICAL_PATH,'Native slash matching must preserve aliases');
+ }
+ assert(rules.has('/Antenas-Guipuzcoa/getaria'),'Case-sensitive historical path must remain supported');
 });

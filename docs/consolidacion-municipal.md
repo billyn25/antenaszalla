@@ -40,9 +40,9 @@ Los 252 municipios de Bizkaia, Gipuzkoa y Álava siguen localizables en los índ
 
 La ampliación refuerza el entorno de Zalla, las localidades de costa e interior y las consultas que antes se agrupaban en otra localidad, como Urduña/Orduña con Güeñes o Aramaio con Alegría-Dulantzi. Es una decisión editorial de cobertura; no se presenta como resultado de datos de Search Console ni como prueba de intervenciones realizadas.
 
-Getaria recupera su ruta histórica `/antenas-guipuzcoa/getaria`. Las grafías Guetaria y las variantes de ruta Getaria/Gipuzkoa, con extensiones históricas o barra final, resuelven directamente a esa misma ficha mediante 301. Lekeitio permanece en `/antenas-bizkaia/lekeitio`; ambas reciben enlaces destacados en el bloque del País Vasco de la portada, además de su índice provincial y las localidades cercanas.
+Getaria recupera su ruta histórica `/antenas-guipuzcoa/getaria`. Se declaran 23 alias para Guetaria, la variante provincial Gipuzkoa, las mayúsculas históricas y las extensiones `.html`/`.htm`; resuelven directamente a esa misma ficha mediante 301. Netlify aplica su normalización nativa de la barra final: no se añade una redirección entre la ruta canónica con barra y sin ella, porque el CDN las compara como la misma ruta y provocaría un bucle. Lekeitio permanece en `/antenas-bizkaia/lekeitio`; ambas reciben enlaces destacados en el bloque del País Vasco de la portada, además de su índice provincial y las localidades cercanas.
 
-Las prioridades y alias se declaran en `scripts/municipal-coverage.mjs`. Los tests comparan la selección ampliada con la anterior y exigen que se mantengan todas las fichas originales; la auditoría del resultado construido verifica destinos, cobertura, enlaces, buscador, contador y alias de Getaria.
+Las prioridades y alias se declaran en `scripts/municipal-coverage.mjs`. Los tests comparan la selección ampliada con la anterior y exigen que se mantengan todas las fichas originales; la auditoría del resultado construido verifica destinos, cobertura, enlaces, buscador, contador y alias de Getaria. También comprueba todas las redirecciones del manifiesto con la normalización de barra final de Netlify, manteniendo la distinción entre mayúsculas y minúsculas, para impedir redirecciones a sí mismas.
 
 ## Migración
 

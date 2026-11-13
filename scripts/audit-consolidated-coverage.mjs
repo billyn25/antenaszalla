@@ -21,6 +21,10 @@ assert.equal(coverage.provinces.length,Object.keys(cachedProvinces).length,'Cobe
 assert.equal(new Set(towns.map(t=>t.province)).size,coverage.provinces.length,'Faltan páginas propias de una provincia');
 const retained=new Map(towns.map(t=>[t.publicPath,t]));
 const redirects=new Map(manifest.redirects.map(r=>[r.from,r.to]));
+// Netlify normalizes the trailing slash before matching even a forced redirect.
+// Check the complete manifest so a canonical slash alias cannot become a loop.
+const netlifyRouteKey=route=>route.replace(/\/+$/,'')||'/';
+for(const [from,to] of redirects)assert.notEqual(netlifyRouteKey(from),netlifyRouteKey(to),`Redirección a sí misma tras normalizar la barra final en Netlify: ${from} -> ${to}`);
 const htmls=new Map(towns.map(t=>[t.publicPath,fs.readFileSync(path.join(root,t.path.slice(1)),'utf8')]));
 const retainedCodes=new Set(towns.map(t=>t.code));
 const baseline=selectCoverage(coverage.assignments.map(row=>({...geo.get(row.code),province:row.province,protected:row.code==='48096'})),{priorityCodes:[]});

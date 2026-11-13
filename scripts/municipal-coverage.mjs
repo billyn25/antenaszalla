@@ -31,8 +31,12 @@ export const BASQUE_COVERAGE_PRIORITIES=[
 export const PRIORITY_MUNICIPALITY_CODES=BASQUE_COVERAGE_PRIORITIES.map(t=>t.code);
 export const policy={minimumPopulation:5000,minimumPerProvince:8,maxDistanceKm:25,additionalMunicipalityCodes:PRIORITY_MUNICIPALITY_CODES};
 export const GETARIA_CANONICAL_PATH='/antenas-guipuzcoa/getaria';
+// Netlify matches both trailing-slash forms before applying redirect rules.
+// A forced /getaria/ -> /getaria redirect would also match the canonical path
+// and loop. Keep case-sensitive spelling/file aliases, without slash variants.
+// https://docs.netlify.com/manage/routing/redirects/redirect-options/#trailing-slash
 export const GETARIA_ALIASES=['antenas-guipuzcoa','Antenas-Guipuzcoa','antenas-gipuzkoa','Antenas-Gipuzkoa']
- .flatMap(province=>['getaria','guetaria'].flatMap(town=>['','/','.html','.htm'].map(suffix=>`/${province}/${town}${suffix}`)))
+ .flatMap(province=>['getaria','guetaria'].flatMap(town=>['','.html','.htm'].map(suffix=>`/${province}/${town}${suffix}`)))
  .filter(route=>route!==GETARIA_CANONICAL_PATH);
 export function distanceKm(a,b){
  const rad=Math.PI/180,dlat=(b.lat-a.lat)*rad,dlon=(b.lon-a.lon)*rad;
@@ -60,5 +64,5 @@ export function selectCoverage(towns,{priorityCodes=PRIORITY_MUNICIPALITY_CODES}
  return {retained,assignments};
 }
 
-export const COVERAGE_RELEASE='20261113';
+export const COVERAGE_RELEASE='20261113-2';
 export const COVERAGE_CSS='\n.municipal-coverage-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px 24px;padding-left:20px;margin:24px 0}.municipal-coverage-list li{padding:4px 0;scroll-margin-top:100px;overflow-wrap:anywhere}.municipal-coverage-list li:target{font-weight:800;background:#edf2d9}.municipal-coverage p{max-width:85ch}.coverage-consult{display:inline-block;min-height:44px;padding:12px 0;font-weight:700}.basque-coverage{margin:28px 0 36px}.basque-coverage-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.basque-coverage h3{font-size:clamp(23px,3vw,30px);margin:0 0 12px}.basque-coverage h4{font-size:23px;margin:0 0 14px}.basque-coverage .featured-towns{margin-bottom:16px}.basque-coverage .featured-province>a{display:inline-block;min-height:44px;padding:12px 0;font-weight:700}.other-provinces-title{font-size:23px;margin:24px 0 16px}@media(max-width:760px){.basque-coverage-grid{grid-template-columns:1fr}}\n';
