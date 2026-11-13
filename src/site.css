@@ -1043,24 +1043,25 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
   .town-antenna-points{grid-template-columns:1fr}
 }
 
-/* Reserva el mismo alto para el texto del hero a igual ancho de pantalla.
-   El contenido puede crecer con ampliación de texto, sin recortarlo. */
+/* El título ocupa solo sus líneas reales: los pueblos cortos no dejan huecos. */
 @media(max-width:760px){
   .hero.zalla-fault-hero.zallatel-home-hero .hero-copy{
-    min-height:390px!important;
+    min-height:0!important;
   }
   .hero.zalla-fault-hero.zallatel-home-hero .hero-copy h1{
-    min-height:4.04em!important;
+    min-height:0!important;
   }
   .hero.zalla-fault-hero.zallatel-home-hero .eyebrow{
     display:block!important;
-    min-height:2.9em!important;
+    min-height:0!important;
   }
-}
-
-@media(max-width:760px){
-  .hero.zalla-fault-hero.zallatel-home-hero .service-statement{min-height:5.52em!important}
-  .hero.zalla-fault-hero.zallatel-home-hero .lead{min-height:3em!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .service-statement{min-height:0!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .lead{
+    display:block!important;
+    min-height:0!important;
+    overflow:visible!important;
+    -webkit-line-clamp:unset!important;
+  }
 }
 
 /* Pie común Zallatel: navegación territorial y una única llamada a la consulta. */
@@ -1088,6 +1089,65 @@ header{background:#0b2d48;border-bottom-color:#4f9bc3}
 .zalla-footer-provinces a:hover,.zalla-footer-services>a:hover{background:#ffffff0e;color:#fff;border-color:#69adcf}
 .footer a:focus-visible{outline:3px solid #9bdcff;outline-offset:4px}
 .footer>.wrap>.legal-links{display:flex;flex-wrap:wrap;gap:12px;padding-top:20px;border-top:1px solid #ffffff24;font-size:12px}
+
+/* Marca compacta: símbolo sólido, nombre legible y subtítulo en su flujo. */
+.zalla-brand-logo-base.zalla-brand-logo{aspect-ratio:auto!important;filter:none!important;gap:11px!important}
+.zalla-logo-icon{width:54px!important;height:54px!important;flex:0 0 54px!important;color:#0b2d48!important;overflow:hidden!important}
+.zalla-wordmark{gap:4px!important;line-height:1!important;letter-spacing:0!important}
+.zalla-wordmark>span{font-size:13px!important;letter-spacing:.18em!important;color:#2d789f!important;font-weight:750!important}
+.zalla-wordmark>b{font-size:33px!important;line-height:.94!important;letter-spacing:-1.3px!important;color:#0b2d48!important;font-weight:850!important}
+header .head{min-height:96px!important;grid-template-columns:210px minmax(0,1fr) 170px!important;grid-template-rows:96px!important;gap:16px!important}
+header .head .brand{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:7px!important;width:auto!important;height:auto!important;min-width:0!important}
+header .brand-tagline{position:static!important;align-self:flex-start!important;margin:0!important;font-size:10px!important;line-height:1.25!important;white-space:nowrap!important;color:#536c7e!important}
+header .head nav{gap:15px!important}
+header .head nav a{font-size:11px!important}
+header .contact-top{width:170px!important;min-height:62px!important;padding-left:15px!important}
+header .contact-top a{font-size:23px!important}
+.mobilebar a{gap:9px}
+.mobilebar svg{width:20px;height:20px;flex:0 0 20px}
+@media(min-width:761px) and (max-width:1180px){
+  header[data-mobile-nav] .head{grid-template-columns:230px minmax(0,1fr) 170px 50px!important;grid-template-rows:88px auto!important;min-height:88px!important;gap:0 12px!important}
+  header[data-mobile-nav] .head .brand{width:auto!important;height:auto!important}
+  header[data-mobile-nav] .zalla-logo-icon{width:48px!important;height:48px!important;flex-basis:48px!important}
+  header[data-mobile-nav] .zalla-wordmark>span{font-size:12px!important}
+  header[data-mobile-nav] .zalla-wordmark>b{font-size:29px!important}
+  header[data-mobile-nav] .brand-tagline{position:static!important;font-size:9px!important}
+  header[data-mobile-nav] .contact-top{width:170px!important;min-height:58px!important}
+  header[data-mobile-nav] .contact-top a{font-size:21px!important}
+}
+@media(max-width:760px){
+  .top-service,.top-service .wrap{height:26px!important;font-size:9px!important}
+  body{padding-bottom:calc(52px + env(safe-area-inset-bottom))}
+  .mobilebar{display:grid;grid-template-columns:1fr 1fr;position:fixed;inset:auto 0 0;z-index:60;background:var(--deep);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -5px 20px rgba(8,45,72,.12)}
+  .mobilebar a{display:flex;align-items:center;justify-content:center;min-height:52px;color:#fff;font-size:15px;font-weight:750;background:var(--brand)}
+  .mobilebar a:last-child{background:var(--green)}
+  header .head,header[data-mobile-nav] .head{width:calc(100% - 28px)!important;min-height:88px!important;grid-template-columns:minmax(0,1fr) auto 46px!important;grid-template-rows:auto!important;gap:8px!important;padding:12px 0!important}
+  header .head .brand,header[data-mobile-nav] .head .brand{width:auto!important;height:auto!important;gap:6px!important}
+  header .zalla-brand-logo-base.zalla-brand-logo{gap:9px!important}
+  header .zalla-logo-icon,header[data-mobile-nav] .zalla-logo-icon{width:42px!important;height:42px!important;flex-basis:42px!important}
+  header .zalla-wordmark>span,header[data-mobile-nav] .zalla-wordmark>span{font-size:10px!important;letter-spacing:.16em!important}
+  header .zalla-wordmark>b,header[data-mobile-nav] .zalla-wordmark>b{font-size:27px!important;letter-spacing:-1px!important}
+  header .brand-tagline,header[data-mobile-nav] .brand-tagline{position:static!important;font-size:8px!important;white-space:nowrap!important;line-height:1.3!important}
+  header .contact-top,header[data-mobile-nav] .contact-top{grid-column:2!important;width:auto!important;min-height:0!important;padding:0!important;border:0!important;align-self:center!important}
+  header .contact-top a,header[data-mobile-nav] .contact-top a,header .contact-top small{display:none!important}
+  header .contact-top strong,header[data-mobile-nav] .contact-top strong{margin:0!important;padding:6px 7px!important;background:#fff0f1!important;border:1px solid #f2c7cc!important;color:#a51d32!important;border-radius:6px!important;font-size:8px!important;letter-spacing:0!important;line-height:1.2!important}
+  header[data-mobile-nav] .head .menu-toggle{width:46px!important;min-height:46px!important;border-radius:9px!important;background:#f1f6f9!important;gap:3px!important}
+  header[data-mobile-nav] .head nav a{font-size:14px!important}
+  .breadcrumb{font-size:11px!important;padding-block:10px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-inner{width:100%!important;margin-left:0!important;margin-right:0!important;padding-inline:16px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy{padding:22px 20px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .hero-copy h1{line-height:1.07!important;letter-spacing:-1px!important;margin:10px 0 15px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .service-statement{font-size:16px!important;line-height:1.45!important;margin-bottom:12px!important}
+  .hero.zalla-fault-hero.zallatel-home-hero .lead{font-size:14px!important;line-height:1.55!important}
+}
+@media(max-width:359px){
+  header .head,header[data-mobile-nav] .head{width:calc(100% - 22px)!important;gap:6px!important}
+  header .zalla-logo-icon,header[data-mobile-nav] .zalla-logo-icon{width:36px!important;height:36px!important;flex-basis:36px!important}
+  header .zalla-wordmark>b,header[data-mobile-nav] .zalla-wordmark>b{font-size:24px!important}
+  header .zalla-wordmark>span,header[data-mobile-nav] .zalla-wordmark>span{font-size:9px!important}
+  header .contact-top strong,header[data-mobile-nav] .contact-top strong{font-size:7px!important;padding:5px!important}
+  header .brand-tagline,header[data-mobile-nav] .brand-tagline{font-size:7px!important}
+}
 .footer .fine{margin-top:14px;color:#91afc2}
 .footer #identidad-zalla{max-width:780px;margin:0 0 22px;color:#91afc2;font-size:11px;line-height:1.6}
 @media(max-width:900px){.zalla-footer-grid{grid-template-columns:1fr 1fr;gap:28px}.zalla-footer-provinces{grid-column:1/-1}.zalla-footer-provinces ul{grid-template-columns:repeat(3,minmax(0,1fr))}}

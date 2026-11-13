@@ -112,8 +112,8 @@ const serviceCopy = {
     description: 'Instalación de tomas de televisión y revisión del cableado. Localizamos pérdidas en conectores, repartidores y derivadores para recuperar la señal.'
   },
   mantenimiento: {
-    subject: 'Mantenimiento de antenas comunitarias',
-    description: 'Revisiones de antenas, cabeceras y sistemas de acceso comunitarios. Acordamos equipos incluidos, periodicidad, desplazamientos y alcance del mantenimiento.'
+    subject: 'Antenas y porteros para comunidades',
+    description: 'Antenas colectivas, porteros y videoporteros para comunidades de vecinos. Diagnóstico, reparación y renovación coordinados con presidente o administrador.'
   }
 };
 

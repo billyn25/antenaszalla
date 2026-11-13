@@ -64,9 +64,9 @@
   },
   {
     "id": "mantenimiento",
-    "name": "Mantenimiento de antenas",
-    "short": "Revisiones con alcance definido.",
-    "text": "Acordamos qué se revisa en la instalación comunitaria: sujeciones accesibles, conexiones exteriores, alimentación y funcionamiento de la cabecera. Periodicidad, desplazamientos y recambios quedan definidos en la propuesta.",
+    "name": "Comunidades de vecinos",
+    "short": "Antena colectiva, portero y videoportero.",
+    "text": "Preparamos el aviso con el presidente o administrador: viviendas afectadas, funciones que fallan y acceso a zonas comunes. Distinguimos reparación, revisión y renovación, con equipos incluidos y pruebas acordadas.",
     "icon": "tools"
   }
 ]

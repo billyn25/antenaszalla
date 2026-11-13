@@ -3,7 +3,7 @@ import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import guide from '../content/tdt-update-guide.json' with {type:'json'};
-import {DOMAIN,PHONE,TEL,BRAND,escapeHtml as esc,organizationSchema} from './public-seo.mjs';
+import {DOMAIN,TEL,BRAND,escapeHtml as esc,organizationSchema} from './public-seo.mjs';
 import {displayPlaceName} from './seo-metadata.mjs';
 
 export {guide};
@@ -11,7 +11,7 @@ export const TDT_GUIDE_ROUTE=guide.route;
 export const TDT_GUIDE_RELEASE=createHash('sha256').update(JSON.stringify(guide)).update(fs.readFileSync(new URL(import.meta.url))).digest('hex').slice(0,12);
 const bySource=new Map(guide.sources.map(source=>[source.id,source]));
 const sourceLinks=ids=>`<p class="tdt-guide-references">Fuentes: ${ids.map(id=>{const source=bySource.get(id);if(!source)throw new Error('Fuente TDT desconocida: '+id);return `<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.label)}</a>`;}).join(' · ')}.</p>`;
-const contact=`<a class="btn call" href="tel:${TEL}">Llamar al ${PHONE}</a>`;
+const contact=`<a class="btn call" href="tel:${TEL}">Llamar para consultar</a><a class="btn wa" href="https://wa.me/34670042626?text=${encodeURIComponent('Hola, tras consultar la guía de La Séptima y UHD necesito revisar la recepción de TDT. Mi localidad es: ')}">Consultar por WhatsApp</a>`;
 
 // The same short guide reference is deliberately shared. It is not presented as
 // evidence of municipal transmitters, reception measurements or completed work.
@@ -32,6 +32,8 @@ export function addTdtGuideTeaser(html,townName) {
 }
 
 export function renderTdtGuide({header,footer,towns=[],provinces=[]}) {
+  header=header.replaceAll('href="/#contacto"','href="#contacto"');
+  footer=footer.replaceAll('href="/#contacto"','href="#contacto"');
   const url=DOMAIN+TDT_GUIDE_ROUTE;
   const named=['Getaria','Lekeitio','Zalla'].map(name=>towns.find(t=>t.name===name)).filter(Boolean);
   const localLinks=named.map(t=>`<a href="${esc(t.path)}">Antenista en ${esc(displayPlaceName(t.name))} →</a>`).join('');
@@ -52,8 +54,9 @@ export function renderTdtGuide({header,footer,towns=[],provinces=[]}) {
 <section id="sintonizar-septima"><h2>Cómo encontrar La Séptima</h2><ol class="tdt-guide-steps"><li><strong>Comprueba la entrada.</strong> Estas instrucciones son para TDT recibida por antena. Si usas un receptor externo, realiza la búsqueda en ese aparato; una aplicación o la televisión de un operador tiene su propia lista.</li><li><strong>Abre los ajustes de canales.</strong> Busca una opción como «Sintonización automática» o «Búsqueda de canales». Selecciona televisión digital por antena. El nombre del menú depende del modelo.</li><li><strong>Espera a que termine y guarda.</strong> Recorre la nueva lista para encontrar La Séptima y los demás canales. La búsqueda puede alterar el orden de tus favoritos; anótalo antes si lo necesitas.</li><li><strong>Ordena a tu gusto.</strong> Puedes colocar La Séptima en el número 7, pero esa posición es una elección de la lista, no una frecuencia universal que haya que introducir.</li></ol><p>Resintonizar actualiza los canales guardados. No repara una señal defectuosa ni añade al televisor una función de recepción que no tenga.</p>${sourceLinks(['septima','ministerio'])}</section>
 <section id="compatibilidad-uhd"><h2>Qué comprobar para ver TDT en UHD</h2><div class="tdt-guide-checks"><div><h3>DVB-T2</h3><p>Es la tecnología de recepción de la señal. Busca esta compatibilidad en las especificaciones del sintonizador de tu televisor o receptor externo.</p></div><div><h3>HEVC / H.265</h3><p>Es el sistema de compresión de vídeo utilizado en las emisiones UHD. El receptor debe poder descodificarlo para mostrar la imagen.</p></div><div><h3>Pantalla y salida UHD</h3><p>Para mostrar la resolución UHD necesitas una pantalla adecuada. Si utilizas un receptor externo, comprueba también su salida y la entrada compatible del televisor.</p></div></div><p><strong>Que una pantalla anuncie 4K no confirma por sí solo que su sintonizador reciba DVB-T2 y HEVC.</strong> Consulta la referencia exacta del equipo y su manual. La Séptima se distribuye en HD en esta fase: encontrarla y recibir los canales UHD son comprobaciones diferentes.</p><p>Si tu equipo sigue recibiendo las versiones HD, el cambio de esta primera fase no obliga por sí solo a sustituirlo. Valora un receptor compatible o una renovación cuando quieras acceder a UHD y hayas comprobado las conexiones.</p>${sourceLinks(['tecnologia','calendario'])}</section>
 <section id="si-faltan-canales"><h2>Qué hacer si siguen faltando canales</h2><dl class="tdt-guide-diagnosis"><dt>No aparece La Séptima tras la búsqueda</dt><dd>Anota si recibes DKISS y otros canales del bloque MPE5. Compara con otro televisor conectado a la misma instalación. Esa información ayuda a separar la lista del receptor de un problema de recepción o distribución.</dd><dt>Se ven los canales HD, pero no los UHD</dt><dd>Revisa primero DVB-T2 y HEVC en el modelo exacto. Si es compatible, conviene comprobar la recepción del bloque RGE2 en esa dirección antes de elegir recambios.</dd><dt>El canal aparece, pero no tiene imagen o sonido</dt><dd>Guarda el mensaje de pantalla y el nombre completo del canal, incluido HD o UHD. Revisa el manual del equipo; una entrada guardada no demuestra que el receptor pueda reproducirla.</dd><dt>El fallo afecta a varios vecinos o a varias tomas</dt><dd>Comunícalo al responsable de la comunidad y reúne los canales afectados. La revisión puede comparar señal de entrada, cabecera y tomas para localizar dónde se degrada.</dd></dl><p>No elijas una antena o un amplificador solo porque falte un canal. La decisión debe partir del equipo, la cobertura de esa dirección y, cuando proceda, de mediciones. La guía de <a href="/servicios/reparacion-antenas-tdt/">averías de TDT</a> explica qué se comprueba; la de <a href="/servicios/amplificadores-antena/">amplificación y distribución</a> desarrolla la instalación interior.</p></section>
-<section id="consulta-por-localidad"><h2>Consulta por tu pueblo y tu instalación</h2><p>En una consulta desde Getaria, Lekeitio o cualquier otra localidad, indica la dirección o el núcleo, el modelo del televisor, los canales que faltan y si el problema empezó antes o después de resintonizar. Un mismo municipio puede tener situaciones de recepción diferentes.</p><div class="tdt-guide-local-links">${localLinks}${provinceLinks}<a href="/#zonas">Buscar otras provincias y municipios →</a></div><p>Si necesitas una revisión, acuerda antes disponibilidad, desplazamiento y alcance del diagnóstico.</p><div class="actions">${contact}<a class="btn" href="/servicios/reparacion-antenas-tdt/">Consultar revisión de TDT</a></div></section>
+<section id="consulta-por-localidad"><h2>Consulta por tu pueblo y tu instalación</h2><p>En una consulta desde Getaria, Lekeitio o cualquier otra localidad, indica la dirección o el núcleo, el modelo del televisor, los canales que faltan y si el problema empezó antes o después de resintonizar. Un mismo municipio puede tener situaciones de recepción diferentes.</p><div class="tdt-guide-local-links">${localLinks}${provinceLinks}<a href="/#zonas">Buscar otras provincias y municipios →</a></div><p>Si necesitas una revisión, acuerda antes disponibilidad, desplazamiento y alcance del diagnóstico.</p><p><a href="/servicios/reparacion-antenas-tdt/">Qué se revisa en una avería de TDT →</a></p></section>
 <section class="tdt-guide-sources" id="fuentes"><h2>Fuentes y fecha de revisión</h2><p>Información contrastada el ${guide.reviewedLabel}. Consulta los avisos de cada cadena y las fuentes oficiales para cambios posteriores.</p><ul>${guide.sources.map(source=>`<li><a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.label)} ↗</a> <time datetime="${source.date}">(${source.date.split('-').reverse().join('/')})</time></li>`).join('')}</ul></section>
+<section class="service-contact" id="contacto"><h2>¿Siguen faltando canales?</h2><p>Indica tu localidad, el modelo del televisor y qué canales fallan. Si afecta a varios vecinos, coméntalo para preparar la revisión de la instalación colectiva.</p><div class="actions">${contact}</div></section>
 </article></main>${footer}</body></html>`;
 }
 
@@ -64,10 +67,11 @@ export function buildTdtUpdateGuide(root=process.env.PRODUCTION_ROOT||'dist') {
   const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
   const header=home.match(/<header\b[\s\S]*?<\/header>/)?.[0]?.replace(/href="#/g,'href="/#');
   const footer=home.match(/<footer\b[\s\S]*?<\/footer>/)?.[0]?.replace(/href="#/g,'href="/#');
-  if(!header||!footer)throw new Error('No se pudo reutilizar la identidad para la guía TDT');
+  const mobilebar=home.match(/<div class="mobilebar">[\s\S]*?<\/div>/)?.[0];
+  if(!header||!footer||!mobilebar)throw new Error('No se pudo reutilizar la identidad y el contacto móvil para la guía TDT');
   const file=path.join(root,TDT_GUIDE_ROUTE.slice(1),'index.html');
   fs.mkdirSync(path.dirname(file),{recursive:true});
-  fs.writeFileSync(file,renderTdtGuide({header,footer,towns,provinces}));
+  fs.writeFileSync(file,renderTdtGuide({header,footer:footer+mobilebar,towns,provinces}));
   const pages=[{file:'index.html'},...towns.map(t=>({file:t.path.slice(1),name:t.name})),...provinces.map(p=>({file:p.path.slice(1)+'index.html'})),{file:'servicios/index.html'},{file:'servicios/reparacion-antenas-tdt/index.html'},{file:'servicios/amplificadores-antena/index.html'},{file:'blog/index.html'}];
   for(const page of pages){
     const local=path.join(root,page.file);

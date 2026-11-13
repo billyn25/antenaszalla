@@ -13,6 +13,9 @@ test('La Séptima and UHD have one dated guide with real sources and initial HTM
   assert.ok(html.includes('href="/antenas-guipuzcoa/getaria"'));
   assert.ok(html.includes('href="/antenas-bizkaia/lekeitio"'));
   assert.ok(guide.sources.every(source=>html.includes(`href="${source.url}"`)));
+  assert.equal((html.match(/href="tel:/g)||[]).length,1);
+  assert.ok(html.includes('>Llamar para consultar</a>'));
+  assert.ok(html.indexOf('id="contacto"')>html.indexOf('id="fuentes"'));
   const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));
   assert.equal(ids.size,(html.match(/\bid="/g)||[]).length);
   for(const [,id]of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.has(id),'missing guide anchor '+id);

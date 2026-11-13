@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {selectCoverage,distanceKm,BASQUE_COVERAGE_PRIORITIES,GETARIA_ALIASES,GETARIA_CANONICAL_PATH} from '../scripts/municipal-coverage.mjs';
+import {selectCoverage,distanceKm,BASQUE_COVERAGE_PRIORITIES,BURGOS_COVERAGE_PRIORITIES,GETARIA_ALIASES,GETARIA_CANONICAL_PATH} from '../scripts/municipal-coverage.mjs';
 test('retains populous municipalities, covers remote areas and never assigns across a province border',()=>{
  const towns=Array.from({length:10},(_,i)=>({code:String(i).padStart(5,'0'),name:'A'+i,province:'A',population:i===0?100000:100-i,lat:43,lon:-3+i*.01}));
  towns.push({code:'99998',name:'Remoto',province:'A',population:10,lat:43,lon:-5});
@@ -30,7 +30,7 @@ test('Basque expansion restores 26 pages and preserves all 228 existing municipa
  const geography=JSON.parse(fs.readFileSync(new URL('../content/municipal-geography.json',import.meta.url),'utf8'));
  const towns=geography.municipalities.map(t=>({...t,province:t.code.slice(0,2),protected:t.code==='48096'}));
  const baseline=selectCoverage(towns,{priorityCodes:[]});
- const expanded=selectCoverage(towns);
+ const expanded=selectCoverage(towns,{priorityCodes:BASQUE_COVERAGE_PRIORITIES.map(t=>t.code)});
  const existing=new Set(baseline.retained.map(t=>t.code));
  const retained=new Set(expanded.retained.map(t=>t.code));
  assert.equal(existing.size,228);
@@ -46,6 +46,24 @@ test('Basque expansion restores 26 pages and preserves all 228 existing municipa
  for(const [province,count] of [['48',47],['20',41],['01',16]])assert.equal(expanded.retained.filter(t=>t.province===province).length,count);
  assert(retained.has('48057'),'Lekeitio must remain a separate page');
  for(const town of expanded.retained.filter(t=>!['01','20','48'].includes(t.province)))assert(existing.has(town.code),'Expansion must not change other provinces');
+});
+test('Burgos restores seven northern pages without removing any of the 254 published local pages',()=>{
+ const geography=JSON.parse(fs.readFileSync(new URL('../content/municipal-geography.json',import.meta.url),'utf8'));
+ const towns=geography.municipalities.map(t=>({...t,province:t.code.slice(0,2),protected:t.code==='48096'}));
+ const before=selectCoverage(towns,{priorityCodes:BASQUE_COVERAGE_PRIORITIES.map(t=>t.code)});
+ const after=selectCoverage(towns);
+ const priorCodes=new Set(before.retained.map(t=>t.code));
+ const retained=new Set(after.retained.map(t=>t.code));
+ assert.equal(priorCodes.size,254);
+ assert.equal(retained.size,261);
+ for(const town of before.retained)assert(retained.has(town.code),`Published page lost: ${town.name}`);
+ assert.equal(before.retained.filter(t=>t.province==='09').length,20);
+ assert.equal(after.retained.filter(t=>t.province==='09').length,27);
+ for(const town of BURGOS_COVERAGE_PRIORITIES){
+  assert(!priorCodes.has(town.code),`Expected a recovered page: ${town.name}`);
+  assert.equal(after.assignments.find(a=>a.town.code===town.code)?.hub.code,town.code);
+ }
+ for(const town of after.retained.filter(t=>t.province!=='09'))assert(priorCodes.has(town.code),'Burgos expansion must not change other provinces');
 });
 test('Getaria aliases preserve one canonical destination for both spellings',()=>{
  assert.equal(new Set(GETARIA_ALIASES).size,GETARIA_ALIASES.length);

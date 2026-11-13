@@ -380,6 +380,186 @@
       "preparation": ["Concretar el alcance antes del desplazamiento", "Incluye la ubicación exacta, equipos visibles y persona que facilita el acceso. Se acuerdan disponibilidad, desplazamiento, diagnóstico y posibles materiales según el trabajo solicitado."],
       "guide": ["Preparar el diagnóstico de la TDT", "/servicios/reparacion-antenas-tdt/"],
       "sources": []
+    },
+    {
+      "code": "09410",
+      "name": "Valle de Mena",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "parabolicas", "porteros"],
+      "heading": "TDT en Valle de Mena: localidad, toma y canal afectado",
+      "intro": "Para organizar una visita desde Zalla al Valle de Mena, indica la localidad concreta: Villasana de Mena, El Berrón, Bortedo, Siones o la que corresponda. También necesitamos saber si utilizas antena terrestre, parabólica o ambos sistemas. El nombre del valle por sí solo no permite decidir la orientación ni el equipo necesario.",
+      "checks": [
+        ["Faltan canales que antes se recibían", "Anota dos canales que funcionan y dos que faltan. Si buscas una cadena autonómica, indica su nombre: que se reciba en otro municipio no confirma la recepción de tu dirección. Conviene guardar estos datos antes de borrar la lista del televisor.", "Contrastar la cobertura prevista para la dirección con la calidad de señal medida en la instalación."],
+        ["La parabólica y la TDT llegan a la misma toma", "Explica qué receptor utilizas y en qué conexión aparece el fallo. Si solo falla satélite, interesa distinguirlo de la recepción terrestre antes de sustituir el amplificador o tocar la orientación de la antena.", "Seguir cada señal hasta su entrada y comprobar los elementos que comparten el recorrido."]
+      ],
+      "preparation": ["Preparar el desplazamiento al valle", "Facilita localidad, dirección, canales afectados y una fotografía de los conectores visibles del receptor. Si la instalación es comunitaria, indica si también falla a otros vecinos y quién puede abrir el acceso a los equipos comunes."],
+      "guide": ["Revisión de parabólica y recepción de satélite", "/servicios/antenas-parabolicas/"],
+      "sources": [["Diputación de Burgos: localidades del Valle de Mena", "https://www.cultura.burgos.es/provincia/municipio/valle-de-mena"], ["Ministerio: consulta de cobertura TDT", "https://television.digital.gob.es/television-digital/tdt/consulta-la-cobertura-tdt-de-tu-localidad"]]
+    },
+    {
+      "code": "09209",
+      "name": "Medina de Pomar",
+      "province": "Burgos",
+      "preferredServices": ["mantenimiento", "amplificacion", "videoporteros"],
+      "heading": "Antena colectiva en Medina de Pomar: separar el fallo común del de una vivienda",
+      "intro": "Una consulta de Medina de Pomar puede corresponder al casco urbano o a localidades del municipio como Moneo, La Cerca o Salinas de Rosío. Precisa la dirección y el tipo de inmueble. En una comunidad, saber qué viviendas han perdido los mismos canales evita preparar el aviso como si fuera una avería aislada del televisor.",
+      "checks": [
+        ["Varios vecinos tienen el mismo problema de televisión", "Pide a dos viviendas que indiquen qué canales faltan y desde cuándo. No hace falta que todos resintonicen: una comparación entre tomas ayuda a decidir dónde empezar la revisión de recepción, alimentación y reparto.", "Comparar la cabecera común con puntos representativos de la distribución del edificio."],
+        ["Se plantea renovar el videoportero del portal", "Prepara el número de viviendas, accesos y terminales que deben funcionar. Si se quiere conservar parte de los equipos, identifica marca y modelo; la apariencia de un monitor no determina su compatibilidad.", "Definir qué elementos se conservan y qué llamadas, imágenes y aperturas deben probarse al terminar."]
+      ],
+      "preparation": ["Coordinar el aviso con la comunidad", "Una persona de contacto puede reunir los síntomas y facilitar el acceso al cuarto de equipos. Conviene acordar también las viviendas disponibles para las pruebas y el alcance del presupuesto antes del desplazamiento."],
+      "guide": ["Mantenimiento y revisión de antenas comunitarias", "/servicios/mantenimiento-antenas-comunidades/"],
+      "sources": [["Diputación de Burgos: localidades de Medina de Pomar", "https://mancomunidades.burgos.es/node/698"]]
+    },
+    {
+      "code": "09903",
+      "name": "Villarcayo de Merindad de Castilla la Vieja",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "tomas", "porteros"],
+      "heading": "Televisión y porteros en Villarcayo: concretar la instalación antes de la visita",
+      "intro": "Indica si la instalación está en Villarcayo o en una pedanía como Cigüenza, Villalaín, Incinillas o Torme. Una dirección completa permite organizar la visita desde Zalla. Para preparar las pruebas, diferencia si se trata de una vivienda, un portal compartido o una instalación con varios accesos.",
+      "checks": [
+        ["Una toma funciona y otra habitación no", "Anota qué televisor y cable has utilizado en cada punto, sin desmontar tomas. Si puedes conectar el mismo equipo con el mismo latiguillo en dos habitaciones, explica el resultado: aporta más información que cambiar varios elementos a la vez.", "Localizar la pérdida en el reparto, el cable o la toma antes de añadir amplificación."],
+        ["El portero abre desde algunas viviendas", "Distingue si los vecinos afectados pueden llamar y hablar, y si el problema aparece en una placa o en todas. La combinación de funciones que siguen trabajando ayuda a identificar el recorrido que debe revisarse.", "Comprobar el sistema común y los terminales afectados con pruebas coordinadas desde el portal."]
+      ],
+      "preparation": ["Dejar disponibles los puntos de prueba", "Incluye pedanía, dirección y número de viviendas o tomas afectadas. Para un inmueble que permanece cerrado, acuerda la entrega de llaves o la presencia de una persona que pueda enseñar la instalación."],
+      "guide": ["Reparto de señal y nuevas tomas de televisión", "/servicios/tomas-cableado-television/"],
+      "sources": [["Ayuntamiento de Villarcayo: pedanías del municipio", "https://villarcayo.burgos.es/pedanias"]]
+    },
+    {
+      "code": "09124",
+      "name": "Espinosa de los Monteros",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "tdt-satelite", "starlink"],
+      "heading": "Antenas en Espinosa de los Monteros: revisar la vivienda y el servicio que necesitas",
+      "intro": "En Espinosa de los Monteros, indica si la vivienda está en el casco, Las Machorras, Bárcenas, Para, Quintana de los Prados o Santa Olalla. Esa ubicación concreta es necesaria para preparar la revisión. La solución se decide según la recepción y la instalación de la casa, no solo por el nombre del municipio.",
+      "checks": [
+        ["La TDT lleva tiempo sin funcionar correctamente", "Explica si nunca se recibió bien o si la avería apareció después de un periodo de funcionamiento normal. Son puntos de partida distintos: primero se revisan los equipos existentes y la recepción disponible para esa dirección.", "Diferenciar una instalación averiada de una limitación de recepción antes de valorar alternativas."],
+        ["Se necesita televisión e internet en la misma vivienda", "Anota si ya dispones de parabólica, receptor de televisión o kit Starlink. La televisión por satélite y el acceso a internet son servicios distintos; cada equipo necesita su ubicación, conexión y comprobación.", "Preparar por separado la recepción de TV, el montaje de internet y los recorridos de cable."]
+      ],
+      "preparation": ["Ubicación y material antes de salir", "Facilita localidad, dirección, fotografías de los equipos visibles y si hay alguien para recibir al técnico. Si se estudia SAT-TDT, las condiciones del sistema deben comprobarse antes de comprar un receptor."],
+      "guide": ["Cuándo valorar TDT por satélite HD", "/servicios/tdt-por-satelite-hd/"],
+      "sources": [["Diputación de Burgos: localidades de Espinosa de los Monteros", "https://www.burgos.es/provincia/municipio/espinosa-de-los-monteros"]]
+    },
+    {
+      "code": "09214",
+      "name": "Merindad de Montija",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "parabolicas", "tomas"],
+      "heading": "Preparar una reparación de antena en Merindad de Montija",
+      "intro": "Villasante, Bercedo, Baranda y Gayangos son algunas de las localidades de Merindad de Montija. Al solicitar una visita, añade el núcleo exacto y si la instalación se utiliza habitualmente o se recupera tras un tiempo cerrada. Esa información ayuda a organizar el acceso y las comprobaciones que harán falta.",
+      "checks": [
+        ["La televisión no funciona al volver a la casa", "Explica cuándo se vio correctamente por última vez y qué equipos han permanecido desconectados. Una fuente de alimentación sin corriente, un receptor diferente y un deterioro exterior necesitan revisiones distintas; no conviene atribuir todos los síntomas a la antena.", "Identificar los equipos, comprobar su alimentación y seguir la señal hasta las tomas."],
+        ["Se quiere repartir la televisión a más habitaciones", "Indica cuántas tomas funcionan ahora y cuáles se quieren añadir. Señala si existe cableado aprovechable y si se necesita TDT, satélite o ambas señales en los nuevos puntos.", "Definir el reparto y comprobar que la ampliación no perjudica las tomas existentes."]
+      ],
+      "preparation": ["Concretar núcleo y acceso a la vivienda", "Incluye dirección, persona de contacto, número de televisores y modelos de los receptores. Las fotos tomadas desde el suelo o el interior permiten preparar material sin que tengas que acceder a la cubierta."],
+      "guide": ["Cableado y reparto para varias televisiones", "/servicios/tomas-cableado-television/"],
+      "sources": [["Diputación de Burgos: localidades de Merindad de Montija", "https://www.burgos.es/provincia/municipio/merindad-de-montija"]]
+    },
+    {
+      "code": "09908",
+      "name": "Valle de Losa",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "tdt-satelite", "parabolicas"],
+      "heading": "Recepción de televisión en Valle de Losa: estudiar cada dirección",
+      "intro": "Para un aviso en Valle de Losa, indica la localidad, por ejemplo Quincoces de Yuso, Lastras de Teza, Río de Losa o San Pantaleón. El valle reúne núcleos diferentes y una referencia municipal no sustituye la ubicación de la antena. También conviene identificar qué sistema de televisión está instalado.",
+      "checks": [
+        ["Se pregunta qué antena necesita una vivienda", "Una recomendación requiere conocer qué señal se recibe y cómo llega hasta el televisor. Facilita los canales que ves y el estado de la instalación; elegir solo por el tamaño o la ganancia anunciada de la antena no resuelve ese diagnóstico.", "Medir nivel y calidad, y valorar recepción, amplificación y distribución como un conjunto."],
+        ["Ya existe una parabólica en la casa", "Identifica el receptor y el servicio que utiliza. Una parabólica instalada no demuestra por sí sola que esté preparada para SAT-TDT ni que sirva para el canal que buscas; antes debe comprobarse su configuración y destino.", "Identificar satélite, receptor, cableado y condiciones del servicio antes de proponer una adaptación."]
+      ],
+      "preparation": ["Datos útiles para estudiar la recepción", "Facilita localidad, dirección, fotos visibles de receptor y antena, y cuándo aparece el fallo. La consulta oficial de cobertura ofrece una previsión; la decisión técnica se completa con la comprobación en la vivienda."],
+      "guide": ["Antenas TDT: diagnóstico antes de sustituir", "/servicios/reparacion-antenas-tdt/"],
+      "sources": [["Diputación de Burgos: localidades del Valle de Losa", "https://www.burgos.es/provincia/municipio/valle-de-losa"], ["Ministerio: consulta de cobertura TDT", "https://television.digital.gob.es/television-digital/tdt/consulta-la-cobertura-tdt-de-tu-localidad"]]
+    },
+    {
+      "code": "09394",
+      "name": "Trespaderne",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "amplificacion", "mantenimiento"],
+      "heading": "Canales que faltan en Trespaderne: lista, receptor e instalación",
+      "intro": "La consulta puede corresponder a Trespaderne o a una de sus localidades, como Arroyuelo, Cadiñanos o Santotís. Precisa cuál y explica si buscas un canal nuevo o si has perdido uno que veías. Para La Séptima, UHD u otras novedades, la fecha de emisión, el receptor y la recepción de la instalación deben revisarse juntos.",
+      "checks": [
+        ["Un canal nuevo no aparece al buscar", "Anota el modelo completo del televisor y si la toma es individual o comunitaria. Que la pantalla sea 4K no permite concluir que recibe cualquier emisión terrestre: hay que identificar el sintonizador y el formato que admite.", "Revisar los requisitos publicados del canal y el receptor, además del paso de señal por la instalación."],
+        ["Los mismos canales fallan a varias viviendas", "Reúne los nombres de los canales afectados y un ejemplo de los que sí funcionan. Una comunidad puede necesitar revisar la cabecera y el reparto; una búsqueda de canales en cada televisor no sustituye esa comprobación.", "Comparar la recepción de los grupos afectados antes y después de la amplificación común."]
+      ],
+      "preparation": ["Anotar el cambio antes de resintonizar", "Facilita dirección, localidad, canales afectados, fecha aproximada del cambio y modelo del televisor. La guía de novedades distingue los requisitos de UHD, los cambios de canal y las comprobaciones de la antena."],
+      "guide": ["La Séptima, cambios de TDT y emisiones UHD", "/guias/la-septima-tdt-uhd/"],
+      "sources": [["Diputación de Burgos: localidades de Trespaderne", "https://mancomunidades.burgos.es/node/452"], ["Ministerio: televisión digital y novedades TDT", "https://television.digital.gob.es/"]]
+    },
+    {
+      "code": "09134",
+      "name": "Frías",
+      "province": "Burgos",
+      "preferredServices": ["tdt", "tomas", "porteros"],
+      "heading": "Instalación en Frías: preparar fijación, cable y pruebas interiores",
+      "intro": "Indica si el aviso corresponde a Frías, Tobera o Quintanaseca. Antes de renovar una antena o un portero interesa conocer el acceso a los equipos y por dónde discurren los cables. Una fotografía del elemento averiado ayuda, pero conviene acompañarla de una vista del recorrido y del punto interior donde falla el servicio.",
+      "checks": [
+        ["Hay que sustituir cableado exterior", "Explica qué tomas se alimentan con ese tramo y dónde aparece el fallo. Si entra agua o la funda está dañada, conviene revisar también conectores y paso al interior, sin limitar el presupuesto al cable visible.", "Delimitar el tramo afectado y comprobar recepción en la toma después de la reparación."],
+        ["El portero se oye, pero la puerta no abre", "Indica si sucede desde todos los terminales y si la puerta necesita empujarse para cerrar. El síntoma puede requerir revisar el circuito de apertura y el ajuste del cierre; cambiar solo el telefonillo no identifica la causa.", "Separar la orden eléctrica de apertura del funcionamiento mecánico de la puerta."]
+      ],
+      "preparation": ["Acceso y alcance de la reparación", "Facilita localidad, dirección y fotos que puedas tomar sin subir al tejado. Si se prevén nuevos pasos o fijaciones, acuerda antes el recorrido y el alcance del trabajo con la persona responsable del inmueble."],
+      "guide": ["Revisión de porteros y apertura de puerta", "/servicios/porteros-automaticos/"],
+      "sources": [["Diputación de Burgos: Frías, Tobera y Quintanaseca", "https://mancomunidades.burgos.es/node/1312"]]
+    },
+    {
+      "code": "09238",
+      "name": "Oña",
+      "province": "Burgos",
+      "preferredServices": ["amplificacion", "tdt", "mantenimiento"],
+      "heading": "Amplificación y señal de TV en Oña: localizar dónde se pierde calidad",
+      "intro": "En Oña, concreta si la vivienda está en la villa o en localidades como Cornudilla, Cereceda, Penches o Terminón. Para un problema de televisión, explica si sucede en todo el inmueble o al final de un recorrido de cable. Ese detalle ayuda a estudiar la instalación sin dar por hecho que necesita más amplificación.",
+      "checks": [
+        ["La señal empeora en las tomas más alejadas", "Anota qué puntos funcionan y cuáles fallan, y si se han añadido repartidores o televisores. El objetivo es comparar el nivel y la calidad en distintos tramos, no subir un amplificador sin conocer el estado del reparto.", "Medir entrada, salida y tomas para localizar pérdidas o ajustes inadecuados."],
+        ["La avería empezó después de cambiar un equipo", "Identifica qué se sustituyó: televisor, fuente, amplificador o receptor. Facilita su referencia y explica si el cambio afectó a todas las tomas. Conservar el equipo anterior, si está disponible, ayuda a documentar la instalación existente.", "Comprobar compatibilidad, alimentación y conexiones del elemento incorporado."]
+      ],
+      "preparation": ["Preparar una comparación útil", "Indica núcleo, dirección, puntos afectados y marcas visibles. En una comunidad, coordina el acceso a la cabecera y al menos a una vivienda donde se reproduzca el fallo para comprobar el resultado."],
+      "guide": ["Amplificadores y distribución de señal", "/servicios/amplificadores-antena/"],
+      "sources": [["Diputación de Burgos: localidades de Oña", "https://www.burgos.es/provincia/municipio/ona"]]
+    },
+    {
+      "code": "09412",
+      "name": "Valle de Tobalina",
+      "province": "Burgos",
+      "preferredServices": ["parabolicas", "tdt", "videoporteros"],
+      "heading": "Antenas y accesos en Valle de Tobalina: una consulta para cada inmueble",
+      "intro": "Quintana Martín Galíndez, Pedrosa de Tobalina, Herrán y Barcina del Barco forman parte del Valle de Tobalina. Indica la localidad exacta y qué servicio necesita atención. Cuando hay varios edificios o dependencias, aclara cuáles comparten la antena, el cableado o la placa de acceso.",
+      "checks": [
+        ["La parabólica funciona en un receptor y en otro no", "Explica si ambos receptores se utilizan a la vez y cómo llegan sus cables a la instalación. El reparto de satélite depende de los equipos existentes; una toma que recibe TDT no demuestra que entregue correctamente la señal que necesita el receptor.", "Identificar salidas, distribución y configuración de recepción antes de añadir aparatos."],
+        ["Se quiere vídeo en más de un acceso", "Indica cuántas puertas, placas y monitores debe atender el sistema. Añade qué equipos existen y qué llamadas o aperturas deben mantenerse, especialmente si varias viviendas comparten el acceso.", "Definir un sistema compatible y probar cada combinación de placa, terminal y apertura prevista."]
+      ],
+      "preparation": ["Reunir equipos y puntos de acceso", "Facilita núcleo, dirección, esquema sencillo de los edificios y referencias visibles. El presupuesto puede separar reparación, ampliación y renovación para que quede claro qué incluye cada opción."],
+      "guide": ["Videoporteros: instalación y compatibilidad", "/servicios/videoporteros/"],
+      "sources": [["Diputación de Burgos: localidades del Valle de Tobalina", "https://www.burgos.es/provincia/municipio/valle-de-tobalina"]]
+    },
+    {
+      "code": "09059",
+      "name": "Burgos",
+      "province": "Burgos",
+      "preferredServices": ["mantenimiento", "videoporteros", "amplificacion"],
+      "heading": "Comunidades en Burgos: preparar una revisión que incluya cabecera, viviendas y portal",
+      "intro": "Para una comunidad en Burgos, identifica dirección, portal y número de viviendas afectadas. Si el aviso corresponde a un núcleo del municipio como Castañares, Cortes, Villafría o Villatoro, indícalo también. La visita se organiza desde Zalla y debe prever acceso tanto a los equipos comunes como a los puntos donde se reproduce la avería.",
+      "checks": [
+        ["La televisión falla en parte del edificio", "Un listado por plantas o portales ayuda a reconocer si el fallo es general o sigue una rama del reparto. Conviene recoger síntomas concretos: canales afectados, pixelaciones, tomas sin señal o diferencias entre viviendas.", "Contrastar cabecera, distribución y muestras de tomas para delimitar la intervención."],
+        ["La comunidad valora reparar o renovar el acceso", "Reúne marca de la placa, número de terminales y funciones que fallan. Si se solicita videoportero, concreta si se mantiene parte del cableado y qué prestaciones se esperan de los monitores.", "Comparar el alcance de la reparación con una renovación compatible, detallando material y pruebas."]
+      ],
+      "preparation": ["Un interlocutor y pruebas acordadas", "El presidente, administrador o persona designada puede centralizar el aviso. Prepara quién abre el cuarto de equipos, qué vecinos permiten probar y cómo se comunicarán los trabajos y las condiciones antes de intervenir."],
+      "guide": ["Mantenimiento de antenas para comunidades", "/servicios/mantenimiento-antenas-comunidades/"],
+      "sources": [["Diputación de Burgos: localidades del municipio de Burgos", "https://www.burgos.es/provincia/municipio/burgos"]]
+    },
+    {
+      "code": "09194",
+      "name": "Lerma",
+      "province": "Burgos",
+      "preferredServices": ["parabolicas", "tdt", "tomas"],
+      "heading": "Parabólicas y tomas de televisión en Lerma: comprobar el sistema que ya existe",
+      "intro": "El aviso puede estar en Lerma o en localidades del municipio como Castrillo de Solarana, Revilla Cabriada, Ruyales del Agua o Villoviado. Indica la dirección y si el equipo funcionaba anteriormente. Para una instalación nueva, describe cuántos televisores deben conectarse y qué servicio quieres recibir en cada uno.",
+      "checks": [
+        ["El receptor de satélite muestra sin señal", "Facilita marca, modelo y nombre del servicio que utilizas. Una pérdida de recepción puede requerir revisar orientación, LNB, alimentación y cableado; la lista del receptor no basta para decidir qué pieza se ha averiado.", "Seguir el recorrido desde la parabólica hasta el receptor y verificar el ajuste con medición."],
+        ["Se amplían las habitaciones con televisión", "Indica dónde están las tomas actuales y si se desea TDT, satélite o ambas señales. Si hay que abrir un nuevo recorrido, conviene acordarlo antes y diferenciar ese trabajo de la reparación de la recepción exterior.", "Plantear reparto y cableado según los puntos previstos y comprobar el servicio al final de cada recorrido."]
+      ],
+      "preparation": ["Receptor identificado y puntos accesibles", "Facilita localidad, dirección, foto de las conexiones visibles y número de tomas. Consulta disponibilidad y condiciones del desplazamiento antes de organizar el acceso a la vivienda o a los elementos comunes."],
+      "guide": ["Diagnóstico y ajuste de antenas parabólicas", "/servicios/antenas-parabolicas/"],
+      "sources": [["Diputación de Burgos: localidades de Lerma", "https://burgos.es/provincia/municipio/lerma"]]
     }
   ]
 }

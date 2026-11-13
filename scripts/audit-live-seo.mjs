@@ -6,6 +6,8 @@ import { guides, guideRoute, SERVICE_RELEASE } from './service-guides.mjs';
 import { EDITORIAL_CSS } from './reduce-town-boilerplate.mjs';
 import { NEARBY_TOWN_LINKS_CSS } from './nearby-town-links.mjs';
 import { TDT_GUIDE_ROUTE,TDT_GUIDE_RELEASE,TDT_GUIDE_CSS } from './tdt-update-guide.mjs';
+import { COMMUNITIES_CSS } from './communities.mjs';
+import { BURGOS_COVERAGE_CSS } from './burgos-coverage.mjs';
 
 async function request(url) {
   const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZalla-SEO-Check/1.0'}});
@@ -23,7 +25,10 @@ const mobileHome = await text200(DOMAIN+'/');
 if (!mobileHome.includes('aria-controls="site-navigation"')) throw new Error('Mobile menu is not public yet');
 for (const asset of ['site.css','site.js','zallatel-content.css']) {
   const published=await text200(DOMAIN+'/assets/'+asset);
-  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8')+(asset==='site.css'?EDITORIAL_CSS+COVERAGE_CSS+NEARBY_TOWN_LINKS_CSS:'');
+  const additions=asset==='site.css'
+    ? COMMUNITIES_CSS+EDITORIAL_CSS+COVERAGE_CSS+NEARBY_TOWN_LINKS_CSS
+    : asset==='zallatel-content.css'?BURGOS_COVERAGE_CSS:'';
+  const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8')+additions;
   if (published!==expected) throw new Error(`Interface asset is not current: ${asset}`);
 }
 // Verify this content release, rather than accepting a healthy but older deployment.

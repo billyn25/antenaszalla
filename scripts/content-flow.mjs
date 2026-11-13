@@ -5,6 +5,7 @@ import {pathToFileURL} from 'node:url';
 import services from '../content/services.json' with {type:'json'};
 import {guides,guideRoute} from './service-guides.mjs';
 import {escapeHtml as esc} from './public-seo.mjs';
+import {enhanceBurgosCoverage, BURGOS_COVERAGE_CSS} from './burgos-coverage.mjs';
 
 export const FLOW_RELEASE='20261023';
 const families=[
@@ -98,10 +99,10 @@ export function organizeDocument(html,doc,town) {
   const heroes=blocks.filter(n=>hasClass(n,'hero')||hasClass(n,'service-hero'));
   const items=blocks.map((node,index)=>({node,index,rank:500}));
   const ranks=doc.type==='home'
-    ? {'diagnostico-averias':20,zonas:30,servicios:40,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,'blog-de-antenas':75,'guia-septima-uhd':76,galeria:80,'gallery-lightbox':81,experiencia:90,'pueblos-destacados':100,'antenas-zalla-enkarterri':110,preguntas:130,contacto:140}
+    ? {'diagnostico-averias':20,zonas:30,'norte-burgos':31,servicios:40,comunidades:45,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,'blog-de-antenas':75,'guia-septima-uhd':76,galeria:80,'gallery-lightbox':81,experiencia:90,'pueblos-destacados':100,'antenas-zalla-enkarterri':110,preguntas:130,contacto:140}
     : doc.type==='province'
-      ? {localidades:20,'diagnostico-averias':30,'guia-septima-uhd':35,servicios:40,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,galeria:80,'gallery-lightbox':81,experiencia:90,preguntas:130,contacto:140}
-      : {'servicios-en-tu-pueblo':10,'diagnostico-averias':20,'recepcion-tdt-local':30,'guia-septima-uhd':35,servicios:40,'porteros-videoporteros':60,'cobertura-movil':70,'soluciones-satelite':80,'diagnostico-local':90,experiencia:100,zonas:110,'preparar-visita-local':120,preguntas:130,contacto:140};
+      ? {'burgos-desde-zalla':15,localidades:20,'diagnostico-averias':30,'guia-septima-uhd':35,servicios:40,comunidades:45,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,galeria:80,'gallery-lightbox':81,experiencia:90,preguntas:130,contacto:140}
+      : {'servicios-en-tu-pueblo':10,'diagnostico-averias':20,'recepcion-tdt-local':30,'guia-septima-uhd':35,servicios:40,comunidades:45,'porteros-videoporteros':60,'cobertura-movil':70,'soluciones-satelite':80,'diagnostico-local':90,experiencia:100,zonas:110,'preparar-visita-local':120,preguntas:130,contacto:140};
   for(const item of items) {
     let node=item.node;const id=idOf(node);
     if(hasClass(node,'breadcrumb'))item.rank=-10;
@@ -143,11 +144,11 @@ export function organizeSite(root='dist') {
   let count=0;
   for(const doc of manifest.documents.filter(d=>d.indexable)) {
     const file=path.join(root,doc.file),before=fs.readFileSync(file,'utf8');
-    const after=organizeDocument(before,doc,byPath.get(doc.path));
+    const after=organizeDocument(enhanceBurgosCoverage(before,doc),doc,byPath.get(doc.path));
     if(before!==after)fs.writeFileSync(file,after);
     count++;
   }
-  fs.copyFileSync(new URL('../src/zallatel-content.css',import.meta.url),path.join(root,'assets/zallatel-content.css'));
+  fs.writeFileSync(path.join(root,'assets/zallatel-content.css'),fs.readFileSync(new URL('../src/zallatel-content.css',import.meta.url),'utf8')+BURGOS_COVERAGE_CSS);
   console.log(`ESTRUCTURA ZALLATEL OK: ${count} páginas; cabeceras y heroes intactos; diez servicios por localidad y contenido anterior conservado.`);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href)organizeSite(process.env.PRODUCTION_ROOT||'dist');

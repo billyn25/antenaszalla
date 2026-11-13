@@ -628,55 +628,69 @@
   {
     "id": "mantenimiento",
     "slug": "mantenimiento-antenas-comunidades",
-    "name": "Mantenimiento de antenas y sistemas de acceso",
-    "label": "Mantenimiento de antenas",
-    "intro": "Atender una avería puntual y contratar mantenimiento son acuerdos distintos. Para una vivienda o comunidad conviene definir los equipos cubiertos, qué revisiones se harán y cómo se tramitarán las incidencias, sin suponer que todos los recambios o desplazamientos están incluidos.",
+    "name": "Antenas colectivas y porteros para comunidades de vecinos",
+    "label": "Comunidades de vecinos",
+    "intro": "Cuando varios vecinos pierden canales o el portero falla en todo el edificio, conviene reunir los síntomas y coordinar una revisión de la instalación común. Atendemos consultas de antenas colectivas, porteros automáticos y videoporteros: reparación de averías, revisión del sistema y propuestas de renovación para presidentes y administradores de fincas.",
     "symptoms": [
       [
-        "Incidencias que se repiten",
-        "Reúne fechas, síntomas y actuaciones anteriores. Ese historial ayuda a estudiar por qué vuelve el fallo."
+        "La TDT falla en varias viviendas",
+        "Anota los canales afectados y compara al menos dos viviendas: ¿faltan los mismos canales?, ¿ocurre a la vez?, ¿fallan todas las tomas? Ese patrón orienta la revisión de la recepción, cabecera y reparto del edificio."
       ],
       [
-        "Comunidad con equipos de distintas épocas",
-        "Facilita la información disponible sobre cabecera, distribución y sistemas de acceso sin abrir los recintos."
+        "El portero falla en el portal o en parte del edificio",
+        "Distingue llamada, conversación, imagen y apertura. Indica desde qué placa sucede, si afecta a una vivienda o a varias y si comenzó después de una intervención. Un mismo síntoma puede tener causas distintas."
       ],
       [
-        "Quieres comparar propuestas",
-        "Pide que se detallen equipos y trabajos cubiertos para no comparar acuerdos de alcance diferente."
+        "La comunidad quiere reparar o renovar",
+        "Prepara el número de viviendas, portales y entradas, la marca visible y las funciones que necesitáis. Comparar una reparación puntual con una renovación exige conocer qué equipos se conservan y cuáles se sustituyen."
       ]
     ],
     "checks": [
       [
-        "Inventario y alcance del servicio",
-        "El mantenimiento comienza delimitando qué instalación se incluye. Antena, cabecera, cableado comunitario, tomas particulares y porteros no deben darse por cubiertos bajo una sola palabra. Los accesos y la persona de contacto se acuerdan con la propiedad."
+        "Antena colectiva: recepción, cabecera y distribución",
+        "La revisión compara la señal que recibe la antena con la que entrega la cabecera y la que llega a los puntos afectados. Según el síntoma se comprueban alimentación, amplificadores, central programable, conectores, derivadores y tomas. Si solo falla una vivienda o una zona del edificio, interesa localizar ese tramo antes de cambiar la antena común. Si faltan nuevos canales, se revisan la recepción disponible, el tratamiento de la cabecera y la compatibilidad del televisor; resintonizar no corrige por sí solo una señal deficiente."
       ],
       [
-        "Registrar la revisión y las incidencias",
-        "Conviene conservar qué se revisó, qué síntoma se encontró y qué actuación se realizó. Un registro sencillo permite entender reparaciones anteriores y coordinar una nueva visita sin confundir recomendaciones con trabajos ya ejecutados."
+        "Portero comunitario: separar llamada, audio y apertura",
+        "Para un aviso de portero se contrasta lo que ocurre desde la placa de calle y desde las viviendas afectadas. La avería puede encontrarse en un terminal, el grupo fónico, la fuente, el cableado o el abrepuertas. Identificamos el sistema antes de elegir recambios: un telefonillo analógico anunciado como universal no sirve para cualquier instalación digital. Una foto exterior de la placa y del terminal ayuda a preparar la consulta, sin desmontarlos."
       ],
       [
-        "Reparar, mantener o renovar",
-        "Una revisión puede revelar un elemento reparable o una necesidad de renovación. Si se propone cambiar equipos, la propuesta debe explicar el motivo y separar esa inversión del mantenimiento contratado. No se promete eliminar cualquier avería futura."
+        "Renovar a videoportero y coordinar varios accesos",
+        "En una renovación se valoran placa, cámara, alimentación, terminales y cableado como conjunto. La propuesta concreta qué material puede aprovecharse después de comprobar su estado y compatibilidad. Con varios portales o entradas hay que definir qué viviendas atiende cada placa y probar cada acceso incluido. Si se solicitan llaveros de proximidad, desvío al móvil o avisadores de llamada, se identifican los equipos y requisitos compatibles antes de incorporarlos al presupuesto."
+      ],
+      [
+        "Presidente o administrador: preparar una sola relación de avisos",
+        "Designa una persona de contacto y reúne los síntomas por vivienda o portal, sin limitarte a indicar que la antena o el portero no funcionan. Facilita la dirección, las entradas del edificio y la documentación disponible de intervenciones anteriores. Al concertar la visita se acuerdan el acceso a las zonas comunes y las viviendas necesarias para contrastar el fallo. Para una renovación, se coordina también la entrada a las viviendas en las que deban sustituirse terminales."
+      ],
+      [
+        "Comprobar el resultado en los puntos afectados",
+        "Al concretar la intervención, pide que se indiquen las comprobaciones de cierre. En televisión interesa contrastar los canales afectados en los puntos acordados; en porteros y videoporteros, llamada, conversación, imagen y apertura desde los accesos incluidos. Conserva la relación de equipos sustituidos, lo que se ha aprovechado y las observaciones pendientes. Esto permite preparar una futura consulta con información útil, especialmente cuando una incidencia es intermitente."
+      ],
+      [
+        "Mantenimiento con un alcance que la comunidad pueda revisar",
+        "Una reparación puntual no obliga a contratar visitas periódicas. Si se solicita mantenimiento, la propuesta debe enumerar los equipos cubiertos, las revisiones previstas y cómo comunicar incidencias. Antena, cabecera, distribución común, tomas particulares y sistemas de acceso no quedan incluidos automáticamente bajo un mismo concepto. Cualquier renovación que surja de una revisión se detalla con su alcance y presupuesto propios."
       ]
     ],
     "intake": [
-      "Tipo de inmueble, equipos a incluir y responsable de coordinación.",
-      "Incidencias recientes y documentación disponible de trabajos anteriores.",
-      "Si necesitas una reparación puntual, una revisión o una propuesta de mantenimiento."
+      "Municipio, dirección, portales y número aproximado de viviendas.",
+      "Persona de contacto de la comunidad y acceso a las zonas comunes.",
+      "Viviendas afectadas, canales o funciones que fallan y cuándo sucede.",
+      "Marca visible, fotos exteriores y trabajos anteriores si se conocen.",
+      "Si se busca reparar, revisar la instalación o comparar una renovación."
     ],
-    "budget": "Acuerda periodicidad si la hay, trabajos incluidos, condiciones de asistencia y exclusiones. Distingue mano de obra, desplazamientos, materiales y actuaciones en viviendas particulares. Cualquier compromiso de plazo debe constar en la propuesta, no suponerse por tratarse de mantenimiento.",
+    "budget": "Pide una propuesta que separe diagnóstico, desplazamiento, mano de obra, materiales e impuestos, e identifique los elementos comunes y las actuaciones en viviendas. Si se comparan reparación y renovación, deben constar los equipos incluidos, lo que se conserva, las adaptaciones, la puesta en marcha y las pruebas previstas. Acuerda quién coordina y autoriza la intervención. En mantenimiento, concreta periodicidad, condiciones de asistencia y exclusiones; materiales, recambios y plazos de respuesta solo se incluyen cuando así se ha acordado.",
     "faq": [
       [
-        "¿El mantenimiento incluye todos los recambios?",
-        "Solo lo que se haya acordado. Pide una relación clara de materiales y actuaciones incluidos y excluidos."
+        "¿Hay que cambiar la antena si varios vecinos no ven la televisión?",
+        "No se decide únicamente por el número de viviendas afectadas. Hay que comparar recepción, alimentación, cabecera y distribución para localizar el fallo. Si afecta también a otros edificios, conviene comunicar ese dato al preparar la revisión."
       ],
       [
-        "¿Puedo solicitar una revisión sin contrato periódico?",
-        "Puedes consultar una intervención puntual y concretar su alcance. No exige por sí misma contratar futuras visitas."
+        "¿Se puede reparar el portero sin cambiar todos los terminales?",
+        "Se valora según la avería, el sistema y los repuestos compatibles. Una reparación de placa, grupo fónico o alimentación puede tener un alcance distinto al cambio de todos los terminales. Para pasar de audio a vídeo se comprueba el conjunto antes de ofrecer una solución."
       ],
       [
-        "¿Mantenimiento y renovación son lo mismo?",
-        "No. Una renovación cambia elementos del sistema y debe presupuestarse con su alcance propio, aunque se proponga después de una revisión."
+        "¿Podemos pedir una revisión puntual sin contratar mantenimiento?",
+        "Sí, se puede consultar una revisión o reparación concreta y acordar su alcance. Si después la comunidad quiere mantenimiento periódico o una renovación, se estudia una propuesta separada con equipos, trabajos y condiciones definidos."
       ]
     ],
     "related": [
@@ -685,6 +699,19 @@
       "porteros",
       "videoporteros"
     ],
-    "sources": []
+    "sources": [
+      [
+        "Ministerio: distinguir problemas de TDT en una vivienda y en el edificio",
+        "https://television.digital.gob.es/television-digital/tdt/problemas-recepcion"
+      ],
+      [
+        "Fermax: compatibilidad de telefonillos y sistemas",
+        "https://soporte.fermax.com/portal/es/kb/articles/telefonos-fermax-compatibles-con-otras-marcas"
+      ],
+      [
+        "Fermax: identificar el sistema antes de sustituir un monitor",
+        "https://soporte.fermax.com/portal/es/kb/articles/cual-es-el-equivalente-de-mi-monitor-fermax"
+      ]
+    ]
   }
 ]

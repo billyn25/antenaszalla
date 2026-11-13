@@ -140,6 +140,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     if (doc.path === '/') html = html.replace('href="/antenas-leon/">Leon</a>', 'href="/antenas-leon/">León</a>');
     html=html.replace(/<div class="strip"><div class="wrap">[\s\S]*?<\/div><\/div>/g,'');
     if (!legal && !errorPage) html = simplifyContacts(html);
+    html=html.replace(/href="\/assets\/site\.css(?:\?[^"]*)?"/g,'href="/assets/site.css?v=zalla-20261113"');
     doc.html = html;
     report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.startsWith('/guias/')?'guide':doc.path==='/blog/'?'blog':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
@@ -164,7 +165,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
   fs.writeFileSync(path.join(root,'_redirects'), '# Generated: old document URLs go directly to their canonical equivalent. No wildcard homepage fallback.\n' + [...rules].map(([from,to])=>`${from} ${DOMAIN}${to} 301!`).join('\n') + '\nhttps://www.antenaszalla.com/* https://antenaszalla.com/:splat 301!\nhttp://www.antenaszalla.com/* https://antenaszalla.com/:splat 301!\nhttp://antenaszalla.com/* https://antenaszalla.com/:splat 301!\n');
   const icon = brandMark().match(/<svg[\s\S]*?<\/svg>/)?.[0];
   if (!icon) throw new Error('Missing existing brand icon');
-  fs.writeFileSync(path.join(root,'favicon.svg'),icon.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" color="#0867bd" ').replace('viewBox="0 0 96 76"','viewBox="0 0 100 100"'));
+  fs.writeFileSync(path.join(root,'favicon.svg'),icon.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" color="#0b2d48" '));
   console.log(`PUBLIC SEO READY: ${report.filter(d=>d.indexable).length} canonical documents, ${towns.length} municipalities, ${rules.size} direct legacy redirects. Design, contact details and service content preserved.`);
   return {documents:report,redirects:rules};
 }
