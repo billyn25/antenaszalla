@@ -1,0 +1,1458 @@
+{
+  "reviewed": "2026-11-13",
+  "description": "Referencias locales verificadas para preparar avisos. Los códigos postales se vinculan a una dirección de referencia; no son un inventario completo ni un límite del servicio. Las vías y zonas citadas no representan instalaciones realizadas ni sedes de Antenas Zalla.",
+  "profiles": [
+    {
+      "code": "09059",
+      "name": "Burgos",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09003",
+          "scope": "Paseo del Espolón, 34 (Palacio Provincial)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Burgos",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "name": "Castañares",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "name": "Cortes",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "name": "Villafría",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "name": "Villalonquéjar",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "name": "Villímar",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Paseo del Espolón",
+          "context": "Paseo del Espolón, 34",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "name": "Plaza Mayor",
+          "context": "Casco de Burgos",
+          "sourceUrl": "https://cultura.aytoburgos.es/contacto"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Burgos",
+          "url": "https://www.burgos.es/provincia/municipio/burgos"
+        },
+        {
+          "label": "Ayuntamiento de Burgos: Atención Ciudadana",
+          "url": "https://cultura.aytoburgos.es/contacto"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09219",
+      "name": "Miranda de Ebro",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09200",
+          "scope": "Plaza de España, 8 (referencia postal municipal)",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Bardauri",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        },
+        {
+          "name": "Bayas",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        },
+        {
+          "name": "Ircio",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        },
+        {
+          "name": "Orón",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        },
+        {
+          "name": "Suzana",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        },
+        {
+          "name": "Ayuelas",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza de España",
+          "context": "Plaza de España, 8",
+          "sourceUrl": "https://www.cultura.burgos.es/node/38126"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Miranda de Ebro",
+          "url": "https://www.cultura.burgos.es/node/38126"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09018",
+      "name": "Aranda de Duero",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09400",
+          "scope": "Plaza Mayor, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/aranda-de-duero"
+        }
+      ],
+      "areas": [
+        {
+          "name": "La Aguilera",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/aranda-de-duero"
+        },
+        {
+          "name": "Sinovas",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/aranda-de-duero"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Mayor",
+          "context": "Plaza Mayor, 1",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/aranda-de-duero"
+        },
+        {
+          "name": "Plaza del Trigo",
+          "context": "Casco de Aranda de Duero",
+          "sourceUrl": "https://burgos.es/provincia/localidad/aranda-de-duero"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Aranda de Duero",
+          "url": "https://www.burgos.es/provincia/municipio/aranda-de-duero"
+        },
+        {
+          "label": "Diputación de Burgos: Aranda de Duero",
+          "url": "https://burgos.es/provincia/localidad/aranda-de-duero"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09056",
+      "name": "Briviesca",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09240",
+          "scope": "Calle Alcaidía, 3 (referencia postal municipal)",
+          "sourceUrl": "https://burgos.es/provincia/municipio/briviesca"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Cameno",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/briviesca"
+        },
+        {
+          "name": "Quintanillabón",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/briviesca"
+        },
+        {
+          "name": "Revillagodos",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/briviesca"
+        },
+        {
+          "name": "Valdazo",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/briviesca"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Calle Alcaidía",
+          "context": "Calle Alcaidía, 3",
+          "sourceUrl": "https://burgos.es/provincia/municipio/briviesca"
+        },
+        {
+          "name": "Calle Marqués de Torresoto",
+          "context": "Casco de Briviesca",
+          "sourceUrl": "https://www.burgos.es/provincia/localidad/briviesca"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Briviesca",
+          "url": "https://burgos.es/provincia/municipio/briviesca"
+        },
+        {
+          "label": "Diputación de Burgos: Briviesca",
+          "url": "https://www.burgos.es/provincia/localidad/briviesca"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09209",
+      "name": "Medina de Pomar",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09500",
+          "scope": "Plaza Mayor, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Medina de Pomar",
+          "kind": "localidad",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "name": "La Cerca",
+          "kind": "localidad",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "name": "Moneo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "name": "Criales de Losa",
+          "kind": "localidad",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "name": "Salinas de Rosío",
+          "kind": "localidad",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "name": "El Vado",
+          "kind": "localidad",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Mayor",
+          "context": "Plaza Mayor, 1",
+          "sourceUrl": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "name": "Avenida Bilbao",
+          "context": "Medina de Pomar",
+          "sourceUrl": "https://www.medinadepomar.net/noticias/medina-de-pomar-vuelve-al-renacimiento-para-recibir-al-emperador-carlos-v"
+        },
+        {
+          "name": "Plaza Somovilla",
+          "context": "Medina de Pomar",
+          "sourceUrl": "https://www.medinadepomar.net/noticias/medina-de-pomar-vuelve-al-renacimiento-para-recibir-al-emperador-carlos-v"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Medina de Pomar",
+          "url": "https://www.idj.burgos.es/provincia/municipio/medina-de-pomar"
+        },
+        {
+          "label": "Ayuntamiento de Medina de Pomar: recorrido urbano",
+          "url": "https://www.medinadepomar.net/noticias/medina-de-pomar-vuelve-al-renacimiento-para-recibir-al-emperador-carlos-v"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09410",
+      "name": "Valle de Mena",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09580",
+          "scope": "Calle Eladio Bustamante, 1, Villasana de Mena",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Villasana de Mena",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "name": "El Berrón",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "name": "Entrambasaguas",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "name": "Gijano",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "name": "Ungo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "name": "Vallejo de Mena",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Calle Eladio Bustamante",
+          "context": "Calle Eladio Bustamante, 1, Villasana de Mena",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "name": "Calle del Medio",
+          "context": "Casco histórico de Villasana de Mena",
+          "sourceUrl": "https://valledemena.es/agenda"
+        },
+        {
+          "name": "Plaza de Santa Ana",
+          "context": "Villasana de Mena",
+          "sourceUrl": "https://valledemena.es/agenda"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Valle de Mena",
+          "url": "https://www.burgos.es/provincia/municipio/valle-de-mena"
+        },
+        {
+          "label": "Ayuntamiento del Valle de Mena: agenda municipal",
+          "url": "https://valledemena.es/agenda"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09903",
+      "name": "Villarcayo de Merindad de Castilla la Vieja",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09550",
+          "scope": "Plaza Mayor, 1, Villarcayo",
+          "sourceUrl": "https://www.femp.es/asociados/entidades-locales/villarcayo-de-merindad-de-castilla-la-vieja"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Villarcayo",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "name": "Bocos",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "name": "Cigüenza",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "name": "Incinillas",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "name": "Torme",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "name": "Villalaín",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Mayor",
+          "context": "Villarcayo; plaza del Ayuntamiento",
+          "sourceUrl": "https://www.femp.es/asociados/entidades-locales/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "name": "Calle Nuño Rasura",
+          "context": "Casco urbano de Villarcayo",
+          "sourceUrl": "https://villarcayo.burgos.es/noticias/la-junta-de-gobierno-del-ayuntamiento-de-villarcayo-mcv-aprueba-el-proyecto-de-asfaltados"
+        },
+        {
+          "name": "Paseo La Ciénaga",
+          "context": "Casco urbano de Villarcayo",
+          "sourceUrl": "https://villarcayo.burgos.es/noticias/la-junta-de-gobierno-del-ayuntamiento-de-villarcayo-mcv-aprueba-el-proyecto-de-asfaltados"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Villarcayo de Merindad de Castilla la Vieja",
+          "url": "https://burgos.es/provincia/municipio/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "label": "FEMP: dirección municipal de Villarcayo",
+          "url": "https://www.femp.es/asociados/entidades-locales/villarcayo-de-merindad-de-castilla-la-vieja"
+        },
+        {
+          "label": "Ayuntamiento de Villarcayo: calles del casco urbano",
+          "url": "https://villarcayo.burgos.es/noticias/la-junta-de-gobierno-del-ayuntamiento-de-villarcayo-mcv-aprueba-el-proyecto-de-asfaltados"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09194",
+      "name": "Lerma",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09340",
+          "scope": "Calle Audiencia, 6 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Castrillo de Solarana",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        },
+        {
+          "name": "Rabé de los Escuderos",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        },
+        {
+          "name": "Revilla Cabriada",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        },
+        {
+          "name": "Ruyales del Agua",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        },
+        {
+          "name": "Santillán del Agua",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        },
+        {
+          "name": "Villoviado",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Calle Audiencia",
+          "context": "Calle Audiencia, 6",
+          "sourceUrl": "https://www.burgos.es/node/38078"
+        },
+        {
+          "name": "Plaza Mayor",
+          "context": "Lerma; también conocida como Plaza Ducal",
+          "sourceUrl": "https://www.citlerma.com/plaza-mayor/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Lerma",
+          "url": "https://www.burgos.es/node/38078"
+        },
+        {
+          "label": "Oficina de Turismo de Lerma: Plaza Mayor",
+          "url": "https://www.citlerma.com/plaza-mayor/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09330",
+      "name": "Salas de los Infantes",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09600",
+          "scope": "Plaza Jesús Aparicio, 6 (referencia postal municipal)",
+          "sourceUrl": "https://prewww.burgos.es/node/38286"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Arroyo de Salas",
+          "kind": "localidad",
+          "sourceUrl": "https://prewww.burgos.es/node/38286"
+        },
+        {
+          "name": "Castrovido",
+          "kind": "localidad",
+          "sourceUrl": "https://prewww.burgos.es/node/38286"
+        },
+        {
+          "name": "Hoyuelos de la Sierra",
+          "kind": "localidad",
+          "sourceUrl": "https://prewww.burgos.es/node/38286"
+        },
+        {
+          "name": "Terrazas",
+          "kind": "localidad",
+          "sourceUrl": "https://prewww.burgos.es/node/38286"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Jesús Aparicio",
+          "context": "Plaza Jesús Aparicio, 6",
+          "sourceUrl": "https://prewww.burgos.es/node/38286"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Salas de los Infantes",
+          "url": "https://prewww.burgos.es/node/38286"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09211",
+      "name": "Melgar de Fernamental",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09100",
+          "scope": "Plaza de España, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        }
+      ],
+      "areas": [
+        {
+          "name": "San Llorente de la Vega",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        },
+        {
+          "name": "Santa María de Ananúñez",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        },
+        {
+          "name": "Tagarrosa",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        },
+        {
+          "name": "Valtierra de Riopisuerga",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza de España",
+          "context": "Plaza de España, 1",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Melgar de Fernamental",
+          "url": "https://www.burgos.es/provincia/municipio/melgar-de-fernamental"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09274",
+      "name": "Pradoluengo",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09260",
+          "scope": "Plaza Clemente Zaldo, 12 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/pradoluengo"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Garganchón",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/pradoluengo"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Clemente Zaldo",
+          "context": "Plaza Clemente Zaldo, 12",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/pradoluengo"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Pradoluengo",
+          "url": "https://www.burgos.es/provincia/municipio/pradoluengo"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09390",
+      "name": "Torresandino",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09310",
+          "scope": "Plaza Mayor, 13 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/torresandino"
+        }
+      ],
+      "areas": [],
+      "streets": [
+        {
+          "name": "Plaza Mayor",
+          "context": "Plaza Mayor, 13",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/torresandino"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Torresandino",
+          "url": "https://www.burgos.es/provincia/municipio/torresandino"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09905",
+      "name": "Valle de Sedano",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09142",
+          "scope": "Plaza Alejandro Rodríguez de Valcárcel, 1, Sedano",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Sedano",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        },
+        {
+          "name": "Escalada",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        },
+        {
+          "name": "Gredilla de Sedano",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        },
+        {
+          "name": "Orbaneja del Castillo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        },
+        {
+          "name": "Pesquera de Ebro",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        },
+        {
+          "name": "Valdelateja",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Alejandro Rodríguez de Valcárcel",
+          "context": "Plaza Alejandro Rodríguez de Valcárcel, 1, Sedano",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Valle de Sedano",
+          "url": "https://www.burgos.es/provincia/municipio/valle-de-sedano"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09415",
+      "name": "Valle de Valdelucio",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09127",
+          "scope": "Camino Eras, 5, Quintanas de Valdelucio",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Quintanas de Valdelucio",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        },
+        {
+          "name": "Barrio Lucio",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        },
+        {
+          "name": "Corralejo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        },
+        {
+          "name": "Fuencaliente de Lucio",
+          "kind": "localidad",
+          "sourceUrl": "https://pares.cultura.gob.es/ParesBusquedas20/catalogo/autoridad/89890"
+        },
+        {
+          "name": "Pedrosa de Valdelucio",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        },
+        {
+          "name": "Villaescobedo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Camino Eras",
+          "context": "Camino Eras, 5, Quintanas de Valdelucio",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Valle de Valdelucio",
+          "url": "https://www.burgos.es/provincia/municipio/valle-de-valdelucio"
+        },
+        {
+          "label": "Ministerio de Cultura: localidades del Valle de Valdelucio",
+          "url": "https://pares.cultura.gob.es/ParesBusquedas20/catalogo/autoridad/89890"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09034",
+      "name": "Los Balbases",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09119",
+          "scope": "Plaza Castilla y León, 4 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/los-balbases"
+        }
+      ],
+      "areas": [],
+      "streets": [
+        {
+          "name": "Plaza Castilla y León",
+          "context": "Plaza Castilla y León, 4",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/los-balbases"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Los Balbases",
+          "url": "https://www.burgos.es/provincia/municipio/los-balbases"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09309",
+      "name": "Regumiel de la Sierra",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09693",
+          "scope": "Plaza de España, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/regumiel-de-la-sierra"
+        }
+      ],
+      "areas": [],
+      "streets": [
+        {
+          "name": "Plaza de España",
+          "context": "Plaza de España, 1",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/regumiel-de-la-sierra"
+        },
+        {
+          "name": "Calle Real",
+          "context": "Regumiel de la Sierra",
+          "sourceUrl": "https://burgos.es/provincia/localidad/regumiel-de-la-sierra"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Regumiel de la Sierra",
+          "url": "https://www.burgos.es/provincia/municipio/regumiel-de-la-sierra"
+        },
+        {
+          "label": "Diputación de Burgos: Regumiel de la Sierra",
+          "url": "https://burgos.es/provincia/localidad/regumiel-de-la-sierra"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09025",
+      "name": "Arija",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09570",
+          "scope": "Plaza de los Obispos (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/arija"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Vilga",
+          "kind": "barrio",
+          "sourceUrl": "https://mancomunidades.burgos.es/node/680"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza de los Obispos",
+          "context": "Plaza de los Obispos",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/arija"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Arija",
+          "url": "https://www.burgos.es/provincia/municipio/arija"
+        },
+        {
+          "label": "Mancomunidades de Burgos: Arija y el barrio de Vilga",
+          "url": "https://mancomunidades.burgos.es/node/680"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09112",
+      "name": "Coruña del Conde",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09410",
+          "scope": "Plaza Mayor, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/coruna-del-conde"
+        }
+      ],
+      "areas": [],
+      "streets": [
+        {
+          "name": "Plaza Mayor",
+          "context": "Plaza Mayor, 1",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/coruna-del-conde"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Coruña del Conde",
+          "url": "https://www.burgos.es/provincia/municipio/coruna-del-conde"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09166",
+      "name": "Las Hormazas",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09133",
+          "scope": "Travesía de la Iglesia, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Borcos",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        },
+        {
+          "name": "Espinosilla de San Bartolomé",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        },
+        {
+          "name": "Solano",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        },
+        {
+          "name": "La Parte",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Travesía de la Iglesia",
+          "context": "Travesía de la Iglesia, 1",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Las Hormazas",
+          "url": "https://www.burgos.es/provincia/municipio/las-hormazas"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09050",
+      "name": "Berberana",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09511",
+          "scope": "Barrio Alaña (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/berberana"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Berberana",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/berberana"
+        },
+        {
+          "name": "Valpuesta",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/berberana"
+        },
+        {
+          "name": "Alaña",
+          "kind": "barrio",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/berberana"
+        }
+      ],
+      "streets": [],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Berberana",
+          "url": "https://www.burgos.es/provincia/municipio/berberana"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09124",
+      "name": "Espinosa de los Monteros",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09560",
+          "scope": "Plaza Sancho García, 1, Espinosa de los Monteros",
+          "sourceUrl": "https://espinosadelosmonteros.es/ayuntamiento/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Bárcenas",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/37958"
+        },
+        {
+          "name": "Las Machorras",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/37958"
+        },
+        {
+          "name": "Para",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/37958"
+        },
+        {
+          "name": "Quintana de los Prados",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/37958"
+        },
+        {
+          "name": "Santa Olalla",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/37958"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Sancho García",
+          "context": "Casco de Espinosa de los Monteros",
+          "sourceUrl": "https://espinosadelosmonteros.es/ayuntamiento/"
+        },
+        {
+          "name": "Paseo de la Castellana",
+          "context": "Casco de Espinosa de los Monteros",
+          "sourceUrl": "https://www.burgos.es/node/37958"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Espinosa de los Monteros",
+          "url": "https://www.burgos.es/node/37958"
+        },
+        {
+          "label": "Ayuntamiento de Espinosa de los Monteros",
+          "url": "https://espinosadelosmonteros.es/ayuntamiento/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09238",
+      "name": "Oña",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09530",
+          "scope": "Plaza del Ayuntamiento, 9 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Oña",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "name": "Barcina de los Montes",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "name": "Cornudilla",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "name": "Hermosilla",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "name": "Penches",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "name": "Pino de Bureba",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza del Ayuntamiento",
+          "context": "Plaza del Ayuntamiento, 9",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "name": "Calle Pestiño",
+          "context": "Casco de Oña; referencia de la oficina de turismo",
+          "sourceUrl": "https://ayuntamientoona.com/turismo/oficina-de-turismo/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Oña",
+          "url": "https://www.burgos.es/provincia/municipio/ona"
+        },
+        {
+          "label": "Ayuntamiento de Oña: oficina de turismo",
+          "url": "https://ayuntamientoona.com/turismo/oficina-de-turismo/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09412",
+      "name": "Valle de Tobalina",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09210",
+          "scope": "Calle Mayor, 78, Quintana Martín Galíndez",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Quintana Martín Galíndez",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        },
+        {
+          "name": "Pedrosa de Tobalina",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        },
+        {
+          "name": "Barcina del Barco",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        },
+        {
+          "name": "Herrán",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        },
+        {
+          "name": "Montejo de Cebas",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        },
+        {
+          "name": "Quintana María",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Calle Mayor",
+          "context": "Calle Mayor, 78, Quintana Martín Galíndez",
+          "sourceUrl": "https://www.burgos.es/node/38408"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Valle de Tobalina",
+          "url": "https://www.burgos.es/node/38408"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09214",
+      "name": "Merindad de Montija",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09569",
+          "scope": "Camino Real, 38 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Villasante",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        },
+        {
+          "name": "Bercedo de Montija",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        },
+        {
+          "name": "El Ribero",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        },
+        {
+          "name": "Gayangos",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        },
+        {
+          "name": "Baranda",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        },
+        {
+          "name": "Noceco",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Camino Real",
+          "context": "Referencia del Ayuntamiento de Merindad de Montija",
+          "sourceUrl": "https://www.burgos.es/node/38114"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Merindad de Montija",
+          "url": "https://www.burgos.es/node/38114"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09394",
+      "name": "Trespaderne",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09540",
+          "scope": "Plaza Mayor, 1 (referencia postal municipal)",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/trespaderne"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Arroyuelo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/trespaderne"
+        },
+        {
+          "name": "Cadiñanos",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/trespaderne"
+        },
+        {
+          "name": "Palazuelos",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/trespaderne"
+        },
+        {
+          "name": "Santotís",
+          "kind": "localidad",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/trespaderne"
+        },
+        {
+          "name": "Tartalés de Cilla",
+          "kind": "localidad",
+          "sourceUrl": "https://caminosnaturales.es/es/red-de-caminos-naturales/poi-detalle/ID.01.034.03.21/a49e09dd-9ec5-4dd6-96d4-9f49201e6704"
+        },
+        {
+          "name": "Virués",
+          "kind": "localidad",
+          "sourceUrl": "https://www.boe.es/eli/es/rd/2019/09/20/538"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Mayor",
+          "context": "Plaza Mayor, 1",
+          "sourceUrl": "https://www.burgos.es/provincia/municipio/trespaderne"
+        },
+        {
+          "name": "Avenida Bilbao",
+          "context": "Trespaderne",
+          "sourceUrl": "https://mancomunidades.burgos.es/node/452"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Trespaderne",
+          "url": "https://www.burgos.es/provincia/municipio/trespaderne"
+        },
+        {
+          "label": "Mancomunidades de Burgos: Trespaderne",
+          "url": "https://mancomunidades.burgos.es/node/452"
+        },
+        {
+          "label": "Ministerio de Agricultura: acceso a Tartalés de Cilla",
+          "url": "https://caminosnaturales.es/es/red-de-caminos-naturales/poi-detalle/ID.01.034.03.21/a49e09dd-9ec5-4dd6-96d4-9f49201e6704"
+        },
+        {
+          "label": "BOE: denominación de Virués",
+          "url": "https://www.boe.es/eli/es/rd/2019/09/20/538"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09908",
+      "name": "Valle de Losa",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09510",
+          "scope": "Plaza de Urano, Quincoces de Yuso (referencia del centro de salud)",
+          "sourceUrl": "https://www.saludcastillayleon.es/es/mapa-centros-salud-castilla-leon/3013"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Quincoces de Yuso",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        },
+        {
+          "name": "Lastras de Teza",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        },
+        {
+          "name": "Lastras de la Torre",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        },
+        {
+          "name": "Río de Losa",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        },
+        {
+          "name": "San Martín de Losa",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        },
+        {
+          "name": "Villacián",
+          "kind": "localidad",
+          "sourceUrl": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza de Urano",
+          "context": "Quincoces de Yuso",
+          "sourceUrl": "https://www.saludcastillayleon.es/es/mapa-centros-salud-castilla-leon/3013"
+        },
+        {
+          "name": "Calle El Cañón",
+          "context": "Referencia del Ayuntamiento de Valle de Losa",
+          "sourceUrl": "https://www.valledelosa.es/inicio"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Valle de Losa",
+          "url": "https://www.cultura.burgos.es/provincia/municipio/valle-de-losa"
+        },
+        {
+          "label": "Junta de Castilla y León: Quincoces de Yuso",
+          "url": "https://www.saludcastillayleon.es/es/mapa-centros-salud-castilla-leon/3013"
+        },
+        {
+          "label": "Ayuntamiento de Valle de Losa: contacto",
+          "url": "https://www.valledelosa.es/inicio"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "09134",
+      "name": "Frías",
+      "province": "Burgos",
+      "postalCodes": [
+        {
+          "code": "09211",
+          "scope": "Plaza del Ayuntamiento (referencia postal municipal)",
+          "sourceUrl": "https://burgos.es/provincia/municipio/frias"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Frías",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/frias"
+        },
+        {
+          "name": "Quintanaseca",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/frias"
+        },
+        {
+          "name": "Tobera",
+          "kind": "localidad",
+          "sourceUrl": "https://burgos.es/provincia/municipio/frias"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza del Ayuntamiento",
+          "context": "Plaza del Ayuntamiento",
+          "sourceUrl": "https://burgos.es/provincia/municipio/frias"
+        },
+        {
+          "name": "Calle del Mercado",
+          "context": "Casco de Frías",
+          "sourceUrl": "https://www.ciudaddefrias.es/sites/frias/files/01meminfvinculantepech-863.pdf"
+        },
+        {
+          "name": "Calle de Obdulio Fernández",
+          "context": "Casco de Frías; también denominada calle Real en el plan municipal",
+          "sourceUrl": "https://www.ciudaddefrias.es/sites/frias/files/01meminfvinculantepech-863.pdf"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Burgos: Frías",
+          "url": "https://burgos.es/provincia/municipio/frias"
+        },
+        {
+          "label": "Ayuntamiento de Frías: plan del conjunto histórico",
+          "url": "https://www.ciudaddefrias.es/sites/frias/files/01meminfvinculantepech-863.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    }
+  ]
+}

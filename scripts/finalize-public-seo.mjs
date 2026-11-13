@@ -140,7 +140,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     if (doc.path === '/') html = html.replace('href="/antenas-leon/">Leon</a>', 'href="/antenas-leon/">León</a>');
     html=html.replace(/<div class="strip"><div class="wrap">[\s\S]*?<\/div><\/div>/g,'');
     if (!legal && !errorPage) html = simplifyContacts(html);
-    html=html.replace(/href="\/assets\/site\.css(?:\?[^"]*)?"/g,'href="/assets/site.css?v=zalla-20261113"');
+    html=html.replace(/href="\/assets\/site\.css(?:\?[^"]*)?"/g,'href="/assets/site.css?v=zalla-20261113-local"');
     doc.html = html;
     report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.startsWith('/guias/')?'guide':doc.path==='/blog/'?'blog':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }

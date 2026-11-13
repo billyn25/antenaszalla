@@ -51,7 +51,18 @@ try {
     });assert.deepEqual(problems,[],`${name} ${width}`);
     if(['home','province','town'].includes(doc.type))assert.equal(await page.locator('.zallatel-service-family .service-card').count(),10);
     if(['home','province','town'].includes(doc.type))assert.equal(await page.locator('#comunidades').count(),1);
-    if(doc.type==='town')assert.equal(await page.locator('.town-service-detail').count(),3);
+    if(doc.type==='town'){
+      assert.equal(await page.locator('.town-service-detail').count(),3);
+      assert.equal(await page.locator('[data-local-area-code]').count(),1);
+      assert.ok(await page.locator('.local-area-postcodes dt').count());
+      await page.locator('.local-area-shortcut a').click();
+      assert.equal(new URL(page.url()).hash,'#preparar-visita-local');
+      const directions=await page.locator('.local-area-route').getAttribute('href');
+      const route=new URL(directions);
+      assert.equal(route.origin,'https://www.google.com');
+      assert.equal(route.searchParams.get('travelmode'),'driving');
+      assert.equal(route.searchParams.get('origin'),'Zalla, Bizkaia, España');
+    }
     if(name!=='tdt-guide'){
       assert.equal(await page.locator('#guia-septima-uhd').count(),1);
       assert.equal(await page.locator(`#guia-septima-uhd a[href="${TDT_GUIDE_ROUTE}"]`).count(),1);

@@ -8,6 +8,7 @@ import { NEARBY_TOWN_LINKS_CSS } from './nearby-town-links.mjs';
 import { TDT_GUIDE_ROUTE,TDT_GUIDE_RELEASE,TDT_GUIDE_CSS } from './tdt-update-guide.mjs';
 import { COMMUNITIES_CSS } from './communities.mjs';
 import { BURGOS_COVERAGE_CSS } from './burgos-coverage.mjs';
+import { LOCAL_AREA_CSS,LOCAL_AREA_RELEASE } from './local-area-coverage.mjs';
 
 async function request(url) {
   const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZalla-SEO-Check/1.0'}});
@@ -26,7 +27,7 @@ if (!mobileHome.includes('aria-controls="site-navigation"')) throw new Error('Mo
 for (const asset of ['site.css','site.js','zallatel-content.css']) {
   const published=await text200(DOMAIN+'/assets/'+asset);
   const additions=asset==='site.css'
-    ? COMMUNITIES_CSS+EDITORIAL_CSS+COVERAGE_CSS+NEARBY_TOWN_LINKS_CSS
+    ? COMMUNITIES_CSS+EDITORIAL_CSS+COVERAGE_CSS+NEARBY_TOWN_LINKS_CSS+LOCAL_AREA_CSS
     : asset==='zallatel-content.css'?BURGOS_COVERAGE_CSS:'';
   const expected=fs.readFileSync(new URL('../src/'+asset,import.meta.url),'utf8')+additions;
   if (published!==expected) throw new Error(`Interface asset is not current: ${asset}`);
@@ -41,6 +42,8 @@ for (const guide of guides) {
 // A missing manifest means the tested SEO release has not reached the CDN yet.
 const manifest = JSON.parse(await text200(DOMAIN+'/public-seo-manifest.json'));
 const coverage=JSON.parse(await text200(DOMAIN+'/coverage-manifest.json'));
+const localAreas=JSON.parse(await text200(DOMAIN+'/local-area-manifest.json'));
+if(localAreas.release!==LOCAL_AREA_RELEASE||localAreas.towns!==manifest.towns||localAreas.withPostalReferences!==manifest.towns)throw new Error('Local street and postal references are not current');
 if(coverage.release!==COVERAGE_RELEASE||coverage.total!==2007||coverage.retained!==manifest.towns)throw new Error('Consolidated municipality release not published');
 const priorityCodes=new Set(PRIORITY_MUNICIPALITY_CODES);
 const priorityRows=coverage.assignments.filter(row=>priorityCodes.has(row.code));
@@ -75,6 +78,7 @@ const townSamples=[...new Map(localManifest.map(t=>[t.province,t])).values()];
 for (const town of townSamples) {
   const html=await text200(DOMAIN+town.publicPath);
   if ((html.match(/data-service-guide=/g)||[]).length!==10 || !html.includes('data-zallatel-flow="20261023"') || !html.includes('id="preparar-visita-local"') || !html.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error(`Municipal service release missing: ${town.name}`);
+  if(!html.includes(`data-local-area-release="${LOCAL_AREA_RELEASE}"`))throw new Error(`Local streets and postal codes missing: ${town.name}`);
   if(!html.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)||!html.includes(`href="${TDT_GUIDE_ROUTE}"`))throw new Error(`Municipal UHD guide link missing: ${town.name}`);
   for(const guide of guides) if(!html.includes(`href="${guideRoute(guide)}"`)) throw new Error(`Municipal guide link missing: ${town.name} / ${guide.id}`);
 }

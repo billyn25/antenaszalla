@@ -4,6 +4,7 @@ import {execFileSync} from 'node:child_process';
 import {DOMAIN,publicPath,fileForPublicPath,escapeHtml as esc,decodeHtml} from './public-seo.mjs';
 import {selectCoverage,policy,distanceKm,COVERAGE_CSS,COVERAGE_RELEASE,GETARIA_CANONICAL_PATH,GETARIA_ALIASES} from './municipal-coverage.mjs';
 import {NEARBY_TOWN_LINKS_CSS} from './nearby-town-links.mjs';
+import {enhanceLocalArea,localAreaFor,LOCAL_AREA_CSS,LOCAL_AREA_RELEASE} from './local-area-coverage.mjs';
 import {displayPlaceName} from './seo-metadata.mjs';
 const root=path.resolve(process.env.PRODUCTION_ROOT||'dist');
 const read=f=>JSON.parse(fs.readFileSync(path.join(root,f),'utf8'));
@@ -101,6 +102,7 @@ for(const doc of docs){
  html=html.replace(/(<script[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g,(_,open,raw,close)=>open+JSON.stringify(rewriteData(JSON.parse(raw))).replace(/</g,'\\u003c')+close);
  const town=retained.find(t=>t.publicPath===doc.path);
  if(town){
+  html=enhanceLocalArea(html,town);
   const nav=nearbyNavigation(town);
   const existing=/<nav\b(?=[^>]*\bclass="[^"]*\bother-towns\b[^"]*")[^>]*>[\s\S]*?<\/nav>/;
   if(existing.test(html))html=html.replace(existing,()=>nav);
@@ -125,6 +127,11 @@ manifest.documents=docs;manifest.towns=retained.length;manifest.coveredMunicipal
 manifest.redirects=[...redirects].map(([from,to])=>({from,to}));
 fs.writeFileSync(path.join(root,'public-seo-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 fs.writeFileSync(path.join(root,'local-pages-manifest.json'),JSON.stringify(retained,null,2)+'\n');
+const localAreas=retained.map(town=>{
+ const area=localAreaFor(town);
+ return {code:town.code,name:town.name,path:town.publicPath,postalReferences:area.postalCodes.length,streets:area.streets.length,areas:area.areas.length,editorial:area.hasEditorial,cartociudad:area.hasPostal};
+});
+fs.writeFileSync(path.join(root,'local-area-manifest.json'),JSON.stringify({release:LOCAL_AREA_RELEASE,towns:localAreas.length,withPostalReferences:localAreas.filter(t=>t.postalReferences).length,withAreas:localAreas.filter(t=>t.areas).length,withEditorial:localAreas.filter(t=>t.editorial).length,documents:localAreas},null,2)+'\n');
 const newsTowns=retained.map(t=>({name:t.name,route:t.publicPath}));
 const newsTownCounts=new Map();
 const importantNewsTowns=retained.slice().sort((a,b)=>b.population-a.population||a.name.localeCompare(b.name,'es')).filter(t=>{
@@ -147,5 +154,6 @@ const coverage={release:COVERAGE_RELEASE,policy,source:geo.source,edition:geo.ed
 fs.writeFileSync(path.join(root,'coverage-manifest.json'),JSON.stringify(coverage,null,2)+'\n');
 fs.appendFileSync(path.join(root,'assets/site.css'),COVERAGE_CSS);
 fs.appendFileSync(path.join(root,'assets/site.css'),NEARBY_TOWN_LINKS_CSS);
+fs.appendFileSync(path.join(root,'assets/site.css'),LOCAL_AREA_CSS);
 execFileSync(process.execPath,['scripts/prepare-production-assets.mjs'],{env:{...process.env,CONFIRM_PRODUCTION_PREP:'1',PRODUCTION_ROOT:root},stdio:'inherit'});
 console.log(`CONSOLIDACIÓN OK: ${retained.length} páginas municipales, ${retired.length} municipios agrupados, ${towns.length} cubiertos.`);

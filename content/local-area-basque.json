@@ -1,0 +1,2735 @@
+{
+  "reviewed": "2026-11-13",
+  "description": "Referencias geográficas contrastadas para preparar consultas de servicio. Los códigos postales se asocian a la dirección de ejemplo indicada; no constituyen un inventario postal completo ni identifican sedes de Antenas Zalla.",
+  "profiles": [
+    {
+      "code": "48096",
+      "name": "Zalla",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48860",
+          "scope": "Referencia postal: Kosme Bibanko, 2, Zalla",
+          "sourceUrl": "https://sac-old.zalla.eus/siac/ProcedimientoTabs.aspx?idProc=19&idnct=25&tab=1&x=2uXZlw5KG85g4xSalwYOog"
+        },
+        {
+          "code": "48850",
+          "scope": "Referencia postal: barrio La Inmaculada, 11, Aranguren",
+          "sourceUrl": "https://sac-old.zalla.eus/siac/ProcedimientoTabs.aspx?idProc=19&idnct=25&tab=1&x=2uXZlw5KG85g4xSalwYOog"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Mimétiz",
+          "kind": "barrio",
+          "sourceUrl": "https://euskadilagunkoia.euskadi.eus/contenidos/informacion/lagunkoia_muni_zalla/es_def/adjuntos/Zalla_Plan_De_Accion_CAS_2023.pdf"
+        },
+        {
+          "name": "Aranguren",
+          "kind": "barrio",
+          "sourceUrl": "https://euskadilagunkoia.euskadi.eus/contenidos/informacion/lagunkoia_muni_zalla/es_def/adjuntos/Zalla_Plan_De_Accion_CAS_2023.pdf"
+        },
+        {
+          "name": "La Herrera",
+          "kind": "barrio",
+          "sourceUrl": "https://euskadilagunkoia.euskadi.eus/contenidos/informacion/lagunkoia_muni_zalla/es_def/adjuntos/Zalla_Plan_De_Accion_CAS_2023.pdf"
+        },
+        {
+          "name": "Sollano",
+          "kind": "barrio",
+          "sourceUrl": "https://euskadilagunkoia.euskadi.eus/contenidos/informacion/lagunkoia_muni_zalla/es_def/adjuntos/Zalla_Plan_De_Accion_CAS_2023.pdf"
+        },
+        {
+          "name": "Otxaran",
+          "kind": "barrio",
+          "sourceUrl": "https://euskadilagunkoia.euskadi.eus/contenidos/informacion/lagunkoia_muni_zalla/es_def/adjuntos/Zalla_Plan_De_Accion_CAS_2023.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Kosme Bibanko",
+          "context": "Referencia del casco de Zalla.",
+          "sourceUrl": "https://sac-old.zalla.eus/siac/ProcedimientoTabs.aspx?idProc=19&idnct=25&tab=1&x=2uXZlw5KG85g4xSalwYOog"
+        },
+        {
+          "name": "Barrio La Inmaculada",
+          "context": "Referencia de Aranguren.",
+          "sourceUrl": "https://sac-old.zalla.eus/siac/ProcedimientoTabs.aspx?idProc=19&idnct=25&tab=1&x=2uXZlw5KG85g4xSalwYOog"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Zalla: referencias postales de Zalla y Aranguren",
+          "url": "https://sac-old.zalla.eus/siac/ProcedimientoTabs.aspx?idProc=19&idnct=25&tab=1&x=2uXZlw5KG85g4xSalwYOog"
+        },
+        {
+          "label": "Ayuntamiento de Zalla: barrios del municipio",
+          "url": "https://euskadilagunkoia.euskadi.eus/contenidos/informacion/lagunkoia_muni_zalla/es_def/adjuntos/Zalla_Plan_De_Accion_CAS_2023.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48045",
+      "name": "Güeñes",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48840",
+          "scope": "Referencia postal: Enkarterri, 5, Güeñes",
+          "sourceUrl": "https://videoplenos.guenes.eus/?lang=eu"
+        },
+        {
+          "code": "48830",
+          "scope": "Referencia postal: Autonomia kalea, 8, Sodupe",
+          "sourceUrl": "https://zuregertu.guenes.eus/lista_comercios/estanco-sodupe/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Güeñes",
+          "kind": "localidad",
+          "sourceUrl": "https://zuregertu.guenes.eus/comercios-y-servicios/"
+        },
+        {
+          "name": "Sodupe",
+          "kind": "localidad",
+          "sourceUrl": "https://zuregertu.guenes.eus/comercios-y-servicios/"
+        },
+        {
+          "name": "La Quadra",
+          "kind": "localidad",
+          "sourceUrl": "https://zuregertu.guenes.eus/comercios-y-servicios/"
+        },
+        {
+          "name": "Zaramillo",
+          "kind": "localidad",
+          "sourceUrl": "https://zuregertu.guenes.eus/comercios-y-servicios/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Enkarterri",
+          "context": "Referencia del núcleo de Güeñes.",
+          "sourceUrl": "https://videoplenos.guenes.eus/?lang=eu"
+        },
+        {
+          "name": "Autonomia kalea",
+          "context": "Referencia del núcleo de Sodupe.",
+          "sourceUrl": "https://zuregertu.guenes.eus/lista_comercios/estanco-sodupe/"
+        },
+        {
+          "name": "Kadagua kalea",
+          "context": "Referencia del núcleo de Sodupe.",
+          "sourceUrl": "https://zuregertu.guenes.eus/lista_comercios/brico-encartaciones-s-l/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Güeñes: núcleos del municipio",
+          "url": "https://zuregertu.guenes.eus/comercios-y-servicios/"
+        },
+        {
+          "label": "Ayuntamiento de Güeñes: referencia postal",
+          "url": "https://videoplenos.guenes.eus/?lang=eu"
+        },
+        {
+          "label": "Directorio municipal de Sodupe",
+          "url": "https://zuregertu.guenes.eus/lista_comercios/estanco-sodupe/"
+        },
+        {
+          "label": "Directorio municipal: Kadagua kalea",
+          "url": "https://zuregertu.guenes.eus/lista_comercios/brico-encartaciones-s-l/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48090",
+      "name": "Balmaseda",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48800",
+          "scope": "Referencia postal: plaza San Severino, 1",
+          "sourceUrl": "https://turismo.balmaseda.eus/aviso-legal/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Casco histórico",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.balmaseda.eus/informacion-util/donde-dormir/"
+        },
+        {
+          "name": "Las Laceras",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.balmaseda.eus/informacion-util/donde-dormir/"
+        },
+        {
+          "name": "Costanilla",
+          "kind": "barrio",
+          "sourceUrl": "https://turismo.balmaseda.eus/informacion-util/donde-dormir/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza San Severino",
+          "context": "Referencia del casco urbano.",
+          "sourceUrl": "https://turismo.balmaseda.eus/aviso-legal/"
+        },
+        {
+          "name": "Campo de las Monjas",
+          "context": "Calle recogida en la información turística municipal.",
+          "sourceUrl": "https://turismo.balmaseda.eus/informacion-util/donde-dormir/"
+        },
+        {
+          "name": "Virgen de Gracia",
+          "context": "Calle del entorno de Las Laceras.",
+          "sourceUrl": "https://turismo.balmaseda.eus/informacion-util/donde-dormir/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Balmaseda: referencia postal",
+          "url": "https://turismo.balmaseda.eus/aviso-legal/"
+        },
+        {
+          "label": "Turismo municipal de Balmaseda: calles y zonas",
+          "url": "https://turismo.balmaseda.eus/informacion-util/donde-dormir/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48086",
+      "name": "Sopuerta",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48190",
+          "scope": "Referencia postal: Mercadillo, 48",
+          "sourceUrl": "https://www.euskadi.eus/entidad-local/sopuerta/web01-a2tokiad/es/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Mercadillo",
+          "kind": "barrio",
+          "sourceUrl": "https://www.euskadi.eus/gobierno-vasco/-/sopuerta-conectando-barrios-promoviendo-la-movilidad-sostenible/"
+        },
+        {
+          "name": "La Baluga",
+          "kind": "barrio",
+          "sourceUrl": "https://www.euskadi.eus/gobierno-vasco/-/sopuerta-conectando-barrios-promoviendo-la-movilidad-sostenible/"
+        },
+        {
+          "name": "El Castaño",
+          "kind": "barrio",
+          "sourceUrl": "https://www.euskadi.eus/gobierno-vasco/-/sopuerta-conectando-barrios-promoviendo-la-movilidad-sostenible/"
+        },
+        {
+          "name": "San Martín del Carral",
+          "kind": "barrio",
+          "sourceUrl": "https://www.euskadi.eus/gobierno-vasco/-/sopuerta-conectando-barrios-promoviendo-la-movilidad-sostenible/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Carmen Quintana",
+          "context": "Referencia de la oficina turística municipal en la guía de Enkarterri.",
+          "sourceUrl": "https://turismo.euskadi.eus/contenidos/d_destinos_turisticos/0000208860_d6_rec_turismo/es_208860/adjuntos/visitenkarterri.pdf"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Gobierno Vasco: barrios de Sopuerta",
+          "url": "https://www.euskadi.eus/gobierno-vasco/-/sopuerta-conectando-barrios-promoviendo-la-movilidad-sostenible/"
+        },
+        {
+          "label": "Gobierno Vasco: referencia postal municipal",
+          "url": "https://www.euskadi.eus/entidad-local/sopuerta/web01-a2tokiad/es/"
+        },
+        {
+          "label": "Turismo Euskadi: callejero de referencia",
+          "url": "https://turismo.euskadi.eus/contenidos/d_destinos_turisticos/0000208860_d6_rec_turismo/es_208860/adjuntos/visitenkarterri.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48042",
+      "name": "Gordexola",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48192",
+          "scope": "Referencia postal: plaza Molinar, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/gordexola/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Molinar",
+          "kind": "barrio",
+          "sourceUrl": "https://jjggbizkaia.eus/es/noticias-anteriores/noticias?_net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M_jspPage=%2Fjsp%2FnoticiasAnteriores%2FdetalleNoticia.jsp&noticiaId=5634&ntcId=5634&p_p_id=net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&q="
+        },
+        {
+          "name": "El Verdugal",
+          "kind": "barrio",
+          "sourceUrl": "https://jjggbizkaia.eus/es/noticias-anteriores/noticias?_net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M_jspPage=%2Fjsp%2FnoticiasAnteriores%2FdetalleNoticia.jsp&noticiaId=5634&ntcId=5634&p_p_id=net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&q="
+        },
+        {
+          "name": "Isasi",
+          "kind": "barrio",
+          "sourceUrl": "https://jjggbizkaia.eus/es/noticias-anteriores/noticias?_net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M_jspPage=%2Fjsp%2FnoticiasAnteriores%2FdetalleNoticia.jsp&noticiaId=5634&ntcId=5634&p_p_id=net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&q="
+        },
+        {
+          "name": "Zubiete",
+          "kind": "barrio",
+          "sourceUrl": "https://jjggbizkaia.eus/es/noticias-anteriores/noticias?_net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M_jspPage=%2Fjsp%2FnoticiasAnteriores%2FdetalleNoticia.jsp&noticiaId=5634&ntcId=5634&p_p_id=net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&q="
+        },
+        {
+          "name": "Rodaiega",
+          "kind": "barrio",
+          "sourceUrl": "https://jjggbizkaia.eus/es/noticias-anteriores/noticias?_net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M_jspPage=%2Fjsp%2FnoticiasAnteriores%2FdetalleNoticia.jsp&noticiaId=5634&ntcId=5634&p_p_id=net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&q="
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Molinar",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/gordexola/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/gordexola/"
+        },
+        {
+          "label": "Juntas Generales de Bizkaia: itinerarios por Gordexola",
+          "url": "https://jjggbizkaia.eus/es/noticias-anteriores/noticias?_net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M_jspPage=%2Fjsp%2FnoticiasAnteriores%2FdetalleNoticia.jsp&noticiaId=5634&ntcId=5634&p_p_id=net_bizkaia_iybnwbbc_NoticiasAnterioresPortlet_INSTANCE_BtUPQQUgqm5M&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&q="
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48037",
+      "name": "Galdames",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48191",
+          "scope": "Referencia postal: plaza San Pedro, 6",
+          "sourceUrl": "https://udalengida.eudel.eus/galdames/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "San Pedro",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        },
+        {
+          "name": "San Esteban",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        },
+        {
+          "name": "Montellano",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza San Pedro",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/galdames/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/galdames/"
+        },
+        {
+          "label": "Mancomunidad de las Encartaciones: barrios de Galdames",
+          "url": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48008",
+      "name": "Artzentales",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48879",
+          "scope": "Referencia postal: plaza San Miguel, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/artzentales/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Traslaviña",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        },
+        {
+          "name": "San Miguel de Linares",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        },
+        {
+          "name": "Santa Cruz",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        },
+        {
+          "name": "Rebollar",
+          "kind": "barrio",
+          "sourceUrl": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza San Miguel",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/artzentales/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/artzentales/"
+        },
+        {
+          "label": "Mancomunidad de las Encartaciones: barrios de Artzentales",
+          "url": "https://www.contratacion.euskadi.eus/webkpe00-kpeperfi/es/contenidos/anuncio_contratacion/expjaso10203/es_doc/adjuntos/pliego_bases_tecnicas8.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48022",
+      "name": "Karrantza Harana/Valle de Carranza",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48891",
+          "scope": "Referencia postal: Concha, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/karrantza-harana-valle-de-carranza/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Concha",
+          "kind": "barrio",
+          "sourceUrl": "https://turismo.euskadi.eus/es/top-viajes/karrantza-a-pie-y-a-bocados/webtur00-exptop/es/"
+        },
+        {
+          "name": "Ambasaguas",
+          "kind": "barrio",
+          "sourceUrl": "https://turismo.euskadi.eus/es/top-viajes/karrantza-a-pie-y-a-bocados/webtur00-exptop/es/"
+        },
+        {
+          "name": "El Suceso",
+          "kind": "barrio",
+          "sourceUrl": "https://turismo.euskadi.eus/es/top-viajes/karrantza-a-pie-y-a-bocados/webtur00-exptop/es/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Barrio Concha",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/karrantza-harana-valle-de-carranza/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/karrantza-harana-valle-de-carranza/"
+        },
+        {
+          "label": "Turismo Euskadi: barrios de Karrantza",
+          "url": "https://turismo.euskadi.eus/es/top-viajes/karrantza-a-pie-y-a-bocados/webtur00-exptop/es/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48087",
+      "name": "Trucios-Turtzioz",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48880",
+          "scope": "Referencia postal: avenida Lehendakari Agirre, 51",
+          "sourceUrl": "https://udalengida.eudel.eus/trucios-turtzioz/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Loredo",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/licitacion/documento?idDoc=R0226883&numExpediente=3136"
+        },
+        {
+          "name": "Basinagre",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/licitacion/documento?idDoc=R0226883&numExpediente=3136"
+        },
+        {
+          "name": "El Gorito",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/licitacion/documento?idDoc=R0226883&numExpediente=3136"
+        },
+        {
+          "name": "Cueto",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/licitacion/documento?idDoc=R0226883&numExpediente=3136"
+        },
+        {
+          "name": "Gordón",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/licitacion/documento?idDoc=R0226883&numExpediente=3136"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Avenida Lehendakari Agirre",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/trucios-turtzioz/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/trucios-turtzioz/"
+        },
+        {
+          "label": "Consorcio de Aguas Bilbao Bizkaia: barrios de Turtzioz",
+          "url": "https://contratacion.consorciodeaguas.eus/licitacion/documento?idDoc=R0226883&numExpediente=3136"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48051",
+      "name": "Lanestosa",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48895",
+          "scope": "Referencia postal: Manuela Sainz de Rozas, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/lanestosa/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Casco urbano",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/localidades/lanestosa/webtur00-content/es/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Manuela Sainz de Rozas",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/lanestosa/"
+        },
+        {
+          "name": "Calle Real",
+          "context": "Referencia del callejero histórico.",
+          "sourceUrl": "https://turismo.euskadi.eus/es/patrimonio-cultural/palacio-colina/webtur00-content/es/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/lanestosa/"
+        },
+        {
+          "label": "Turismo Euskadi: casco urbano de Lanestosa",
+          "url": "https://turismo.euskadi.eus/es/localidades/lanestosa/webtur00-content/es/"
+        },
+        {
+          "label": "Turismo Euskadi: calle Real",
+          "url": "https://turismo.euskadi.eus/es/patrimonio-cultural/palacio-colina/webtur00-content/es/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20039",
+      "name": "Getaria",
+      "province": "Gipuzkoa",
+      "postalCodes": [
+        {
+          "code": "20808",
+          "scope": "Referencia postal: Gudarien enparantza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/getaria/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Akerregi",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        },
+        {
+          "name": "Askizu",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        },
+        {
+          "name": "Eitzaga",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        },
+        {
+          "name": "Meaga",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        },
+        {
+          "name": "San Prudentzio",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Gudarien enparantza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/getaria/"
+        },
+        {
+          "name": "Kale Nagusia",
+          "context": "Vía del callejero oficial de Getaria.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        },
+        {
+          "name": "Aldamar kalea",
+          "context": "Vía del callejero oficial de Getaria.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/getaria/"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: barrios y callejero de Getaria",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48057",
+      "name": "Lekeitio",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48280",
+          "scope": "Referencia postal: Gamarra kalea, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/lekeitio/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Casco antiguo",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/blog/que-ver-y-hacer-en-tu-visita-a-lekeitio/webtur00-contfichapost/es/"
+        },
+        {
+          "name": "Puerto",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/blog/que-ver-y-hacer-en-tu-visita-a-lekeitio/webtur00-contfichapost/es/"
+        },
+        {
+          "name": "Isuntza",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/blog/que-ver-y-hacer-en-tu-visita-a-lekeitio/webtur00-contfichapost/es/"
+        },
+        {
+          "name": "Santa Catalina",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/blog/que-ver-y-hacer-en-tu-visita-a-lekeitio/webtur00-contfichapost/es/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Gamarra kalea",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/lekeitio/"
+        },
+        {
+          "name": "Dendari kalea",
+          "context": "Referencia del casco antiguo.",
+          "sourceUrl": "https://turismo.euskadi.eus/es/blog/que-ver-y-hacer-en-tu-visita-a-lekeitio/webtur00-contfichapost/es/"
+        },
+        {
+          "name": "Paskual Abaroa etorbidea",
+          "context": "Vía de acceso al polideportivo municipal.",
+          "sourceUrl": "https://kiroldegia.lekeitio.eus/Entra2/BusquedaEvento.aspx"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/lekeitio/"
+        },
+        {
+          "label": "Turismo Euskadi: zonas de Lekeitio",
+          "url": "https://turismo.euskadi.eus/es/blog/que-ver-y-hacer-en-tu-visita-a-lekeitio/webtur00-contfichapost/es/"
+        },
+        {
+          "label": "Ayuntamiento de Lekeitio: Paskual Abaroa etorbidea",
+          "url": "https://kiroldegia.lekeitio.eus/Entra2/BusquedaEvento.aspx"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01004",
+      "name": "Artziniega",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01474",
+          "scope": "Referencia postal: Garaiko plaza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/artziniega/?action=download"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Mendieta",
+          "kind": "localidad",
+          "sourceUrl": "https://www.artziniegakoudala.eus/es/los-pueblos"
+        },
+        {
+          "name": "Retes de Tudela",
+          "kind": "localidad",
+          "sourceUrl": "https://www.artziniegakoudala.eus/es/los-pueblos"
+        },
+        {
+          "name": "Soxoguti",
+          "kind": "localidad",
+          "sourceUrl": "https://www.artziniegakoudala.eus/es/los-pueblos"
+        },
+        {
+          "name": "Santa Koloma",
+          "kind": "localidad",
+          "sourceUrl": "https://www.artziniegakoudala.eus/es/los-pueblos"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Garaiko plaza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/artziniega/?action=download"
+        },
+        {
+          "name": "Artekale",
+          "context": "Vía recogida en el directorio municipal de comercios.",
+          "sourceUrl": "https://artziniegakoudala.eus/es/municipio/comercio-y-empresas"
+        },
+        {
+          "name": "Barrenkale",
+          "context": "Vía recogida en el directorio municipal de comercios.",
+          "sourceUrl": "https://artziniegakoudala.eus/es/municipio/comercio-y-empresas"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/artziniega/?action=download"
+        },
+        {
+          "label": "Ayuntamiento de Artziniega: pueblos del municipio",
+          "url": "https://www.artziniegakoudala.eus/es/los-pueblos"
+        },
+        {
+          "label": "Ayuntamiento de Artziniega: calles del directorio municipal",
+          "url": "https://artziniegakoudala.eus/es/municipio/comercio-y-empresas"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01002",
+      "name": "Amurrio",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01470",
+          "scope": "Referencia postal: plaza Juan Urrutia, s/n",
+          "sourceUrl": "https://udalengida.eudel.eus/amurrio/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Baranbio",
+          "kind": "localidad",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        },
+        {
+          "name": "Lezama",
+          "kind": "localidad",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        },
+        {
+          "name": "Delika",
+          "kind": "localidad",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        },
+        {
+          "name": "Larrinbe",
+          "kind": "localidad",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        },
+        {
+          "name": "Saratxo",
+          "kind": "localidad",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        },
+        {
+          "name": "Tertanga",
+          "kind": "localidad",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza Juan Urrutia",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/amurrio/"
+        },
+        {
+          "name": "Elexondo",
+          "context": "Referencia de la zona centro.",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1816-encuentros-con-barrios-2025"
+        },
+        {
+          "name": "Larrinaga",
+          "context": "Referencia de la zona centro.",
+          "sourceUrl": "https://udala.amurrio.eus/cas/noticias/1816-encuentros-con-barrios-2025"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/amurrio/"
+        },
+        {
+          "label": "Ayuntamiento de Amurrio: juntas administrativas",
+          "url": "https://udala.amurrio.eus/cas/noticias/1988-amurrio-ejecuta-el-plan-de-senaletica-de-las-juntas-administrativas-2"
+        },
+        {
+          "label": "Ayuntamiento de Amurrio: calles de la zona centro",
+          "url": "https://udala.amurrio.eus/cas/noticias/1816-encuentros-con-barrios-2025"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01036",
+      "name": "Laudio/Llodio",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01400",
+          "scope": "Referencia postal: Herriko plaza, s/n",
+          "sourceUrl": "https://udalengida.eudel.eus/laudio-llodio/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Areta",
+          "kind": "barrio",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        },
+        {
+          "name": "Ugarte",
+          "kind": "barrio",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        },
+        {
+          "name": "Gardea",
+          "kind": "barrio",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        },
+        {
+          "name": "Latiorro",
+          "kind": "barrio",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        },
+        {
+          "name": "Landaluze",
+          "kind": "barrio",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        },
+        {
+          "name": "Arraño",
+          "kind": "barrio",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Herriko plaza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/laudio-llodio/"
+        },
+        {
+          "name": "Plaza Untzueta",
+          "context": "Referencia del barrio de Latiorro.",
+          "sourceUrl": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/laudio-llodio/"
+        },
+        {
+          "label": "Ayuntamiento de Laudio: barrios y referencias urbanas",
+          "url": "https://laudio.eus/es/participacion-ciudadana/paseos-participativos"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01059",
+      "name": "Vitoria-Gasteiz",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01001",
+          "scope": "Referencia postal: plaza España, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/vitoria-gasteiz/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Casco Viejo",
+          "kind": "barrio",
+          "sourceUrl": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        },
+        {
+          "name": "Zabalgana",
+          "kind": "barrio",
+          "sourceUrl": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        },
+        {
+          "name": "Salburua",
+          "kind": "barrio",
+          "sourceUrl": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        },
+        {
+          "name": "Arriaga-Lakua",
+          "kind": "barrio",
+          "sourceUrl": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        },
+        {
+          "name": "Sansomendi",
+          "kind": "barrio",
+          "sourceUrl": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        },
+        {
+          "name": "Zaramaga",
+          "kind": "barrio",
+          "sourceUrl": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza España",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/vitoria-gasteiz/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/vitoria-gasteiz/"
+        },
+        {
+          "label": "Ayuntamiento de Vitoria-Gasteiz: barrios de la ciudad",
+          "url": "https://cea.vitoria-gasteiz.org/portal/documents/398301/500687/evaluacion%2Bdel%2BPMSEP%2BVitoria-Gasteiz%2C%2Bmayo%2B2025.pdf/48f2ab95-272d-c9c0-b7be-dbfcb3455fcb?t=1747296886444"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48074",
+      "name": "Urduña/Orduña",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48460",
+          "scope": "Referencia postal: Foru plaza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/urduna-orduna/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Belandia",
+          "kind": "localidad",
+          "sourceUrl": "https://hauteskundeak.euskadi.eus/webelec00-content/es/contenidos/informacion/w_in_2023_mj_cargos/es_def/index.shtml"
+        },
+        {
+          "name": "Lendoño de Abajo",
+          "kind": "localidad",
+          "sourceUrl": "https://hauteskundeak.euskadi.eus/webelec00-content/es/contenidos/informacion/w_in_2023_mj_cargos/es_def/index.shtml"
+        },
+        {
+          "name": "Lendoño de Arriba",
+          "kind": "localidad",
+          "sourceUrl": "https://hauteskundeak.euskadi.eus/webelec00-content/es/contenidos/informacion/w_in_2023_mj_cargos/es_def/index.shtml"
+        },
+        {
+          "name": "Mendeika",
+          "kind": "localidad",
+          "sourceUrl": "https://hauteskundeak.euskadi.eus/webelec00-content/es/contenidos/informacion/w_in_2023_mj_cargos/es_def/index.shtml"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Foru plaza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/urduna-orduna/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/urduna-orduna/"
+        },
+        {
+          "label": "Gobierno Vasco: entidades locales de Orduña",
+          "url": "https://hauteskundeak.euskadi.eus/webelec00-content/es/contenidos/informacion/w_in_2023_mj_cargos/es_def/index.shtml"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01063",
+      "name": "Zuia",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01130",
+          "scope": "Referencia postal: plaza del Ayuntamiento, 1, Murgia",
+          "sourceUrl": "https://udalengida.eudel.eus/zuia/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Murgia",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        },
+        {
+          "name": "Bitoriano",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        },
+        {
+          "name": "Sarria",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        },
+        {
+          "name": "Ametzaga",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        },
+        {
+          "name": "Altube",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        },
+        {
+          "name": "Jugo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza del Ayuntamiento",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/zuia/"
+        },
+        {
+          "name": "Domingo de Sautu",
+          "context": "Referencia del núcleo de Murgia.",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/gu-a-de-servicios/listado-de-servicios-/empresas-y-servicios.html"
+        },
+        {
+          "name": "Zubiegi",
+          "context": "Referencia del núcleo de Bitoriano.",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/gu-a-de-servicios/listado-de-servicios-/empresas-y-servicios.html"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/zuia/"
+        },
+        {
+          "label": "Cuadrilla de Gorbeialdea: núcleos de Zuia",
+          "url": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"
+        },
+        {
+          "label": "Cuadrilla de Gorbeialdea: calles de referencia",
+          "url": "https://www.gorbeialdekokuadrilla.eus/es/gu-a-de-servicios/listado-de-servicios-/empresas-y-servicios.html"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20016",
+      "name": "Aia",
+      "province": "Gipuzkoa",
+      "postalCodes": [
+        {
+          "code": "20809",
+          "scope": "Referencia postal: Gozategi enparantza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/aia/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Altzola",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        },
+        {
+          "name": "Andatza",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        },
+        {
+          "name": "Laurgain",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        },
+        {
+          "name": "Urdaneta",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        },
+        {
+          "name": "Arrutiegia",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        },
+        {
+          "name": "Santio Erreka",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Gozategi enparantza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/aia/"
+        },
+        {
+          "name": "Iturri kalea",
+          "context": "Vía del callejero oficial de Aia.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        },
+        {
+          "name": "Aitzpea kalea",
+          "context": "Vía del callejero oficial de Aia.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/aia/"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: barrios y callejero de Aia",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20034",
+      "name": "Eskoriatza",
+      "province": "Gipuzkoa",
+      "postalCodes": [
+        {
+          "code": "20540",
+          "scope": "Referencia postal: Fernando Eskoriatza plaza, s/n",
+          "sourceUrl": "https://udalengida.eudel.eus/eskoriatza/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Apotzaga",
+          "kind": "localidad",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        },
+        {
+          "name": "Bolibar",
+          "kind": "localidad",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        },
+        {
+          "name": "Gellao",
+          "kind": "localidad",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        },
+        {
+          "name": "Marin",
+          "kind": "localidad",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        },
+        {
+          "name": "Mendiola",
+          "kind": "localidad",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        },
+        {
+          "name": "Zarimutz",
+          "kind": "localidad",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Fernando Eskoriatza plaza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/eskoriatza/"
+        },
+        {
+          "name": "Aranburuzabala kalea",
+          "context": "Vía del callejero oficial de Eskoriatza.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        },
+        {
+          "name": "Gaztañadui kalea",
+          "context": "Vía del callejero oficial de Eskoriatza.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/eskoriatza/"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: anteiglesias y callejero de Eskoriatza",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eskoriatza"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20027",
+      "name": "Zestoa",
+      "province": "Gipuzkoa",
+      "postalCodes": [
+        {
+          "code": "20740",
+          "scope": "Referencia postal: Foru plaza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/zestoa/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Aizarna",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        },
+        {
+          "name": "Arroa Behea",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        },
+        {
+          "name": "Arroa Goia",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        },
+        {
+          "name": "Iraeta",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        },
+        {
+          "name": "Endoia",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        },
+        {
+          "name": "Ibañarrieta",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Foru plaza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/zestoa/"
+        },
+        {
+          "name": "Gesalaga kalea",
+          "context": "Vía del callejero oficial de Zestoa.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zestoa"
+        },
+        {
+          "name": "Erdikalea",
+          "context": "Vía del callejero oficial de Zestoa.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zestoa"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/zestoa/"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: barrios de Zestoa",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=027"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: callejero de Zestoa",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zestoa"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20901",
+      "name": "Mendaro",
+      "province": "Gipuzkoa",
+      "postalCodes": [
+        {
+          "code": "20850",
+          "scope": "Referencia postal: Herriko enparantza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/mendaro/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Azpilgoeta",
+          "kind": "barrio",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-gipuzkoa/tbl0014223_c.html"
+        },
+        {
+          "name": "Garagartza",
+          "kind": "barrio",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-gipuzkoa/tbl0014223_c.html"
+        },
+        {
+          "name": "Mendarozabal",
+          "kind": "barrio",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-gipuzkoa/tbl0014223_c.html"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Herriko enparantza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/mendaro/"
+        },
+        {
+          "name": "Azpilgoeta kalea",
+          "context": "Vía del directorio geográfico de Gipuzkoa.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/en/geographic-directory/building?city=082"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/mendaro/"
+        },
+        {
+          "label": "Eustat: entidades de población de Mendaro",
+          "url": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-gipuzkoa/tbl0014223_c.html"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: callejero de Mendaro",
+          "url": "https://b5m.gipuzkoa.eus/web5000/en/geographic-directory/building?city=082"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01058",
+      "name": "Legutio",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01170",
+          "scope": "Referencia postal: Carmen, 10",
+          "sourceUrl": "https://udalengida.eudel.eus/legutio/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Elosu",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        },
+        {
+          "name": "Goiain",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        },
+        {
+          "name": "Nafarrate",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        },
+        {
+          "name": "Ollerías",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        },
+        {
+          "name": "Urbina",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        },
+        {
+          "name": "Urrúnaga",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Carmen",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/legutio/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/legutio/"
+        },
+        {
+          "label": "Cuadrilla de Gorbeialdea: núcleos de Legutio",
+          "url": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/legutio/legutio-informacion-general.html"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01003",
+      "name": "Aramaio",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01160",
+          "scope": "Referencia postal: Bixente Goikoetxea enparantza, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/aramaio/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Ibarra",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        },
+        {
+          "name": "Olaeta",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        },
+        {
+          "name": "Arexola",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        },
+        {
+          "name": "Azkoaga",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        },
+        {
+          "name": "Gantzaga",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        },
+        {
+          "name": "Uribarri",
+          "kind": "localidad",
+          "sourceUrl": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Bixente Goikoetxea enparantza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/aramaio/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/aramaio/"
+        },
+        {
+          "label": "Cuadrilla de Gorbeialdea: núcleos de Aramaio",
+          "url": "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/aramaio.html"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01055",
+      "name": "Valdegovía/Gaubea",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01426",
+          "scope": "Referencia postal: Arquitecto Jesús Guinea, 46, Villanueva de Valdegovía",
+          "sourceUrl": "https://udalengida.eudel.eus/valdegovia-gaubea/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Villanueva de Valdegovía",
+          "kind": "localidad",
+          "sourceUrl": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        },
+        {
+          "name": "Espejo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        },
+        {
+          "name": "Villanañe",
+          "kind": "localidad",
+          "sourceUrl": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        },
+        {
+          "name": "Bóveda",
+          "kind": "localidad",
+          "sourceUrl": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        },
+        {
+          "name": "Tuesta",
+          "kind": "localidad",
+          "sourceUrl": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        },
+        {
+          "name": "Osma",
+          "kind": "localidad",
+          "sourceUrl": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Arquitecto Jesús Guinea",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/valdegovia-gaubea/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/valdegovia-gaubea/"
+        },
+        {
+          "label": "Ayuntamiento de Valdegovía: juntas administrativas",
+          "url": "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "01017",
+      "name": "Campezo/Kanpezu",
+      "province": "Álava",
+      "postalCodes": [
+        {
+          "code": "01110",
+          "scope": "Referencia postal: Samuel Picaza, 1, Santa Cruz de Campezo",
+          "sourceUrl": "https://udalengida.eudel.eus/campezo-kanpezu/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Santa Cruz de Campezo / Santikurutze Kanpezu",
+          "kind": "localidad",
+          "sourceUrl": "https://www.kanpezu.eus/campezo/nuestros-pueblos/"
+        },
+        {
+          "name": "Antoñana",
+          "kind": "localidad",
+          "sourceUrl": "https://www.kanpezu.eus/campezo/nuestros-pueblos/"
+        },
+        {
+          "name": "Bujanda",
+          "kind": "localidad",
+          "sourceUrl": "https://www.kanpezu.eus/campezo/nuestros-pueblos/"
+        },
+        {
+          "name": "Orbiso",
+          "kind": "localidad",
+          "sourceUrl": "https://www.kanpezu.eus/campezo/nuestros-pueblos/"
+        },
+        {
+          "name": "Oteo",
+          "kind": "localidad",
+          "sourceUrl": "https://www.kanpezu.eus/campezo/nuestros-pueblos/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Samuel Picaza",
+          "context": "Referencia del callejero en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/campezo-kanpezu/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/campezo-kanpezu/"
+        },
+        {
+          "label": "Ayuntamiento de Campezo: pueblos del municipio",
+          "url": "https://www.kanpezu.eus/campezo/nuestros-pueblos/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48020",
+      "name": "Bilbao",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Abando",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279137880980&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "name": "Indautxu",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279137880980&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "name": "San Ignacio-Elorrieta",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279134318164&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "name": "Ibarrekolanda",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279134318164&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "name": "San Pedro de Deusto-La Ribera",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279134318164&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "name": "Arangoiti",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279134318164&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Barrainkua",
+          "context": "Referencia del distrito de Abando.",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279137880980&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "name": "Avenida Lehendakari Aguirre",
+          "context": "Referencia del distrito de Deusto.",
+          "sourceUrl": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279134318164&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Bilbao: distrito de Abando",
+          "url": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279137880980&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        },
+        {
+          "label": "Ayuntamiento de Bilbao: distrito de Deusto",
+          "url": "https://www.bilbao.eus/cs/Satellite?c=BIO_Generico_FA&cid=1279134318164&language=en&pageid=1279166310786&pagename=Bilbaonet%2FBIO_Generico_FA%2FBP_generico"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48013",
+      "name": "Barakaldo",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48901",
+          "scope": "Referencia postal: Herriko plaza, s/n",
+          "sourceUrl": "https://udalengida.eudel.eus/barakaldo/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "San Vicente",
+          "kind": "barrio",
+          "sourceUrl": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        },
+        {
+          "name": "Lutxana",
+          "kind": "barrio",
+          "sourceUrl": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        },
+        {
+          "name": "Retuerto",
+          "kind": "barrio",
+          "sourceUrl": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        },
+        {
+          "name": "Cruces",
+          "kind": "barrio",
+          "sourceUrl": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        },
+        {
+          "name": "Lasesarre",
+          "kind": "barrio",
+          "sourceUrl": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        },
+        {
+          "name": "Beurko",
+          "kind": "barrio",
+          "sourceUrl": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Herriko plaza",
+          "context": "Plaza recogida en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/barakaldo/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Barakaldo: mapa territorial",
+          "url": "https://www.barakaldo.eus/portal/c/document_library/get_file?groupId=36219&uuid=c215085d-6bd7-47f6-a8ff-f6499150d9be"
+        },
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/barakaldo/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48044",
+      "name": "Getxo",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Las Arenas",
+          "kind": "barrio",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/descubre-getxo/Historia-getxo"
+        },
+        {
+          "name": "Algorta",
+          "kind": "barrio",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/descubre-getxo/Historia-getxo"
+        },
+        {
+          "name": "Romo",
+          "kind": "barrio",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/descubre-getxo/Historia-getxo"
+        },
+        {
+          "name": "Neguri",
+          "kind": "barrio",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/descubre-getxo/Historia-getxo"
+        },
+        {
+          "name": "Andra Mari",
+          "kind": "barrio",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/descubre-getxo/Historia-getxo"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Plaza San Nicolás",
+          "context": "Referencia del barrio de Algorta.",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/descubre-getxo/bienvenido-a-getxo"
+        },
+        {
+          "name": "Avenida Zugazarte",
+          "context": "Referencia de acceso a Las Arenas.",
+          "sourceUrl": "https://www.getxo.eus/es/turismo/que-ver/playalasarenas"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Getxo: barrios del municipio",
+          "url": "https://www.getxo.eus/es/turismo/descubre-getxo/Historia-getxo"
+        },
+        {
+          "label": "Ayuntamiento de Getxo: plaza San Nicolás",
+          "url": "https://www.getxo.eus/es/turismo/descubre-getxo/bienvenido-a-getxo"
+        },
+        {
+          "label": "Ayuntamiento de Getxo: avenida Zugazarte",
+          "url": "https://www.getxo.eus/es/turismo/que-ver/playalasarenas"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48082",
+      "name": "Santurtzi",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Kabiezes",
+          "kind": "barrio",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        },
+        {
+          "name": "Mamariga",
+          "kind": "barrio",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        },
+        {
+          "name": "Las Viñas",
+          "kind": "barrio",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        },
+        {
+          "name": "Txitxarra",
+          "kind": "barrio",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        },
+        {
+          "name": "Peñota",
+          "kind": "barrio",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Itsasalde",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        },
+        {
+          "name": "Avenida Cristóbal Murrieta",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Turismo de Santurtzi: plano municipal",
+          "url": "https://visitsanturtzi.eus/wp-content/uploads/2022/02/2022-Plano-Santurtzi-CAST.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48078",
+      "name": "Portugalete",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Buenavista",
+          "kind": "zona",
+          "sourceUrl": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        },
+        {
+          "name": "Repélega",
+          "kind": "zona",
+          "sourceUrl": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        },
+        {
+          "name": "Abatxolo",
+          "kind": "zona",
+          "sourceUrl": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        },
+        {
+          "name": "La Florida",
+          "kind": "zona",
+          "sourceUrl": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        },
+        {
+          "name": "Los Llanos",
+          "kind": "zona",
+          "sourceUrl": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        },
+        {
+          "name": "Casco Viejo",
+          "kind": "zona",
+          "sourceUrl": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Coscojales",
+          "context": "Referencia del casco histórico.",
+          "sourceUrl": "https://www.visitbiscay.eus/es/-/portugalete-itsasadarreko-balkoia"
+        },
+        {
+          "name": "Víctor Chávarri",
+          "context": "Referencia del casco histórico.",
+          "sourceUrl": "https://www.visitbiscay.eus/es/-/portugalete-itsasadarreko-balkoia"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Portugalete: mapa del proyecto Aterkia, publicado por la FEMP",
+          "url": "https://www.femp.es/wp-content/uploads/2026/02/maqueta_MAPAPORTU_FINAL02.pdf"
+        },
+        {
+          "label": "Turismo de Bizkaia: callejero del casco histórico",
+          "url": "https://www.visitbiscay.eus/es/-/portugalete-itsasadarreko-balkoia"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48071",
+      "name": "Muskiz",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48550",
+          "scope": "Referencia postal: San Juan, 2",
+          "sourceUrl": "https://udalengida.eudel.eus/muskiz/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Cobarón",
+          "kind": "localidad",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        },
+        {
+          "name": "Pobeña",
+          "kind": "localidad",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        },
+        {
+          "name": "La Rigada",
+          "kind": "localidad",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        },
+        {
+          "name": "San Juan",
+          "kind": "localidad",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        },
+        {
+          "name": "San Julián de Muskiz",
+          "kind": "localidad",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        },
+        {
+          "name": "Santelices",
+          "kind": "localidad",
+          "sourceUrl": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        }
+      ],
+      "streets": [
+        {
+          "name": "San Juan",
+          "context": "Referencia de dirección recogida en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/muskiz/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Eustat: entidades de población de Muskiz",
+          "url": "https://es-mig.eustat.eus/elementos/ele0014200/poblacion-de-la-ca-de-euskadi-segun-su-relacion-con-la-actividad-por-entidades-de-poblacion-de-bizkaia/tbl0014224_c.html"
+        },
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/muskiz/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48027",
+      "name": "Durango",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "San Roque",
+          "kind": "barrio",
+          "sourceUrl": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        },
+        {
+          "name": "San Fausto",
+          "kind": "barrio",
+          "sourceUrl": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        },
+        {
+          "name": "Landako",
+          "kind": "barrio",
+          "sourceUrl": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        },
+        {
+          "name": "Madalena",
+          "kind": "barrio",
+          "sourceUrl": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        },
+        {
+          "name": "Tabira",
+          "kind": "barrio",
+          "sourceUrl": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        },
+        {
+          "name": "Zona centro",
+          "kind": "zona",
+          "sourceUrl": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Sanagustinalde",
+          "context": "Referencia del casco histórico.",
+          "sourceUrl": "https://turismo.euskadi.eus/es/top-viajes/durango-cultural/webtur00-exptop/es/"
+        },
+        {
+          "name": "Plaza Santa Ana",
+          "context": "Referencia del casco histórico.",
+          "sourceUrl": "https://turismo.euskadi.eus/es/top-viajes/durango-cultural/webtur00-exptop/es/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Durango: barrios del proceso participativo",
+          "url": "https://partehartu.durango.eus/presupuestos-participativos-2026"
+        },
+        {
+          "label": "Turismo Euskadi: calles de Durango",
+          "url": "https://turismo.euskadi.eus/es/top-viajes/durango-cultural/webtur00-exptop/es/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48046",
+      "name": "Gernika-Lumo",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Lumo",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/site/3/licitacion/documento?idDoc=R0169416&numExpediente=2816"
+        },
+        {
+          "name": "Zallo",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/site/3/licitacion/documento?idDoc=R0169416&numExpediente=2816"
+        },
+        {
+          "name": "Arana",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/site/3/licitacion/documento?idDoc=R0169416&numExpediente=2816"
+        },
+        {
+          "name": "Errenteria",
+          "kind": "barrio",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/site/3/licitacion/documento?idDoc=R0169416&numExpediente=2816"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Gernikako pasealekua",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://contratacion.consorciodeaguas.eus/site/3/licitacion/documento?idDoc=R0169416&numExpediente=2816"
+        },
+        {
+          "name": "Foru plaza",
+          "context": "Plaza del callejero municipal.",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/gida2004/05/09-callejero%20gernika%20ok.pdf"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Consorcio de Aguas Bilbao Bizkaia: referencias de Gernika-Lumo",
+          "url": "https://contratacion.consorciodeaguas.eus/site/3/licitacion/documento?idDoc=R0169416&numExpediente=2816"
+        },
+        {
+          "label": "Diputación de Bizkaia: callejero de Gernika-Lumo",
+          "url": "https://www.bizkaia.eus/hirigintza/gida2004/05/09-callejero%20gernika%20ok.pdf"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48017",
+      "name": "Bermeo",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Agirre",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        },
+        {
+          "name": "Almika",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        },
+        {
+          "name": "Arane",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        },
+        {
+          "name": "Arronategi",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        },
+        {
+          "name": "Artika",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        },
+        {
+          "name": "Mañu",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Zubiaur tar Kepa",
+          "context": "Referencia del directorio municipal de Bermeo.",
+          "sourceUrl": "https://www.bermeo.eus/571.html?L=2"
+        },
+        {
+          "name": "Arana eta Goiri tar Sabinen enparantza",
+          "context": "Referencia del directorio municipal de Bermeo.",
+          "sourceUrl": "https://www.bermeo.eus/571.html?L=2"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Bermeo: barrios rurales",
+          "url": "https://www.bermeo.eus/fileadmin/bermeokoudala/doc_bermeo/documentos_general/AUZO-TAXI_OINARRIAK.pdf"
+        },
+        {
+          "label": "Ayuntamiento de Bermeo: referencias de callejero",
+          "url": "https://www.bermeo.eus/571.html?L=2"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48069",
+      "name": "Mungia",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48100",
+          "scope": "Referencia postal: Trobika kalea, 1",
+          "sourceUrl": "https://udalengida.eudel.eus/mungia/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Larrauri",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        },
+        {
+          "name": "Laukariz",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        },
+        {
+          "name": "Markaida",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        },
+        {
+          "name": "Zabalondo",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        },
+        {
+          "name": "Iturbaltza",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        },
+        {
+          "name": "Ipintxe",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Trobika kalea",
+          "context": "Vía recogida en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/mungia/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Bizkaia: núcleos de Mungia",
+          "url": "https://www.bizkaia.eus/hirigintza/lurraldekozatiegitasmoa/Mungia/Avance_aprobacion_provisional/escrita/castellano/ca_mungia_escrita_Tomo%20II%20-%20Memoria__2.pdf"
+        },
+        {
+          "label": "EUDEL: referencia postal municipal",
+          "url": "https://udalengida.eudel.eus/mungia/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48077",
+      "name": "Plentzia",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48620",
+          "scope": "Referencia postal: Erribera kalea, 23",
+          "sourceUrl": "https://www.euskadi.eus/es/oficinas-turismo/oficina-de-turismo-de-plentzia/web01-s2oga/es/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Gandia",
+          "kind": "barrio",
+          "sourceUrl": "https://visitplentzia.eus/barrios-de-plentzia/"
+        },
+        {
+          "name": "Isuskiza",
+          "kind": "barrio",
+          "sourceUrl": "https://visitplentzia.eus/barrios-de-plentzia/"
+        },
+        {
+          "name": "Saratxaga",
+          "kind": "barrio",
+          "sourceUrl": "https://visitplentzia.eus/barrios-de-plentzia/"
+        },
+        {
+          "name": "Txipio",
+          "kind": "barrio",
+          "sourceUrl": "https://visitplentzia.eus/barrios-de-plentzia/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Erribera kalea",
+          "context": "Referencia del casco histórico.",
+          "sourceUrl": "https://www.euskadi.eus/es/oficinas-turismo/oficina-de-turismo-de-plentzia/web01-s2oga/es/"
+        },
+        {
+          "name": "Plaza del Astillero",
+          "context": "Plaza recogida en el directorio municipal.",
+          "sourceUrl": "https://udalengida.eudel.eus/plentzia/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Turismo municipal de Plentzia: barrios",
+          "url": "https://visitplentzia.eus/barrios-de-plentzia/"
+        },
+        {
+          "label": "Gobierno Vasco: calle Erribera",
+          "url": "https://www.euskadi.eus/es/oficinas-turismo/oficina-de-turismo-de-plentzia/web01-s2oga/es/"
+        },
+        {
+          "label": "EUDEL: plaza del Astillero",
+          "url": "https://udalengida.eudel.eus/plentzia/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48012",
+      "name": "Bakio",
+      "province": "Bizkaia",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Artzalde",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        },
+        {
+          "name": "Basigo",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        },
+        {
+          "name": "Bentalde",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        },
+        {
+          "name": "Goitisoloalde",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        },
+        {
+          "name": "San Pelaio",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        },
+        {
+          "name": "Zubiaurralde",
+          "kind": "barrio",
+          "sourceUrl": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Basigoko Bide Nagusia",
+          "context": "Referencia de la oficina turística de Bakio.",
+          "sourceUrl": "https://ota.bakio.eus/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Bizkaia: núcleos de Bakio",
+          "url": "https://www.bizkaia.eus/Home2/archivos/DPTO2/Temas/Pdf/Montes/POM_ORDENACIO_Bakio.pdf?hash=13b90afd8093e61ddeee8e55a5e2136b&idioma=CA"
+        },
+        {
+          "label": "Ayuntamiento de Bakio: Basigoko Bide Nagusia",
+          "url": "https://ota.bakio.eus/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "48068",
+      "name": "Mundaka",
+      "province": "Bizkaia",
+      "postalCodes": [
+        {
+          "code": "48360",
+          "scope": "Referencia postal: Goiko kalea, 40",
+          "sourceUrl": "https://turismo.euskadi.eus/es/bares-de-pintxos/goikoa-taberna/webtur00-content/es/"
+        }
+      ],
+      "areas": [
+        {
+          "name": "Entorno de Laidatxu",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/playas-embalses-rios/playa-de-laidatxu/webtur00-content/es/"
+        },
+        {
+          "name": "Santa Katalina",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/blog/las-ermitas-mas-impresionantes-de-euskadi-y-los-paisajes-que-las-rodean/webtur00-contfichapost/es/"
+        },
+        {
+          "name": "Puerto",
+          "kind": "zona",
+          "sourceUrl": "https://turismo.euskadi.eus/es/puertos-pesqueros/puerto-de-mundaka/webtur00-content/es/"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Goiko kalea",
+          "context": "Vía recogida por Turismo Euskadi.",
+          "sourceUrl": "https://turismo.euskadi.eus/es/bares-de-pintxos/goikoa-taberna/webtur00-content/es/"
+        },
+        {
+          "name": "Muelle de Mundaka",
+          "context": "Referencia del puerto.",
+          "sourceUrl": "https://turismo.euskadi.eus/es/puertos-pesqueros/puerto-de-mundaka/webtur00-content/es/"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Turismo Euskadi: entorno de Laidatxu",
+          "url": "https://turismo.euskadi.eus/es/playas-embalses-rios/playa-de-laidatxu/webtur00-content/es/"
+        },
+        {
+          "label": "Turismo Euskadi: Santa Katalina",
+          "url": "https://turismo.euskadi.eus/es/blog/las-ermitas-mas-impresionantes-de-euskadi-y-los-paisajes-que-las-rodean/webtur00-contfichapost/es/"
+        },
+        {
+          "label": "Turismo Euskadi: puerto de Mundaka",
+          "url": "https://turismo.euskadi.eus/es/puertos-pesqueros/puerto-de-mundaka/webtur00-content/es/"
+        },
+        {
+          "label": "Turismo Euskadi: Goiko kalea",
+          "url": "https://turismo.euskadi.eus/es/bares-de-pintxos/goikoa-taberna/webtur00-content/es/"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20069",
+      "name": "Donostia/San Sebastián",
+      "province": "Gipuzkoa",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Parte Vieja",
+          "kind": "barrio",
+          "sourceUrl": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        },
+        {
+          "name": "Centro",
+          "kind": "barrio",
+          "sourceUrl": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        },
+        {
+          "name": "Amara",
+          "kind": "barrio",
+          "sourceUrl": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        },
+        {
+          "name": "Amaraberri",
+          "kind": "barrio",
+          "sourceUrl": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        },
+        {
+          "name": "Gros",
+          "kind": "barrio",
+          "sourceUrl": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        },
+        {
+          "name": "Egia",
+          "kind": "barrio",
+          "sourceUrl": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Amara",
+          "context": "Referencia del barrio de Amara.",
+          "sourceUrl": "https://www.donostia.eus/es/como-es-ciudad/barrios/centro/amara"
+        },
+        {
+          "name": "Plaza Easo",
+          "context": "Referencia del barrio de Amara.",
+          "sourceUrl": "https://www.donostia.eus/es/como-es-ciudad/barrios/centro/amara"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Donostia: barrios de la ciudad",
+          "url": "https://www.donostia.eus/es/ciudad-futura/plan-general/avance"
+        },
+        {
+          "label": "Ayuntamiento de Donostia: callejero de Amara",
+          "url": "https://www.donostia.eus/es/como-es-ciudad/barrios/centro/amara"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20045",
+      "name": "Irun",
+      "province": "Gipuzkoa",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Anaka",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        },
+        {
+          "name": "Behobia",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        },
+        {
+          "name": "Bidasoa",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        },
+        {
+          "name": "Lapitze",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        },
+        {
+          "name": "Meaka",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        },
+        {
+          "name": "Ventas",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Calle Anaca",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/irun"
+        },
+        {
+          "name": "Avenida de Navarra",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/irun"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Gipuzkoa: barrios de Irun",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=045"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: callejero de Irun",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/irun"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20036",
+      "name": "Hondarribia",
+      "province": "Gipuzkoa",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Akartegi",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        },
+        {
+          "name": "Amute",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        },
+        {
+          "name": "Arkolla",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        },
+        {
+          "name": "Arrantzale",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Almirante Alonso kalea",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        },
+        {
+          "name": "Arma plaza",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Gipuzkoa: barrios y callejero de Hondarribia",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/hondarribia"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20079",
+      "name": "Zarautz",
+      "province": "Gipuzkoa",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Abendaño",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        },
+        {
+          "name": "Aitza",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        },
+        {
+          "name": "Argoin",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        },
+        {
+          "name": "Asti",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        },
+        {
+          "name": "Elkano",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Araba kalea",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        },
+        {
+          "name": "Azara kalea",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Gipuzkoa: barrios y callejero de Zarautz",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/zarautz"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20030",
+      "name": "Eibar",
+      "province": "Gipuzkoa",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Amaña",
+          "kind": "barrio",
+          "sourceUrl": "https://www.eibar.eus/es/eibarko-euskara/servicio-de-euskera/el-euskera-en-eibar/ciudad-de-eibar-plan-estrategico-del-euskera-2016-2025/MicrosoftWordplanagaztelaniaz.pdf"
+        },
+        {
+          "name": "Ipurua",
+          "kind": "barrio",
+          "sourceUrl": "https://www.eibar.eus/es/eibarko-euskara/servicio-de-euskera/el-euskera-en-eibar/ciudad-de-eibar-plan-estrategico-del-euskera-2016-2025/MicrosoftWordplanagaztelaniaz.pdf"
+        },
+        {
+          "name": "Urki",
+          "kind": "barrio",
+          "sourceUrl": "https://www.eibar.eus/es/eibarko-euskara/servicio-de-euskera/el-euskera-en-eibar/ciudad-de-eibar-plan-estrategico-del-euskera-2016-2025/MicrosoftWordplanagaztelaniaz.pdf"
+        },
+        {
+          "name": "Urkizu",
+          "kind": "barrio",
+          "sourceUrl": "https://www.eibar.eus/es/eibarko-euskara/servicio-de-euskera/el-euskera-en-eibar/ciudad-de-eibar-plan-estrategico-del-euskera-2016-2025/MicrosoftWordplanagaztelaniaz.pdf"
+        },
+        {
+          "name": "Arrate",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=030"
+        },
+        {
+          "name": "Aginaga",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=030"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Bidebarrieta kalea",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eibar"
+        },
+        {
+          "name": "Ego-Gain kalea",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eibar"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ayuntamiento de Eibar: barrios urbanos",
+          "url": "https://www.eibar.eus/es/eibarko-euskara/servicio-de-euskera/el-euskera-en-eibar/ciudad-de-eibar-plan-estrategico-del-euskera-2016-2025/MicrosoftWordplanagaztelaniaz.pdf"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: barrios rurales de Eibar",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=030"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: callejero de Eibar",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/eibar"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    },
+    {
+      "code": "20067",
+      "name": "Errenteria",
+      "province": "Gipuzkoa",
+      "postalCodes": [],
+      "areas": [
+        {
+          "name": "Agustinas",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        },
+        {
+          "name": "Alaberga",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        },
+        {
+          "name": "Beraun",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        },
+        {
+          "name": "Casas Nuevas",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        },
+        {
+          "name": "San Markos",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=067"
+        },
+        {
+          "name": "Zamalbide",
+          "kind": "barrio",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=067"
+        }
+      ],
+      "streets": [
+        {
+          "name": "Calle Biteri",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        },
+        {
+          "name": "Calle Alfonso XI",
+          "context": "Vía recogida en el callejero oficial.",
+          "sourceUrl": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Diputación de Gipuzkoa: callejero de Errenteria",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/errenteria"
+        },
+        {
+          "label": "Diputación de Gipuzkoa: barrios de Errenteria",
+          "url": "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/barrio?city=067"
+        }
+      ],
+      "reviewed": "2026-11-13"
+    }
+  ]
+}
