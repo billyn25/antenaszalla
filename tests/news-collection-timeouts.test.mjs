@@ -116,3 +116,38 @@ test('optional article excerpts share the deadline and cannot extend the legacy 
   assert.equal(data.items[0].url, article);
   assert.equal(data.items[0].paragraphs, undefined);
 });
+
+test('public diagnostics distinguish RSS and REST failures without exposing untrusted error details', async () => {
+  const secret = 'PRIVATE_SECRET_NEVER_EXPOSE';
+  const response = await getNewsResponse({ now, includeExcerpts: false, fetchImpl: async url => {
+    if (url === mundoRss) return new Response(secret, { status: 403 });
+    if (url.startsWith('https://www.mundoplus.tv/wp-json/')) {
+      throw new TypeError('https://user:' + secret + '@private.invalid/?token=' + secret,
+        { cause: { code: 'ENOTFOUND', message: secret } });
+    }
+    if (url === satRss) return new Response('<html>' + secret + '</html>');
+    if (url.startsWith('https://satcesc.com/wp-json/')) return Response.json({ privateData: secret });
+    if (url === 'https://television.digital.gob.es/atencion-a-la-ciudadania/notas-prensa') {
+      const error = new Error(secret, { cause: { code: secret } });
+      error.name = secret;
+      throw error;
+    }
+    return emptySource(url);
+  } });
+  const data = JSON.parse(response.body);
+  assert.equal(response.headers['X-Antenas-Zalla-Collector'], 'timeouts-diag-v1');
+  assert.equal(data.diagnostics.collector, response.headers['X-Antenas-Zalla-Collector']);
+  assert.equal(response.headers['X-Antenas-Zalla-Source-Failures'], '5');
+  const failure = (source, stage) => data.diagnostics.failures.find(item => item.source === source && item.stage === stage);
+  assert.equal(failure('mundoplus:tv-digital', 'rss').httpStatus, 403);
+  assert.equal(failure('mundoplus:tv-digital', 'rest').causeCode, 'ENOTFOUND');
+  assert.equal(failure('satcesc:tdt', 'rss').code, 'INVALID_FEED');
+  assert.equal(failure('satcesc:tdt', 'rest').code, 'INVALID_JSON');
+  assert.equal(failure('television-digital', 'html').name, 'Error');
+  assert.equal(failure('television-digital', 'html').causeCode, undefined);
+  assert.ok(data.diagnostics.elapsedMs >= 0);
+  assert.ok(data.diagnostics.failures.every(item => Number.isFinite(item.elapsedMs) && item.elapsedMs >= 0));
+  assert.equal(JSON.stringify(response).includes(secret), false);
+  assert.equal(JSON.stringify(response).includes('private.invalid'), false);
+  assert.ok(data.diagnostics.failures.every(item => !('message' in item) && !('stack' in item)));
+});

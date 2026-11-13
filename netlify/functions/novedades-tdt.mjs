@@ -5,6 +5,24 @@ import backup from './novedades-tdt-backup.json' with { type: 'json' };
 // Includes sequential RSS/REST attempts and optional article excerpts, below the
 // function's 60-second limit even when the legacy JSON endpoint calls directly.
 export const NEWS_COLLECTION_TIMEOUT_MS = 42000;
+const NEWS_COLLECTOR_VERSION = 'timeouts-diag-v1';
+const diagnosticNames = new Set(['Error', 'TypeError', 'SyntaxError', 'RangeError', 'AbortError', 'TimeoutError', 'AggregateError']);
+const diagnosticCauseCodes = new Set(['ENOTFOUND', 'EAI_AGAIN', 'ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'EPIPE',
+  'EHOSTUNREACH', 'ENETUNREACH', 'CERT_HAS_EXPIRED', 'DEPTH_ZERO_SELF_SIGNED_CERT', 'SELF_SIGNED_CERT_IN_CHAIN',
+  'ERR_TLS_CERT_ALTNAME_INVALID', 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY', 'UNABLE_TO_VERIFY_LEAF_SIGNATURE',
+  'ERR_TLS_HANDSHAKE_TIMEOUT', 'UND_ERR_CONNECT_TIMEOUT', 'UND_ERR_HEADERS_TIMEOUT', 'UND_ERR_BODY_TIMEOUT',
+  'UND_ERR_SOCKET', 'UND_ERR_ABORTED']);
+
+function sourceFailure(source, stage, error, elapsedMs) {
+  const http = /\bHTTP ([1-5]\d{2})$/.exec(error?.message || '');
+  const causeCode = error?.cause?.code || error?.code;
+  const code = error?.code === 'INVALID_FEED' ? 'INVALID_FEED'
+    : stage === 'rest' && (error?.name === 'SyntaxError' || /: respuesta sin artículos$/.test(error?.message || '')) ? 'INVALID_JSON'
+    : undefined;
+  return { source, stage, name: diagnosticNames.has(error?.name) ? error.name : 'Error', elapsedMs,
+    ...(http ? { httpStatus: Number(http[1]) } : {}),
+    ...(diagnosticCauseCodes.has(causeCode) ? { causeCode } : {}), ...(code ? { code } : {}) };
+}
 
 const source = 'https://www.mundoplus.tv';
 const sections = Object.keys(mundoCategories);
@@ -43,7 +61,8 @@ function readRss(xml) {
     }
     tags.pop();
   });
-  parser.write(xml).close();
+  try { parser.write(xml).close(); }
+  catch (error) { error.code = 'INVALID_FEED'; throw error; }
   return entries;
 }
 
@@ -122,15 +141,15 @@ function readOpenSatelliteChanges(html, orbit, now) {
   return changes;
 }
 
-async function fetchSatelliteChanges(now, fetcher = fetch, timeoutMs = NEWS_REQUEST_TIMEOUT_MS) {
-  const rssRequest = (async () => {
+async function fetchSatelliteChanges(now, fetcher = fetch, timeoutMs = NEWS_REQUEST_TIMEOUT_MS, track = (_source, _stage, operation) => operation()) {
+  const rssRequest = track('kingofsat', 'rss', async () => {
     const response = await fetcher(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(timeoutMs) });
     if (!response.ok) throw new Error('KingOfSat RSS: HTTP ' + response.status);
     const xml = await response.text();
-    if (!/<rss\b/i.test(xml)) throw new Error('KingOfSat no devolvió RSS');
+    if (!/<rss\b/i.test(xml)) throw Object.assign(new Error('KingOfSat no devolvió RSS'), { code: 'INVALID_FEED' });
     return filterSatelliteChanges(readRss(xml), now);
-  })();
-  const positionRequests = Object.keys(satellitePositions).map(async orbit => {
+  });
+  const positionRequests = Object.keys(satellitePositions).map(orbit => track('kingofsat:' + orbit, 'html', async () => {
     const response = await fetcher(kingOfSat + '/news' + orbit, {
       signal: AbortSignal.timeout(timeoutMs), headers: { Accept: 'text/html' }
     });
@@ -141,7 +160,7 @@ async function fetchSatelliteChanges(now, fetcher = fetch, timeoutMs = NEWS_REQU
       throw new Error('KingOfSat no devolvió el listado de ' + orbit);
     }
     return readOpenSatelliteChanges(html, orbit, now);
-  });
+  }));
   const results = await Promise.allSettled([rssRequest, ...positionRequests]);
   const available = results.filter(result => result.status === 'fulfilled');
   if (!available.length) throw new Error('KingOfSat no está disponible');
@@ -243,7 +262,23 @@ async function addOfficialText(item, fetcher = fetch) {
 }
 
 async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, requestTimeoutMs }) {
-  const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache' };
+  const started = Date.now();
+  const diagnostics = { collector: NEWS_COLLECTOR_VERSION, elapsedMs: 0, failures: [] };
+  const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache',
+    'X-Antenas-Zalla-Collector': NEWS_COLLECTOR_VERSION };
+  const track = async (source, stage, operation) => {
+    const began = Date.now();
+    try { return await operation(); }
+    catch (error) {
+      diagnostics.failures.push(sourceFailure(source, stage, error, Date.now() - began));
+      throw error;
+    }
+  };
+  const finish = (statusCode, data) => {
+    diagnostics.elapsedMs = Date.now() - started;
+    headers['X-Antenas-Zalla-Source-Failures'] = String(diagnostics.failures.length);
+    return { statusCode, headers, body: JSON.stringify({ ...data, diagnostics }) };
+  };
   const fetcher = (url, options = {}) => {
     const requestSignal = options.signal ? AbortSignal.any([signal, options.signal]) : signal;
     requestSignal.throwIfAborted();
@@ -251,59 +286,63 @@ async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, re
   };
   const rssRequests = sections.map(async section => {
     try {
-      const response = await fetcher(`${source}/seccion/${section}/feed/`, {
-        signal: AbortSignal.timeout(requestTimeoutMs),
-        headers: {
-          Accept: 'application/rss+xml, application/xml, text/xml',
-          'User-Agent': 'AntenasZalla/1.1 (+https://antenaszalla.com/blog/)'
-        }
+      return await track('mundoplus:' + section, 'rss', async () => {
+        const response = await fetcher(`${source}/seccion/${section}/feed/`, {
+          signal: AbortSignal.timeout(requestTimeoutMs),
+          headers: {
+            Accept: 'application/rss+xml, application/xml, text/xml',
+            'User-Agent': 'AntenasZalla/1.1 (+https://antenaszalla.com/blog/)'
+          }
+        });
+        if (!response.ok) throw new Error(`RSS ${section}: HTTP ${response.status}`);
+        const xml = await response.text();
+        if (!/<rss\b/i.test(xml)) throw Object.assign(new Error('Mundoplus no devolvió RSS'), { code: 'INVALID_FEED' });
+        return parseFeed(xml, now);
       });
-      if (!response.ok) throw new Error(`RSS ${section}: HTTP ${response.status}`);
-      const xml = await response.text();
-      if (!/<rss\b/i.test(xml)) throw new Error('Mundoplus no devolvió RSS');
-      return parseFeed(xml, now);
     } catch (error) {
       if (signal?.aborted) throw error;
-      return fetchMundoPosts(section, now, requestTimeoutMs, fetcher);
+      return track('mundoplus:' + section, 'rest', () => fetchMundoPosts(section, now, requestTimeoutMs, fetcher));
     }
   });
-  const officialRequests = officialSources.map(async official => {
+  const officialRequests = officialSources.map((official, index) => track(index ? 'ministerio-digital' : 'television-digital', 'html', async () => {
     const response = await fetcher(official.origin + official.path, {
       signal: AbortSignal.timeout(requestTimeoutMs),
       headers: { Accept: 'text/html' }
     });
     if (!response.ok) throw new Error(`Portal oficial: HTTP ${response.status}`);
     return parseOfficialNews(await response.text(), official, now);
-  });
-  const uhdRequest = (async () => {
+  }));
+  const uhdRequest = track('uhd-spain', 'rss', async () => {
     const response = await fetcher(uhdSpain + '/feed/', { signal: AbortSignal.timeout(requestTimeoutMs) });
     if (!response.ok) throw new Error('UHD Spain: HTTP ' + response.status);
     return parseFeed(await response.text(), now, uhdSpain);
-  })();
-  const sesRequests = [0, 1, 2, 3].map(async page => {
+  });
+  const sesRequests = [0, 1, 2, 3].map(page => track('ses:' + page, 'html', async () => {
     const response = await fetcher(ses + '/news/news-releases' + (page ? '?page=' + page : ''), {
       signal: AbortSignal.timeout(requestTimeoutMs)
     });
     if (!response.ok) throw new Error('SES: HTTP ' + response.status);
     return parseSes(await response.text(), now);
-  });
+  }));
   const satCescSections = Object.keys(satCescCategories);
   const satCescRequests = satCescSections.map(async section => {
     try {
-      const response = await fetcher(satCesc + '/' + section + '/feed/', {
-        signal: AbortSignal.timeout(requestTimeoutMs), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
+      return await track('satcesc:' + section, 'rss', async () => {
+        const response = await fetcher(satCesc + '/' + section + '/feed/', {
+          signal: AbortSignal.timeout(requestTimeoutMs), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
+        });
+        if (!response.ok) throw new Error('RSS HTTP ' + response.status);
+        const xml = await response.text();
+        if (!/<rss\b/i.test(xml)) throw Object.assign(new Error('Respuesta no RSS'), { code: 'INVALID_FEED' });
+        return parseSatCesc(readRss(xml), section, now);
       });
-      if (!response.ok) throw new Error('RSS HTTP ' + response.status);
-      const xml = await response.text();
-      if (!/<rss\b/i.test(xml)) throw new Error('Respuesta no RSS');
-      return parseSatCesc(readRss(xml), section, now);
     } catch (error) {
-      console.warn('RSS de SatCesc no disponible', section, error.message);
+      console.warn('RSS de SatCesc no disponible', section);
       if (signal?.aborted) throw error;
-      return fetchSatCescPosts(section, now, requestTimeoutMs, fetcher);
+      return track('satcesc:' + section, 'rest', () => fetchSatCescPosts(section, now, requestTimeoutMs, fetcher));
     }
   });
-  const kingRequest = fetchSatelliteChanges(now, fetcher, requestTimeoutMs);
+  const kingRequest = fetchSatelliteChanges(now, fetcher, requestTimeoutMs, track);
   const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests, ...satCescRequests]);
   const mundoMissing = sections.filter((_, index) => results[index].status === 'rejected');
   const satCescResults = results.slice(-satCescRequests.length);
@@ -314,15 +353,12 @@ async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, re
   const available = results.filter(result => result.status === 'fulfilled');
   const news = available.flatMap(feed => feed.value);
   if (!news.length && available.length < results.length) {
-    const failures = results.filter(result => result.status === 'rejected').map(({ reason }) => {
-      const http = /HTTP (\d{3})$/.exec(reason.message)?.[1];
-      return http ? `http-${http}` : reason.cause?.code || reason.name;
-    });
+    const failures = diagnostics.failures.map(error => error.httpStatus ? `http-${error.httpStatus}` : error.causeCode || error.code || error.name);
     console.warn('Fuentes de novedades no disponibles', failures);
     const items = backup.items.filter(item => now - Date.parse(item.date) <= maxAge);
     headers['X-Antenas-Zalla-RSS'] = `reserva; ${failures.join(', ')}`;
     headers['Netlify-CDN-Cache-Control'] = 'public, durable, s-maxage=300';
-    return { statusCode: items.length || satelliteChanges?.length ? 200 : 503, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing, mundoMissing, backup: true, partial: true }) };
+    return finish(items.length || satelliteChanges?.length ? 200 : 503, { items, satelliteChanges, satCescMissing, mundoMissing, backup: true, partial: true });
   }
   const officialNews = news.some(item => officialSources.some(source => source.publisher === item.publisher));
   const rssNews = news.some(item => !officialSources.some(source => source.publisher === item.publisher));
@@ -333,8 +369,8 @@ async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, re
   headers['Netlify-CDN-Cache-Control'] = satCescAvailable === satCescRequests.length && (officialNews || available.length === results.length)
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
     : 'public, durable, s-maxage=300';
-  return { statusCode: 200, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing, mundoMissing,
-    partial: available.length < results.length || kingResult.status === 'rejected' }) };
+  return finish(200, { items, satelliteChanges, satCescMissing, mundoMissing,
+    partial: available.length < results.length || kingResult.status === 'rejected' });
 }
 
 export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fetch, includeExcerpts = true,
