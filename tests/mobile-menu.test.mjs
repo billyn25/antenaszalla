@@ -20,7 +20,7 @@ test('province headings and home links use the requested Antenista en label',()=
  const home=renderPage(pages.find(p=>p.type==='home'));
  for(const p of pages.filter(p=>p.type==='province')) {
   assert(home.includes(`<strong>Antenista en ${p.name}</strong>`));
-  assert(renderPage(p).includes(`<h1>Antenista en ${p.name}</h1>`));
+  assert(renderPage(p).includes(`<h1>Antenista en ${p.name}: servicios y municipios atendidos</h1>`));
  }
  assert(home.includes('aria-controls="site-navigation"'));
  assert(home.includes('<nav id="site-navigation"'));

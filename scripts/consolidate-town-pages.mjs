@@ -3,6 +3,7 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {DOMAIN,publicPath,fileForPublicPath,escapeHtml as esc,decodeHtml} from './public-seo.mjs';
 import {selectCoverage,policy,distanceKm,COVERAGE_CSS,COVERAGE_RELEASE} from './municipal-coverage.mjs';
+import {displayPlaceName} from './seo-metadata.mjs';
 const root=path.resolve(process.env.PRODUCTION_ROOT||'dist');
 const read=f=>JSON.parse(fs.readFileSync(path.join(root,f),'utf8'));
 if(fs.existsSync(path.join(root,'coverage-manifest.json')))throw new Error('La consolidación requiere un build completo sin consolidar.');
@@ -20,6 +21,21 @@ const towns=all.map(t=>{
 });
 const {retained,assignments}=selectCoverage(towns);
 const selected=new Set(retained.map(t=>t.publicPath));
+// Start with the five closest retained pages in each province. Add a link only
+// where needed to give every retained locality an incoming contextual link.
+const nearest=new Map(retained.map(town=>[town.code,retained
+ .filter(t=>t.province===town.province&&t.code!==town.code)
+ .sort((a,b)=>distanceKm(town,a)-distanceKm(town,b)||a.code.localeCompare(b.code))]));
+const nearbyLinks=new Map(retained.map(t=>[t.code,nearest.get(t.code).slice(0,5)]));
+const incoming=new Map(retained.map(t=>[t.code,0]));
+for(const links of nearbyLinks.values())for(const town of links)incoming.set(town.code,incoming.get(town.code)+1);
+for(const town of retained.filter(t=>incoming.get(t.code)===0)){
+ const source=nearest.get(town.code).find(t=>nearbyLinks.get(t.code).length<6);
+ if(!source)throw new Error('No se pudo enlazar la localidad desde otra página: '+town.name);
+ nearbyLinks.get(source.code).push(town);
+ incoming.set(town.code,1);
+}
+for(const town of retained)nearbyLinks.get(town.code).sort((a,b)=>distanceKm(town,a)-distanceKm(town,b)||a.code.localeCompare(b.code));
 const byRoute=new Map(assignments.map(a=>[a.town.publicPath,a]));
 const retired=assignments.filter(a=>a.town.code!==a.hub.code);
 function destination(raw,current='/',anchor=true){
@@ -33,7 +49,24 @@ function destination(raw,current='/',anchor=true){
 function coverageSection(town){
  const members=assignments.filter(a=>a.hub.code===town.code&&a.town.code!==town.code).map(a=>a.town).sort((a,b)=>a.name.localeCompare(b.name,'es'));
  if(!members.length)return '';
- return `<section class="section soft municipal-coverage" id="cobertura-cercana"><div class="wrap"><span class="eyebrow">Servicio en los alrededores</span><h2>Antenista en ${esc(town.name)} y localidades cercanas</h2><p class="section-lead">Esta página reúne las consultas de instalación y reparación de antenas TDT, parabólicas, amplificación, porteros y videoporteros en ${esc(town.name)} y estos municipios próximos.</p><ul class="municipal-coverage-list">${members.map(t=>`<li id="cobertura-${t.code}">${esc(t.name)}</li>`).join('')}</ul><p>Indica tu municipio y si el problema afecta a una sola toma, a toda la vivienda o a varios vecinos. Para un portero o videoportero, comenta si falla la llamada, el audio, la imagen o la apertura. El desplazamiento, la disponibilidad y las condiciones de atención se confirman al consultar.</p><a class="coverage-consult" href="#contacto">Preparar la consulta →</a></div></section>`;
+ const name=esc(displayPlaceName(town.name));
+ return `<section class="section soft municipal-coverage" id="cobertura-cercana"><div class="wrap"><span class="eyebrow">Servicio en los alrededores</span><h2>Antenista en ${name} y localidades cercanas</h2><p class="section-lead">Esta página reúne las consultas de instalación y reparación de antenas TDT, parabólicas, amplificación, porteros y videoporteros en ${name} y estos municipios próximos.</p><ul class="municipal-coverage-list">${members.map(t=>`<li id="cobertura-${t.code}">${esc(displayPlaceName(t.name))}</li>`).join('')}</ul><p>Indica tu municipio y si el problema afecta a una sola toma, a toda la vivienda o a varios vecinos. Para un portero o videoportero, comenta si falla la llamada, el audio, la imagen o la apertura. El desplazamiento, la disponibilidad y las condiciones de atención se confirman al consultar.</p><a class="coverage-consult" href="#contacto">Preparar la consulta →</a></div></section>`;
+}
+function nearbyNavigation(town){
+ const province=esc(displayPlaceName(town.province));
+ const provinceRoute='/'+town.publicPath.split('/').filter(Boolean)[0]+'/';
+ return `<nav class="other-towns" data-contextual-town-links aria-label="Otras localidades de ${province}">${nearbyLinks.get(town.code).map(t=>`<a href="${esc(t.publicPath)}">Antenista en ${esc(displayPlaceName(t.name))}</a>`).join('')}</nav><p class="nearby-province-link"><a href="${esc(provinceRoute)}">Ver todos los municipios de ${province} →</a></p>`;
+}
+function updateHomeCounts(html){
+ const block=html.match(/<section\b[^>]*\bid="zalla-stats"[^>]*>[\s\S]*?<\/section>/)?.[0];
+ if(!block)throw new Error('Falta el bloque de cifras de portada durante la consolidación');
+ const localCounter=/<article><strong>[^<]+<\/strong><span>(?:Pueblos con página local|Localidades con página propia)<\/span><\/article>/;
+ if(!localCounter.test(block))throw new Error('No se encontró el contador de páginas locales de portada');
+ const provinces=new Set(towns.map(t=>t.province)).size;
+ const updated=block
+  .replace(localCounter,`<article><strong>${retained.length.toLocaleString('es-ES')}</strong><span>Localidades con página propia</span></article>`)
+  .replace(/<p>[\s\S]*?<\/p>/,`<p>Consulta ${towns.length.toLocaleString('es-ES')} municipios de ${provinces} provincias. Las localidades con página propia reúnen también la atención a municipios cercanos.</p>`);
+ return html.replace(block,()=>updated);
 }
 const docs=manifest.documents.filter(d=>d.type!=='town'||selected.has(d.path));
 for(const doc of docs){
@@ -45,11 +78,18 @@ for(const doc of docs){
  html=html.replace(/(<script[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g,(_,open,raw,close)=>open+JSON.stringify(rewriteData(JSON.parse(raw))).replace(/</g,'\\u003c')+close);
  const town=retained.find(t=>t.publicPath===doc.path);
  if(town){
-  const near=retained.filter(t=>t.province===town.province&&t.code!==town.code).sort((a,b)=>distanceKm(town,a)-distanceKm(town,b)||a.code.localeCompare(b.code)).slice(0,8);
-  html=html.replace(/<nav class="other-towns"[^>]*>[\s\S]*?<\/nav>/g,`<nav class="other-towns" aria-label="Municipios próximos con página propia">${near.map(t=>`<a href="${esc(t.publicPath)}">Antenista en ${esc(t.name)}</a>`).join('')}</nav>`);
+  const nav=nearbyNavigation(town);
+  const existing=/<nav\b(?=[^>]*\bclass="[^"]*\bother-towns\b[^"]*")[^>]*>[\s\S]*?<\/nav>/;
+  if(existing.test(html))html=html.replace(existing,()=>nav);
+  else{
+   const section=`<section class="section nearby-localities" id="localidades-relacionadas" aria-labelledby="localidades-relacionadas-title"><div class="wrap"><span class="eyebrow">Consulta por localidad</span><h2 id="localidades-relacionadas-title">Más localidades de ${esc(displayPlaceName(town.province))}</h2><p>Consulta otras localidades de la provincia, ordenadas por cercanía a ${esc(displayPlaceName(town.name))}.</p>${nav}</div></section>`;
+   html=html.replace(/(<section\b[^>]*\bid="contacto"[^>]*>)/,opening=>section+opening);
+  }
+  if(!html.includes('data-contextual-town-links'))throw new Error('No se pudo insertar navegación local en '+town.name);
   html=html.replace(/(<section\b[^>]*\bid="contacto"[^>]*>)/,coverageSection(town)+'$1');
   if(assignments.some(a=>a.hub.code===town.code&&a.town.code!==town.code)&&!html.includes('id="cobertura-cercana"'))throw new Error('No se pudo insertar cobertura en '+town.name);
  }
+ if(doc.path==='/')html=updateHomeCounts(html);
  fs.writeFileSync(file,html);
 }
 // Resolve every historical alias directly to the retained document, including .html aliases.
@@ -81,5 +121,6 @@ fs.writeFileSync(path.join(root,'_redirects'),'# Historical and consolidated mun
 const coverage={release:COVERAGE_RELEASE,policy,source:geo.source,edition:geo.edition,total:towns.length,retained:retained.length,redirected:retired.length,provinces:[...new Set(towns.map(t=>t.province))].map(province=>({province,total:towns.filter(t=>t.province===province).length,retained:retained.filter(t=>t.province===province).length})),assignments:assignments.map(({town,hub,distanceKm})=>({code:town.code,name:town.name,province:town.province,population:town.population,original:town.publicPath,originalFile:town.path,destination:hub.publicPath,hub:hub.name,url:hub.publicPath+(town.code===hub.code?'':`#cobertura-${town.code}`),distanceKm:Number(distanceKm.toFixed(3))}))};
 fs.writeFileSync(path.join(root,'coverage-manifest.json'),JSON.stringify(coverage,null,2)+'\n');
 fs.appendFileSync(path.join(root,'assets/site.css'),COVERAGE_CSS);
+fs.appendFileSync(path.join(root,'assets/site.css'),'\n[data-contextual-town-links]{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}[data-contextual-town-links] a{display:inline-flex;align-items:center;min-height:44px;padding:9px 13px;border:1px solid #c7dce7;border-radius:5px;background:#f4f8fa;color:#173e52;font-size:14px;font-weight:700;line-height:1.5;text-decoration:none}[data-contextual-town-links] a:hover{background:#e7f1f6;border-color:#6e9fb6}[data-contextual-town-links] a:focus-visible{outline:3px solid #2d789f;outline-offset:3px}.nearby-localities p{max-width:75ch}.nearby-province-link{margin-top:18px}.nearby-province-link a{display:inline-block;padding:8px 0;min-height:44px;font-weight:700}\n');
 execFileSync(process.execPath,['scripts/prepare-production-assets.mjs'],{env:{...process.env,CONFIRM_PRODUCTION_PREP:'1',PRODUCTION_ROOT:root},stdio:'inherit'});
 console.log(`CONSOLIDACIÓN OK: ${retained.length} páginas municipales, ${retired.length} municipios agrupados, ${towns.length} cubiertos.`);

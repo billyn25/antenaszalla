@@ -6,7 +6,7 @@ import { guides, guideRoute, SERVICE_RELEASE } from './service-guides.mjs';
 import { EDITORIAL_CSS } from './reduce-town-boilerplate.mjs';
 
 async function request(url) {
-  const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZallatel-SEO-Check/1.0'}});
+  const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZalla-SEO-Check/1.0'}});
   return response;
 }
 async function text200(url) {

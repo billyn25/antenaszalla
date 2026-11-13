@@ -4,7 +4,7 @@ export const mundoCategories = { 'tv-digital': 40, tecnologia: 6042 };
 export const satCescCategories = { tdt: 13, transpondedores: 6, 'movistar-tv': 5962 };
 export const newsMaxAge = 90 * 24 * 60 * 60 * 1000;
 export const pageSize = 15;
-const maxNews = 45;
+export const maxNews = 45;
 
 const htmlEntities = { amp: '&', quot: '"', apos: "'", nbsp: ' ', lt: '<', gt: '>' };
 export function textFromHtml(html) {
@@ -74,8 +74,8 @@ export function parseSatCesc(entries, section, now) {
   });
 }
 
-async function fetchWordPressPosts(origin, category, query, timeout) {
-  const response = await fetch(origin + '/wp-json/wp/v2/posts?categories=' + category + '&' + query, {
+async function fetchWordPressPosts(origin, category, query, timeout, fetcher = fetch) {
+  const response = await fetcher(origin + '/wp-json/wp/v2/posts?categories=' + category + '&' + query, {
     signal: AbortSignal.timeout(timeout), headers: { Accept: 'application/json' }
   });
   if (!response.ok) throw new Error(origin + ': HTTP ' + response.status);
@@ -85,13 +85,13 @@ async function fetchWordPressPosts(origin, category, query, timeout) {
     pubDate: post.date_gmt ? post.date_gmt + 'Z' : '', description: post.excerpt?.rendered || '' }));
 }
 
-export async function fetchSatCescPosts(section, now, timeout = 8500) {
-  const entries = await fetchWordPressPosts(satCesc, satCescCategories[section], 'per_page=26&_fields=date_gmt,link,title,excerpt', timeout);
+export async function fetchSatCescPosts(section, now, timeout = 8500, fetcher = fetch) {
+  const entries = await fetchWordPressPosts(satCesc, satCescCategories[section], 'per_page=26&_fields=date_gmt,link,title,excerpt', timeout, fetcher);
   return parseSatCesc(entries, section, now);
 }
 
-export async function fetchMundoPosts(section, now) {
-  const entries = await fetchWordPressPosts(mundoPlus, mundoCategories[section], 'per_page=10&_fields=date_gmt,link,title', 8500);
+export async function fetchMundoPosts(section, now, timeout = 8500, fetcher = fetch) {
+  const entries = await fetchWordPressPosts(mundoPlus, mundoCategories[section], 'per_page=10&_fields=date_gmt,link,title', timeout, fetcher);
   return entries.flatMap(({ title, link, pubDate }) => {
     const label = textFromHtml(title);
     const topic = topicFor(label);

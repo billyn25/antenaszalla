@@ -4,7 +4,8 @@ import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import guides from '../content/service-guides.json' with {type:'json'};
 import services from '../content/services.json' with {type:'json'};
-import {DOMAIN,PHONE,TEL,BRAND,escapeHtml as esc,publicPath} from './public-seo.mjs';
+import {DOMAIN,PHONE,TEL,BRAND,escapeHtml as esc,publicPath,organizationSchema} from './public-seo.mjs';
+import {serviceSeoMetadata,serviceIndexSeoMetadata} from './seo-metadata.mjs';
 export {guides};
 export const guideRoute = g => `/servicios/${g.slug}/`;
 export const SERVICE_RELEASE = createHash('sha256').update(JSON.stringify(guides)).update(fs.readFileSync(new URL(import.meta.url))).update(fs.readFileSync(new URL('./zalla-problem-focus.mjs',import.meta.url))).digest('hex').slice(0,12);
@@ -84,7 +85,7 @@ function related(g) {
   return `<section class="service-related"><h2>Otros servicios relacionados</h2><div>${g.related.map(id=>{const r=byId.get(id);return `<a href="${guideRoute(r)}">${esc(r.label)} →</a>`;}).join('')}<a href="/servicios/">Todos los servicios →</a></div></section>`;
 }
 function coverage(provinces) {
-  return `<section class="service-coverage"><h2>Consulta el servicio en tu pueblo</h2><p>Selecciona la provincia y tu localidad para preparar el aviso. Confirma disponibilidad, desplazamiento y alcance de la intervención antes de concertar la visita.</p><div>${provinces.map(p=>`<a href="${publicPath(p.path)}">${esc(p.name)} →</a>`).join('')}</div></section>`;
+  return `<section class="service-coverage"><h2>Consulta el servicio en tu pueblo</h2><p>Selecciona la provincia y tu localidad para preparar el aviso. Confirma disponibilidad, desplazamiento y alcance de la intervención antes de concertar la visita.</p><div>${provinces.map(p=>`<a href="${esc(p.path)}">${esc(p.name)} →</a>`).join('')}</div></section>`;
 }
 
 export function buildServiceGuides(root='dist') {
@@ -98,18 +99,18 @@ export function buildServiceGuides(root='dist') {
   if(!header||!footer.includes('</html>')) throw new Error('No se pudo reutilizar la identidad de la web');
   const wrap=(route,title,description,content,g)=>{
     const url=DOMAIN+route;
-    const graph=[{'@type':'WebSite','@id':DOMAIN+'/#website',name:BRAND,alternateName:'Antenas Zalla',url:DOMAIN+'/'},{'@type':'Organization','@id':DOMAIN+'/#organizacion',name:BRAND,alternateName:'Antenas Zalla',url:DOMAIN+'/',telephone:TEL},{'@type':g?'WebPage':'CollectionPage','@id':url+'#page',name:title,description,url,isPartOf:{'@id':DOMAIN+'/#website'},...(g?{mainEntity:{'@id':url+'#servicio'}}:{})},{'@type':'BreadcrumbList',itemListElement:[['Inicio','/'],['Servicios','/servicios/'],...(g?[[g.label,route]]:[])].map(([name,p],i)=>({'@type':'ListItem',position:i+1,name,item:DOMAIN+p}))}];
+    const graph=[{'@type':'WebSite','@id':DOMAIN+'/#website',name:BRAND,alternateName:'Antenas Zallatel',url:DOMAIN+'/'},organizationSchema(),{'@type':g?'WebPage':'CollectionPage','@id':url+'#page',name:title,description,url,isPartOf:{'@id':DOMAIN+'/#website'},...(g?{mainEntity:{'@id':url+'#servicio'}}:{})},{'@type':'BreadcrumbList',itemListElement:[['Inicio','/'],['Servicios','/servicios/'],...(g?[[g.label,route]]:[])].map(([name,p],i)=>({'@type':'ListItem',position:i+1,name,item:DOMAIN+p}))}];
     if(g) graph.push({'@type':'Service','@id':url+'#servicio',name:g.name,serviceType:g.name,url,description,provider:{'@id':DOMAIN+'/#organizacion'},areaServed:provinces.map(p=>({'@type':'AdministrativeArea',name:p.name}))});
     return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><meta name="robots" content="noindex,nofollow"><link rel="canonical" href="${url}"><link rel="stylesheet" href="/assets/site.css"><link rel="stylesheet" href="/assets/service-guides.css?v=${SERVICE_RELEASE}"><script src="/assets/site.js" defer></script>${schema({'@context':'https://schema.org','@graph':graph})}</head><body class="service-page"><a class="skip" href="#contenido">Saltar al contenido</a>${header}<main id="contenido" data-service-release="${SERVICE_RELEASE}"><nav class="wrap breadcrumb" aria-label="Ruta de navegación"><a href="/">Inicio</a><span>/</span>${g?'<a href="/servicios/">Servicios</a><span>/</span>':'<span aria-current="page">Servicios</span>'}${g?`<span aria-current="page">${esc(g.label)}</span>`:''}</nav>${content}</main>${footer}`;
   };
   const write=(route,html)=>{const file=path.join(root,route.slice(1),'index.html');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,html);};
   for(const g of guides) {
-    const title=`${g.name} | ${PHONE}`;
-    const description=`${g.label}: averías, revisión, opciones de instalación y qué concretar en el presupuesto. Viviendas y comunidades. Antenas Zallatel: ${PHONE}.`;
+    const {title,description}=serviceSeoMetadata(g);
     const content=`<section class="service-hero"><div class="wrap"><span class="eyebrow">Instalación, diagnóstico y reparación</span><h1>${esc(g.name)}</h1><p>${esc(g.intro)}</p>${actions(g)}</div></section><div class="wrap service-layout"><article><section><h2>Qué ocurre y qué información ayuda</h2><div class="service-symptoms">${g.symptoms.map(([symptom,advice])=>`<div><h3>${esc(symptom)}</h3><p>${esc(advice)}</p></div>`).join('')}</div></section>${paragraphs(g.checks)}<section class="service-budget" id="presupuesto"><h2>Qué concretar en el presupuesto</h2><p>${esc(g.budget)}</p></section><section class="service-faq"><h2>Preguntas sobre ${esc(g.label.toLowerCase())}</h2>${g.faq.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</section>${related(g)}${g.sources.length?`<section class="service-sources"><h2>Información técnica para ampliar la consulta</h2><p>Referencias de fabricantes y organismos sobre los equipos o sistemas descritos.</p>${g.sources.map(([label,url])=>`<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`).join('')}</section>`:''}</article><aside><div class="service-intake"><h2>Prepara tu consulta</h2><p>Indica el pueblo y estos datos:</p><ul>${g.intake.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${actions(g)}</div></aside></div><div class="wrap">${coverage(provinces)}<section class="service-contact" id="contacto"><h2>Consulta tu instalación</h2><p>Cuéntanos el servicio que necesitas y tu localidad. El alcance y las condiciones se acuerdan para cada instalación.</p>${actions(g)}</section></div>`;
     write(guideRoute(g),wrap(guideRoute(g),title,description,content,g));
   }
-  write('/servicios/',wrap('/servicios/',`Antenas, porteros y videoporteros: servicios | ${PHONE}`,`Servicios de Antenas Zallatel: TDT, parabólicas, amplificación, porteros, videoporteros y cobertura móvil. Consulta diagnóstico y presupuesto. ${PHONE}.`,`<section class="service-hero"><div class="wrap"><span class="eyebrow">Servicios de Antenas Zallatel</span><h1>¿Qué necesitas resolver en tu instalación?</h1><p>Elige el servicio para conocer qué se revisa, cómo preparar el aviso y qué conviene acordar antes del trabajo.</p></div></section><div class="wrap service-catalogue">${guides.map(g=>`<article><h2><a href="${guideRoute(g)}">${esc(g.name)}</a></h2><p>${esc(g.intro)}</p><a href="${guideRoute(g)}">Ver diagnóstico, instalación y presupuesto →</a></article>`).join('')}</div><div class="wrap">${coverage(provinces)}</div>`));
+  const catalogueMetadata=serviceIndexSeoMetadata();
+  write('/servicios/',wrap('/servicios/',catalogueMetadata.title,catalogueMetadata.description,`<section class="service-hero"><div class="wrap"><span class="eyebrow">Servicios de Antenas Zalla</span><h1>${esc(catalogueMetadata.heading)}</h1><p>Elige el servicio para conocer qué se revisa, cómo preparar el aviso y qué conviene acordar antes del trabajo.</p></div></section><div class="wrap service-catalogue">${guides.map(g=>`<article><h2><a href="${guideRoute(g)}">${esc(g.name)}</a></h2><p>${esc(g.intro)}</p><a href="${guideRoute(g)}">Ver diagnóstico, instalación y presupuesto →</a></article>`).join('')}</div><div class="wrap">${coverage(provinces)}</div>`));
   let townCount=0;
   for(const town of towns) {
     const file=path.join(root,town.path.slice(1));

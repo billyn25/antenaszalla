@@ -18,7 +18,7 @@ async function fetchAsset(url,target,label){
   let last;
   for(let attempt=1;attempt<=3;attempt++){
     try{
-      const response=await fetch(url,{headers:{'user-agent':'Mozilla/5.0 AntenasZallatel/1.0'}});
+      const response=await fetch(url,{headers:{'user-agent':'Mozilla/5.0 AntenasZalla/1.0'}});
       if(!response.ok) throw new Error(`HTTP ${response.status}`);
       const data=Buffer.from(await response.arrayBuffer());
       if(data.length<5000) throw new Error(`archivo demasiado pequeño (${data.length} bytes)`);
@@ -156,7 +156,7 @@ function relatedTownBlock(page) {
   const heading = area ? `Antenista en pueblos de ${area.name}` : `Servicio de antenista en otros municipios de ${page.province}`;
   const intro = area
     ? `Consulta también localidades de ${area.name} relacionadas con esta zona de ${page.province}.`
-    : `Consulta otras páginas locales de Antenas Zallatel dentro de ${page.province}.`;
+    : `Consulta otras páginas locales de Antenas Zalla dentro de ${page.province}.`;
   const label = area ? `Zona: ${area.name}` : `Provincia: ${page.province}`;
 
   return `<section class="related-towns-section" aria-label="${heading}"><div class="wrap"><div class="related-towns"><span class="related-area-label">${label}</span><h3>${heading}</h3><p>${intro}</p><div class="related-town-links">${selected.map(p => `<a href="${p.path}">${p.name}</a>`).join('')}</div></div></div></section>`;
@@ -190,7 +190,7 @@ function seoDescription(page) {
     `Reparación de antenas en ${page.name}, ${page.province}. Urgencias 24h · ${PHONE}. TDT, satélite, antenas colectivas, porteros automáticos y videoporteros.`,
     `Técnico de antenas en ${page.name}, ${page.province} · ${PHONE}. Urgencias 24h, TDT, parabólicas, amplificación, porteros automáticos y cobertura móvil 4G/5G.`,
     `Servicio de antenista en ${page.name}, ${page.province}. ${PHONE} · Urgencias 24h. Averías de señal, TDT, parabólicas, porteros automáticos y videoporteros.`,
-    `Antenas Zallatel en ${page.name}, ${page.province} · Urgencias 24h · ${PHONE}. Antenas individuales y colectivas, TDT, satélite, porteros y videoporteros.`
+    `Antenas Zalla en ${page.name}, ${page.province} · Urgencias 24h · ${PHONE}. Antenas individuales y colectivas, TDT, satélite, porteros y videoporteros.`
   ];
   return patterns[v];
 }
@@ -206,7 +206,7 @@ function serviceSchema(page) {
     provider: {
       '@type': 'Organization',
       '@id': `${DOMAIN}/#organizacion`,
-      name: 'Antenas Zallatel',
+      name: 'Antenas Zalla',
       url: `${DOMAIN}/`,
       telephone: TEL
     },

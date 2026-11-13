@@ -63,8 +63,10 @@ function catalogue(section,town) {
 function captionGallery(node) {
   let number=0;
   return node.replace(/<figure>([\s\S]*?)<\/figure>/g,(_,body)=>{
+    number++;
+    if (/<figcaption\b/.test(body)) return `<figure>${body}</figure>`;
     const alt=body.match(/<img\b[^>]*\balt="([^"]*)"/)?.[1]||'Detalle de instalación';
-    return `<figure>${body}<figcaption><span>${String(++number).padStart(2,'0')}</span>${alt}</figcaption></figure>`;
+    return `<figure>${body}<figcaption><span class="gallery-number" aria-hidden="true">${String(number).padStart(2,'0')}</span><div class="gallery-caption-content">${alt}</div></figcaption></figure>`;
   });
 }
 function serviceDirectory(node) {

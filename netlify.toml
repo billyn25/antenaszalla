@@ -7,6 +7,11 @@
   SITE_MODE = "preview"
 [build.processing]
   skip_processing = true
+
+# The blog function reads the final, audited page shell and retained-town links.
+[functions.blog]
+  included_files = ["dist/blog/index.html", "dist/assets/news-towns.json"]
+
 [[headers]]
   for = "/*"
   [headers.values]

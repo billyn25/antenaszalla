@@ -2,27 +2,220 @@
   "items": [
     {
       "type": "TDT",
-      "label": "Cambios en las emisiones de prueba en UHD",
+      "label": "Más cambios en la TDT: UHD Spain reactiva su canal UHD-2 con nuevos contenidos",
       "url": "https://www.mundoplus.tv/tv-digital/mas-cambios-en-la-tdt-uhd-spain-reactiva-su-canal-uhd-2-con-nuevos-contenidos/",
-      "date": "2026-11-06T15:43:44.000Z"
+      "date": "2026-11-06T15:43:44.000Z",
+      "publisher": "Mundoplus"
     },
     {
       "type": "UHD",
-      "label": "Calidad de imagen y sonido en los canales UHD",
+      "label": "La nueva TDT UHD al detalle: diferencias de imagen, sonido y calidad entre La 1, La 2, Antena 3 y Telecinco",
       "url": "https://www.mundoplus.tv/tecnologia/la-nueva-tdt-uhd-al-detalle-diferencias-de-imagen-sonido-y-calidad-entre-la-1-la-2-antena-3-y-telecinco/",
-      "date": "2026-11-06T08:02:58.000Z"
-    },
-    {
-      "type": "UHD",
-      "label": "Recepción de laSexta en ultra alta definición",
-      "url": "https://www.mundoplus.tv/tv-digital/lasexta-uhd-ya-es-una-realidad-donde-ver-el-nuevo-canal-en-ultra-alta-definicion/",
-      "date": "2026-11-05T10:11:45.000Z"
+      "date": "2026-11-06T08:02:58.000Z",
+      "publisher": "Mundoplus"
     },
     {
       "type": "TDT",
-      "label": "Novedades de sintonización y canales TDT",
+      "label": "La televisión española inicia una nueva era con la llegada de nuevos canales en ultra alta definición a la TDT",
+      "url": "https://www.uhdspain.com/la-television-espanola-inicia-una-nueva-era-con-la-llegada-de-nuevos-canales-en-ultra-alta-definicion-a-la-tdt/",
+      "date": "2026-11-05T11:31:09.000Z",
+      "publisher": "UHD Spain",
+      "paragraphs": [
+        "La 2, Antena 3 y Telecinco se incorporan desde este 5 de noviembre a las emisiones UHD, sumándose a La 1 UHD y marcando un…"
+      ],
+      "excerptType": "Extracto breve de la publicación"
+    },
+    {
+      "type": "UHD",
+      "label": "laSexta UHD ya es una realidad: dónde ver el nuevo canal en ultra alta definición",
+      "url": "https://www.mundoplus.tv/tv-digital/lasexta-uhd-ya-es-una-realidad-donde-ver-el-nuevo-canal-en-ultra-alta-definicion/",
+      "date": "2026-11-05T10:11:45.000Z",
+      "publisher": "Mundoplus"
+    },
+    {
+      "type": "TDT",
+      "label": "La TDT estrena nueva etapa hoy: nuevos canales UHD, La Séptima y todo lo que hay que saber",
       "url": "https://www.mundoplus.tv/tv-digital/la-tdt-estrena-nueva-etapa-hoy-nuevos-canales-uhd-la-septima-y-todo-lo-que-hay-que-saber/",
-      "date": "2026-11-05T06:52:40.000Z"
+      "date": "2026-11-05T06:52:40.000Z",
+      "publisher": "Mundoplus"
+    },
+    {
+      "type": "UHD",
+      "label": "A partir de mañana es necesario sintonizar el televisor para disfrutar los principales canales de ámbito nacional en UHD",
+      "publisher": "Ministerio para la Transformación Digital",
+      "url": "https://digital.gob.es/comunicacion/notas-prensa/secretaria-estado-telecomunicaciones-e-infraestructuras-digitales/2026/11/a-partir-de-manana-es-necesario-sintonizar-el-televisor-para-dis",
+      "date": "2026-11-04T12:00:00.000Z",
+      "paragraphs": [
+        "Esta noche concluyen los trabajos para implantar la tecnología DVB-T2 en la Televisión Digital Terrestre (TDT). A partir de las 8 de la mañana del jueves 5 de noviembre, los usuarios deberán resintonizar sus televisores para ver en ultra alta definición los principales canales de ámbito estatal de la TDT.",
+        "Si no se sintoniza de nuevo, se seguirán recibiendo los contenidos en HD igual que hasta ahora, pero, dependiendo de las configuraciones técnicas de los centros emisores y de los propios aparatos de televisión, algunos canales podrían cambiar de posición o no verse, como Clan, DKiss, A3Series, BeMad, Boing y el nuevo canal, La Séptima, que inicia sus emisiones el mismo día 5 de noviembre."
+      ],
+      "excerptType": "Extracto de la publicación oficial"
+    },
+    {
+      "type": "UHD",
+      "url": "https://www.uhdspain.com/atresmedia-acelera-el-despliegue-de-la-uhd-con-dos-grandes-apuestas/",
+      "date": "2026-10-26T11:37:48.000Z",
+      "label": "Atresmedia acelera el despliegue de la UHD con dos grandes apuestas",
+      "publisher": "UHD Spain",
+      "paragraphs": [
+        "El grupo audiovisual, miembro de UHD Spain, dará un nuevo paso en su evolución tecnológica con Antena 3 UHD en la TDT a partir del…"
+      ],
+      "excerptType": "Extracto breve de la publicación"
+    },
+    {
+      "type": "TDT",
+      "label": "La TDT cambia el 5 de noviembre: esto es lo qué tienes que hacer para seguir viendo los canales",
+      "url": "https://www.uhdspain.com/la-tdt-cambia-el-5-de-noviembre-esto-es-lo-que-tienes-que-hacer-para-seguir-viendo-los-canales/",
+      "date": "2026-10-22T08:56:43.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "UHD",
+      "label": "¿Sabes realmente qué ventajas tiene tu televisor 4K? UHD Spain lo explica en un nuevo vídeo",
+      "url": "https://www.uhdspain.com/sabes-realmente-que-ventajas-tiene-tu-televisor-4k-uhd-spain-lo-explica-en-un-nuevo-video/",
+      "date": "2026-10-16T08:30:16.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "TDT",
+      "label": "Guía de la TDT el 5 de noviembre: canales 4K, estreno de ‘La Séptima’ y resintonización",
+      "url": "https://www.uhdspain.com/guia-de-la-tdt-el-5-de-noviembre-canales-4k-estreno-de-la-septima-y-resintonizacion/",
+      "date": "2026-10-14T14:36:52.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "UHD",
+      "url": "https://www.uhdspain.com/tv3-inicia-sus-emisiones-regulares-en-uhd-y-refuerza-la-apuesta-de-3cat-por-la-ultra-alta-definicion/",
+      "date": "2026-10-14T11:05:01.000Z",
+      "label": "Tv3 inicia sus emisiones regulares en UHD y refuerza la apuesta de 3cat por la ultra alta definición",
+      "publisher": "UHD Spain",
+      "paragraphs": [
+        "La televisión pública catalana, miembro de UHD Spain, se convertirá en la segunda autonómica española con emisiones regulares en Ultra Alta Definición, después de Televisión…"
+      ],
+      "excerptType": "Extracto breve de la publicación"
+    },
+    {
+      "type": "UHD",
+      "label": "Antes de que lleguen los nuevos canales de televisión en 4K, UHD Spain muestra en un vídeo todo lo que vamos a ganar",
+      "url": "https://www.uhdspain.com/el-4k-llega-a-la-tdt-en-unos-dias-uhd-spain-nos-muestra-todo-lo-que-vamos-a-ganar-con-el-salto-de-tecnologia/",
+      "date": "2026-10-14T10:34:41.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "TDT",
+      "label": "Nueva resintonización de la TDT el 5 de noviembre: llega el 4K",
+      "url": "https://www.uhdspain.com/nueva-resintonizacion-de-la-tdt-el-5-de-noviembre-llega-el-4k/",
+      "date": "2026-10-13T10:23:04.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "TDT",
+      "label": "Así se verá la TDT con la llegada de más canales en 4K: este vídeo explica el salto",
+      "url": "https://www.uhdspain.com/asi-se-vera-la-tdt-con-la-llegada-de-mas-canales-en-4k-este-video-explica-el-salto/",
+      "date": "2026-10-09T14:58:46.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "TDT",
+      "label": "UHD Spain publica un vídeo divulgativo para que sepas cómo se verá la TDT en tu Smart TV después del «apagón» del 5 de noviembre",
+      "url": "https://www.uhdspain.com/uhd-spain-publica-un-video-divulgativo-para-que-sepas-como-se-vera-la-tdt-en-tu-smart-tv-despues-del-apagon-del-5-de-noviembre/",
+      "date": "2026-10-08T13:57:59.000Z",
+      "publisher": "UHD Spain"
+    },
+    {
+      "type": "TDT",
+      "label": "Resintoniza DKISS el 5 de noviembre",
+      "publisher": "Televisión Digital",
+      "url": "https://television.digital.gob.es/atencion-a-la-ciudadania/notas-prensa/tdt/resintoniza-dkiss-el-5-de-noviembre",
+      "date": "2026-10-06T12:00:00.000Z",
+      "paragraphs": [
+        "El aviso de DKISS fija el cambio para el 5 de noviembre de 2026. Quienes reciban el canal por antena pueden actualizar su listado con una búsqueda de canales desde las 08:00. La publicación distingue la recepción por TDT de otras plataformas, en las que el espectador no necesita hacer esa búsqueda."
+      ],
+      "excerptType": "Resumen del aviso"
+    },
+    {
+      "type": "UHD",
+      "label": "UHD Spain lanza un vídeo divulgativo para acercar la Ultra Alta Definición al gran público",
+      "publisher": "Televisión Digital",
+      "url": "https://television.digital.gob.es/atencion-a-la-ciudadania/notas-prensa/tecnologias-relacionadas/uhd-spain-lanza-un-video-divulgativo-para-acercar-la-ultra-alta-",
+      "date": "2026-10-06T12:00:00.000Z",
+      "paragraphs": [
+        "UHD Spain ha publicado un vídeo divulgativo sobre la diferencia entre resolución, rango dinámico, gama de color y sonido. La noticia también sitúa la iniciativa en el contexto de la primera fase del paso a DVB‑T2, con el múltiple estatal RGE2 como punto de partida para ampliar las emisiones en UHD."
+      ],
+      "excerptType": "Resumen del aviso"
+    },
+    {
+      "type": "TDT",
+      "label": "Guía fácil para la resintonización de la TDT: todos los cambios del 3 y 5 de noviembre",
+      "publisher": "Televisión Digital",
+      "url": "https://television.digital.gob.es/atencion-a-la-ciudadania/notas-prensa/tdt/guia-facil-para-la-resintonizacion-de-la-tdt--todos-los-cambios-",
+      "date": "2026-10-05T12:00:00.000Z",
+      "paragraphs": [
+        "La guía reúne los cambios de la TDT del 3 y 5 de noviembre. Explica la reordenación de canales y el inicio de emisiones UHD en DVB‑T2, y detalla cuándo conviene actualizar la lista de canales. El enlace lleva al calendario completo, con los cambios separados por fecha."
+      ],
+      "excerptType": "Resumen del aviso"
+    },
+    {
+      "type": "TDT",
+      "label": "La nueva TDT en DVB-T2: ¿qué hacer si el día 5 de noviembre no puedes sintonizar los canales en UHD?",
+      "publisher": "Televisión Digital",
+      "url": "https://television.digital.gob.es/atencion-a-la-ciudadania/notas-prensa/tdt/la-nueva-tdt-en-dvb-t2---que-hacer-si-el-dia-5-de-noviembre-no-p",
+      "date": "2026-09-30T12:00:00.000Z",
+      "paragraphs": [
+        "La publicación explica que la transición empieza en el múltiple RGE2. Algunos centros de extensión de cobertura pueden necesitar más tiempo para adaptarse. Si un canal UHD no aparece tras la búsqueda, la noticia distingue varias causas posibles, entre ellas la instalación de recepción y que el centro emisor todavía no distribuya ese múltiple."
+      ],
+      "excerptType": "Resumen del aviso"
+    },
+    {
+      "type": "TDT",
+      "label": "La TDT no dará el salto completo a DVB-T2 en noviembre: así será la primera fase del cambio",
+      "publisher": "Televisión Digital",
+      "url": "https://television.digital.gob.es/atencion-a-la-ciudadania/notas-prensa/tdt/la-tdt-no-dara-el-salto-completo-a-dvb-t2-en-noviembre--asi-sera",
+      "date": "2026-08-21T12:00:00.000Z",
+      "paragraphs": [
+        "La TDT española inicia el 5 de noviembre una transición que permitirá extender las emisiones en UHD, pero no supondrá que todos los canales abandonen…"
+      ],
+      "excerptType": "Extracto breve del aviso"
+    },
+    {
+      "type": "Satélite",
+      "label": "SES Expands ASTRA TV Offering in Spain",
+      "publisher": "SES / Astra TV",
+      "url": "https://www.ses.com/news/news-flash/ses-expands-astra-tv-offering-in-spain",
+      "date": "2026-06-23T06:50:00.000Z",
+      "paragraphs": [
+        "SES anunció la incorporación de 14 canales autonómicos a Astra TV en España, entre ellos ETB 1, Telemadrid y Canal Sur. El comunicado también presenta nuevos receptores híbridos que combinan la señal de satélite con servicios por Internet."
+      ],
+      "excerptType": "Resumen del comunicado"
+    }
+  ],
+  "satelliteChanges": [
+    {
+      "channel": "CNBC Europe",
+      "change": "Cambio de frecuencia",
+      "position": "Astra 19,2° Este",
+      "date": "2026-11-06T00:00:00.000Z",
+      "url": "https://es.kingofsat.tv/news19.2E",
+      "frequency": "11067,50",
+      "polarization": "V"
+    },
+    {
+      "channel": "Telesur English",
+      "change": "Nuevo canal",
+      "position": "Astra 19,2° Este",
+      "date": "2026-11-04T00:00:00.000Z",
+      "url": "https://es.kingofsat.tv/news19.2E",
+      "frequency": "11067,50",
+      "polarization": "V"
+    },
+    {
+      "channel": "Daystar HD",
+      "change": "Cambio de frecuencia",
+      "position": "Astra 19,2° Este",
+      "date": "2026-11-04T00:00:00.000Z",
+      "url": "https://es.kingofsat.tv/news19.2E",
+      "frequency": "11067,50",
+      "polarization": "V"
     }
   ]
 }

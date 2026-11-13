@@ -1,8 +1,19 @@
+import site from '../config/site.json' with { type: 'json' };
+import {townSeoMetadata} from './seo-metadata.mjs';
+
 // One public URL per document. Physical .html files remain an implementation detail.
-export const DOMAIN = 'https://antenaszalla.com';
-export const PHONE = '670 042 626';
-export const TEL = '+34670042626';
-export const BRAND = 'Antenas Zallatel';
+export const DOMAIN = site.domain;
+export const PHONE = site.phone;
+export const TEL = site.tel;
+export const BRAND = site.brand;
+export function organizationSchema() {
+  return {
+    '@type':'Organization', '@id':DOMAIN+'/#organizacion',
+    name:BRAND, alternateName:'Antenas Zallatel', url:DOMAIN+'/', telephone:TEL,
+    logo:{'@type':'ImageObject',url:DOMAIN+'/assets/logo-antenas-zalla.svg',width:512,height:160},
+    address:{'@type':'PostalAddress',streetAddress:'Barrio El Baular s/n, C. Eroski',addressLocality:'Zalla',addressRegion:'Bizkaia',postalCode:'48860',addressCountry:'ES'}
+  };
+}
 export const LEGAL_FILES = new Set(['aviso-legal.html', 'privacidad.html', 'cookies.html']);
 export const HISTORIC_ALIASES = new Map([
   ['/antenas-bizkaia/abanto-zierbena', '/antenas-bizkaia/abanto-y-ciervana-abanto-zierbena'],
@@ -62,36 +73,18 @@ export function setMeta(html, key, value, property = false) {
 export function rewriteStructuredData(value) {
   if (typeof value === 'string') return /^(?:https?:\/\/|\/)/.test(value) ? rewriteUrl(value) : value;
   if (Array.isArray(value)) return value.map(rewriteStructuredData);
-  if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k,v]) => [k, rewriteStructuredData(v)]));
+  if (value && typeof value === 'object') {
+    const result=Object.fromEntries(Object.entries(value).map(([k,v]) => [k, rewriteStructuredData(v)]));
+    const types=Array.isArray(result['@type'])?result['@type']:[result['@type']];
+    if(types.includes('Service')) delete result.telephone;
+    if(types.includes('Organization')&&result['@id']===DOMAIN+'/#organizacion') Object.assign(result,organizationSchema());
+    return result;
+  }
   return value;
 }
 
-function metadataHash(value) {
-  let h = 2166136261;
-  for (const ch of String(value)) {
-    h ^= ch.codePointAt(0);
-    h = Math.imul(h, 16777619) >>> 0;
-  }
-  return h >>> 0;
-}
-
 export function townMetadata(town) {
-  const h = metadataHash(`${town.province}|${town.name}|zallatel-snippet`);
-  const titles = [
-    `Antenista en ${town.name}, ${town.province} · diagnóstico técnico | ${PHONE}`,
-    `Reparación de antenas en ${town.name}, ${town.province} | ${PHONE}`,
-    `Técnico de antenas en ${town.name}, ${town.province} · Zallatel | ${PHONE}`,
-    `Antenas y porteros en ${town.name}, ${town.province} · ${PHONE}`
-  ];
-  const descriptions = [
-    `Antenista en ${town.name}, ${town.province}. ${PHONE}. Diagnóstico de señal, cabecera, amplificación y distribución; TDT, parabólicas, porteros y videoporteros. Urgencias 24h.`,
-    `Técnico de antenas en ${town.name}, ${town.province}. ${PHONE}. Revisamos recepción, cableado, tomas y elementos comunes antes de sustituir equipos. TDT, satélite y porteros. Urgencias 24h.`,
-    `Reparación de antenas en ${town.name}, ${town.province}. ${PHONE}. Localización de averías de recepción y distribución, antenas colectivas, parabólicas, porteros y videoporteros. Urgencias 24h.`,
-    `Antenas Zallatel en ${town.name}, ${town.province}. ${PHONE}. Servicio técnico para viviendas y comunidades: señal TV, amplificación, satélite, porteros automáticos y videoporteros. Urgencias 24h.`,
-    `Antenista en ${town.name}, ${town.province}. ${PHONE}. Comprobamos si el fallo está en antena, fuente, amplificador, reparto, cableado o toma antes de plantear recambios. Urgencias 24h.`,
-    `Técnico antenista en ${town.name}, ${town.province}. ${PHONE}. Diagnóstico de instalaciones individuales y comunitarias, TDT, parabólicas y sistemas de portero y videoportero. Urgencias 24h.`
-  ];
-  return {title: titles[h % titles.length], description: descriptions[Math.floor(h / 7) % descriptions.length]};
+  return townSeoMetadata(town);
 }
 
 export function redirectRules(documents) {

@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { pages, site, renderPage } from '../scripts/build.mjs';
 import { buildTownPages } from '../scripts/generate-town-pages.mjs';
+import { localMetadata } from '../scripts/identity.mjs';
+import { displayPlaceName } from '../scripts/seo-metadata.mjs';
+import { titleOf, metaOf } from '../scripts/public-seo.mjs';
 const requested = [['Palencia','/Antenas-Palencia/'],['Valladolid','/Antenas-Valladolid/'],['León','/Antenas-Leon/'],['Segovia','/Antenas-Segovia/']];
 test('once provincias activas, incluidas Palencia, Valladolid, León y Segovia',()=>{
   const provinces=pages.filter(p=>p.type==='province');
@@ -14,7 +17,7 @@ test('once provincias activas, incluidas Palencia, Valladolid, León y Segovia',
     assert.ok(home.includes(`href="${route}"`));
   }
   assert.ok(home.includes('Atención por pueblos · 11 provincias'));
-  assert.equal(site.brand,'Antenas Zallatel');
+  assert.equal(site.brand,'Antenas Zalla');
   assert.equal(site.domain,'https://antenaszalla.com');
   assert.equal(site.phone,'670 042 626');
 });
@@ -30,6 +33,12 @@ test('nuevas localidades usan los mismos servicios y contactos, incluida TDT por
     assert.ok(html.includes('TDT por satélite HD'));
     assert.ok(html.includes(`tel:${site.tel}`));
     assert.ok(html.includes(`https://wa.me/${site.whatsapp}`));
-    assert.ok(p.seoDescription.includes(p.name));
+    const metadata=localMetadata(p,site);
+    assert.ok(metadata.title.includes(displayPlaceName(p.name)),p.path);
+    assert.ok(metadata.description.includes(displayPlaceName(p.name)),p.path);
+    assert.ok(metadata.description.includes(site.phone),p.path);
+    assert.equal(titleOf(html),metadata.title,p.path);
+    assert.equal(metaOf(html,'description'),metadata.description,p.path);
+    assert.equal((html.match(/<h1\b/gi)||[]).length,1,p.path);
   }
 });

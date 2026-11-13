@@ -1,0 +1,134 @@
+[
+  {
+    "file": "trabajo-01.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-01.jpg",
+    "width": 1920,
+    "height": 1079,
+    "title": "Portero en un acceso exterior",
+    "alt": "Placa plateada de portero con tres pulsadores en una puerta metálica negra.",
+    "description": "Placa de calle integrada en el cerramiento, con altavoz y pulsadores de llamada.",
+    "servicePath": "/servicios/porteros-automaticos/",
+    "serviceLabel": "Ver guía de porteros automáticos"
+  },
+  {
+    "file": "trabajo-02.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-02.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Antena sobre cubierta de teja",
+    "alt": "Antena de televisión junto a la cumbrera de un tejado, con cable blanco visible.",
+    "description": "Vista de la antena, su soporte y la salida del cable sobre una cubierta de teja.",
+    "servicePath": "/servicios/reparacion-antenas-tdt/",
+    "serviceLabel": "Ver guía de antenas TDT"
+  },
+  {
+    "file": "trabajo-03.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-03.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Antena, mástil y conexiones",
+    "alt": "Antena de televisión en un mástil junto a un tejado rojo, con caja y cables bajo el soporte.",
+    "description": "Detalle del conjunto de recepción y del recorrido del cable junto al mástil.",
+    "servicePath": "/servicios/tomas-cableado-television/",
+    "serviceLabel": "Ver guía de cableado de TV"
+  },
+  {
+    "file": "trabajo-04.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-04.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Dos antenas en un mismo mástil",
+    "alt": "Dos antenas de televisión sujetas a un mástil sobre un tejado, con cableado y una caja negra.",
+    "description": "Antenas a distinta altura, fijaciones al mástil y cableado de bajada visible.",
+    "servicePath": "/servicios/reparacion-antenas-tdt/",
+    "serviceLabel": "Ver guía de recepción TDT"
+  },
+  {
+    "file": "trabajo-05.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-05.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Conjunto de antenas en altura",
+    "alt": "Varias antenas de televisión a distintas alturas de un mástil, junto a una vivienda de piedra.",
+    "description": "Vista general del mástil, los elementos de recepción y el cableado exterior.",
+    "servicePath": "/servicios/mantenimiento-antenas-comunidades/",
+    "serviceLabel": "Ver guía de mantenimiento"
+  },
+  {
+    "file": "trabajo-06.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-06.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Detalle de recepción por satélite",
+    "alt": "Primer plano de los receptores LNB de una antena parabólica y de sus cables coaxiales.",
+    "description": "Los receptores y sus conexiones se ven de cerca, sujetos al brazo de la parabólica.",
+    "servicePath": "/servicios/antenas-parabolicas/",
+    "serviceLabel": "Ver guía de antenas parabólicas"
+  },
+  {
+    "file": "trabajo-07.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-07.jpg",
+    "width": 922,
+    "height": 2000,
+    "title": "Medición junto a una cabecera",
+    "alt": "Medidor de campo amarillo junto a módulos de cabecera de televisión y conexiones coaxiales en una pared.",
+    "description": "Equipo de medida junto a los módulos y al cableado de una instalación de televisión.",
+    "servicePath": "/servicios/amplificadores-antena/",
+    "serviceLabel": "Ver guía de amplificación"
+  },
+  {
+    "file": "trabajo-08.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-08.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Parabólica y antena de televisión",
+    "alt": "Antena parabólica blanca junto a una antena de televisión en una cubierta de teja.",
+    "description": "Dos sistemas de recepción en la misma cubierta: plato de satélite y antena terrestre.",
+    "servicePath": "/servicios/antenas-parabolicas/",
+    "serviceLabel": "Ver guía de recepción por satélite"
+  },
+  {
+    "file": "trabajo-09.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-09.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Cámara de acceso exterior",
+    "alt": "Módulo exterior de videoportero con cámara, rejilla de altavoz y visera sobre una pared gris.",
+    "description": "Detalle de la cámara y el altavoz del módulo de acceso, protegidos por una visera.",
+    "servicePath": "/servicios/videoporteros/",
+    "serviceLabel": "Ver guía de videoporteros"
+  },
+  {
+    "file": "trabajo-10.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-10.jpg",
+    "width": 2048,
+    "height": 1152,
+    "title": "Cabecera modular de televisión",
+    "alt": "Conjuntos de módulos de cabecera de televisión conectados con cables coaxiales sobre una pared.",
+    "description": "Vista de los módulos, alimentaciones y conexiones que componen la cabecera de TV.",
+    "servicePath": "/servicios/amplificadores-antena/",
+    "serviceLabel": "Ver guía de distribución de TV"
+  },
+  {
+    "file": "trabajo-11.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-11.jpg",
+    "width": 1152,
+    "height": 2048,
+    "title": "Antenas junto a una chimenea",
+    "alt": "Mástil con varias antenas de televisión y una parabólica blanca junto a una chimenea de ladrillo.",
+    "description": "Vista conjunta del mástil, la parabólica y los cables sobre la cubierta del edificio.",
+    "servicePath": "/servicios/mantenimiento-antenas-comunidades/",
+    "serviceLabel": "Ver guía de mantenimiento"
+  },
+  {
+    "file": "trabajo-12.jpg",
+    "source": "https://antenaszalla.netlify.app/assets/galeria/trabajo-12.jpg",
+    "width": 737,
+    "height": 1600,
+    "title": "Antena junto a la cumbrera",
+    "alt": "Antena de televisión plateada en un soporte corto junto a la cumbrera de un tejado de teja.",
+    "description": "Detalle de la antena terrestre y su fijación junto al remate superior del tejado.",
+    "servicePath": "/servicios/reparacion-antenas-tdt/",
+    "serviceLabel": "Ver guía de instalación de antenas"
+  }
+]

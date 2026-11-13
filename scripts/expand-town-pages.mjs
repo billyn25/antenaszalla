@@ -16,7 +16,7 @@ const leadVariants = [
   (t,p) => `Antenista en ${t}, ${p}, con revisión orientada a localizar el punto de fallo antes de sustituir equipos: TDT, satélite, amplificación, porteros y videoporteros.`,
   (t,p) => `Servicio técnico en ${t}, ${p}, para comprobar recepción, cabecera, distribución y tomas cuando la televisión falla o pierde canales.`,
   (t,p) => `Técnico antenista en ${t}: diagnóstico de señal, antenas individuales y colectivas, parabólicas, porteros automáticos y videoporteros.`,
-  (t,p) => `Antenas Zallatel atiende consultas en ${t}, ${p}, diferenciando primero si la incidencia está en la recepción, la red interior o los elementos comunes.`,
+  (t,p) => `Antenas Zalla atiende consultas en ${t}, ${p}, diferenciando primero si la incidencia está en la recepción, la red interior o los elementos comunes.`,
   (t,p) => `¿Falla la televisión o el portero en ${t}? Preparamos la revisión según el síntoma, el tipo de inmueble y si afecta a una sola vivienda o a varios puntos.`,
   (t,p) => `Instalación y reparación de antenas en ${t}, ${p}, con especial atención a amplificación, distribución coaxial, satélite y sistemas de acceso.`
 ];
@@ -26,7 +26,7 @@ const introVariants = [
   t => `En ${t} trabajamos sobre instalaciones existentes antes de plantear una renovación completa. Si parte del sistema sigue siendo válida, se valora mantenerla y actuar solo sobre el elemento que provoca la incidencia.`,
   t => `Una instalación de televisión en ${t} se revisa como un recorrido: recepción, amplificación, distribución y puntos finales. En porteros y videoporteros se separan llamada, audio, imagen y apertura.`,
   t => `Cuando en ${t} desaparecen canales o la imagen se pixela, conviene comparar tomas y comprobar si el problema es individual o comunitario antes de comprar amplificadores o cambiar antenas.`,
-  t => `Antenas Zallatel organiza la atención en ${t} por tipo de avería y de inmueble: vivienda individual, comunidad o pequeño negocio, evitando presupuestar recambios sin haber delimitado antes el fallo.`
+  t => `Antenas Zalla organiza la atención en ${t} por tipo de avería y de inmueble: vivienda individual, comunidad o pequeño negocio, evitando presupuestar recambios sin haber delimitado antes el fallo.`
 ];
 const adviceVariants = [
   t => `Antes de llamar desde ${t}, comprueba únicamente si el fallo aparece en uno o varios televisores. No accedas al tejado ni abras amplificadores: esa información básica ya orienta la primera revisión.`,
@@ -41,7 +41,7 @@ const metaVariants = [
   (t,p) => `Técnico antenista en ${t}, ${p} · ${site.phone}. Revisión de señal, cabecera, cableado, tomas, satélite, porteros automáticos y videoporteros.`,
   (t,p) => `Reparación de antenas en ${t}, ${p}. ${site.phone}. Localización de averías de recepción y distribución, TDT, parabólicas y sistemas de acceso.`,
   (t,p) => `Servicio técnico de antenas en ${t}, ${p} | ${site.phone}. Viviendas y comunidades: señal TV, amplificación, porteros, videoporteros y satélite.`,
-  (t,p) => `Antenas Zallatel en ${t}, ${p} · ${site.phone}. Diagnóstico de TDT, red coaxial, antenas colectivas, parabólicas, porteros y videoporteros.`
+  (t,p) => `Antenas Zalla en ${t}, ${p} · ${site.phone}. Diagnóstico de TDT, red coaxial, antenas colectivas, parabólicas, porteros y videoporteros.`
 ];
 const focusVariants = [
   t => `Localizar dónde se pierde la señal en ${t}`,
@@ -340,7 +340,7 @@ const provinceSeoFocus = {
 
 function provinceDiagnosticBlock(province) {
   const focus = provinceSeoFocus[province.name] || 'diagnóstico de antenas, señal y sistemas de acceso';
-  return `<section class="province-diagnostic"><div class="province-diagnostic-main"><span class="eyebrow">Servicio técnico por municipios</span><h3>Antenista en ${esc(province.name)}: diagnóstico antes de sustituir equipos</h3><p>Antenas Zallatel organiza la atención en ${esc(province.name)} con especial foco en ${esc(focus)}. Antes de proponer un cambio de antena se comprueba si el problema está en recepción, alimentación, amplificación, distribución o en una toma concreta.</p><div class="province-service-tags" aria-label="Servicios técnicos de Antenas Zallatel"><span>TDT y señal</span><span>Antenas colectivas</span><span>Parabólicas</span><span>Porteros</span><span>Videoporteros</span><span>Amplificación</span></div></div><div class="province-diagnostic-points"><span><strong>¿Falla una sola TV?</strong> Puede ser toma, cableado o distribución interior.</span><span><strong>¿Falla a varios vecinos?</strong> Conviene revisar cabecera, alimentación y elementos comunes.</span><span><strong>¿El portero llama pero no abre?</strong> Se separa audio, llamada y apertura para localizar el fallo.</span><span><strong>¿No llega bien la TDT?</strong> Primero se descarta una avería antes de valorar SAT-TDT.</span></div><div class="province-quick-faq"><h4>Antes de pedir visita en ${esc(province.name)}</h4><details><summary>¿Qué datos conviene indicar?</summary><p>Municipio, tipo de inmueble, equipo afectado y si el problema aparece en una sola toma o en varios puntos.</p></details><details><summary>¿Hay que comprar material antes?</summary><p>No. Es mejor identificar primero el origen de la avería para evitar sustituir amplificadores, antenas o terminales sin necesidad.</p></details></div></section>`;
+  return `<section class="province-diagnostic"><div class="province-diagnostic-main"><span class="eyebrow">Servicio técnico por municipios</span><h3>Antenista en ${esc(province.name)}: diagnóstico antes de sustituir equipos</h3><p>Antenas Zalla organiza la atención en ${esc(province.name)} con especial foco en ${esc(focus)}. Antes de proponer un cambio de antena se comprueba si el problema está en recepción, alimentación, amplificación, distribución o en una toma concreta.</p><div class="province-service-tags" aria-label="Servicios técnicos de Antenas Zalla"><span>TDT y señal</span><span>Antenas colectivas</span><span>Parabólicas</span><span>Porteros</span><span>Videoporteros</span><span>Amplificación</span></div></div><div class="province-diagnostic-points"><span><strong>¿Falla una sola TV?</strong> Puede ser toma, cableado o distribución interior.</span><span><strong>¿Falla a varios vecinos?</strong> Conviene revisar cabecera, alimentación y elementos comunes.</span><span><strong>¿El portero llama pero no abre?</strong> Se separa audio, llamada y apertura para localizar el fallo.</span><span><strong>¿No llega bien la TDT?</strong> Primero se descarta una avería antes de valorar SAT-TDT.</span></div><div class="province-quick-faq"><h4>Antes de pedir visita en ${esc(province.name)}</h4><details><summary>¿Qué datos conviene indicar?</summary><p>Municipio, tipo de inmueble, equipo afectado y si el problema aparece en una sola toma o en varios puntos.</p></details><details><summary>¿Hay que comprar material antes?</summary><p>No. Es mejor identificar primero el origen de la avería para evitar sustituir amplificadores, antenas o terminales sin necesidad.</p></details></div></section>`;
 }
 
 function renderProvinceIndex(province, locals) {

@@ -4,8 +4,9 @@ import {localEnquiry} from './local-enquiry.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { brandMark } from './logo.mjs';
-import { DOMAIN, PHONE, TEL, BRAND, LEGAL_FILES, publicPath, fileForPublicPath, rewriteUrl, escapeHtml, decodeHtml, titleOf, metaOf, setMeta, rewriteStructuredData, townMetadata, redirectRules } from './public-seo.mjs';
+import { brandMark, brandLogoSvg } from './logo.mjs';
+import { displayPlaceName, homeSeoMetadata, provinceSeoMetadata, serviceSeoMetadata, serviceIndexSeoMetadata } from './seo-metadata.mjs';
+import { DOMAIN, PHONE, BRAND, LEGAL_FILES, publicPath, fileForPublicPath, rewriteUrl, escapeHtml, decodeHtml, titleOf, metaOf, setMeta, rewriteStructuredData, townMetadata, redirectRules, organizationSchema } from './public-seo.mjs';
 const PROVINCE_META = {
   '/antenas-alava/': ['Álava','diagnóstico de señal, antenas colectivas y porteros'],
   '/antenas-bizkaia/': ['Bizkaia','TDT, cabeceras comunitarias, porteros y videoporteros'],
@@ -22,11 +23,7 @@ const PROVINCE_META = {
 function provinceMetadata(route) {
   const info = PROVINCE_META[route];
   if (!info) return null;
-  const [name,focus] = info;
-  return {
-    title: `Antenista en ${name} · diagnóstico técnico | ${PHONE}`,
-    description: `Antenista en ${name}. ${PHONE}. Antenas Zallatel: ${focus}. Revisamos recepción, amplificación y distribución antes de sustituir equipos. Urgencias 24h.`
-  };
+  return provinceSeoMetadata(info[0]);
 }
 
 
@@ -37,7 +34,11 @@ export function walk(dir) {
 export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROOT || 'dist')) {
   root = path.resolve(root);
   const manifestFile = path.join(root, 'local-pages-manifest.json');
-  const towns = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+  const sourceTowns = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+  const nameCounts = new Map();
+  const nameKey = town => displayPlaceName(town.name).toLocaleLowerCase('es');
+  for (const town of sourceTowns) nameCounts.set(nameKey(town), (nameCounts.get(nameKey(town)) || 0) + 1);
+  const towns = sourceTowns.map(town => ({...town, disambiguate: town.disambiguate || nameCounts.get(nameKey(town)) > 1}));
   const townByPath = new Map(towns.map(t => [publicPath(t.path), t]));
   if (townByPath.size !== towns.length) throw new Error('Two municipalities resolve to the same public URL');
   const documents = walk(root).filter(f => f.endsWith('.html')).map(file => {
@@ -74,10 +75,12 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     html = html.replace(/\b(href|src)=("|')([^"']*)\2/gi, (_,attr,quote,value) => `${attr}=${quote}${escapeHtml(rewriteUrl(decodeHtml(value),doc.path))}${quote}`);
     let title = titleOf(html);
     let description = metaOf(html,'description');
+    let heading;
     if (town) {
       const metadata = townMetadata(town);
       title = metadata.title;
       description = metadata.description;
+      heading = metadata.heading;
       if (!html.includes('id="recepcion-tdt-local"')) {
         html = html.replace(/(<section class="section wrap" id="servicios">[\s\S]*?<\/section>)/, section => section + townReception(town));
       }
@@ -86,14 +89,10 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       const metadata = provinceMetadata(doc.path);
       title = metadata.title;
       description = metadata.description;
+      heading = metadata.heading;
     } else if (doc.path === '/') {
-      title = `Antenas Zallatel · diagnóstico de antenas y porteros | ${PHONE}`;
-      description = `Antenas Zallatel. ${PHONE}. Diagnóstico y reparación de antenas, señal TDT, amplificación, porteros y videoporteros; SAT-TDT y montaje Starlink. Antes Antenas Zalla.`;
-      html = html.replace('<h1>Antenista barato en tu pueblo</h1>', '<h1>Antenas, porteros y videoporteros en tu pueblo</h1>');
-      if (!html.includes('id="identidad-zalla"')) {
-        const identity = '<p class="micro" id="identidad-zalla">Antenas Zallatel es el nombre actual de esta web, anteriormente presentada como Antenas Zalla. Seguimos en antenaszalla.com, con contacto en el <a href="tel:+34670042626">670 042 626</a>.</p>';
-        html = html.replace('<footer class="footer"><div class="wrap">', '<footer class="footer"><div class="wrap">' + identity);
-      }
+      ({title,description,heading}=homeSeoMetadata());
+      html = html.replace(/<p\b[^>]*id="identidad-zalla"[^>]*>[\s\S]*?<\/p>/, '');
       if (!html.includes('id="antenas-zalla-enkarterri"')) {
         const names = ['Zalla','Balmaseda','Güeñes','Sopuerta','Gordexola','Galdames','Artzentales','Karrantza Harana/Valle de Carranza','Trucios-Turtzioz','Lanestosa','Muskiz','Abanto y Ciérvana-Abanto Zierbena','Ortuella','Valle de Trápaga-Trapagaran','Barakaldo','Getxo','Portugalete','Santurtzi','Durango','Gernika-Lumo','Mungia','Amorebieta-Etxano','Basauri','Bermeo','Eibar','Elgoibar','Bergara','Beasain','Tolosa','Zarautz','Amurrio','Artziniega','Lerma','Medina de Pomar','Salas de los Infantes','Haro'];
         const normalize = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
@@ -103,7 +102,11 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
           html = html.replace('</main>', local + '</main>');
         }
       }
+    } else if (doc.path.startsWith('/servicios/')) {
+      ({title,description,heading}=doc.path==='/servicios/' ? serviceIndexSeoMetadata() : serviceSeoMetadata(doc.path));
     }
+    if (heading) html = html.replace(/(<h1\b[^>]*>)[\s\S]*?(<\/h1>)/i, (_,open,close) => open + escapeHtml(heading) + close);
+    if (legal) html = setMeta(html,'robots','noindex,follow');
     html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(title)}</title>`);
     if (!errorPage) {
       html = setMeta(html,'description',description);
@@ -111,7 +114,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       if (fs.existsSync(path.join(root,'assets/hero-zallatel.png')) && !legal) {
         const image = DOMAIN + '/assets/hero-zallatel.png';
         html = setMeta(html,'og:image',image,true);
-        html = setMeta(html,'og:image:alt','Antenas Zallatel: servicio técnico de antenas',true);
+        html = setMeta(html,'og:image:alt','Antenas Zalla: servicio técnico de antenas',true);
         for (const [key,value] of Object.entries({'twitter:card':'summary_large_image','twitter:title':title,'twitter:description':description,'twitter:image':image})) html = setMeta(html,key,value);
         if (html.includes('class="hero-photo"') && !html.includes('as="image"')) html = html.replace('</head>','<link rel="preload" as="image" href="/assets/hero-zallatel.png" fetchpriority="high"></head>');
       }
@@ -121,14 +124,14 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       const entities = data['@graph'] || [data];
       for (const entity of entities) {
         if (['WebPage','CollectionPage'].includes(entity['@type'])) Object.assign(entity,{name:title,description,url:canonical,inLanguage:'es'});
-        if (entity['@type'] === 'WebSite') Object.assign(entity,{name:BRAND,alternateName:'Antenas Zalla',url:DOMAIN+'/',publisher:{'@id':DOMAIN+'/#organizacion'}});
-        if (entity['@type'] === 'Organization' && entity['@id'] === DOMAIN+'/#organizacion') Object.assign(entity,{name:BRAND,alternateName:'Antenas Zalla'});
+        if (entity['@type'] === 'WebSite') Object.assign(entity,{name:BRAND,alternateName:'Antenas Zallatel',url:DOMAIN+'/',publisher:{'@id':DOMAIN+'/#organizacion'}});
+        if (entity['@type'] === 'Organization' && entity['@id'] === DOMAIN+'/#organizacion') Object.assign(entity,organizationSchema());
         if (entity['@type'] === 'Service') {
           entity.description = description;
           if (Array.isArray(entity.serviceType) && !entity.serviceType.includes('TDT por satélite HD')) entity.serviceType.push('TDT por satélite HD');
         }
       }
-      if (data['@graph'] && !entities.some(e => e['@id'] === DOMAIN+'/#organizacion')) entities.push({'@type':'Organization','@id':DOMAIN+'/#organizacion',name:BRAND,alternateName:'Antenas Zalla',url:DOMAIN+'/',telephone:TEL});
+      if (data['@graph'] && !entities.some(e => e['@id'] === DOMAIN+'/#organizacion')) entities.push(organizationSchema());
       return open + JSON.stringify(data).replace(/</g,'\\u003c') + close;
     });
     if (!html.includes('rel="icon"')) html = html.replace('</head>','<link rel="icon" type="image/svg+xml" href="/favicon.svg"></head>');
@@ -138,7 +141,9 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     doc.html = html;
     report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path==='/blog/'?'blog':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
+  fs.mkdirSync(path.join(root,'assets'),{recursive:true});
   fs.writeFileSync(path.join(root,'assets/town-reception.css'),RECEPTION_CSS);
+  fs.writeFileSync(path.join(root,'assets/logo-antenas-zalla.svg'),brandLogoSvg());
   // All transformations and collision checks finish before the output is replaced.
   for (const doc of documents) fs.rmSync(path.join(root,doc.legacyFile));
   for (const doc of byPath.values()) {

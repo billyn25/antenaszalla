@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { DOMAIN, PHONE, publicPath, fileForPublicPath, rewriteUrl, decodeHtml, titleOf, metaOf } from './public-seo.mjs';
+import { DOMAIN, BRAND, TEL, publicPath, fileForPublicPath, rewriteUrl, decodeHtml, titleOf, metaOf, townMetadata } from './public-seo.mjs';
 
 export function auditPublicSeo(root = path.resolve(process.env.PRODUCTION_ROOT || 'dist')) {
   root = path.resolve(root);
@@ -12,6 +12,7 @@ export function auditPublicSeo(root = path.resolve(process.env.PRODUCTION_ROOT |
   const anchors = new Map([...htmlByPath].map(([route,html])=>[route,new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>decodeHtml(m[1])))]));
   const adjacency = new Map([...records.keys()].map(route=>[route,new Set()]));
   const titles = new Set();
+  const descriptions = new Set();
   let internalLinks=0, structuredBlocks=0;
   const fail = message => {throw new Error(`PUBLIC SEO: ${message}`);};
   if (records.size !== manifest.documents.length) fail('duplicate document URLs');
@@ -27,17 +28,29 @@ export function auditPublicSeo(root = path.resolve(process.env.PRODUCTION_ROOT |
     const title = titleOf(html), description=metaOf(html,'description');
     if (doc.indexable) {
       if (metaOf(html,'robots')!=='index,follow') fail(`${route}: not indexable`);
-      if (!title || !description || titles.has(title)) fail(`${route}: missing or duplicate title/description`);
+      if (!title || !description || titles.has(title) || descriptions.has(description)) fail(`${route}: missing or duplicate title/description`);
       titles.add(title);
+      descriptions.add(description);
       if (metaOf(html,'og:url')!==DOMAIN+route || metaOf(html,'og:title')!==title || metaOf(html,'og:description')!==description) fail(`${route}: inconsistent Open Graph data`);
     } else if (!metaOf(html,'robots').includes('noindex')) fail(`${route}: excluded document lost noindex`);
+    if (doc.type==='legal' && metaOf(html,'robots')!=='noindex,follow') fail(`${route}: legal navigation must remain followable`);
     const town=townByPath.get(route);
-    if (town && ![town.name,town.province,PHONE].every(part=>title.includes(part)&&description.includes(part))) fail(`${route}: municipality, province or phone missing from metadata`);
     const h1=decodeHtml(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]||'');
-    if (town && ![town.name,town.province].every(part=>h1.includes(part))) fail(`${route}: wrong local H1`);
+    if (town) {
+      const expected=townMetadata(town);
+      if (title!==expected.title || description!==expected.description) fail(`${route}: local metadata disagrees with the editorial policy`);
+      if (h1!==expected.heading) fail(`${route}: wrong local H1`);
+    }
     const checkData=value=>{
       if (typeof value==='string' && /^(?:https?:\/\/|\/)/.test(value) && rewriteUrl(value)!==value) fail(`${route}: obsolete structured URL ${value}`);
-      if (value && typeof value==='object') Object.values(value).forEach(checkData);
+      if (value && typeof value==='object') {
+        const types=Array.isArray(value['@type'])?value['@type']:[value['@type']];
+        if (types.includes('Service') && Object.hasOwn(value,'telephone')) fail(`${route}: telephone belongs on the provider, not Service`);
+        if (types.includes('Organization') && value['@id']===DOMAIN+'/#organizacion') {
+          if (value.name!==BRAND || value.telephone!==TEL || value.logo?.url!==DOMAIN+'/assets/logo-antenas-zalla.svg' || value.address?.addressLocality!=='Zalla' || value.address?.postalCode!=='48860') fail(`${route}: incomplete business identity`);
+        }
+        Object.values(value).forEach(checkData);
+      }
     };
     for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
       structuredBlocks++;

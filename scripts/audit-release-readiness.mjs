@@ -12,7 +12,7 @@ const forbiddenVisible = [
   /generada para esa localidad/i,
   /selección parcial/i,
   /pendiente(?:s)? de revisión/i,
-  /inventario .*revisión/i,
+  /inventario (?:de la (?:renovación|web) )?(?:está |sigue )?(?:en|pendiente de) revisión/i,
   /web actual permanece/i,
   /no sustituye la web actual/i,
   /\bnoindex\b/i,
