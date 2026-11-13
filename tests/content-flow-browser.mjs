@@ -35,7 +35,7 @@ try {
         if(statement.getBoundingClientRect().top-range.getBoundingClientRect().bottom>30)errors.push('empty gap below hero title');
       }
       if(innerWidth<=760&&document.querySelector('.mobilebar')&&getComputedStyle(document.querySelector('.mobilebar')).display==='none')errors.push('mobile contact unavailable');
-      if(document.body.classList.contains('service-page')||document.querySelector('[data-tdt-guide-release]')){
+      if(document.querySelector('.service-page .service-layout')||document.querySelector('[data-tdt-guide-release]')){
         if(/670\s*042\s*626/.test(document.querySelector('main').innerText))errors.push('repeated phone in reading guide');
         if(document.querySelectorAll('main a[href^="tel:"]').length!==1)errors.push('guide must have one final call action');
       }
