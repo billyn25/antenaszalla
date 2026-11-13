@@ -1,10 +1,11 @@
 // Public HTTP verification. Does not submit indexing requests or modify Search Console.
 import fs from 'node:fs';
-import {COVERAGE_CSS,COVERAGE_RELEASE} from './municipal-coverage.mjs';
+import {COVERAGE_CSS,COVERAGE_RELEASE,PRIORITY_MUNICIPALITY_CODES,GETARIA_CANONICAL_PATH} from './municipal-coverage.mjs';
 import { DOMAIN, publicPath, metaOf } from './public-seo.mjs';
 import { guides, guideRoute, SERVICE_RELEASE } from './service-guides.mjs';
 import { EDITORIAL_CSS } from './reduce-town-boilerplate.mjs';
 import { NEARBY_TOWN_LINKS_CSS } from './nearby-town-links.mjs';
+import { TDT_GUIDE_ROUTE,TDT_GUIDE_RELEASE,TDT_GUIDE_CSS } from './tdt-update-guide.mjs';
 
 async function request(url) {
   const response = await fetch(url, {redirect:'manual', signal:AbortSignal.timeout(15000), headers:{'user-agent':'AntenasZalla-SEO-Check/1.0'}});
@@ -36,6 +37,15 @@ for (const guide of guides) {
 const manifest = JSON.parse(await text200(DOMAIN+'/public-seo-manifest.json'));
 const coverage=JSON.parse(await text200(DOMAIN+'/coverage-manifest.json'));
 if(coverage.release!==COVERAGE_RELEASE||coverage.total!==2007||coverage.retained!==manifest.towns)throw new Error('Consolidated municipality release not published');
+const priorityCodes=new Set(PRIORITY_MUNICIPALITY_CODES);
+const priorityRows=coverage.assignments.filter(row=>priorityCodes.has(row.code));
+if(priorityRows.length!==priorityCodes.size||priorityRows.some(row=>row.original!==row.destination))throw new Error('A restored Basque locality still redirects to another municipality');
+const localGuidePaths=new Set([...priorityRows.map(row=>row.original),'/antenas-bizkaia/lekeitio']);
+const tdtGuide=await text200(DOMAIN+TDT_GUIDE_ROUTE);
+if(!manifest.documents.some(doc=>doc.path===TDT_GUIDE_ROUTE&&doc.type==='guide'&&doc.indexable)||!tdtGuide.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)||metaOf(tdtGuide,'robots')!=='index,follow'||!tdtGuide.includes(`rel="canonical" href="${DOMAIN+TDT_GUIDE_ROUTE}"`))throw new Error('The La Séptima / UHD guide is not published with its canonical metadata');
+if(await text200(DOMAIN+'/assets/tdt-update-guide.css')!==TDT_GUIDE_CSS)throw new Error('The UHD guide stylesheet is not current');
+const blog=await text200(DOMAIN+'/blog/');
+if(!blog.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)||!blog.includes(`href="${TDT_GUIDE_ROUTE}"`))throw new Error('The server-rendered blog lost the UHD guide link');
 const redirects=new Map(manifest.redirects.map(r=>[r.from,r.to]));
 const expected = new Set(manifest.documents.filter(d=>d.indexable).map(d=>DOMAIN+d.path));
 const index = await text200(DOMAIN+'/sitemap.xml');
@@ -54,12 +64,13 @@ const reported=JSON.parse(fs.readFileSync(new URL('../tests/fixtures/search-cons
 const extra=manifest.documents.filter(d=>d.type==='province').map(d=>DOMAIN+d.path).concat([
   DOMAIN+'/Antenas-Bizkaia/abanto-zierbena.html', DOMAIN+'/Antenas-Burgos/aranda-de-duero.html'
 ]);
-const queue=[...reported,...extra,...coverage.assignments.filter(t=>t.original!==t.destination).slice(0,6).map(t=>DOMAIN+t.original)];
+const queue=[...new Set([...reported,...extra,...coverage.assignments.filter(t=>t.original!==t.destination).slice(0,6).map(t=>DOMAIN+t.original),...localGuidePaths].map(url=>url.startsWith('/')?DOMAIN+url:url).concat([DOMAIN+'/antenas-guipuzcoa/guetaria',DOMAIN+'/antenas-gipuzkoa/getaria']))];
 const localManifest=JSON.parse(await text200(DOMAIN+'/local-pages-manifest.json'));
 const townSamples=[...new Map(localManifest.map(t=>[t.province,t])).values()];
 for (const town of townSamples) {
   const html=await text200(DOMAIN+town.publicPath);
   if ((html.match(/data-service-guide=/g)||[]).length!==10 || !html.includes('data-zallatel-flow="20261023"') || !html.includes('id="preparar-visita-local"') || !html.includes(`data-service-release="${SERVICE_RELEASE}"`)) throw new Error(`Municipal service release missing: ${town.name}`);
+  if(!html.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)||!html.includes(`href="${TDT_GUIDE_ROUTE}"`))throw new Error(`Municipal UHD guide link missing: ${town.name}`);
   for(const guide of guides) if(!html.includes(`href="${guideRoute(guide)}"`)) throw new Error(`Municipal guide link missing: ${town.name} / ${guide.id}`);
 }
 const results=[];
@@ -91,9 +102,11 @@ await Promise.all(Array.from({length:4},async()=>{
       const canonical=html.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/)?.[1];
       if(canonical!==current) throw new Error(`${current}: canonical mismatch ${canonical}`);
       if(!expected.has(current)) throw new Error(`${current}: not in sitemap`);
+      if(localGuidePaths.has(new URL(current).pathname)&&(!html.includes('data-local-town-guide=')||!html.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)))throw new Error(`${current}: missing the specific local content or UHD guide`);
+      if(originalPath===GETARIA_CANONICAL_PATH&&hops!==0)throw new Error('Getaria must be a direct 200 response');
       results.push({source,final:current,status:200,hops});
       break;
     }
   }
 }));
-console.log(JSON.stringify({status:'LIVE SEO OK',serviceRelease:SERVICE_RELEASE,serviceGuides:guides.length,municipalServiceSamples:townSamples.length,reportedUrls:reported.length,totalChecked:results.length,sitemaps:children.length,sitemapUrls:sitemapUrls.length,maxRedirectHops:Math.max(...results.map(r=>r.hops)),results},null,2));
+console.log(JSON.stringify({status:'LIVE SEO OK',serviceRelease:SERVICE_RELEASE,serviceGuides:guides.length,tdtGuideRelease:TDT_GUIDE_RELEASE,restoredBasqueLocalities:priorityRows.length,municipalServiceSamples:townSamples.length,reportedUrls:reported.length,totalChecked:results.length,sitemaps:children.length,sitemapUrls:sitemapUrls.length,maxRedirectHops:Math.max(...results.map(r=>r.hops)),results},null,2));

@@ -7,7 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node --test tests/*.test.mjs && node scripts/fetch-municipalities.mjs && node scripts/build.mjs && node scripts/generate-town-pages.mjs && node scripts/expand-town-pages.mjs && node scripts/copy-assets.mjs && node scripts/finish-seo-gallery.mjs && node scripts/legal-pages.mjs && node scripts/finalize-public-copy.mjs && node scripts/service-guides.mjs && node scripts/build-news.mjs && node scripts/audit.mjs && node scripts/audit-town-pages.mjs && node scripts/audit-release-readiness.mjs && node scripts/audit-snippets-gallery.mjs",
+    "build": "node --test tests/*.test.mjs && node scripts/fetch-municipalities.mjs && node scripts/build.mjs && node scripts/generate-town-pages.mjs && node scripts/expand-town-pages.mjs && node scripts/copy-assets.mjs && node scripts/finish-seo-gallery.mjs && node scripts/legal-pages.mjs && node scripts/finalize-public-copy.mjs && node scripts/service-guides.mjs && node scripts/build-news.mjs && node scripts/tdt-update-guide.mjs && node scripts/audit.mjs && node scripts/audit-town-pages.mjs && node scripts/audit-release-readiness.mjs && node scripts/audit-snippets-gallery.mjs",
     "test": "node --test tests/*.test.mjs",
     "preview": "node scripts/serve.mjs",
     "prepare:production": "node scripts/prepare-production-assets.mjs",

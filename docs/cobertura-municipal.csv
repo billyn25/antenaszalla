@@ -7,49 +7,49 @@ codigo_ine,municipio,provincia,poblacion_catalogo,url_anterior,pagina_de_cobertu
 01043,Oyón-Oion,Álava,3456,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion,0
 01001,Alegría-Dulantzi,Álava,2965,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi,0
 01010,Ayala/Aiara,Álava,2939,/antenas-alava/ayala-aiara,/antenas-alava/ayala-aiara,/antenas-alava/ayala-aiara,0
-01063,Zuia,Álava,2391,/antenas-alava/zuia,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01063,15.404
-01058,Legutio,Álava,2082,/antenas-alava/legutio,/antenas-alava/vitoria-gasteiz,/antenas-alava/vitoria-gasteiz#cobertura-01058,14.766
-01004,Artziniega,Álava,1856,/antenas-alava/artziniega,/antenas-alava/ayala-aiara,/antenas-alava/ayala-aiara#cobertura-01004,8.64
-01018,Zigoitia,Álava,1845,/antenas-alava/zigoitia,/antenas-alava/vitoria-gasteiz,/antenas-alava/vitoria-gasteiz#cobertura-01018,13.187
+01063,Zuia,Álava,2391,/antenas-alava/zuia,/antenas-alava/zuia,/antenas-alava/zuia,0
+01058,Legutio,Álava,2082,/antenas-alava/legutio,/antenas-alava/legutio,/antenas-alava/legutio,0
+01004,Artziniega,Álava,1856,/antenas-alava/artziniega,/antenas-alava/artziniega,/antenas-alava/artziniega,0
+01018,Zigoitia,Álava,1845,/antenas-alava/zigoitia,/antenas-alava/zuia,/antenas-alava/zuia#cobertura-01018,7.343
 01009,Asparrena,Álava,1613,/antenas-alava/asparrena,/antenas-alava/agurain-salvatierra,/antenas-alava/agurain-salvatierra#cobertura-01009,7.329
 01028,Labastida/Bastida,Álava,1571,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida,0
-01031,Laguardia,Álava,1491,/antenas-alava/laguardia,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01031,13.236
-01054,Urkabustaiz,Álava,1459,/antenas-alava/urkabustaiz,/antenas-alava/amurrio,/antenas-alava/amurrio#cobertura-01054,13.831
+01031,Laguardia,Álava,1491,/antenas-alava/laguardia,/antenas-alava/laguardia,/antenas-alava/laguardia,0
+01054,Urkabustaiz,Álava,1459,/antenas-alava/urkabustaiz,/antenas-alava/zuia,/antenas-alava/zuia#cobertura-01054,6.557
 01047,Ribera Baja/Erriberabeitia,Álava,1441,/antenas-alava/ribera-baja-erriberabeitia,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01047,14.813
-01003,Aramaio,Álava,1380,/antenas-alava/aramaio,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi#cobertura-01003,23.969
+01003,Aramaio,Álava,1380,/antenas-alava/aramaio,/antenas-alava/aramaio,/antenas-alava/aramaio,0
 01042,Okondo,Álava,1190,/antenas-alava/okondo,/antenas-alava/laudio-llodio,/antenas-alava/laudio-llodio#cobertura-01042,4.996
-01017,Campezo/Kanpezu,Álava,1088,/antenas-alava/campezo-kanpezu,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01017,19.529
-01055,Valdegovía/Gaubea,Álava,1071,/antenas-alava/valdegovia-gaubea,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01055,23.869
+01017,Campezo/Kanpezu,Álava,1088,/antenas-alava/campezo-kanpezu,/antenas-alava/campezo-kanpezu,/antenas-alava/campezo-kanpezu,0
+01055,Valdegovía/Gaubea,Álava,1071,/antenas-alava/valdegovia-gaubea,/antenas-alava/valdegovia-gaubea,/antenas-alava/valdegovia-gaubea,0
 01008,Arratzua-Ubarrundia,Álava,1046,/antenas-alava/arratzua-ubarrundia,/antenas-alava/vitoria-gasteiz,/antenas-alava/vitoria-gasteiz#cobertura-01008,5.46
-01022,Elciego,Álava,953,/antenas-alava/elciego,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01022,14.901
+01022,Elciego,Álava,953,/antenas-alava/elciego,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01022,5.043
 01902,Lantarón,Álava,926,/antenas-alava/lantaron,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01902,17.145
 01013,Barrundia,Álava,879,/antenas-alava/barrundia,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi#cobertura-01013,8.676
-01033,Lapuebla de Labarca,Álava,856,/antenas-alava/lapuebla-de-labarca,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01033,11.246
+01033,Lapuebla de Labarca,Álava,856,/antenas-alava/lapuebla-de-labarca,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01033,6.715
 01046,Erriberagoitia/Ribera Alta,Álava,844,/antenas-alava/erriberagoitia-ribera-alta,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01046,8.196
-01037,Arraia-Maeztu,Álava,823,/antenas-alava/arraia-maeztu,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi#cobertura-01037,12.627
+01037,Arraia-Maeztu,Álava,823,/antenas-alava/arraia-maeztu,/antenas-alava/campezo-kanpezu,/antenas-alava/campezo-kanpezu#cobertura-01037,10.762
 01053,San Millán/Donemiliaga,Álava,721,/antenas-alava/san-millan-donemiliaga,/antenas-alava/agurain-salvatierra,/antenas-alava/agurain-salvatierra#cobertura-01053,2.655
-01032,Lanciego/Lantziego,Álava,689,/antenas-alava/lanciego-lantziego,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01032,8.816
+01032,Lanciego/Lantziego,Álava,689,/antenas-alava/lanciego-lantziego,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01032,5.995
 01021,Elburgo/Burgelu,Álava,641,/antenas-alava/elburgo-burgelu,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi#cobertura-01021,2.936
 01027,Iruraiz-Gauna,Álava,550,/antenas-alava/iruraiz-gauna,/antenas-alava/alegria-dulantzi,/antenas-alava/alegria-dulantzi#cobertura-01027,3.146
-01016,Bernedo,Álava,544,/antenas-alava/bernedo,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01016,14.319
+01016,Bernedo,Álava,544,/antenas-alava/bernedo,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01016,10.756
 01014,Berantevilla,Álava,468,/antenas-alava/berantevilla,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01014,11.62
 01062,Zambrana,Álava,438,/antenas-alava/zambrana,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01062,10.486
 01020,Kuartango,Álava,409,/antenas-alava/kuartango,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01020,8.655
-01023,Elvillar/Bilar,Álava,320,/antenas-alava/elvillar-bilar,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01023,11.303
+01023,Elvillar/Bilar,Álava,320,/antenas-alava/elvillar-bilar,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01023,3.74
 01044,Peñacerrada-Urizaharra,Álava,302,/antenas-alava/penacerrada-urizaharra,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01044,8.871
-01011,Baños de Ebro/Mañueta,Álava,292,/antenas-alava/banos-de-ebro-manueta,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01011,11.45
-01052,Samaniego,Álava,290,/antenas-alava/samaniego,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01052,9.65
-01057,Villabuena de Álava/Eskuernaga,Álava,282,/antenas-alava/villabuena-de-alava-eskuernaga,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01057,11.426
+01011,Baños de Ebro/Mañueta,Álava,292,/antenas-alava/banos-de-ebro-manueta,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01011,8.163
+01052,Samaniego,Álava,290,/antenas-alava/samaniego,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01052,7.889
+01057,Villabuena de Álava/Eskuernaga,Álava,282,/antenas-alava/villabuena-de-alava-eskuernaga,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01057,6.608
 01060,Yécora/Iekora,Álava,264,/antenas-alava/yecora-iekora,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01060,7.541
 01006,Armiñón,Álava,246,/antenas-alava/arminon,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01006,11.745
 01039,Moreda de Álava/Moreda Araba,Álava,215,/antenas-alava/moreda-de-alava-moreda-araba,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01039,3.064
-01056,Harana/Valle de Arana,Álava,214,/antenas-alava/harana-valle-de-arana,/antenas-alava/agurain-salvatierra,/antenas-alava/agurain-salvatierra#cobertura-01056,11.676
-01034,Leza,Álava,210,/antenas-alava/leza,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01034,13.262
-01041,Navaridas,Álava,203,/antenas-alava/navaridas,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01041,14.747
+01056,Harana/Valle de Arana,Álava,214,/antenas-alava/harana-valle-de-arana,/antenas-alava/campezo-kanpezu,/antenas-alava/campezo-kanpezu#cobertura-01056,9.514
+01034,Leza,Álava,210,/antenas-alava/leza,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01034,4.287
+01041,Navaridas,Álava,203,/antenas-alava/navaridas,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01041,3.412
 01061,Zalduondo,Álava,194,/antenas-alava/zalduondo,/antenas-alava/agurain-salvatierra,/antenas-alava/agurain-salvatierra#cobertura-01061,5.176
-01019,Kripan,Álava,178,/antenas-alava/kripan,/antenas-alava/oyon-oion,/antenas-alava/oyon-oion#cobertura-01019,11.504
-01030,Lagrán,Álava,170,/antenas-alava/lagran,/antenas-alava/labastida-bastida,/antenas-alava/labastida-bastida#cobertura-01030,17.552
-01049,Añana,Álava,143,/antenas-alava/anana,/antenas-alava/iruna-oka-iruna-de-oca,/antenas-alava/iruna-oka-iruna-de-oca#cobertura-01049,14.639
+01019,Kripan,Álava,178,/antenas-alava/kripan,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01019,7.097
+01030,Lagrán,Álava,170,/antenas-alava/lagran,/antenas-alava/laguardia,/antenas-alava/laguardia#cobertura-01030,8.088
+01049,Añana,Álava,143,/antenas-alava/anana,/antenas-alava/valdegovia-gaubea,/antenas-alava/valdegovia-gaubea#cobertura-01049,10.435
 48020,Bilbao,Bizkaia,347342,/antenas-bizkaia/bilbao,/antenas-bizkaia/bilbao,/antenas-bizkaia/bilbao,0
 48013,Barakaldo,Bizkaia,101869,/antenas-bizkaia/barakaldo,/antenas-bizkaia/barakaldo,/antenas-bizkaia/barakaldo,0
 48044,Getxo,Bizkaia,76155,/antenas-bizkaia/getxo,/antenas-bizkaia/getxo,/antenas-bizkaia/getxo,0
@@ -88,59 +88,59 @@ codigo_ine,municipio,provincia,poblacion_catalogo,url_anterior,pagina_de_cobertu
 48019,Berriz,Bizkaia,4587,/antenas-bizkaia/berriz,/antenas-bizkaia/abadino,/antenas-bizkaia/abadino#cobertura-48019,3.505
 48904,Sondika,Bizkaia,4584,/antenas-bizkaia/sondika,/antenas-bizkaia/bilbao,/antenas-bizkaia/bilbao#cobertura-48904,3.495
 48916,Usansolo,Bizkaia,4568,/antenas-bizkaia/usansolo,/antenas-bizkaia/galdakao,/antenas-bizkaia/galdakao#cobertura-48916,2.087
-48077,Plentzia,Bizkaia,4392,/antenas-bizkaia/plentzia,/antenas-bizkaia/gorliz,/antenas-bizkaia/gorliz#cobertura-48077,1.874
-48094,Igorre,Bizkaia,4329,/antenas-bizkaia/igorre,/antenas-bizkaia/amorebieta-etxano,/antenas-bizkaia/amorebieta-etxano#cobertura-48094,7.265
-48074,Urduña/Orduña,Bizkaia,4202,/antenas-bizkaia/urduna-orduna,/antenas-bizkaia/guenes,/antenas-bizkaia/guenes#cobertura-48074,24.955
+48077,Plentzia,Bizkaia,4392,/antenas-bizkaia/plentzia,/antenas-bizkaia/plentzia,/antenas-bizkaia/plentzia,0
+48094,Igorre,Bizkaia,4329,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre,0
+48074,Urduña/Orduña,Bizkaia,4202,/antenas-bizkaia/urduna-orduna,/antenas-bizkaia/urduna-orduna,/antenas-bizkaia/urduna-orduna,0
 48065,Ugao-Miraballes,Bizkaia,4176,/antenas-bizkaia/ugao-miraballes,/antenas-bizkaia/arrigorriaga,/antenas-bizkaia/arrigorriaga#cobertura-48065,3.065
 48910,Iurreta,Bizkaia,3868,/antenas-bizkaia/iurreta,/antenas-bizkaia/durango,/antenas-bizkaia/durango#cobertura-48910,1.06
 48055,Lemoa,Bizkaia,3579,/antenas-bizkaia/lemoa,/antenas-bizkaia/amorebieta-etxano,/antenas-bizkaia/amorebieta-etxano#cobertura-48055,3.734
 48905,Zamudio,Bizkaia,3312,/antenas-bizkaia/zamudio,/antenas-bizkaia/derio,/antenas-bizkaia/derio#cobertura-48905,1.892
 48912,Alonsotegi,Bizkaia,3027,/antenas-bizkaia/alonsotegi,/antenas-bizkaia/bilbao,/antenas-bizkaia/bilbao#cobertura-48912,5.622
 48095,Zaldibar,Bizkaia,3018,/antenas-bizkaia/zaldibar,/antenas-bizkaia/ermua,/antenas-bizkaia/ermua#cobertura-48095,3.888
-48012,Bakio,Bizkaia,2819,/antenas-bizkaia/bakio,/antenas-bizkaia/bermeo,/antenas-bizkaia/bermeo#cobertura-48012,7.362
-48086,Sopuerta,Bizkaia,2759,/antenas-bizkaia/sopuerta,/antenas-bizkaia/zalla,/antenas-bizkaia/zalla#cobertura-48086,5.581
-48022,Karrantza Harana/Valle de Carranza,Bizkaia,2706,/antenas-bizkaia/karrantza-harana-valle-de-carranza,/antenas-bizkaia/balmaseda,/antenas-bizkaia/balmaseda#cobertura-48022,13.961
+48012,Bakio,Bizkaia,2819,/antenas-bizkaia/bakio,/antenas-bizkaia/bakio,/antenas-bizkaia/bakio,0
+48086,Sopuerta,Bizkaia,2759,/antenas-bizkaia/sopuerta,/antenas-bizkaia/sopuerta,/antenas-bizkaia/sopuerta,0
+48022,Karrantza Harana/Valle de Carranza,Bizkaia,2706,/antenas-bizkaia/karrantza-harana-valle-de-carranza,/antenas-bizkaia/karrantza-harana-valle-de-carranza,/antenas-bizkaia/karrantza-harana-valle-de-carranza,0
 48075,Orozko,Bizkaia,2659,/antenas-bizkaia/orozko,/antenas-bizkaia/arrigorriaga,/antenas-bizkaia/arrigorriaga#cobertura-48075,11.152
 48081,Lezama,Bizkaia,2460,/antenas-bizkaia/lezama,/antenas-bizkaia/derio,/antenas-bizkaia/derio#cobertura-48081,4.762
 48903,Loiu,Bizkaia,2354,/antenas-bizkaia/loiu,/antenas-bizkaia/erandio,/antenas-bizkaia/erandio#cobertura-48903,3.211
 48052,Larrabetzu,Bizkaia,2040,/antenas-bizkaia/larrabetzu,/antenas-bizkaia/galdakao,/antenas-bizkaia/galdakao#cobertura-48052,4.856
-48068,Mundaka,Bizkaia,1830,/antenas-bizkaia/mundaka,/antenas-bizkaia/bermeo,/antenas-bizkaia/bermeo#cobertura-48068,2.461
-48042,Gordexola,Bizkaia,1708,/antenas-bizkaia/gordexola,/antenas-bizkaia/guenes,/antenas-bizkaia/guenes#cobertura-48042,3.819
-48021,Busturia,Bizkaia,1653,/antenas-bizkaia/busturia,/antenas-bizkaia/bermeo,/antenas-bizkaia/bermeo#cobertura-48021,4.592
+48068,Mundaka,Bizkaia,1830,/antenas-bizkaia/mundaka,/antenas-bizkaia/mundaka,/antenas-bizkaia/mundaka,0
+48042,Gordexola,Bizkaia,1708,/antenas-bizkaia/gordexola,/antenas-bizkaia/gordexola,/antenas-bizkaia/gordexola,0
+48021,Busturia,Bizkaia,1653,/antenas-bizkaia/busturia,/antenas-bizkaia/mundaka,/antenas-bizkaia/mundaka#cobertura-48021,2.816
 48040,Gatika,Bizkaia,1632,/antenas-bizkaia/gatika,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48040,2.399
 48097,Zaratamo,Bizkaia,1608,/antenas-bizkaia/zaratamo,/antenas-bizkaia/arrigorriaga,/antenas-bizkaia/arrigorriaga#cobertura-48097,1.271
-48014,Barrika,Bizkaia,1549,/antenas-bizkaia/barrika,/antenas-bizkaia/gorliz,/antenas-bizkaia/gorliz#cobertura-48014,2.781
+48014,Barrika,Bizkaia,1549,/antenas-bizkaia/barrika,/antenas-bizkaia/plentzia,/antenas-bizkaia/plentzia#cobertura-48014,1.28
 48067,Muxika,Bizkaia,1546,/antenas-bizkaia/muxika,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48067,3.522
-48026,Dima,Bizkaia,1505,/antenas-bizkaia/dima,/antenas-bizkaia/amorebieta-etxano,/antenas-bizkaia/amorebieta-etxano#cobertura-48026,8.708
+48026,Dima,Bizkaia,1505,/antenas-bizkaia/dima,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre#cobertura-48026,3.186
 48913,Zierbena,Bizkaia,1492,/antenas-bizkaia/zierbena,/antenas-bizkaia/abanto-y-ciervana-abanto-zierbena,/antenas-bizkaia/abanto-y-ciervana-abanto-zierbena#cobertura-48913,3.051
 48038,Gamiz-Fika,Bizkaia,1384,/antenas-bizkaia/gamiz-fika,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48038,3.79
 48072,Otxandio,Bizkaia,1355,/antenas-bizkaia/otxandio,/antenas-bizkaia/abadino,/antenas-bizkaia/abadino#cobertura-48072,13.024
 48091,Atxondo,Bizkaia,1355,/antenas-bizkaia/atxondo,/antenas-bizkaia/abadino,/antenas-bizkaia/abadino#cobertura-48091,3.207
 48056,Lemoiz,Bizkaia,1339,/antenas-bizkaia/lemoiz,/antenas-bizkaia/gorliz,/antenas-bizkaia/gorliz#cobertura-48056,2.448
-48093,Areatza,Bizkaia,1271,/antenas-bizkaia/areatza,/antenas-bizkaia/amorebieta-etxano,/antenas-bizkaia/amorebieta-etxano#cobertura-48093,11.441
-48024,Zeanuri,Bizkaia,1251,/antenas-bizkaia/zeanuri,/antenas-bizkaia/durango,/antenas-bizkaia/durango#cobertura-48024,12.243
+48093,Areatza,Bizkaia,1271,/antenas-bizkaia/areatza,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre#cobertura-48093,4.93
+48024,Zeanuri,Bizkaia,1251,/antenas-bizkaia/zeanuri,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre#cobertura-48024,7.727
 48053,Laukiz,Bizkaia,1244,/antenas-bizkaia/laukiz,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48053,4.916
 48018,Berriatua,Bizkaia,1242,/antenas-bizkaia/berriatua,/antenas-bizkaia/ondarroa,/antenas-bizkaia/ondarroa#cobertura-48018,4.059
 48058,Mallabia,Bizkaia,1155,/antenas-bizkaia/mallabia,/antenas-bizkaia/ermua,/antenas-bizkaia/ermua#cobertura-48058,2.222
 48092,Bedia,Bizkaia,1111,/antenas-bizkaia/bedia,/antenas-bizkaia/galdakao,/antenas-bizkaia/galdakao#cobertura-48092,4.038
-48025,Zeberio,Bizkaia,1082,/antenas-bizkaia/zeberio,/antenas-bizkaia/arrigorriaga,/antenas-bizkaia/arrigorriaga#cobertura-48025,7.232
+48025,Zeberio,Bizkaia,1082,/antenas-bizkaia/zeberio,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre#cobertura-48025,6.014
 48061,Maruri-Jatabe,Bizkaia,1071,/antenas-bizkaia/maruri-jatabe,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48061,3.227
 48009,Arrankudiaga-Zollo,Bizkaia,1007,/antenas-bizkaia/arrankudiaga-zollo,/antenas-bizkaia/arrigorriaga,/antenas-bizkaia/arrigorriaga#cobertura-48009,4.984
 48906,Forua,Bizkaia,948,/antenas-bizkaia/forua,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48906,2.137
 48041,Gautegiz Arteaga,Bizkaia,880,/antenas-bizkaia/gautegiz-arteaga,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48041,4.824
 48028,Ea,Bizkaia,838,/antenas-bizkaia/ea,/antenas-bizkaia/lekeitio,/antenas-bizkaia/lekeitio#cobertura-48028,6.922
-48037,Galdames,Bizkaia,823,/antenas-bizkaia/galdames,/antenas-bizkaia/guenes,/antenas-bizkaia/guenes#cobertura-48037,4.845
+48037,Galdames,Bizkaia,823,/antenas-bizkaia/galdames,/antenas-bizkaia/galdames,/antenas-bizkaia/galdames,0
 48030,Etxebarria,Bizkaia,772,/antenas-bizkaia/etxebarria,/antenas-bizkaia/markina-xemein,/antenas-bizkaia/markina-xemein#cobertura-48030,2.279
 48064,Meñaka,Bizkaia,766,/antenas-bizkaia/menaka,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48064,3.665
-48023,Artea,Bizkaia,748,/antenas-bizkaia/artea,/antenas-bizkaia/amorebieta-etxano,/antenas-bizkaia/amorebieta-etxano#cobertura-48023,10.574
-48008,Artzentales,Bizkaia,737,/antenas-bizkaia/artzentales,/antenas-bizkaia/balmaseda,/antenas-bizkaia/balmaseda#cobertura-48008,6.54
+48023,Artea,Bizkaia,748,/antenas-bizkaia/artea,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre#cobertura-48023,3.549
+48008,Artzentales,Bizkaia,737,/antenas-bizkaia/artzentales,/antenas-bizkaia/artzentales,/antenas-bizkaia/artzentales,0
 48049,Ispaster,Bizkaia,714,/antenas-bizkaia/ispaster,/antenas-bizkaia/lekeitio,/antenas-bizkaia/lekeitio#cobertura-48049,3.36
-48048,Ibarrangelu,Bizkaia,680,/antenas-bizkaia/ibarrangelu,/antenas-bizkaia/bermeo,/antenas-bizkaia/bermeo#cobertura-48048,8.087
+48048,Ibarrangelu,Bizkaia,680,/antenas-bizkaia/ibarrangelu,/antenas-bizkaia/mundaka,/antenas-bizkaia/mundaka#cobertura-48048,5.688
 48070,Aulesti,Bizkaia,643,/antenas-bizkaia/aulesti,/antenas-bizkaia/markina-xemein,/antenas-bizkaia/markina-xemein#cobertura-48070,6.153
 48010,Arrieta,Bizkaia,579,/antenas-bizkaia/arrieta,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48010,6.431
 48035,Fruiz,Bizkaia,576,/antenas-bizkaia/fruiz,/antenas-bizkaia/mungia,/antenas-bizkaia/mungia#cobertura-48035,5.808
 48059,Mañaria,Bizkaia,533,/antenas-bizkaia/manaria,/antenas-bizkaia/durango,/antenas-bizkaia/durango#cobertura-48059,4.008
-48087,Trucios-Turtzioz,Bizkaia,516,/antenas-bizkaia/trucios-turtzioz,/antenas-bizkaia/balmaseda,/antenas-bizkaia/balmaseda#cobertura-48087,9.794
+48087,Trucios-Turtzioz,Bizkaia,516,/antenas-bizkaia/trucios-turtzioz,/antenas-bizkaia/trucios-turtzioz,/antenas-bizkaia/trucios-turtzioz,0
 48079,Errigoiti,Bizkaia,510,/antenas-bizkaia/errigoiti,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48079,3.808
 48911,Ajangiz,Bizkaia,474,/antenas-bizkaia/ajangiz,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48911,1.513
 48007,Munitibar-Arbatzegi Gerrikaitz,Bizkaia,469,/antenas-bizkaia/munitibar-arbatzegi-gerrikaitz,/antenas-bizkaia/markina-xemein,/antenas-bizkaia/markina-xemein#cobertura-48007,7.634
@@ -149,16 +149,16 @@ codigo_ine,municipio,provincia,poblacion_catalogo,url_anterior,pagina_de_cobertu
 48914,Arratzu,Bizkaia,417,/antenas-bizkaia/arratzu,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48914,3.29
 48066,Morga,Bizkaia,413,/antenas-bizkaia/morga,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48066,6.263
 48915,Ziortza-Bolibar,Bizkaia,408,/antenas-bizkaia/ziortza-bolibar,/antenas-bizkaia/markina-xemein,/antenas-bizkaia/markina-xemein#cobertura-48915,4.516
-48006,Arantzazu,Bizkaia,394,/antenas-bizkaia/arantzazu,/antenas-bizkaia/amorebieta-etxano,/antenas-bizkaia/amorebieta-etxano#cobertura-48006,8.552
+48006,Arantzazu,Bizkaia,394,/antenas-bizkaia/arantzazu,/antenas-bizkaia/igorre,/antenas-bizkaia/igorre#cobertura-48006,1.358
 48004,Amoroto,Bizkaia,392,/antenas-bizkaia/amoroto,/antenas-bizkaia/lekeitio,/antenas-bizkaia/lekeitio#cobertura-48004,4.305
 48062,Mendata,Bizkaia,382,/antenas-bizkaia/mendata,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48062,4.686
-48076,Sukarrieta,Bizkaia,354,/antenas-bizkaia/sukarrieta,/antenas-bizkaia/bermeo,/antenas-bizkaia/bermeo#cobertura-48076,3.507
-48031,Elantxobe,Bizkaia,348,/antenas-bizkaia/elantxobe,/antenas-bizkaia/bermeo,/antenas-bizkaia/bermeo#cobertura-48031,6.991
+48076,Sukarrieta,Bizkaia,354,/antenas-bizkaia/sukarrieta,/antenas-bizkaia/mundaka,/antenas-bizkaia/mundaka#cobertura-48076,1.372
+48031,Elantxobe,Bizkaia,348,/antenas-bizkaia/elantxobe,/antenas-bizkaia/mundaka,/antenas-bizkaia/mundaka#cobertura-48031,4.739
 48039,Garai,Bizkaia,343,/antenas-bizkaia/garai,/antenas-bizkaia/durango,/antenas-bizkaia/durango#cobertura-48039,3.412
 48908,Murueta,Bizkaia,321,/antenas-bizkaia/murueta,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48908,4.014
 48909,Nabarniz,Bizkaia,274,/antenas-bizkaia/nabarniz,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48909,7.648
 48033,Ereño,Bizkaia,272,/antenas-bizkaia/ereno,/antenas-bizkaia/gernika-lumo,/antenas-bizkaia/gernika-lumo#cobertura-48033,6.347
-48051,Lanestosa,Bizkaia,246,/antenas-bizkaia/lanestosa,/antenas-bizkaia/balmaseda,/antenas-bizkaia/balmaseda#cobertura-48051,20.081
+48051,Lanestosa,Bizkaia,246,/antenas-bizkaia/lanestosa,/antenas-bizkaia/lanestosa,/antenas-bizkaia/lanestosa,0
 48050,Izurtza,Bizkaia,229,/antenas-bizkaia/izurtza,/antenas-bizkaia/durango,/antenas-bizkaia/durango#cobertura-48050,1.67
 48047,Gizaburuaga,Bizkaia,196,/antenas-bizkaia/gizaburuaga,/antenas-bizkaia/lekeitio,/antenas-bizkaia/lekeitio#cobertura-48047,4.649
 48088,Ubide,Bizkaia,171,/antenas-bizkaia/ubide,/antenas-bizkaia/abadino,/antenas-bizkaia/abadino#cobertura-48088,15.75
@@ -568,31 +568,31 @@ codigo_ine,municipio,provincia,poblacion_catalogo,url_anterior,pagina_de_cobertu
 20075,Villabona,Gipuzkoa,5850,/antenas-guipuzcoa/villabona,/antenas-guipuzcoa/villabona,/antenas-guipuzcoa/villabona,0
 20029,Deba,Gipuzkoa,5397,/antenas-guipuzcoa/deba,/antenas-guipuzcoa/deba,/antenas-guipuzcoa/deba,0
 20056,Mutriku,Gipuzkoa,5273,/antenas-guipuzcoa/mutriku,/antenas-guipuzcoa/mutriku,/antenas-guipuzcoa/mutriku,0
-20034,Eskoriatza,Gipuzkoa,4227,/antenas-guipuzcoa/eskoriatza,/antenas-guipuzcoa/aretxabaleta,/antenas-guipuzcoa/aretxabaleta#cobertura-20034,2.798
+20034,Eskoriatza,Gipuzkoa,4227,/antenas-guipuzcoa/eskoriatza,/antenas-guipuzcoa/eskoriatza,/antenas-guipuzcoa/eskoriatza,0
 20042,Ibarra,Gipuzkoa,4106,/antenas-guipuzcoa/ibarra,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20042,1.077
-20027,Zestoa,Gipuzkoa,3842,/antenas-guipuzcoa/zestoa,/antenas-guipuzcoa/azpeitia,/antenas-guipuzcoa/azpeitia#cobertura-20027,6.244
-20065,Soraluze-Placencia de las Armas,Gipuzkoa,3789,/antenas-guipuzcoa/soraluze-placencia-de-las-armas,/antenas-guipuzcoa/elgoibar,/antenas-guipuzcoa/elgoibar#cobertura-20065,4.469
+20027,Zestoa,Gipuzkoa,3842,/antenas-guipuzcoa/zestoa,/antenas-guipuzcoa/zestoa,/antenas-guipuzcoa/zestoa,0
+20065,Soraluze-Placencia de las Armas,Gipuzkoa,3789,/antenas-guipuzcoa/soraluze-placencia-de-las-armas,/antenas-guipuzcoa/soraluze-placencia-de-las-armas,/antenas-guipuzcoa/soraluze-placencia-de-las-armas,0
 20028,Zizurkil,Gipuzkoa,2966,/antenas-guipuzcoa/zizurkil,/antenas-guipuzcoa/villabona,/antenas-guipuzcoa/villabona#cobertura-20028,1.983
-20039,Getaria,Gipuzkoa,2914,/antenas-guipuzcoa/getaria,/antenas-guipuzcoa/zarautz,/antenas-guipuzcoa/zarautz#cobertura-20039,3.09
-20043,Idiazabal,Gipuzkoa,2270,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/lazkao,/antenas-guipuzcoa/lazkao#cobertura-20043,4.509
-20016,Aia,Gipuzkoa,2139,/antenas-guipuzcoa/aia,/antenas-guipuzcoa/orio,/antenas-guipuzcoa/orio#cobertura-20016,4.718
+20039,Getaria,Gipuzkoa,2914,/antenas-guipuzcoa/getaria,/antenas-guipuzcoa/getaria,/antenas-guipuzcoa/getaria,0
+20043,Idiazabal,Gipuzkoa,2270,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal,0
+20016,Aia,Gipuzkoa,2139,/antenas-guipuzcoa/aia,/antenas-guipuzcoa/aia,/antenas-guipuzcoa/aia,0
 20010,Anoeta,Gipuzkoa,2082,/antenas-guipuzcoa/anoeta,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20010,2.594
 20011,Antzuola,Gipuzkoa,2070,/antenas-guipuzcoa/antzuola,/antenas-guipuzcoa/bergara,/antenas-guipuzcoa/bergara#cobertura-20011,3.33
-20901,Mendaro,Gipuzkoa,2001,/antenas-guipuzcoa/mendaro,/antenas-guipuzcoa/elgoibar,/antenas-guipuzcoa/elgoibar#cobertura-20901,4.95
+20901,Mendaro,Gipuzkoa,2001,/antenas-guipuzcoa/mendaro,/antenas-guipuzcoa/mendaro,/antenas-guipuzcoa/mendaro,0
 20046,Irura,Gipuzkoa,1896,/antenas-guipuzcoa/irura,/antenas-guipuzcoa/villabona,/antenas-guipuzcoa/villabona#cobertura-20046,2.516
 20005,Alegia,Gipuzkoa,1804,/antenas-guipuzcoa/alegia,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20005,4.719
 20078,Zaldibia,Gipuzkoa,1735,/antenas-guipuzcoa/zaldibia,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20078,2.868
 20015,Ataun,Gipuzkoa,1710,/antenas-guipuzcoa/ataun,/antenas-guipuzcoa/lazkao,/antenas-guipuzcoa/lazkao#cobertura-20015,3.164
 20014,Asteasu,Gipuzkoa,1573,/antenas-guipuzcoa/asteasu,/antenas-guipuzcoa/villabona,/antenas-guipuzcoa/villabona#cobertura-20014,3.562
-20025,Zegama,Gipuzkoa,1541,/antenas-guipuzcoa/zegama,/antenas-guipuzcoa/legazpi,/antenas-guipuzcoa/legazpi#cobertura-20025,9.043
-20070,Segura,Gipuzkoa,1466,/antenas-guipuzcoa/segura,/antenas-guipuzcoa/lazkao,/antenas-guipuzcoa/lazkao#cobertura-20070,6.041
+20025,Zegama,Gipuzkoa,1541,/antenas-guipuzcoa/zegama,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal#cobertura-20025,6.171
+20070,Segura,Gipuzkoa,1466,/antenas-guipuzcoa/segura,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal#cobertura-20070,1.569
 20052,Legorreta,Gipuzkoa,1446,/antenas-guipuzcoa/legorreta,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20052,4.279
-20062,Ormaiztegi,Gipuzkoa,1263,/antenas-guipuzcoa/ormaiztegi,/antenas-guipuzcoa/beasain,/antenas-guipuzcoa/beasain#cobertura-20062,4.826
+20062,Ormaiztegi,Gipuzkoa,1263,/antenas-guipuzcoa/ormaiztegi,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal#cobertura-20062,3.747
 20033,Elgeta,Gipuzkoa,1126,/antenas-guipuzcoa/elgeta,/antenas-guipuzcoa/eibar,/antenas-guipuzcoa/eibar#cobertura-20033,5.413
 20022,Berastegi,Gipuzkoa,1110,/antenas-guipuzcoa/berastegi,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20022,7.67
 20008,Amezketa,Gipuzkoa,940,/antenas-guipuzcoa/amezketa,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20008,7.412
 20058,Olaberria,Gipuzkoa,929,/antenas-guipuzcoa/olaberria,/antenas-guipuzcoa/lazkao,/antenas-guipuzcoa/lazkao#cobertura-20058,1.531
-20003,Aizarnazabal,Gipuzkoa,780,/antenas-guipuzcoa/aizarnazabal,/antenas-guipuzcoa/zumaia,/antenas-guipuzcoa/zumaia#cobertura-20003,4.915
+20003,Aizarnazabal,Gipuzkoa,780,/antenas-guipuzcoa/aizarnazabal,/antenas-guipuzcoa/zestoa,/antenas-guipuzcoa/zestoa#cobertura-20003,2.506
 20047,Itsasondo,Gipuzkoa,668,/antenas-guipuzcoa/itsasondo,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20047,1.904
 20054,Lizartza,Gipuzkoa,666,/antenas-guipuzcoa/lizartza,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20054,4.978
 20035,Ezkio-Itsaso,Gipuzkoa,589,/antenas-guipuzcoa/ezkio-itsaso,/antenas-guipuzcoa/zumarraga,/antenas-guipuzcoa/zumarraga#cobertura-20035,3.585
@@ -609,12 +609,12 @@ codigo_ine,municipio,provincia,poblacion_catalogo,url_anterior,pagina_de_cobertu
 20041,Hernialde,Gipuzkoa,318,/antenas-guipuzcoa/hernialde,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20041,2.129
 20001,Abaltzisketa,Gipuzkoa,316,/antenas-guipuzcoa/abaltzisketa,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20001,6.022
 20021,Belauntza,Gipuzkoa,288,/antenas-guipuzcoa/belauntza,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20021,1.721
-20026,Zerain,Gipuzkoa,281,/antenas-guipuzcoa/zerain,/antenas-guipuzcoa/legazpi,/antenas-guipuzcoa/legazpi#cobertura-20026,6.627
-20057,Mutiloa,Gipuzkoa,253,/antenas-guipuzcoa/mutiloa,/antenas-guipuzcoa/legazpi,/antenas-guipuzcoa/legazpi#cobertura-20057,5.847
+20026,Zerain,Gipuzkoa,281,/antenas-guipuzcoa/zerain,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal#cobertura-20026,3.055
+20057,Mutiloa,Gipuzkoa,253,/antenas-guipuzcoa/mutiloa,/antenas-guipuzcoa/idiazabal,/antenas-guipuzcoa/idiazabal#cobertura-20057,3.336
 20048,Larraul,Gipuzkoa,252,/antenas-guipuzcoa/larraul,/antenas-guipuzcoa/villabona,/antenas-guipuzcoa/villabona#cobertura-20048,3.906
 20031,Elduain,Gipuzkoa,250,/antenas-guipuzcoa/elduain,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20031,5.833
 20905,Orendain,Gipuzkoa,245,/antenas-guipuzcoa/orendain,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20905,6.008
-20068,Leintz-Gatzaga,Gipuzkoa,210,/antenas-guipuzcoa/leintz-gatzaga,/antenas-guipuzcoa/aretxabaleta,/antenas-guipuzcoa/aretxabaleta#cobertura-20068,7.546
+20068,Leintz-Gatzaga,Gipuzkoa,210,/antenas-guipuzcoa/leintz-gatzaga,/antenas-guipuzcoa/eskoriatza,/antenas-guipuzcoa/eskoriatza#cobertura-20068,4.753
 20012,Arama,Gipuzkoa,178,/antenas-guipuzcoa/arama,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20012,1.543
 20906,Altzaga,Gipuzkoa,171,/antenas-guipuzcoa/altzaga,/antenas-guipuzcoa/ordizia,/antenas-guipuzcoa/ordizia#cobertura-20906,2.393
 20907,Gaztelu,Gipuzkoa,171,/antenas-guipuzcoa/gaztelu,/antenas-guipuzcoa/tolosa,/antenas-guipuzcoa/tolosa#cobertura-20907,4.704

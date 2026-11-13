@@ -8,6 +8,13 @@ test('service routes normalize index aliases without changing municipality URLs'
   assert.equal(publicPath('/servicios/index.html'),'/servicios/');
   assert.equal(publicPath('/Antenas-Bizkaia/zalla.html'),'/antenas-bizkaia/zalla');
 });
+test('Getaria and Lekeitio highlight TDT and access diagnostics while preserving the full catalogue',()=>{
+  for(const town of [{name:'Getaria',province:'Gipuzkoa'},{name:'Lekeitio',province:'Bizkaia'}]){
+    assert.deepEqual(selectedGuidesForTown(town).map(g=>g.id),['tdt','porteros','videoporteros']);
+    const all=selectedGuidesForTown(town,guides.length);
+    assert.equal(new Set(all.map(g=>g.id)).size,guides.length);
+  }
+});
 test('local service expansion keeps URLs and contact while making the enquiry specific',()=>{
   const p={...pages.find(p=>p.type==='town'),name:'Pueblo & Valle',province:'Álava',path:'/Antenas-Alava/pueblo-valle.html'};
   const before=renderPage(p),html=enhanceTown(before,p);

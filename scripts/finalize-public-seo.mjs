@@ -1,4 +1,5 @@
 import {townReception,RECEPTION_CSS} from './town-reception.mjs';
+import {applyLocalTownGuide} from './local-town-guides.mjs';
 import {simplifyContacts} from './contact-policy.mjs';
 import {localEnquiry} from './local-enquiry.mjs';
 import fs from 'node:fs';
@@ -84,6 +85,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
       if (!html.includes('id="recepcion-tdt-local"')) {
         html = html.replace(/(<section class="section wrap" id="servicios">[\s\S]*?<\/section>)/, section => section + townReception(town));
       }
+      html = applyLocalTownGuide(html,town);
       if (!html.includes('/assets/town-reception.css')) html=html.replace('</head>','<link rel="stylesheet" href="/assets/town-reception.css?v=zallatel-recepcion-v1"></head>');
     } else if (provinceMetadata(doc.path)) {
       const metadata = provinceMetadata(doc.path);
@@ -139,7 +141,7 @@ export function finalizePublicSeo(root = path.resolve(process.env.PRODUCTION_ROO
     html=html.replace(/<div class="strip"><div class="wrap">[\s\S]*?<\/div><\/div>/g,'');
     if (!legal && !errorPage) html = simplifyContacts(html);
     doc.html = html;
-    report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path==='/blog/'?'blog':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
+    report.push({path:doc.path,file:doc.file,indexable:!legal&&!errorPage,type:town?'town':doc.path==='/'?'home':doc.path.startsWith('/servicios/')?'service':doc.path.startsWith('/guias/')?'guide':doc.path==='/blog/'?'blog':doc.path.endsWith('/')?'province':legal?'legal':'error',title});
   }
   fs.mkdirSync(path.join(root,'assets'),{recursive:true});
   fs.writeFileSync(path.join(root,'assets/town-reception.css'),RECEPTION_CSS);

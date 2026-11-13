@@ -1,0 +1,385 @@
+{
+  "reviewed": "2026-11-13",
+  "profiles": [
+    {
+      "code": "20039",
+      "name": "Getaria",
+      "province": "Gipuzkoa",
+      "preferredServices": ["tdt", "porteros", "videoporteros"],
+      "heading": "Televisión en Getaria: ubicar la vivienda y separar la avería",
+      "intro": "Al consultar por Getaria o Guetaria, indica la calle o el barrio: Akerregi, Askizu, Eitzaga, Meaga y San Prudentzio también forman parte del municipio. Esa referencia permite preparar la comprobación para tu dirección; que un televisor funcione en Zarautz no confirma la recepción de tu vivienda.",
+      "checks": [
+        ["Una antena individual o una instalación compartida", "Si es una vivienda con antena propia, interesa saber qué se recibe en cada toma y si el fallo empezó después de mover un cable o un equipo. En un edificio, pregunta primero si otros vecinos han perdido los mismos canales.", "Comprobar la señal en el punto que corresponda, sin atribuir de entrada el problema al repetidor."],
+        ["ETB, cadenas estatales y parabólica se comprueban por separado", "Anota los nombres que faltan y qué entrada del televisor utilizas. La recepción por antena terrestre, una parabólica y una aplicación por internet siguen recorridos distintos; una lista de canales de satélite no sirve para ajustar la TDT.", "Identificar el sistema y contrastar cobertura prevista con la señal medida antes de elegir una solución."]
+      ],
+      "preparation": ["Datos para preparar la visita a Getaria", "Facilita dirección o barrio, modelo de televisor, canales afectados y si la antena es individual o comunitaria. Para revisar un portero, añade si falla llamada, audio, vídeo o apertura y quién puede facilitar el acceso al edificio."],
+      "guide": ["Revisar la recepción y la instalación de TDT", "/servicios/reparacion-antenas-tdt/"],
+      "sources": [["Diputación de Gipuzkoa: barrios y callejero de Getaria", "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/getaria"], ["Ministerio: consulta de cobertura TDT", "https://television.digital.gob.es/television-digital/tdt/consulta-la-cobertura-tdt-de-tu-localidad"]]
+    },
+    {
+      "code": "48057",
+      "name": "Lekeitio",
+      "province": "Bizkaia",
+      "preferredServices": ["tdt", "porteros", "videoporteros"],
+      "heading": "En Lekeitio, distinguir el fallo de vivienda del de comunidad",
+      "intro": "Un aviso de televisión en Lekeitio queda mejor definido cuando sabemos cuántas viviendas están afectadas. Si la recepción es colectiva, coordinar una toma que funciona, otra que falla y el acceso a la cabecera permite preparar una revisión con puntos de comparación.",
+      "checks": [
+        ["Faltan ETB o varios canales, pero otros se ven", "Haz una lista de los servicios afectados y comprueba si coinciden en otro televisor del edificio. Una pérdida parcial no demuestra que haya que cambiar toda la antena: conviene separar la sintonización del receptor y el tratamiento de la señal común.", "Comparar recepción, cabecera y reparto antes de proponer materiales."],
+        ["Televisión y portero: dos avisos que necesitan datos distintos", "Para un portero o videoportero, describe llamada, conversación, imagen y apertura por separado. Si solo falla una vivienda, indica si el resto responde correctamente; si falla todo el portal, prepara el acceso a placa y alimentación.", "Identificar la tecnología y la referencia visible para estudiar un recambio compatible, sin desmontar el terminal por tu cuenta."]
+      ],
+      "preparation": ["Qué enviar desde Lekeitio", "Incluye calle, portal, canales o función que falla y si hay más vecinos afectados. Si también hay parabólica, aclara qué servicios llegan por ella. Una foto del frontal del equipo y de su etiqueta visible ayuda a identificarlo sin acceder al tejado."],
+      "guide": ["Cómo revisar una antena comunitaria", "/servicios/mantenimiento-antenas-comunidades/"],
+      "sources": [["Ministerio: problemas de recepción en vivienda o edificio", "https://television.digital.gob.es/television-digital/tdt/problemas-recepcion"], ["Fermax: compatibilidad de telefonillos", "https://soporte.fermax.com/portal/es/kb/articles/telefonos-fermax-compatibles-con-otras-marcas"]]
+    },
+    {
+      "code": "48086",
+      "name": "Sopuerta",
+      "province": "Bizkaia",
+      "heading": "Preparar el aviso de antena en los barrios de Sopuerta",
+      "intro": "Para una consulta en Sopuerta, indica el barrio además del municipio: Mercadillo, La Baluga o San Martín del Carral ayudan a situar el aviso. La dirección y el tipo de vivienda sirven para concretar acceso y comprobaciones antes de organizar el desplazamiento.",
+      "checks": [
+        ["Una toma funciona y otra pierde canales", "Si puedes comparar dos televisores desde el interior, anota qué canales se mantienen en cada toma. Conserva ese dato antes de añadir un amplificador o cambiar la lista de canales.", "Revisar el recorrido interior que diferencia ambas tomas."],
+        ["Se añade televisión a otra habitación", "Explica cuántas salidas existen y si hay un tubo o recorrido de cable aprovechable. Una ampliación debe contemplar las tomas actuales y la nueva, para comprobar el funcionamiento del conjunto al terminar.", "Definir recorrido, reparto y puntos de prueba de la ampliación."]
+      ],
+      "preparation": ["Ubicación y alcance de la consulta", "Envía barrio, número de tomas y si buscas resolver una avería o instalar un punto adicional. Si la instalación pertenece a varios vecinos, concreta quién facilita las zonas comunes."],
+      "guide": ["Opciones para tomas y cableado de televisión", "/servicios/tomas-cableado-television/"],
+      "sources": [["Gobierno Vasco: barrios de Sopuerta", "https://www.euskadi.eus/sopuerta-conectando-barrios-promoviendo-la-movilidad-sostenible/web01-ejeduki/es/"]]
+    },
+    {
+      "code": "48022",
+      "name": "Karrantza Harana/Valle de Carranza",
+      "province": "Bizkaia",
+      "heading": "Recepción en Karrantza: concretar barrio y sistema instalado",
+      "intro": "En Karrantza Harana/Valle de Carranza, referencias como Concha o Ambasaguas ayudan a ubicar la consulta, pero necesitamos la dirección del inmueble para valorar el aviso. Conviene distinguir una instalación que nunca ha recibido bien de una que ha dejado de funcionar.",
+      "checks": [
+        ["La televisión funcionaba y ahora se pierde", "Indica cuándo comenzó y si coinciden cortes en todos los televisores. Saber qué cambió en la vivienda ayuda a decidir qué revisar primero: receptor, conexiones, distribución o recepción exterior.", "Contrastar el funcionamiento anterior con el síntoma actual."],
+        ["Se plantea una solución por satélite", "Aclara si quieres canales de una parabólica convencional o estudiar TDT por satélite por falta de cobertura terrestre. Son consultas diferentes y el equipo no se elige únicamente por el tamaño de la antena.", "Identificar los canales buscados y comprobar las condiciones de la solución solicitada."]
+      ],
+      "preparation": ["Información que evita una visita mal preparada", "Indica barrio, uso actual de TDT o satélite, número de receptores y acceso disponible a la instalación. La disponibilidad y el alcance del desplazamiento se concretan con esa ubicación."],
+      "guide": ["Cuándo estudiar TDT por satélite", "/servicios/tdt-por-satelite-hd/"],
+      "sources": [["Turismo Euskadi: Concha y Ambasaguas en Karrantza", "https://turismo.euskadi.eus/es/top-viajes/karrantza-a-pie-y-a-bocados/webtur00-exptop/es/"]]
+    },
+    {
+      "code": "48042",
+      "name": "Gordexola",
+      "province": "Bizkaia",
+      "heading": "En Gordexola, revisar el reparto antes de ampliar la instalación",
+      "intro": "Si la consulta en Gordexola es para una vivienda con varias plantas o más de un punto de televisión, explica dónde se ve bien y dónde falla. Ese plano sencillo de uso ayuda a preparar el trabajo mejor que pedir directamente una antena más grande.",
+      "checks": [
+        ["El fallo apareció al conectar otro televisor", "Anota qué repartidor o cable se añadió y qué tomas dejaron de funcionar. La comprobación debe incluir también la instalación que ya existía, no solo el nuevo punto.", "Comparar el reparto anterior y el ampliado."],
+        ["Se quiere poner vídeo en la entrada", "Indica si existe portero, cuántos monitores necesitas y si hay más de una puerta. Antes de escoger pantalla o placa se identifica el sistema y el recorrido entre acceso y vivienda.", "Delimitar qué elementos se conservan y qué funciones se incorporan."]
+      ],
+      "preparation": ["Preparar dos trabajos en el mismo inmueble", "Diferencia la avería de TV de la ampliación del acceso, si solicitas ambas. Facilita modelos visibles y número de puntos para que el presupuesto describa cada intervención."],
+      "guide": ["Planificar un videoportero compatible", "/servicios/videoporteros/"],
+      "sources": []
+    },
+    {
+      "code": "48037",
+      "name": "Galdames",
+      "province": "Bizkaia",
+      "heading": "Avería intermitente de televisión en Galdames: anotar cuándo ocurre",
+      "intro": "Para preparar una revisión en Galdames, distingue un corte permanente de uno que aparece solo en ciertas horas o después de un cambio en la instalación. La relación con lluvia o viento se comunica como observación, sin dar por confirmada la causa.",
+      "checks": [
+        ["El fallo va y viene", "Guarda los nombres de los canales y la franja en la que se corta la imagen. Si otro televisor permanece estable, anótalo también; esa comparación ayuda a elegir los puntos de medición.", "Intentar reproducir el síntoma y comparar las tomas afectadas."],
+        ["Se observa un cable exterior deteriorado", "Puedes describir lo que se ve desde una zona accesible, sin subir a cubierta. Comenta si el cable ya estaba así antes del fallo o si se ha movido recientemente algún soporte.", "Valorar el tramo exterior y sus conexiones junto con la recepción."]
+      ],
+      "preparation": ["Datos que conviene conservar", "Envía dirección, horario del corte y si ocurre en una toma o en toda la casa. Una fotografía tomada desde un lugar seguro puede orientar sobre el acceso y el material visible."],
+      "guide": ["Preparar una revisión de antenas", "/servicios/mantenimiento-antenas-comunidades/"],
+      "sources": []
+    },
+    {
+      "code": "48008",
+      "name": "Artzentales",
+      "province": "Bizkaia",
+      "heading": "Primera instalación o recuperación de señal en Artzentales",
+      "intro": "Cuando se prepara una vivienda en Artzentales, interesa saber si ya existe una instalación de televisión operativa o si hay que empezar desde la recepción exterior. Indica la ubicación concreta y los puntos donde quieres utilizar la TV.",
+      "checks": [
+        ["Hay antena, pero se desconoce su estado", "Explica si algún receptor llega a sintonizar canales y si están identificadas las tomas. Conservar una instalación existente depende de su comprobación, no solo de que la antena parezca completa desde fuera.", "Separar elementos aprovechables de los que requieren revisión."],
+        ["La consulta incluye internet por satélite", "Distingue el montaje del terminal de internet de la instalación para televisión. Facilita modelo del equipo y dónde se necesita conexión dentro de la vivienda; cada sistema tiene su propio cableado y puesta en marcha.", "Definir montaje, paso de cable y conexión interior por separado."]
+      ],
+      "preparation": ["Antes de elegir equipos", "Indica si buscas TV, internet o ambas cosas, cuántos puntos necesitas y qué equipo ya tienes. La propuesta debe concretar qué se instala y cómo se comprueba su funcionamiento."],
+      "guide": ["Preparar el montaje de Starlink", "/servicios/montaje-antenas-starlink/"],
+      "sources": []
+    },
+    {
+      "code": "48087",
+      "name": "Trucios-Turtzioz",
+      "province": "Bizkaia",
+      "heading": "TDT y parabólica en Trucios-Turtzioz: identificar qué señal falta",
+      "intro": "Si en una vivienda de Trucios-Turtzioz hay televisión terrestre y satélite, describe cuál ha dejado de funcionar y qué aparato utilizas. La toma puede compartir elementos de distribución, pero los equipos de recepción y sus ajustes se revisan de forma diferenciada.",
+      "checks": [
+        ["La TDT funciona y la parabólica no", "Anota si el receptor de satélite muestra ausencia de señal, canales codificados o una lista vacía. Esos mensajes ayudan a distinguir el acceso al contenido de una posible avería de recepción.", "Comprobar receptor, conexión y señal de la parabólica según el síntoma."],
+        ["Un segundo receptor cambia el funcionamiento", "Indica cuántos receptores están conectados y si el problema aparece al encender uno de ellos. No modifiques a la vez alimentación, cables y ajustes: conviene conservar una comparación clara.", "Identificar el sistema de reparto y la compatibilidad entre salidas."]
+      ],
+      "preparation": ["Referencia del receptor y canales buscados", "Facilita el modelo visible y ejemplos de canales que antes se recibían. Para instalar una parabólica nueva, concreta primero qué servicio o emisiones necesitas."],
+      "guide": ["Revisar una antena parabólica", "/servicios/antenas-parabolicas/"],
+      "sources": []
+    },
+    {
+      "code": "48051",
+      "name": "Lanestosa",
+      "province": "Bizkaia",
+      "heading": "Televisión por plantas y tomas de vivienda en Lanestosa",
+      "intro": "Si el aviso en Lanestosa corresponde a una casa con puntos de TV en distintas plantas, localiza primero dónde está la diferencia: misma cadena, mismo receptor y tomas diferentes. Esa comparación permite preparar una revisión del recorrido interior.",
+      "checks": [
+        ["La toma más alejada pierde canales", "Indica cuántas derivaciones hay entre la entrada y esa habitación, si lo sabes, y si el fallo ya existía antes de añadir televisores. No hace falta abrir tomas ni cajas para pedir la revisión.", "Contrastar la señal disponible al principio y al final del recorrido."],
+        ["Se reforma una habitación", "Si quieres mover una toma, explica el emplazamiento previsto y si la obra deja accesible un recorrido de cable. Conviene definir la televisión y las conexiones de red como trabajos distintos.", "Acordar ubicación, recorrido y prueba de la nueva salida."]
+      ],
+      "preparation": ["Un esquema sencillo de la vivienda", "Indica plantas, puntos de TV y toma que funciona. Si la antena es compartida, añade esa circunstancia para no confundir una modificación particular con un trabajo en la instalación común."],
+      "guide": ["Tomas de televisión y cableado", "/servicios/tomas-cableado-television/"],
+      "sources": []
+    },
+    {
+      "code": "48074",
+      "name": "Urduña/Orduña",
+      "province": "Bizkaia",
+      "heading": "Qué sistema de televisión falla en Urduña/Orduña",
+      "intro": "En una consulta desde Urduña/Orduña, identifica si el canal se ve por antena, por un decodificador de operador o por una aplicación. El mensaje «sin señal» puede aparecer en equipos distintos y no identifica por sí solo una avería de antena.",
+      "checks": [
+        ["Falla el decodificador, pero la TV recibe TDT", "Comprueba qué entrada está seleccionada y si el menú del aparato se ve. Si el problema solo afecta al servicio del operador, conserva el mensaje exacto para orientar la consulta al equipo correspondiente.", "Separar la conexión entre aparatos de la recepción terrestre."],
+        ["Faltan canales en varias viviendas", "Pregunta qué cadenas han desaparecido y si todos utilizan la antena común. Una app que funciona por internet no confirma que la señal de esa antena llegue correctamente.", "Comparar el mismo servicio por la misma vía de recepción."]
+      ],
+      "preparation": ["El mensaje y la entrada seleccionada", "Envía modelo de televisor o receptor, canal afectado y si se utiliza antena, HDMI o una aplicación. Si el fallo es comunitario, indica persona de contacto y acceso disponible."],
+      "guide": ["Diagnóstico de antenas TDT", "/servicios/reparacion-antenas-tdt/"],
+      "sources": []
+    },
+    {
+      "code": "48094",
+      "name": "Igorre",
+      "province": "Bizkaia",
+      "heading": "Delimitar una avería de TV o portero en Igorre",
+      "intro": "Para una vivienda o un local en Igorre, concreta si el servicio depende de una instalación propia o de los elementos comunes del edificio. Esa diferencia determina qué accesos habrá que coordinar y qué puntos pueden compararse durante la revisión.",
+      "checks": [
+        ["Solo falla el televisor del local", "Comenta si la señal procede de la antena comunitaria y si existen otras tomas que funcionen. Si se añadió un alargador o se movió el equipo, guarda ese dato antes de solicitar cambios en la antena general.", "Revisar primero el recorrido que sirve al punto afectado."],
+        ["El portero llama pero no permite abrir", "Indica si el fallo ocurre desde todos los terminales y si la puerta abre normalmente con su llave. Una avería de comunicación y una dificultad de apertura necesitan comprobaciones diferentes.", "Separar la orden eléctrica de apertura del comportamiento de la puerta."]
+      ],
+      "preparation": ["Coordinar acceso particular y común", "Facilita portal, terminal afectado y autorización de acceso a los elementos que haya que revisar. Para un recambio, una referencia visible resulta más útil que indicar solo el color o la marca."],
+      "guide": ["Reparación de porteros automáticos", "/servicios/porteros-automaticos/"],
+      "sources": []
+    },
+    {
+      "code": "48077",
+      "name": "Plentzia",
+      "province": "Bizkaia",
+      "heading": "Volver a utilizar la televisión de una vivienda en Plentzia",
+      "intro": "Si has estado un tiempo sin usar la vivienda de Plentzia, distingue si el televisor conserva los canales pero no los recibe, o si se ha cambiado de equipo. Anotar cuándo se vio correctamente por última vez ayuda a preparar la revisión.",
+      "checks": [
+        ["La lista es antigua, pero algunas cadenas funcionan", "Consulta los cambios de sintonización y comprueba la lista antes de dar por averiada la instalación. Si ya había cortes, anota qué cadenas fallaban: actualizar canales y reparar una recepción inestable son tareas distintas.", "Separar una lista desactualizada de una pérdida de señal."],
+        ["Se sustituyó el televisor", "Guarda el modelo del nuevo equipo y explica si el anterior funcionaba en la misma toma. También importa distinguir el cable de antena de los dispositivos conectados por HDMI.", "Comparar configuración y conexión antes de modificar la instalación común."]
+      ],
+      "preparation": ["Preparar una visita con la vivienda accesible", "Concreta cuándo puede probarse el televisor, si hay otra toma disponible y quién coordina la comunidad. Facilita síntomas actuales, no solo la fecha en la que dejó de utilizarse la vivienda."],
+      "guide": ["Qué comprobar antes de cambiar la antena", "/servicios/reparacion-antenas-tdt/"],
+      "sources": []
+    },
+    {
+      "code": "48012",
+      "name": "Bakio",
+      "province": "Bizkaia",
+      "heading": "Revisión de elementos exteriores y señal en Bakio",
+      "intro": "Si el aviso de Bakio incluye una antena o un cable exterior aparentemente deteriorados, conviene acompañar esa observación con el síntoma de recepción. El aspecto del soporte y la calidad que llega al televisor son comprobaciones relacionadas, pero diferentes.",
+      "checks": [
+        ["Se ha movido el conjunto exterior", "Indica cuándo lo advertiste y si desde entonces se pierden todos los canales o solo algunos. Puedes enviar una foto desde una zona accesible; la comprobación de fijaciones y conexiones requiere acceso adecuado.", "Valorar soporte y recorrido exterior junto con la recepción medida."],
+        ["Hay imagen, pero aparecen bloques", "Anota si sucede en varias tomas y a qué horas. Subir la ganancia sin comprobar la señal no permite identificar por qué se interrumpe la imagen.", "Comparar recepción y distribución antes de decidir el material."]
+      ],
+      "preparation": ["Información sobre el acceso", "Aclara si es antena individual o colectiva y dónde se encuentra. Antes de la visita se concretan acceso, disponibilidad y alcance de la revisión, además del síntoma observado."],
+      "guide": ["Mantenimiento y estado de la antena", "/servicios/mantenimiento-antenas-comunidades/"],
+      "sources": []
+    },
+    {
+      "code": "48068",
+      "name": "Mundaka",
+      "province": "Bizkaia",
+      "heading": "Organizar una revisión de antena compartida en Mundaka",
+      "intro": "Para un aviso comunitario en Mundaka, reúne primero las coincidencias: qué canales faltan, en qué viviendas y desde cuándo. Una relación breve de síntomas resulta más útil que encargar varios cambios de televisor sin comparar la instalación común.",
+      "checks": [
+        ["Una vivienda falla y las demás no", "Compara la misma cadena con otro vecino y anota si el problema afecta a todas las tomas de tu casa. Esa diferencia orienta la revisión del tramo particular frente al común.", "Elegir puntos de comparación dentro y fuera de la vivienda."],
+        ["La avería coincide en varios pisos", "Coordina quién puede facilitar la cabecera y alguna toma de prueba. No es necesario que los vecinos accedan al tejado ni que cambien ajustes de la central para preparar el aviso.", "Comprobar elementos compartidos y verificar después en viviendas."]
+      ],
+      "preparation": ["Una persona para coordinar la revisión", "Indica portal, número aproximado de viviendas afectadas y horarios de acceso. Para el presupuesto, diferencia diagnóstico, materiales propuestos y comprobaciones finales."],
+      "guide": ["Revisión de amplificación y reparto", "/servicios/amplificadores-antena/"],
+      "sources": []
+    },
+    {
+      "code": "20034",
+      "name": "Eskoriatza",
+      "province": "Gipuzkoa",
+      "heading": "Pérdida parcial de canales en una comunidad de Eskoriatza",
+      "intro": "Si en Eskoriatza solo desaparece un grupo de cadenas, conserva sus nombres y comprueba si coinciden en otros televisores del edificio. Esa relación permite preparar una revisión más precisa que describir el aviso únicamente como «la antena no funciona».",
+      "checks": [
+        ["Hay canales estables y otros con cortes", "Anota también los que siguen funcionando. La diferencia ayuda a comparar señales y a revisar cómo se tratan en la instalación, sin dar por hecho que todos los canales utilizan el mismo recorrido técnico.", "Identificar el grupo afectado antes de ajustar la cabecera."],
+        ["Se cambió un amplificador recientemente", "Comunica la referencia visible y cuándo se hizo el cambio. No corrijas varios mandos por prueba y error: interesa conservar el estado en el que aparece el fallo para poder compararlo.", "Comprobar entrada, configuración y señal de salida."]
+      ],
+      "preparation": ["Listado de canales y viviendas", "Facilita dos ejemplos que funcionan y dos que fallan, si los hay. Añade si ETB está afectada y quién puede coordinar el acceso a los equipos comunes."],
+      "guide": ["Qué revisar en la amplificación", "/servicios/amplificadores-antena/"],
+      "sources": []
+    },
+    {
+      "code": "20027",
+      "name": "Zestoa",
+      "province": "Gipuzkoa",
+      "heading": "Preparar una revisión conjunta de televisión y acceso en Zestoa",
+      "intro": "Si una vivienda o comunidad de Zestoa necesita revisar la TV y el portero en la misma visita, describe ambas incidencias por separado. Compartir inmueble no significa que tengan la misma causa ni que requieran sustituir un conjunto completo.",
+      "checks": [
+        ["La recepción de televisión ha cambiado", "Indica qué cadenas se mantienen, cuántas tomas fallan y si otros vecinos observan lo mismo. Comunica cualquier cambio reciente de receptor o distribución.", "Delimitar si el aviso afecta a recepción, reparto o equipo interior."],
+        ["El acceso llama, pero la conversación falla", "Explica en qué sentido no se oye y si la apertura sigue funcionando. Si hay varias entradas, anota desde cuál sucede y si el problema se repite en todas las viviendas.", "Probar por separado llamada, audio y apertura en el acceso afectado."]
+      ],
+      "preparation": ["Dos incidencias, alcance claro", "Facilita los modelos visibles y la persona que puede permitir el acceso. El presupuesto debe distinguir la revisión de televisión y la intervención en el sistema de portero."],
+      "guide": ["Cómo describir una avería de portero", "/servicios/porteros-automaticos/"],
+      "sources": []
+    },
+    {
+      "code": "20065",
+      "name": "Soraluze-Placencia de las Armas",
+      "province": "Gipuzkoa",
+      "heading": "Videoportero y entradas del edificio en Soraluze-Placencia de las Armas",
+      "intro": "Para revisar un videoportero en Soraluze-Placencia de las Armas, identifica desde qué entrada se produce el fallo y qué funciones conserva el monitor. Si además solicitas antena, prepara una descripción independiente de los canales y tomas afectados.",
+      "checks": [
+        ["Una placa llama y otra no", "En un edificio con varios accesos, compara el comportamiento desde cada placa sin modificar la programación. Indica si sucede en un solo monitor o también en otros pisos.", "Delimitar la placa, el recorrido o el terminal que requiere revisión."],
+        ["Hay sonido, pero no imagen", "Describe si la pantalla queda negra, muestra una imagen degradada o solo falla a ciertas horas. Una foto del frontal y del modelo visible ayuda a identificar el sistema antes de plantear recambio.", "Comprobar señal de vídeo y compatibilidad del conjunto."]
+      ],
+      "preparation": ["Pruebas desde ambos extremos", "Coordina una persona en la entrada y otra en la vivienda para las comprobaciones. Concreta si buscas una reparación puntual o renovar todos los equipos de la comunidad."],
+      "guide": ["Reparación y renovación de videoporteros", "/servicios/videoporteros/"],
+      "sources": []
+    },
+    {
+      "code": "20043",
+      "name": "Idiazabal",
+      "province": "Gipuzkoa",
+      "heading": "Ampliar puntos de televisión o de acceso en Idiazabal",
+      "intro": "Si quieres añadir un televisor o un monitor de portero en Idiazabal, empieza por identificar el sistema existente y la ubicación del nuevo punto. Cada ampliación necesita comprobar capacidad, alimentación y recorrido, además del aparato que se desea colocar.",
+      "checks": [
+        ["Una nueva toma de televisión", "Indica qué salidas se utilizan actualmente y si el cable puede seguir un recorrido accesible. La revisión debe comprobar también que las tomas anteriores mantienen su funcionamiento después de ampliar.", "Definir el reparto y la prueba de todas las salidas incluidas."],
+        ["Un segundo monitor o telefonillo", "Facilita la referencia del terminal y de la placa si es visible. No todos los sistemas aceptan el mismo número de equipos ni cualquier monitor de la misma marca.", "Confirmar compatibilidad antes de comprar el terminal."]
+      ],
+      "preparation": ["Ubicación y funciones deseadas", "Explica dónde se instalaría el equipo y qué función necesitas: solo llamada, vídeo, apertura o conexión al móvil. Diferencia lo imprescindible de las opciones adicionales para concretar el alcance."],
+      "guide": ["Qué identificar antes de ampliar un videoportero", "/servicios/videoporteros/"],
+      "sources": []
+    },
+    {
+      "code": "20016",
+      "name": "Aia",
+      "province": "Gipuzkoa",
+      "heading": "Situar el punto de recepción dentro de Aia",
+      "intro": "En una consulta de Aia, añade la dirección o una referencia como Andatza, Altzola, Laurgain o Urdaneta. Ubicar el inmueble ayuda a preparar la comprobación; no se toma la recepción de una vivienda de Orio como prueba de la señal disponible en la tuya.",
+      "checks": [
+        ["La instalación nunca ha dado una recepción estable", "Indica qué canales consigues ver y con qué equipo. La consulta de cobertura orienta, pero la elección de recepción terrestre o una alternativa requiere estudiar el punto concreto y el servicio solicitado.", "Contrastar cobertura prevista con la instalación y el resultado medido."],
+        ["Se conserva una antena de una instalación anterior", "Describe qué elementos siguen conectados y si alguna toma funciona. Antes de reutilizar el conjunto conviene identificar antena, alimentación y recorrido interior.", "Comprobar qué partes son aprovechables y qué debe adaptarse."]
+      ],
+      "preparation": ["Dirección y objetivo de la instalación", "Comunica barrio o caserío, canales buscados y número de televisores. Si se plantea satélite, distingue televisión de acceso a internet para preparar el equipo correspondiente."],
+      "guide": ["Alternativas cuando falta cobertura terrestre", "/servicios/tdt-por-satelite-hd/"],
+      "sources": [["Diputación de Gipuzkoa: barrios y callejero de Aia", "https://b5m.gipuzkoa.eus/web5000/es/directorio-geografico/municipio/aia"]]
+    },
+    {
+      "code": "20901",
+      "name": "Mendaro",
+      "province": "Gipuzkoa",
+      "heading": "Un televisor o toda la vivienda: primera comparación en Mendaro",
+      "intro": "Para un aviso de antena en Mendaro, compara primero el alcance del fallo. Si otro televisor funciona con la misma cadena, ese dato permite preparar una revisión del punto afectado antes de decidir intervenir en los equipos comunes.",
+      "checks": [
+        ["El fallo acompaña al receptor", "Si puedes conectarlo desde el interior a una toma conocida, explica qué ocurre allí. No es necesario desmontar mecanismos; basta una comparación segura con conexiones accesibles.", "Separar receptor y latiguillo del recorrido fijo de la instalación."],
+        ["El fallo se queda en una habitación", "Anota si empezó tras una obra, un cambio de mueble o una conexión añadida. Identificar lo que cambió ayuda a preparar la inspección de esa salida.", "Revisar toma, conector y tramo que sirve a la habitación."]
+      ],
+      "preparation": ["Qué prueba se ha podido hacer", "Indica modelo, toma probada y resultado, sin repetir cambios de configuración si no tienes un punto de comparación. Añade si algún vecino presenta el mismo problema."],
+      "guide": ["Revisión de tomas y cableado", "/servicios/tomas-cableado-television/"],
+      "sources": []
+    },
+    {
+      "code": "01004",
+      "name": "Artziniega",
+      "province": "Álava",
+      "heading": "Conservar o renovar una instalación en Artziniega",
+      "intro": "Si estás preparando una reforma en Artziniega, identifica qué servicios quieres conservar antes de retirar equipos: antena, tomas de televisión, portero y posible parabólica. Un cambio de estancia o de acceso puede requerir adaptar recorridos sin renovar todo el sistema.",
+      "checks": [
+        ["Mover el punto de televisión", "Indica dónde queda la toma actual y dónde irá el receptor. Si el paso de cable va a quedar oculto después de la obra, conviene definirlo y comprobarlo mientras sigue accesible.", "Acordar recorrido y prueba de recepción de la nueva ubicación."],
+        ["Cambiar un telefonillo antiguo", "Una foto exterior y su referencia ayudan a identificar el sistema. No se elige un recambio únicamente por el número de botones o por su apariencia.", "Comprobar compatibilidad y las funciones que se conservarán."]
+      ],
+      "preparation": ["Coordinar la intervención con la reforma", "Explica en qué fase está la obra, qué recorridos permanecen accesibles y si interviene una comunidad. Separa la reparación necesaria de las ampliaciones que quieras aprovechar para hacer."],
+      "guide": ["Sustitución compatible de porteros", "/servicios/porteros-automaticos/"],
+      "sources": []
+    },
+    {
+      "code": "01063",
+      "name": "Zuia",
+      "province": "Álava",
+      "heading": "En Zuia, indicar el núcleo y el tipo de instalación",
+      "intro": "Para preparar una visita en Zuia, concreta si el inmueble está en Murgia, Bitoriano, Sarria u otro núcleo del municipio. La ubicación y el acceso ayudan a organizar el aviso; la cobertura de TV se comprueba para el punto de recepción solicitado.",
+      "checks": [
+        ["Televisión en varias zonas de la vivienda", "Indica dónde llega correctamente la señal y qué recorridos se quieren ampliar. Si existe una antena individual, comenta también dónde están su fuente y los repartidores, cuando sean accesibles.", "Relacionar el punto de entrada con las tomas que necesitan revisión."],
+        ["La consulta es de cobertura wifi", "Aclara si el acceso a internet funciona por cable y el problema aparece solo al desplazarte dentro de la casa. Una avería de TDT y una zona con mala wifi requieren equipos y pruebas distintos.", "Separar conexión de acceso y distribución de la red interior."]
+      ],
+      "preparation": ["Precisar el servicio que necesitas", "Envía núcleo, dirección y si solicitas televisión, red interior o ambos trabajos. Para ampliar conectividad, añade modelo de router y ubicación de las estancias donde falla."],
+      "guide": ["Revisar cobertura y conexión interior", "/servicios/cobertura-movil-4g-5g/"],
+      "sources": [["Cuadrilla de Gorbeialdea: núcleos de Zuia", "https://www.gorbeialdekokuadrilla.eus/es/cuadrilla/presentacion/municipios/zuia/zuia-informacion-general.html"]]
+    },
+    {
+      "code": "01058",
+      "name": "Legutio",
+      "province": "Álava",
+      "heading": "Antena y red interior para una vivienda o local en Legutio",
+      "intro": "Si la consulta en Legutio reúne televisión y conectividad, explica qué falla en cada servicio. Que una aplicación se vea correctamente no confirma la recepción de la antena, y recuperar la TDT no corrige por sí mismo la cobertura wifi del inmueble.",
+      "checks": [
+        ["La TV de antena falla, pero las aplicaciones funcionan", "Conserva los nombres de las cadenas afectadas y la toma utilizada. La comprobación se centra en la vía de recepción terrestre y el receptor que la utiliza.", "Revisar señal y distribución de TV sin confundirlas con internet."],
+        ["La conexión empeora lejos del router", "Indica si una prueba junto al router o por cable funciona mejor, y qué estancias necesitan servicio. Antes de añadir equipos conviene describir el recorrido y las necesidades reales.", "Definir puntos de red o acceso inalámbrico según la instalación."]
+      ],
+      "preparation": ["Un objetivo para cada servicio", "Comunica número de pantallas, puntos de red y equipo existente. Si se trata de un local, añade horarios en los que se pueda hacer la comprobación sin interrumpir su uso habitual."],
+      "guide": ["Diagnóstico de cobertura móvil y red", "/servicios/cobertura-movil-4g-5g/"],
+      "sources": []
+    },
+    {
+      "code": "01003",
+      "name": "Aramaio",
+      "province": "Álava",
+      "heading": "Preparar una instalación individual de televisión en Aramaio",
+      "intro": "En una consulta desde Aramaio, facilita la ubicación concreta y explica si se revisa una instalación existente o se equipa una vivienda por primera vez. Para decidir el sistema hace falta conocer la recepción y los canales buscados, además de dónde irá la antena.",
+      "checks": [
+        ["Se busca mejorar una recepción que siempre fue irregular", "Anota qué cadenas se reciben y si la situación cambia al utilizar otra toma. La orientación, los equipos y la distribución se contrastan antes de escoger una alternativa.", "Comprobar el punto de recepción y distinguir limitación de cobertura de avería."],
+        ["Hay una parabólica que se quiere reutilizar", "Identifica el receptor y los servicios que se utilizaban, si los conoces. Una antena existente no garantiza por sí sola acceso a cualquier oferta de televisión ni sustituye comprobar sus componentes.", "Relacionar la instalación disponible con el servicio que se solicita."]
+      ],
+      "preparation": ["Canales, equipos y acceso", "Envía dirección o referencia de ubicación, modelo del receptor y número de tomas. Si preguntas por TDT por satélite, indica que ese es el objetivo para revisar las condiciones específicas."],
+      "guide": ["Comprobar la opción de TDT por satélite", "/servicios/tdt-por-satelite-hd/"],
+      "sources": []
+    },
+    {
+      "code": "01031",
+      "name": "Laguardia",
+      "province": "Álava",
+      "heading": "Revisar televisión y accesos sin perder de vista el edificio en Laguardia",
+      "intro": "Para una vivienda, comunidad o negocio de Laguardia, describe el acceso disponible a la instalación y los puntos que se pueden probar. Si el trabajo exige cambiar recorridos o fijaciones exteriores, debe concretarse el alcance antes de elegir el equipo.",
+      "checks": [
+        ["Se quiere renovar la antena exterior", "Explica qué problema se intenta resolver y qué elementos existen. El presupuesto debe diferenciar soporte, recepción, cableado y puesta en servicio, en lugar de limitarse al modelo de antena.", "Comprobar acceso y montaje junto con la necesidad técnica."],
+        ["Se reforma el acceso del edificio", "Indica cuántas viviendas o terminales utiliza la placa y si se desean nuevas funciones. Reutilizar cableado o monitores depende del sistema identificado y de su comprobación.", "Definir una renovación compatible con los elementos que se conservan."]
+      ],
+      "preparation": ["Acordar pruebas y autorización del trabajo", "Facilita dirección, interlocutor del inmueble y objetivo de la intervención. Si afecta a elementos comunes, coordina antes el acceso y las pruebas desde las viviendas necesarias."],
+      "guide": ["Renovación de sistemas de videoportero", "/servicios/videoporteros/"],
+      "sources": []
+    },
+    {
+      "code": "01055",
+      "name": "Valdegovía/Gaubea",
+      "province": "Álava",
+      "heading": "Identificar el concejo y el servicio en Valdegovía/Gaubea",
+      "intro": "En Valdegovía/Gaubea, indica el concejo además del municipio: Villanueva, Espejo o el que corresponda a tu vivienda. Esa precisión permite organizar el desplazamiento y estudiar la consulta para el inmueble concreto, sin extender a todo el valle una observación de recepción.",
+      "checks": [
+        ["Se recupera una vivienda con instalación antigua", "Explica qué equipos quedan y cuándo se utilizaron por última vez. Una comprobación inicial debe distinguir los elementos reutilizables de los que no permiten el servicio solicitado.", "Identificar recepción, alimentación y recorrido hasta las tomas."],
+        ["Se solicita televisión e internet por satélite", "Concreta ambos objetivos por separado. La parabólica de televisión y un terminal de acceso a internet requieren su propia instalación, conexión y comprobación de funcionamiento.", "Preparar cada sistema según el equipo y el servicio elegidos."]
+      ],
+      "preparation": ["Ubicación y equipos disponibles", "Facilita concejo, dirección, acceso y referencias visibles de los aparatos. La propuesta debe detallar qué incluye el montaje y qué condiciones o altas corresponden al proveedor del servicio."],
+      "guide": ["Montaje y conexión de Starlink", "/servicios/montaje-antenas-starlink/"],
+      "sources": [["Ayuntamiento de Valdegovía: juntas administrativas", "https://www.valdegovia.eus/es/juntas-administrativas/villanueva"], ["Ayuntamiento de Valdegovía: Espejo", "https://valdegovia.eus/es/juntas-administrativas/espejo"]]
+    },
+    {
+      "code": "01017",
+      "name": "Campezo/Kanpezu",
+      "province": "Álava",
+      "heading": "Preparar una consulta de televisión desde Campezo/Kanpezu",
+      "intro": "Para una visita a Campezo/Kanpezu, facilita la localidad y dirección del inmueble, además del nombre del municipio. Distingue si necesitas recuperar una señal que se recibía, ampliar las tomas o estudiar una instalación nueva: cada objetivo requiere preparar materiales y pruebas diferentes.",
+      "checks": [
+        ["La vivienda recibe unos canales y otros no", "Envía ejemplos de los que funcionan y de los que faltan, indicando si el problema aparece en todas las tomas. No deduzcas la frecuencia local del número que ocupa la cadena en el mando.", "Identificar la recepción correspondiente a la ubicación y al servicio."],
+        ["La revisión debe incluir portero o videoportero", "Anota qué función falla y cuántos terminales están afectados. Si el acceso se usa desde varias viviendas, prepara una persona que pueda ayudar a comprobar llamada y apertura.", "Diferenciar el fallo común del que corresponde a un terminal."]
+      ],
+      "preparation": ["Concretar el alcance antes del desplazamiento", "Incluye la ubicación exacta, equipos visibles y persona que facilita el acceso. Se acuerdan disponibilidad, desplazamiento, diagnóstico y posibles materiales según el trabajo solicitado."],
+      "guide": ["Preparar el diagnóstico de la TDT", "/servicios/reparacion-antenas-tdt/"],
+      "sources": []
+    }
+  ]
+}

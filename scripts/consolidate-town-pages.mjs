@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {DOMAIN,publicPath,fileForPublicPath,escapeHtml as esc,decodeHtml} from './public-seo.mjs';
-import {selectCoverage,policy,distanceKm,COVERAGE_CSS,COVERAGE_RELEASE} from './municipal-coverage.mjs';
+import {selectCoverage,policy,distanceKm,COVERAGE_CSS,COVERAGE_RELEASE,GETARIA_CANONICAL_PATH,GETARIA_ALIASES} from './municipal-coverage.mjs';
 import {NEARBY_TOWN_LINKS_CSS} from './nearby-town-links.mjs';
 import {displayPlaceName} from './seo-metadata.mjs';
 const root=path.resolve(process.env.PRODUCTION_ROOT||'dist');
@@ -69,6 +69,28 @@ function updateHomeCounts(html){
   .replace(/<p>[\s\S]*?<\/p>/,`<p>Consulta ${towns.length.toLocaleString('es-ES')} municipios de ${provinces} provincias. Las localidades con página propia reúnen también la atención a municipios cercanos.</p>`);
  return html.replace(block,()=>updated);
 }
+function updateHomeBasqueCoverage(html){
+ const block=html.match(/<section\b[^>]*\bid="zonas"[^>]*>[\s\S]*?<\/section>/)?.[0];
+ if(!block)throw new Error('Falta la sección de provincias de portada');
+ const choices=[
+  {name:'Bizkaia',route:'/antenas-bizkaia/',codes:['48096','48057','48086','48022']},
+  {name:'Gipuzkoa',route:'/antenas-guipuzcoa/',codes:['20069','20039','20079','20081']},
+  {name:'Álava',route:'/antenas-alava/',codes:['01059','01036','01002','01004']}
+ ];
+ const basqueRoutes=new Set(choices.map(p=>p.route));
+ const others=manifest.documents.filter(d=>d.type==='province'&&!basqueRoutes.has(d.path));
+ const region=`<div class="basque-coverage" id="pais-vasco" aria-labelledby="pais-vasco-title"><h3 id="pais-vasco-title">País Vasco: Bizkaia, Gipuzkoa y Álava</h3><p>Consulta la instalación o avería en tu municipio. Las fichas reúnen indicaciones para viviendas y comunidades, y los índices provinciales permiten encontrar el resto de localidades.</p><div class="featured-province-grid basque-coverage-grid">${choices.map(province=>`<article class="featured-province"><h4>${esc(province.name)}</h4><nav class="featured-towns" aria-label="Localidades destacadas de ${esc(province.name)}">${province.codes.map(code=>{
+  const town=retained.find(t=>t.code===code);
+  if(!town)throw new Error('Falta una ficha destacada del País Vasco: '+code);
+  return `<a href="${esc(town.publicPath)}">${esc(displayPlaceName(town.name))}</a>`;
+ }).join('')}</nav><a href="${province.route}">Ver todos los municipios de ${esc(province.name)} →</a></article>`).join('')}</div></div>`;
+ const remaining=`<h3 class="other-provinces-title">Otras provincias</h3><div class="province-grid">${others.map(province=>{
+  const name=towns.find(t=>t.publicPath.startsWith(province.path))?.province;
+  if(!name)throw new Error('Provincia sin municipios: '+province.path);
+  return `<a class="province-card" href="${esc(province.path)}"><strong>Antenista en ${esc(displayPlaceName(name))}</strong><span>Antenas · Porteros automáticos · Videoporteros</span><span class="arrow" aria-hidden="true">→</span></a>`;
+ }).join('')}</div>`;
+ return html.replace(block,()=>`<section class="section soft" id="zonas"><div class="wrap"><span class="eyebrow">Servicio por pueblos</span><h2>Encuentra un antenista en tu pueblo</h2><p class="section-lead">Elige tu provincia y localidad para consultar antenas TDT, parabólicas, porteros o videoporteros. Indica la dirección de la instalación para concretar disponibilidad, desplazamiento y condiciones de atención.</p>${region}${remaining}</div></section>`);
+}
 const docs=manifest.documents.filter(d=>d.type!=='town'||selected.has(d.path));
 for(const doc of docs){
  const file=path.join(root,doc.file);let html=fs.readFileSync(file,'utf8');
@@ -90,11 +112,13 @@ for(const doc of docs){
   html=html.replace(/(<section\b[^>]*\bid="contacto"[^>]*>)/,coverageSection(town)+'$1');
   if(assignments.some(a=>a.hub.code===town.code&&a.town.code!==town.code)&&!html.includes('id="cobertura-cercana"'))throw new Error('No se pudo insertar cobertura en '+town.name);
  }
- if(doc.path==='/')html=updateHomeCounts(html);
+ if(doc.path==='/')html=updateHomeBasqueCoverage(updateHomeCounts(html));
  fs.writeFileSync(file,html);
 }
 // Resolve every historical alias directly to the retained document, including .html aliases.
 const redirects=new Map(manifest.redirects.map(r=>[r.from,destination(r.to,'/',false)]));
+if(!selected.has(GETARIA_CANONICAL_PATH))throw new Error('La ficha recuperada de Getaria no está retenida');
+for(const alias of GETARIA_ALIASES)redirects.set(alias,GETARIA_CANONICAL_PATH);
 for(const a of retired)redirects.set(a.town.publicPath,a.hub.publicPath);
 for(const a of retired)fs.rmSync(path.join(root,a.town.path.slice(1)));
 manifest.documents=docs;manifest.towns=retained.length;manifest.coveredMunicipalities=towns.length;

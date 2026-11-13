@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {spawn} from 'node:child_process';
 import {chromium} from 'playwright';
+import {TDT_GUIDE_ROUTE,TDT_GUIDE_RELEASE} from '../scripts/tdt-update-guide.mjs';
 
 const server=spawn(process.execPath,['scripts/serve.mjs'],{env:{...process.env,PORT:'4178'},stdio:'pipe'});
 const browser=await chromium.launch();
@@ -10,13 +11,13 @@ fs.mkdirSync('qa/content-flow',{recursive:true});
 try {
   for(let i=0;i<50;i++){try{if((await fetch(base)).ok)break;}catch{}await new Promise(r=>setTimeout(r,100));}
   const manifest=JSON.parse(fs.readFileSync('dist/public-seo-manifest.json'));
-  const cases=[['home','/'],['province','/antenas-burgos/'],['town','/antenas-burgos/lerma'],['guide','/servicios/reparacion-antenas-tdt/'],['directory','/servicios/']];
+  const cases=[['home','/'],['province','/antenas-burgos/'],['town','/antenas-burgos/lerma'],['guide','/servicios/reparacion-antenas-tdt/'],['directory','/servicios/'],['getaria','/antenas-guipuzcoa/getaria'],['lekeitio','/antenas-bizkaia/lekeitio'],['tdt-guide',TDT_GUIDE_ROUTE]];
   for(const [name,url] of cases)for(const width of [320,390,768,1440]) {
     const page=await browser.newPage({viewport:{width,height:900}});
     const doc=manifest.documents.find(d=>d.path===url);assert.ok(doc,url);
     const response=await page.goto(base+'/'+doc.file,{waitUntil:'networkidle'});assert.equal(response.status(),200);
     const privacy=page.getByRole('button',{name:'Entendido',exact:true});if(await privacy.isVisible())await privacy.click();
-    assert.equal(await page.locator('main[data-zallatel-flow="20261023"]').count(),1);
+    assert.equal(await page.locator(name==='tdt-guide'?`main[data-tdt-guide-release="${TDT_GUIDE_RELEASE}"]`:'main[data-zallatel-flow="20261023"]').count(),1);
     const problems=await page.evaluate(()=>{
       const errors=[];
       if(document.documentElement.scrollWidth>innerWidth+2)errors.push('horizontal overflow');
@@ -30,8 +31,19 @@ try {
       }
       return errors;
     });assert.deepEqual(problems,[],`${name} ${width}`);
-    if(['home','province','town'].includes(name))assert.equal(await page.locator('.zallatel-service-family .service-card').count(),10);
-    if(name==='town')assert.equal(await page.locator('.town-service-detail').count(),3);
+    if(['home','province','town'].includes(doc.type))assert.equal(await page.locator('.zallatel-service-family .service-card').count(),10);
+    if(doc.type==='town')assert.equal(await page.locator('.town-service-detail').count(),3);
+    if(name!=='tdt-guide'){
+      assert.equal(await page.locator('#guia-septima-uhd').count(),1);
+      assert.equal(await page.locator(`#guia-septima-uhd a[href="${TDT_GUIDE_ROUTE}"]`).count(),1);
+    }
+    if(['getaria','lekeitio'].includes(name))assert.equal(await page.locator('[data-local-town-guide]').count(),1);
+    if(name==='tdt-guide'){
+      assert.equal(await page.getByRole('heading',{level:1}).count(),1);
+      await page.locator('nav.tdt-guide-index a[href="#compatibilidad-uhd"]').click();
+      assert.equal(new URL(page.url()).hash,'#compatibilidad-uhd');
+      assert.equal(await page.locator('#compatibilidad-uhd').count(),1);
+    }
     if(name==='province'){
       await page.locator('#town-search').fill('Lerma');
       await page.waitForTimeout(150);
@@ -43,10 +55,10 @@ try {
       await page.keyboard.press('Escape');
       assert.equal(await page.locator('#gallery-lightbox').evaluate(n=>n.open),false);
     }
-    const target=page.locator('.zallatel-family-heading,.zallatel-directory-family>h2,.service-layout h2').first();
+    const target=page.locator(name==='tdt-guide'?'.tdt-guide-table':'.zallatel-family-heading,.zallatel-directory-family>h2,.service-layout h2').first();
     await target.scrollIntoViewIfNeeded();
     await page.screenshot({path:`qa/content-flow/${name}-${width}.png`});
     await page.close();
   }
-  console.log('CONTENT FLOW BROWSER OK: 5 page types × 4 viewports; complete services, anchors, search, gallery and no overflow.');
+  console.log('CONTENT FLOW BROWSER OK: 8 representative pages × 4 viewports; complete services, Getaria, Lekeitio, UHD guide, anchors, search, gallery and no overflow.');
 }finally{await browser.close();server.kill();}

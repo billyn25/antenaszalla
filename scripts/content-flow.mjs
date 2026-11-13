@@ -92,16 +92,16 @@ function protectedMarkup(html) {
 }
 
 export function organizeDocument(html,doc,town) {
-  if(doc.type==='blog'||html.includes(`data-zallatel-flow="${FLOW_RELEASE}"`))return html;
+  if(['blog','guide'].includes(doc.type)||html.includes(`data-zallatel-flow="${FLOW_RELEASE}"`))return html;
   const main=html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/);assert.ok(main,doc.path);
   const blocks=childBlocks(main[1]);
   const heroes=blocks.filter(n=>hasClass(n,'hero')||hasClass(n,'service-hero'));
   const items=blocks.map((node,index)=>({node,index,rank:500}));
   const ranks=doc.type==='home'
-    ? {'diagnostico-averias':20,zonas:30,servicios:40,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,'blog-de-antenas':75,galeria:80,'gallery-lightbox':81,experiencia:90,'pueblos-destacados':100,'antenas-zalla-enkarterri':110,preguntas:130,contacto:140}
+    ? {'diagnostico-averias':20,zonas:30,servicios:40,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,'blog-de-antenas':75,'guia-septima-uhd':76,galeria:80,'gallery-lightbox':81,experiencia:90,'pueblos-destacados':100,'antenas-zalla-enkarterri':110,preguntas:130,contacto:140}
     : doc.type==='province'
-      ? {localidades:20,'diagnostico-averias':30,servicios:40,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,galeria:80,'gallery-lightbox':81,experiencia:90,preguntas:130,contacto:140}
-      : {'servicios-en-tu-pueblo':10,'diagnostico-averias':20,'recepcion-tdt-local':30,servicios:40,'porteros-videoporteros':60,'cobertura-movil':70,'soluciones-satelite':80,'diagnostico-local':90,experiencia:100,zonas:110,'preparar-visita-local':120,preguntas:130,contacto:140};
+      ? {localidades:20,'diagnostico-averias':30,'guia-septima-uhd':35,servicios:40,'soluciones-satelite':50,'porteros-videoporteros':60,'cobertura-movil':70,galeria:80,'gallery-lightbox':81,experiencia:90,preguntas:130,contacto:140}
+      : {'servicios-en-tu-pueblo':10,'diagnostico-averias':20,'recepcion-tdt-local':30,'guia-septima-uhd':35,servicios:40,'porteros-videoporteros':60,'cobertura-movil':70,'soluciones-satelite':80,'diagnostico-local':90,experiencia:100,zonas:110,'preparar-visita-local':120,preguntas:130,contacto:140};
   for(const item of items) {
     let node=item.node;const id=idOf(node);
     if(hasClass(node,'breadcrumb'))item.rank=-10;

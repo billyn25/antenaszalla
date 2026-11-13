@@ -4,23 +4,30 @@ import {pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import guides from '../content/service-guides.json' with {type:'json'};
 import services from '../content/services.json' with {type:'json'};
+import localProfiles from '../content/local-town-guides.json' with {type:'json'};
 import {DOMAIN,PHONE,TEL,BRAND,escapeHtml as esc,publicPath,organizationSchema} from './public-seo.mjs';
 import {serviceSeoMetadata,serviceIndexSeoMetadata} from './seo-metadata.mjs';
 export {guides};
 export const guideRoute = g => `/servicios/${g.slug}/`;
-export const SERVICE_RELEASE = createHash('sha256').update(JSON.stringify(guides)).update(fs.readFileSync(new URL(import.meta.url))).update(fs.readFileSync(new URL('./zalla-problem-focus.mjs',import.meta.url))).digest('hex').slice(0,12);
+export const SERVICE_RELEASE = createHash('sha256').update(JSON.stringify(guides)).update(JSON.stringify(localProfiles.profiles.map(p=>({code:p.code,preferredServices:p.preferredServices||[]})))).update(fs.readFileSync(new URL(import.meta.url))).update(fs.readFileSync(new URL('./zalla-problem-focus.mjs',import.meta.url))).digest('hex').slice(0,12);
 const byId = new Map(guides.map(g=>[g.id,g]));
+for(const profile of localProfiles.profiles){
+  const preferred=profile.preferredServices||[];
+  if(new Set(preferred).size!==preferred.length||preferred.some(id=>!byId.has(id)))throw new Error('Servicios prioritarios inválidos en '+profile.name);
+}
 const wa = (g,town) => 'https://wa.me/34670042626?text='+encodeURIComponent(`Hola, necesito consultar ${g.label.toLowerCase()}${town?` en ${town.name}, ${town.province}`:''}. ¿Podéis indicarme disponibilidad y condiciones para revisar la instalación?`);
 const actions = (g,town) => `<div class="actions"><a class="btn call" href="tel:${TEL}">Llamar ${PHONE}</a><a class="btn wa" href="${esc(wa(g,town))}">Consultar por WhatsApp</a></div>`;
 const paragraphs = rows => rows.map(([heading,text])=>`<section><h2>${esc(heading)}</h2><p>${esc(text)}</p></section>`).join('');
 const schema = data => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;
 
 export function selectedGuidesForTown(town,count=3) {
-  return guides
+  const profile=localProfiles.profiles.find(p=>p.code===String(town.code||town.municipioId||'')||(p.name===town.name&&p.province===town.province));
+  const preferred=profile?.preferredServices||[];
+  const ordered=guides
     .map(g=>({g,score:createHash('sha256').update(`zallatel-town-services-v2|${town.province}|${town.name}|${g.id}`).digest('hex')}))
     .sort((a,b)=>a.score.localeCompare(b.score))
-    .slice(0,count)
     .map(x=>x.g);
+  return [...preferred.map(id=>byId.get(id)),...ordered.filter(g=>!preferred.includes(g.id))].slice(0,count);
 }
 
 export function enhanceServiceCards(html,town) {

@@ -15,6 +15,7 @@ for (const [before,after] of [
   ['/Antenas-Segovia/','/antenas-segovia/'],
   ['/Antenas-Burgos/aranda-de-duero.html','/antenas-burgos/aranda_duero'],
   ['/Antenas-Bizkaia/abanto-zierbena.html','/antenas-bizkaia/abanto-y-ciervana-abanto-zierbena'],
+  ['/guias/la-septima-tdt-uhd/index.html','/guias/la-septima-tdt-uhd/'],
   ['/index.htm','/'], ['/index.html','/'], ['/cookies.html','/cookies']
 ]) test(`public URL: ${before}`,()=>assert.equal(publicPath(before),after));
 

@@ -1,0 +1,46 @@
+{
+  "route": "/guias/la-septima-tdt-uhd/",
+  "title": "La Séptima y TDT UHD: cómo sintonizar | Antenas Zalla",
+  "description": "Cómo encontrar La Séptima y los canales UHD tras los cambios de noviembre de 2026. Resintonización, DVB-T2, HEVC y comprobaciones si falta señal.",
+  "heading": "La Séptima y TDT UHD: qué comprobar en tu televisor",
+  "reviewed": "2026-11-13",
+  "reviewedLabel": "13 de noviembre de 2026",
+  "sources": [
+    {
+      "id": "calendario",
+      "label": "BOE: calendario y distribución de canales de noviembre de 2026",
+      "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2026-16750",
+      "date": "2026-07-31"
+    },
+    {
+      "id": "cnmc",
+      "label": "CNMC: canales afectados y resintonización",
+      "url": "https://blog.cnmc.es/2026/11/03/resintoniza-tu-televisor-que-cambia-en-la-tdt-esta-semana/",
+      "date": "2026-11-03"
+    },
+    {
+      "id": "septima",
+      "label": "La Séptima: instrucciones de sintonización de la cadena",
+      "url": "https://laseptima.com/como-sintonizar-la-septima-encuentra-el-nuevo-canal-y-ponlo-en-el-7-de-tu-television/",
+      "date": "2026-11-03"
+    },
+    {
+      "id": "tecnologia",
+      "label": "BOE: Plan Técnico de la TDT, recepción DVB-T2 y vídeo HEVC",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2025-6004",
+      "date": "2025-03-26"
+    },
+    {
+      "id": "rtve",
+      "label": "RTVE: La 1 UHD, La 2 UHD y nueva etapa de la TDT",
+      "url": "https://www.rtve.es/rtve/20261005/rtve-prepara-nueva-etapa-tdt-2-ultra-alta-definicion-rne-accesible/17254282.shtml",
+      "date": "2026-10-05"
+    },
+    {
+      "id": "ministerio",
+      "label": "Ministerio: aviso de resintonización del 5 de noviembre",
+      "url": "https://digital.gob.es/comunicacion/notas-prensa/secretaria-estado-telecomunicaciones-e-infraestructuras-digitales/2026/11/a-partir-de-manana-es-necesario-sintonizar-el-televisor-para-dis",
+      "date": "2026-11-04"
+    }
+  ]
+}
