@@ -10,7 +10,7 @@ export function organizationSchema() {
   return {
     '@type':'Organization', '@id':DOMAIN+'/#organizacion',
     name:BRAND, alternateName:'Antenas Zallatel', url:DOMAIN+'/', telephone:TEL,
-    logo:{'@type':'ImageObject',url:DOMAIN+'/assets/logo-antenas-zalla.svg',width:512,height:160},
+    logo:{'@type':'ImageObject',url:DOMAIN+'/assets/logo-antenas-zalla.svg',width:480,height:160},
     address:{'@type':'PostalAddress',streetAddress:'Barrio El Baular s/n, C. Eroski',addressLocality:'Zalla',addressRegion:'Bizkaia',postalCode:'48860',addressCountry:'ES'}
   };
 }
