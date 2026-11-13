@@ -1,11 +1,12 @@
 import { SaxesParser } from 'saxes';
 import { satCesc, satCescCategories, mundoCategories, topicFor, newsMaxAge, textFromHtml, briefExcerpt, parseSatCesc, fetchSatCescPosts, fetchMundoPosts, selectNews, NEWS_REQUEST_TIMEOUT_MS } from '../../src/news-sources.mjs';
 import backup from './novedades-tdt-backup.json' with { type: 'json' };
+import { fetchSyndicatedNews } from '../lib/news-syndication.mjs';
 
 // Includes sequential RSS/REST attempts and optional article excerpts, below the
 // function's 60-second limit even when the legacy JSON endpoint calls directly.
 export const NEWS_COLLECTION_TIMEOUT_MS = 42000;
-const NEWS_COLLECTOR_VERSION = 'timeouts-diag-v1';
+const NEWS_COLLECTOR_VERSION = 'syndication-v1';
 const diagnosticNames = new Set(['Error', 'TypeError', 'SyntaxError', 'RangeError', 'AbortError', 'TimeoutError', 'AggregateError']);
 const diagnosticCauseCodes = new Set(['ENOTFOUND', 'EAI_AGAIN', 'ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'EPIPE',
   'EHOSTUNREACH', 'ENETUNREACH', 'CERT_HAS_EXPIRED', 'DEPTH_ZERO_SELF_SIGNED_CERT', 'SELF_SIGNED_CERT_IN_CHAIN',
@@ -352,13 +353,27 @@ async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, re
   const satelliteChanges = kingResult.status === 'fulfilled' ? kingResult.value : null;
   const available = results.filter(result => result.status === 'fulfilled');
   const news = available.flatMap(feed => feed.value);
+  let syndicatedSources = [];
+  if (!signal.aborted && (mundoMissing.length || satCescMissing.length)) {
+    try {
+      const recovered = await track('google-news', 'rss', () => fetchSyndicatedNews({ now, signal,
+        timeoutMs: requestTimeoutMs, fetchImpl: fetcher }));
+      const missingPublishers = new Set([...(mundoMissing.length ? ['Mundoplus'] : []), ...(satCescMissing.length ? ['SatCesc'] : [])]);
+      const additions = recovered.filter(item => missingPublishers.has(item.publisher));
+      news.push(...additions);
+      syndicatedSources = [...new Set(additions.map(item => item.publisher))];
+    } catch {
+      // Keep completed sources and their real failure diagnostics. A failed
+      // metadata fallback must not discard already available publications.
+    }
+  }
   if (!news.length && available.length < results.length) {
     const failures = diagnostics.failures.map(error => error.httpStatus ? `http-${error.httpStatus}` : error.causeCode || error.code || error.name);
     console.warn('Fuentes de novedades no disponibles', failures);
     const items = backup.items.filter(item => now - Date.parse(item.date) <= maxAge);
     headers['X-Antenas-Zalla-RSS'] = `reserva; ${failures.join(', ')}`;
     headers['Netlify-CDN-Cache-Control'] = 'public, durable, s-maxage=300';
-    return finish(items.length || satelliteChanges?.length ? 200 : 503, { items, satelliteChanges, satCescMissing, mundoMissing, backup: true, partial: true });
+    return finish(items.length || satelliteChanges?.length ? 200 : 503, { items, satelliteChanges, satCescMissing, mundoMissing, syndicatedSources, backup: true, partial: true });
   }
   const officialNews = news.some(item => officialSources.some(source => source.publisher === item.publisher));
   const rssNews = news.some(item => !officialSources.some(source => source.publisher === item.publisher));
@@ -369,7 +384,7 @@ async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, re
   headers['Netlify-CDN-Cache-Control'] = satCescAvailable === satCescRequests.length && (officialNews || available.length === results.length)
     ? 'public, durable, s-maxage=10800, stale-while-revalidate=3600'
     : 'public, durable, s-maxage=300';
-  return finish(200, { items, satelliteChanges, satCescMissing, mundoMissing,
+  return finish(200, { items, satelliteChanges, satCescMissing, mundoMissing, syndicatedSources,
     partial: available.length < results.length || kingResult.status === 'rejected' });
 }
 

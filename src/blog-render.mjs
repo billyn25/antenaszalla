@@ -11,6 +11,9 @@ const allowedSources = new Map([
   ['television.digital.gob.es', 'Televisión Digital'],
   ['digital.gob.es', 'Ministerio para la Transformación Digital']
 ]);
+const syndicatedHost = 'news.google.com';
+const syndicatedPublishers = new Set(['Mundoplus', 'SatCesc']);
+const allowedNewsHosts = new Set([...allowedSources.keys(), syndicatedHost]);
 const dateFormat = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Madrid' });
 export const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const asText = value => typeof value === 'string' ? value.trim() : '';
@@ -32,6 +35,7 @@ function sourceUrl(value, allowed) {
   try {
     const url = new URL(value);
     if (url.protocol !== 'https:' || url.username || url.password || url.port || !allowed.has(url.hostname)) return null;
+    if (url.hostname === syndicatedHost && url.hash) return null;
     url.hash = '';
     return url;
   } catch { return null; }
@@ -40,16 +44,24 @@ function sourceUrl(value, allowed) {
 export function normaliseNews(data, now = Date.now()) {
   const items = (Array.isArray(data?.items) ? data.items : []).flatMap(item => {
     if (!item || typeof item !== 'object') return [];
-    const url = sourceUrl(item.url, allowedSources);
+    const url = sourceUrl(item.url, allowedNewsHosts);
     const date = Date.parse(item.date);
     const label = asText(item.label);
     const age = url?.hostname === 'www.ses.com' ? 180 * 86400000 : newsMaxAge;
     if (!url || !label || !Number.isFinite(date) || date > now || now - date > age) return [];
+    const syndicated = url.hostname === syndicatedHost;
+    if (syndicated) {
+      const params = [...url.searchParams];
+      if (!/^\/rss\/articles\/[A-Za-z0-9_-]+$/.test(url.pathname) ||
+          !syndicatedPublishers.has(item.publisher) || item.via !== 'Google Noticias' ||
+          params.length > 1 || params.some(([key, value]) => key !== 'oc' || !/^\d+$/.test(value))) return [];
+    }
     const headlineWords = label.split(/\s+/);
     const headline = headlineWords.length > 25 ? headlineWords.slice(0, 25).join(' ') + '…' : label;
     return [{
       type: (asText(item.type) || 'Televisión').slice(0, 60), label: headline.slice(0, 300), url: url.href,
-      date: new Date(date).toISOString(), publisher: allowedSources.get(url.hostname)
+      date: new Date(date).toISOString(), publisher: syndicated ? item.publisher : allowedSources.get(url.hostname),
+      ...(syndicated ? { via: 'Google Noticias' } : {})
     }];
   });
   const satelliteChanges = (Array.isArray(data?.satelliteChanges) ? data.satelliteChanges : []).flatMap(item => {
@@ -94,7 +106,7 @@ export function renderNewsContent(news, page = 1, towns = []) {
   const validTowns = safeTowns(towns);
   const satellites = page === 1 ? `<section class="section wrap" aria-labelledby="cambios-satelite"><span class="eyebrow">Recepción por satélite</span><h2 id="cambios-satelite">Cambios de canales en Astra e Hispasat</h2><p>Los avisos de KingOfSat indican altas, bajas y cambios de frecuencia. Comprueba la fecha, el satélite y la fuente antes de modificar tu receptor: un cambio por satélite no implica que cambie también la TDT terrestre.</p>${news.satelliteChanges.length ? `<ul class="news-satellite-list">${news.satelliteChanges.map(item => `<li><strong>${escapeHtml(item.channel)} · ${escapeHtml(item.change)}</strong><time datetime="${item.date}">${dateFormat.format(new Date(item.date))}</time><p>${escapeHtml(item.position)}${item.frequency ? ` · ${escapeHtml(item.frequency)} MHz, polarización ${item.polarization === 'V' ? 'vertical' : 'horizontal'}` : ''}.</p><a href="${escapeHtml(item.url)}">Consultar el listado original de KingOfSat</a></li>`).join('')}</ul>` : '<p>No hay avisos recientes disponibles en esta selección. Puedes consultar directamente los listados de <a href="https://es.kingofsat.tv/news19.2E">Astra 19,2° Este</a> y <a href="https://es.kingofsat.tv/news30W">Hispasat 30° Oeste</a>.</p>'}<p><a href="/servicios/antenas-parabolicas/">Orientación y reparación de antenas parabólicas</a></p></section>` : '';
   const pagination = count > 1 ? `<nav class="news-pagination" aria-label="Paginación de noticias">${page > 1 ? `<a class="btn" rel="prev" href="${blogPath(page - 1)}">Anterior</a>` : '<span class="btn news-disabled" aria-disabled="true">Anterior</span>'}<span>Página ${page} de ${count}</span>${page < count ? `<a class="btn" rel="next" href="${blogPath(page + 1)}">Siguiente</a>` : '<span class="btn news-disabled" aria-disabled="true">Siguiente</span>'}</nav>` : '';
-  return `${satellites}<section class="section soft" aria-labelledby="noticias-tdt"><div class="wrap"><span class="eyebrow">Noticias con fecha y fuente</span><h2 id="noticias-tdt">TDT, UHD, satélite y Movistar Plus+</h2><p>Selección de avisos del portal oficial de Televisión Digital y publicaciones de UHD Spain, SES, SatCesc y Mundoplus. La fecha corresponde a la publicación original. Cada enlace permite comprobar la información completa en su fuente.</p>${news.backup ? '<p class="news-notice">Mostramos la selección guardada mientras se recuperan las fuentes. Las fechas originales se conservan.</p>' : news.partialBackup ? '<p class="news-notice">Algunas fuentes no están disponibles. Completamos la selección con publicaciones guardadas, que conservan su fecha y enlace original.</p>' : ''}${selected.length ? `<ol id="news-items" class="news-grid" start="${(page - 1) * pageSize + 1}">${selected.map(item => `<li><article><p class="news-meta">${escapeHtml(item.type)} · <time datetime="${item.date}">${dateFormat.format(new Date(item.date))}</time></p><h3><a href="${escapeHtml(item.url)}">${escapeHtml(item.label)}</a></h3><p class="news-source">Fuente: ${escapeHtml(item.publisher)}</p><a class="news-original" href="${escapeHtml(item.url)}">Leer la publicación original</a>${townLinks(item.url, validTowns, featured)}</article></li>`).join('')}</ol>` : '<p>No hay noticias recientes disponibles en esta selección. Las guías de recepción y resintonización siguen disponibles.</p>'}${pagination}<p class="news-guides-link"><a href="/servicios/reparacion-antenas-tdt/">Consultar la guía de averías y recepción TDT</a> · <a href="/blog/#antes-de-resintonizar">Qué comprobar antes de resintonizar</a></p></div></section>`;
+  return `${satellites}<section class="section soft" aria-labelledby="noticias-tdt"><div class="wrap"><span class="eyebrow">Noticias con fecha y fuente</span><h2 id="noticias-tdt">TDT, UHD, satélite y Movistar Plus+</h2><p>Avisos oficiales y noticias de UHD Spain, SES, SatCesc y Mundoplus. Cada tarjeta indica la fecha, el medio y el enlace de consulta; los titulares sindicados se identifican como «vía Google Noticias».</p>${news.backup ? '<p class="news-notice">Mostramos la selección guardada mientras se recuperan las fuentes. Las fechas originales se conservan.</p>' : news.partialBackup ? '<p class="news-notice">Algunas fuentes no están disponibles. Completamos la selección con publicaciones guardadas, que conservan su fecha y enlace original.</p>' : ''}${selected.length ? `<ol id="news-items" class="news-grid" start="${(page - 1) * pageSize + 1}">${selected.map(item => `<li><article><p class="news-meta">${escapeHtml(item.type)} · <time datetime="${item.date}">${dateFormat.format(new Date(item.date))}</time></p><h3><a href="${escapeHtml(item.url)}">${escapeHtml(item.label)}</a></h3><p class="news-source">Fuente: ${escapeHtml(item.publisher)}${item.via === 'Google Noticias' ? ' · vía Google Noticias' : ''}</p><a class="news-original" href="${escapeHtml(item.url)}">${item.via === 'Google Noticias' ? 'Ver noticia en Google Noticias' : 'Leer la publicación original'}</a>${townLinks(item.url, validTowns, featured)}</article></li>`).join('')}</ol>` : '<p>No hay noticias recientes disponibles en esta selección. Las guías de recepción y resintonización siguen disponibles.</p>'}${pagination}<p class="news-guides-link"><a href="/servicios/reparacion-antenas-tdt/">Consultar la guía de averías y recepción TDT</a> · <a href="/blog/#antes-de-resintonizar">Qué comprobar antes de resintonizar</a></p></div></section>`;
 }
 
 function replaceMeta(html, key, value, property = false) {

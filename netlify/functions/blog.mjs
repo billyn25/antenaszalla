@@ -4,7 +4,7 @@ import { BLOG_DOMAIN, parseBlogPath, renderBlogHtml } from '../../src/blog-rende
 import { createNewsLoader } from '../lib/blog-news-cache.mjs';
 export { createNewsLoader } from '../lib/blog-news-cache.mjs';
 
-export const BLOG_RELEASE = 'durable-news-v1';
+export const BLOG_RELEASE = 'durable-news-v2';
 
 const RESPONSE_HEADERS = {
   'Content-Type': 'text/html; charset=utf-8',

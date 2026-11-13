@@ -43,7 +43,7 @@ export function topicFor(title) {
   return null;
 }
 
-function satCescTopic(title, section) {
+export function satCescTopic(title, section) {
   const headline = title.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
   if (/\b(?:audiencia|audiencias|arrasa|aniversario|como ver|donde ver|por television en directo)\b/.test(headline)) return null;
   if (section === 'movistar-tv') {
@@ -106,8 +106,22 @@ export async function fetchMundoPosts(section, now, timeout = NEWS_REQUEST_TIMEO
 }
 
 export function selectNews(news) {
-  const unique = new Map(news.map(item => [item.url, item]));
-  const ordered = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
+  const uniqueUrls = [...new Map(news.map(item => [item.url, item])).values()];
+  const publicationKey = item => {
+    const headline = String(item.label || '').normalize('NFKC').toLowerCase().replace(/\s+/g, ' ').trim();
+    const timestamp = Date.parse(item.date);
+    return JSON.stringify([item.publisher, headline, Number.isFinite(timestamp) ? new Date(timestamp).toISOString().slice(0, 10) : item.date]);
+  };
+  const direct = new Set(uniqueUrls.filter(item => item.via !== 'Google Noticias').map(publicationKey));
+  const syndicated = new Set();
+  const unique = uniqueUrls.filter(item => {
+    if (item.via !== 'Google Noticias') return true;
+    const key = publicationKey(item);
+    if (direct.has(key) || syndicated.has(key)) return false;
+    syndicated.add(key);
+    return true;
+  });
+  const ordered = unique.sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
   const latest = ordered.slice(0, maxNews);
   const satellite = ordered.find(item => item.type === 'Satélite');
   if (satellite && !latest.slice(0, pageSize).some(item => item.type === 'Satélite')) {

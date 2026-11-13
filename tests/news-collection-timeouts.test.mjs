@@ -13,7 +13,7 @@ const story = {
 const rss = item => `<rss><channel>${item ? `<item><title>${item.title.rendered}</title><link>${item.link}</link><pubDate>${item.date_gmt}Z</pubDate><description></description></item>` : ''}</channel></rss>`;
 
 function emptySource(url) {
-  if (url.endsWith('/feed/') || url.endsWith('/rssnews.php')) return new Response(rss());
+  if (url.endsWith('/feed/') || url.endsWith('/rssnews.php') || url.startsWith('https://news.google.com/rss/search?')) return new Response(rss());
   const orbit = /\/news(19\.2E|30W)$/.exec(url)?.[1];
   if (orbit) return new Response(`<h1>Listado (${orbit})</h1>`);
   return new Response('<article class="dnt-card-news"></article>');
@@ -40,6 +40,7 @@ test('successful RSS does not issue duplicate REST requests', async () => {
   assert.deepEqual(data.mundoMissing, []);
   assert.deepEqual(data.satCescMissing, []);
   assert.equal(calls.some(url => url.includes('/wp-json/')), false);
+  assert.equal(calls.some(url => url.startsWith('https://news.google.com/')), false);
 });
 
 test('an expired RSS request is cancelled before its REST fallback succeeds', async () => {
@@ -135,7 +136,7 @@ test('public diagnostics distinguish RSS and REST failures without exposing untr
     return emptySource(url);
   } });
   const data = JSON.parse(response.body);
-  assert.equal(response.headers['X-Antenas-Zalla-Collector'], 'timeouts-diag-v1');
+  assert.equal(response.headers['X-Antenas-Zalla-Collector'], 'syndication-v1');
   assert.equal(data.diagnostics.collector, response.headers['X-Antenas-Zalla-Collector']);
   assert.equal(response.headers['X-Antenas-Zalla-Source-Failures'], '5');
   const failure = (source, stage) => data.diagnostics.failures.find(item => item.source === source && item.stage === stage);

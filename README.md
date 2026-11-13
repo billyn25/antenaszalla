@@ -21,7 +21,9 @@ Getaria recupera su URL histórica `/antenas-guipuzcoa/getaria`; las variantes G
 
 ## Actualización automática del blog
 
-`/blog/` entrega los titulares, fechas, fuentes y enlaces dentro del HTML inicial. La selección reúne noticias de TDT, UHD, recepción por satélite y cambios de canales; utiliza Mundoplus, SatCesc, UHD Spain, SES, los portales oficiales de Televisión Digital y los avisos de KingOfSat. Cada noticia enlaza a su publicación original y conserva su fecha.
+`/blog/` entrega los titulares, fechas, fuentes y enlaces dentro del HTML inicial. La selección reúne noticias de TDT, UHD, recepción por satélite y cambios de canales; utiliza Mundoplus, SatCesc, UHD Spain, SES, los portales oficiales de Televisión Digital y los avisos de KingOfSat. Cada noticia conserva la fecha declarada por su fuente.
+
+Cuando no se puede consultar una fuente directa, el recopilador puede utilizar titulares sindicados publicados en el RSS público de Google Noticias. Se valida el medio, la fecha, el enlace y el tema. Esos avisos muestran «vía Google Noticias» y mantienen su enlace de Google; no se intenta resolver el destino ni recuperar el cuerpo de artículos bloqueados. Los avisos directos tienen preferencia si aparece la misma noticia por ambas vías.
 
 Las visitas renuevan la colección cuando vence la caché de cinco minutos. La función responde con la última selección disponible y continúa la recogida mediante `context.waitUntil()`. Netlify Blobs conserva la colección válida entre instancias y despliegues. Los plazos de consulta permiten responder a fuentes que tardan más de los antiguos 3–6 segundos; el lector recibe la selección guardada mientras se completa la renovación.
 

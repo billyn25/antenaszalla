@@ -66,6 +66,66 @@ test('untrusted source fields cannot inject markup, external fetching targets or
   assert.match(html, /href="\/antenas-burgos\/aranda_duero"/);
 });
 
+test('syndicated headlines require the exact Google article URL and closed attribution fields', () => {
+  const valid = { ...item(1), url: 'https://news.google.com/rss/articles/CBMi_Test-123?oc=5', publisher: 'Mundoplus', via: 'Google Noticias' };
+  const invalid = [
+    { url: 'http://news.google.com/rss/articles/CBMi_Test-123' },
+    { url: 'https://news.google.com.evil.example/rss/articles/CBMi_Test-123' },
+    { url: 'https://news.google.com@evil.example/rss/articles/CBMi_Test-123' },
+    { url: 'https://user:password@news.google.com/rss/articles/CBMi_Test-123' },
+    { url: 'https://news.google.com:8443/rss/articles/CBMi_Test-123' },
+    { url: 'https://news.google.com/articles/CBMi_Test-123' },
+    { url: 'https://news.google.com/rss/articles/CBMi_Test-123/extra' },
+    { url: 'https://news.google.com/rss/articles/%3Cscript%3E' },
+    { url: 'https://news.google.com/rss/articles/CBMi_Test-123?url=https://evil.example/' },
+    { url: 'https://news.google.com/rss/articles/CBMi_Test-123?oc=5&oc=6' },
+    { url: 'https://news.google.com/rss/articles/CBMi_Test-123?oc=abc' },
+    { url: 'https://news.google.com/rss/articles/CBMi_Test-123#fragment' },
+    { publisher: undefined },
+    { publisher: 'Otro medio' },
+    { publisher: '<script>alert(1)</script>' },
+    { via: undefined },
+    { via: 'Enlace directo verificado' },
+    { via: '<script>alert(1)</script>' }
+  ];
+  for (const change of invalid) {
+    assert.equal(normaliseNews({ items: [{ ...valid, ...change }] }, now).items.length, 0, JSON.stringify(change));
+  }
+  const clean = normaliseNews({ items: [valid, { ...valid, label: 'Otro aviso', publisher: 'SatCesc', url: 'https://news.google.com/rss/articles/CBMi_Other456' }] }, now);
+  assert.equal(clean.items.length, 2);
+  assert.ok(clean.items.every(entry => entry.via === 'Google Noticias'));
+});
+
+test('syndicated attribution survives durable storage and is explicit in server-rendered HTML', async () => {
+  const google = { ...item(1), label: 'Aviso sindicado de Mundoplus', url: 'https://news.google.com/rss/articles/CBMi_Mundo123?oc=5', publisher: 'Mundoplus', via: 'Google Noticias' };
+  const satellite = { ...google, label: 'Aviso sindicado de SatCesc', url: 'https://news.google.com/rss/articles/CBMi_Sat456', publisher: 'SatCesc' };
+  let saved;
+  const store = { read: async () => saved ?? null, write: async value => { saved = structuredClone(value); } };
+  const load = createNewsLoader({ store, now: () => now,
+    collect: async () => ({ statusCode: 200, body: JSON.stringify({ items: [google, satellite, item(2)] }) }) });
+  await load();
+  const persisted = saved.data.items.find(entry => entry.url === google.url);
+  assert.equal(persisted.publisher, 'Mundoplus');
+  assert.equal(persisted.via, 'Google Noticias');
+  assert.equal(persisted.date, '2026-11-12T12:00:00.000Z');
+  const cold = createNewsLoader({ store, now: () => now,
+    collect: async () => { throw new Error('Fresh durable data should be reused'); } });
+  const handle = createBlogHandler({ template: () => shell, towns: () => [], news: cold, now: () => now });
+  const response = await handle(new Request('https://antenaszalla.com/blog/'));
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /Fuente: Mundoplus · vía Google Noticias/);
+  assert.match(html, /Fuente: SatCesc · vía Google Noticias/);
+  assert.match(html, /Fuente: Mundoplus<\/p>/);
+  assert.ok(html.includes(`<h3><a href="${google.url}">${google.label}</a></h3>`));
+  assert.ok(html.includes(`<a class="news-original" href="${google.url}">Ver noticia en Google Noticias</a>`));
+  const googleCards = [...html.matchAll(/<article>([\s\S]*?)<\/article>/g)].map(match => match[1]).filter(card => card.includes('news.google.com/rss/articles/'));
+  assert.equal(googleCards.length, 2);
+  assert.ok(googleCards.every(card => !card.includes('Leer la publicación original')));
+  assert.match(html, /Cada tarjeta indica la fecha, el medio y el enlace de consulta/);
+  assert.doesNotMatch(html, /news\.js|Cargando noticias/);
+});
+
 test('runtime keeps trusted identity entities and limits copied source text', () => {
   const identity = { '@graph': [
     { '@type': 'Organization', '@id': 'https://antenaszalla.com/#organizacion', name: 'Antenas Zalla', logo: { url: '/verified-logo.svg' }, address: { addressLocality: 'Zalla' } },
