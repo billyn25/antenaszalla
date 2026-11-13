@@ -3,6 +3,7 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {DOMAIN,publicPath,fileForPublicPath,escapeHtml as esc,decodeHtml} from './public-seo.mjs';
 import {selectCoverage,policy,distanceKm,COVERAGE_CSS,COVERAGE_RELEASE} from './municipal-coverage.mjs';
+import {NEARBY_TOWN_LINKS_CSS} from './nearby-town-links.mjs';
 import {displayPlaceName} from './seo-metadata.mjs';
 const root=path.resolve(process.env.PRODUCTION_ROOT||'dist');
 const read=f=>JSON.parse(fs.readFileSync(path.join(root,f),'utf8'));
@@ -121,6 +122,6 @@ fs.writeFileSync(path.join(root,'_redirects'),'# Historical and consolidated mun
 const coverage={release:COVERAGE_RELEASE,policy,source:geo.source,edition:geo.edition,total:towns.length,retained:retained.length,redirected:retired.length,provinces:[...new Set(towns.map(t=>t.province))].map(province=>({province,total:towns.filter(t=>t.province===province).length,retained:retained.filter(t=>t.province===province).length})),assignments:assignments.map(({town,hub,distanceKm})=>({code:town.code,name:town.name,province:town.province,population:town.population,original:town.publicPath,originalFile:town.path,destination:hub.publicPath,hub:hub.name,url:hub.publicPath+(town.code===hub.code?'':`#cobertura-${town.code}`),distanceKm:Number(distanceKm.toFixed(3))}))};
 fs.writeFileSync(path.join(root,'coverage-manifest.json'),JSON.stringify(coverage,null,2)+'\n');
 fs.appendFileSync(path.join(root,'assets/site.css'),COVERAGE_CSS);
-fs.appendFileSync(path.join(root,'assets/site.css'),'\n[data-contextual-town-links]{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}[data-contextual-town-links] a{display:inline-flex;align-items:center;min-height:44px;padding:9px 13px;border:1px solid #c7dce7;border-radius:5px;background:#f4f8fa;color:#173e52;font-size:14px;font-weight:700;line-height:1.5;text-decoration:none}[data-contextual-town-links] a:hover{background:#e7f1f6;border-color:#6e9fb6}[data-contextual-town-links] a:focus-visible{outline:3px solid #2d789f;outline-offset:3px}.nearby-localities p{max-width:75ch}.nearby-province-link{margin-top:18px}.nearby-province-link a{display:inline-block;padding:8px 0;min-height:44px;font-weight:700}\n');
+fs.appendFileSync(path.join(root,'assets/site.css'),NEARBY_TOWN_LINKS_CSS);
 execFileSync(process.execPath,['scripts/prepare-production-assets.mjs'],{env:{...process.env,CONFIRM_PRODUCTION_PREP:'1',PRODUCTION_ROOT:root},stdio:'inherit'});
 console.log(`CONSOLIDACIÓN OK: ${retained.length} páginas municipales, ${retired.length} municipios agrupados, ${towns.length} cubiertos.`);
