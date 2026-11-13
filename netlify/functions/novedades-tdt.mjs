@@ -1,6 +1,10 @@
 import { SaxesParser } from 'saxes';
-import { satCesc, satCescCategories, mundoCategories, topicFor, newsMaxAge, textFromHtml, briefExcerpt, parseSatCesc, fetchSatCescPosts, fetchMundoPosts, selectNews } from '../../src/news-sources.mjs';
+import { satCesc, satCescCategories, mundoCategories, topicFor, newsMaxAge, textFromHtml, briefExcerpt, parseSatCesc, fetchSatCescPosts, fetchMundoPosts, selectNews, NEWS_REQUEST_TIMEOUT_MS } from '../../src/news-sources.mjs';
 import backup from './novedades-tdt-backup.json' with { type: 'json' };
+
+// Includes sequential RSS/REST attempts and optional article excerpts, below the
+// function's 60-second limit even when the legacy JSON endpoint calls directly.
+export const NEWS_COLLECTION_TIMEOUT_MS = 42000;
 
 const source = 'https://www.mundoplus.tv';
 const sections = Object.keys(mundoCategories);
@@ -118,9 +122,9 @@ function readOpenSatelliteChanges(html, orbit, now) {
   return changes;
 }
 
-async function fetchSatelliteChanges(now, fetcher = fetch) {
+async function fetchSatelliteChanges(now, fetcher = fetch, timeoutMs = NEWS_REQUEST_TIMEOUT_MS) {
   const rssRequest = (async () => {
-    const response = await fetcher(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(9000) });
+    const response = await fetcher(kingOfSat + '/rssnews.php', { signal: AbortSignal.timeout(timeoutMs) });
     if (!response.ok) throw new Error('KingOfSat RSS: HTTP ' + response.status);
     const xml = await response.text();
     if (!/<rss\b/i.test(xml)) throw new Error('KingOfSat no devolvió RSS');
@@ -128,7 +132,7 @@ async function fetchSatelliteChanges(now, fetcher = fetch) {
   })();
   const positionRequests = Object.keys(satellitePositions).map(async orbit => {
     const response = await fetcher(kingOfSat + '/news' + orbit, {
-      signal: AbortSignal.timeout(6000), headers: { Accept: 'text/html' }
+      signal: AbortSignal.timeout(timeoutMs), headers: { Accept: 'text/html' }
     });
     if (!response.ok) throw new Error('KingOfSat ' + orbit + ': HTTP ' + response.status);
     const html = await response.text();
@@ -238,16 +242,17 @@ async function addOfficialText(item, fetcher = fetch) {
   }
 }
 
-export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fetch, includeExcerpts = true } = {}) {
+async function collectNewsResponse({ signal, now, fetchImpl, includeExcerpts, requestTimeoutMs }) {
   const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-cache' };
-  const fetcher = (url, options = {}) => fetchImpl(url, {
-    ...options,
-    signal: signal && options.signal ? AbortSignal.any([signal, options.signal]) : signal || options.signal
-  });
+  const fetcher = (url, options = {}) => {
+    const requestSignal = options.signal ? AbortSignal.any([signal, options.signal]) : signal;
+    requestSignal.throwIfAborted();
+    return fetchImpl(url, { ...options, signal: requestSignal });
+  };
   const rssRequests = sections.map(async section => {
     try {
       const response = await fetcher(`${source}/seccion/${section}/feed/`, {
-        signal: AbortSignal.timeout(3500),
+        signal: AbortSignal.timeout(requestTimeoutMs),
         headers: {
           Accept: 'application/rss+xml, application/xml, text/xml',
           'User-Agent': 'AntenasZalla/1.1 (+https://antenaszalla.com/blog/)'
@@ -259,25 +264,25 @@ export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fe
       return parseFeed(xml, now);
     } catch (error) {
       if (signal?.aborted) throw error;
-      return fetchMundoPosts(section, now, 3000, fetcher);
+      return fetchMundoPosts(section, now, requestTimeoutMs, fetcher);
     }
   });
   const officialRequests = officialSources.map(async official => {
     const response = await fetcher(official.origin + official.path, {
-      signal: AbortSignal.timeout(12000),
+      signal: AbortSignal.timeout(requestTimeoutMs),
       headers: { Accept: 'text/html' }
     });
     if (!response.ok) throw new Error(`Portal oficial: HTTP ${response.status}`);
     return parseOfficialNews(await response.text(), official, now);
   });
   const uhdRequest = (async () => {
-    const response = await fetcher(uhdSpain + '/feed/', { signal: AbortSignal.timeout(9000) });
+    const response = await fetcher(uhdSpain + '/feed/', { signal: AbortSignal.timeout(requestTimeoutMs) });
     if (!response.ok) throw new Error('UHD Spain: HTTP ' + response.status);
     return parseFeed(await response.text(), now, uhdSpain);
   })();
   const sesRequests = [0, 1, 2, 3].map(async page => {
     const response = await fetcher(ses + '/news/news-releases' + (page ? '?page=' + page : ''), {
-      signal: AbortSignal.timeout(9000)
+      signal: AbortSignal.timeout(requestTimeoutMs)
     });
     if (!response.ok) throw new Error('SES: HTTP ' + response.status);
     return parseSes(await response.text(), now);
@@ -286,7 +291,7 @@ export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fe
   const satCescRequests = satCescSections.map(async section => {
     try {
       const response = await fetcher(satCesc + '/' + section + '/feed/', {
-        signal: AbortSignal.timeout(4500), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
+        signal: AbortSignal.timeout(requestTimeoutMs), headers: { Accept: 'application/rss+xml, application/xml, text/xml' }
       });
       if (!response.ok) throw new Error('RSS HTTP ' + response.status);
       const xml = await response.text();
@@ -295,10 +300,10 @@ export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fe
     } catch (error) {
       console.warn('RSS de SatCesc no disponible', section, error.message);
       if (signal?.aborted) throw error;
-      return fetchSatCescPosts(section, now, 5000, fetcher);
+      return fetchSatCescPosts(section, now, requestTimeoutMs, fetcher);
     }
   });
-  const kingRequest = fetchSatelliteChanges(now, fetcher);
+  const kingRequest = fetchSatelliteChanges(now, fetcher, requestTimeoutMs);
   const [kingResult, ...results] = await Promise.allSettled([kingRequest, ...rssRequests, ...officialRequests, uhdRequest, ...sesRequests, ...satCescRequests]);
   const mundoMissing = sections.filter((_, index) => results[index].status === 'rejected');
   const satCescResults = results.slice(-satCescRequests.length);
@@ -330,6 +335,21 @@ export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fe
     : 'public, durable, s-maxage=300';
   return { statusCode: 200, headers, body: JSON.stringify({ items, satelliteChanges, satCescMissing, mundoMissing,
     partial: available.length < results.length || kingResult.status === 'rejected' }) };
+}
+
+export async function getNewsResponse({ signal, now = Date.now(), fetchImpl = fetch, includeExcerpts = true,
+  requestTimeoutMs = NEWS_REQUEST_TIMEOUT_MS, timeoutMs = NEWS_COLLECTION_TIMEOUT_MS } = {}) {
+  const controller = new AbortController();
+  const collectionSignal = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
+  const timer = setTimeout(() => controller.abort(new DOMException('News collection deadline exceeded', 'TimeoutError')),
+    Math.min(timeoutMs, NEWS_COLLECTION_TIMEOUT_MS));
+  try {
+    return await collectNewsResponse({ signal: collectionSignal, now, fetchImpl, includeExcerpts,
+      requestTimeoutMs: Math.min(requestTimeoutMs, NEWS_REQUEST_TIMEOUT_MS) });
+  } finally {
+    clearTimeout(timer);
+    controller.abort();
+  }
 }
 
 export async function handler(event) {

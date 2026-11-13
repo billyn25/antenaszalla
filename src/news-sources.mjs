@@ -5,6 +5,7 @@ export const satCescCategories = { tdt: 13, transpondedores: 6, 'movistar-tv': 5
 export const newsMaxAge = 90 * 24 * 60 * 60 * 1000;
 export const pageSize = 15;
 export const maxNews = 45;
+export const NEWS_REQUEST_TIMEOUT_MS = 18000;
 
 const htmlEntities = { amp: '&', quot: '"', apos: "'", nbsp: ' ', lt: '<', gt: '>' };
 export function textFromHtml(html) {
@@ -85,12 +86,12 @@ async function fetchWordPressPosts(origin, category, query, timeout, fetcher = f
     pubDate: post.date_gmt ? post.date_gmt + 'Z' : '', description: post.excerpt?.rendered || '' }));
 }
 
-export async function fetchSatCescPosts(section, now, timeout = 8500, fetcher = fetch) {
+export async function fetchSatCescPosts(section, now, timeout = NEWS_REQUEST_TIMEOUT_MS, fetcher = fetch) {
   const entries = await fetchWordPressPosts(satCesc, satCescCategories[section], 'per_page=26&_fields=date_gmt,link,title,excerpt', timeout, fetcher);
   return parseSatCesc(entries, section, now);
 }
 
-export async function fetchMundoPosts(section, now, timeout = 8500, fetcher = fetch) {
+export async function fetchMundoPosts(section, now, timeout = NEWS_REQUEST_TIMEOUT_MS, fetcher = fetch) {
   const entries = await fetchWordPressPosts(mundoPlus, mundoCategories[section], 'per_page=10&_fields=date_gmt,link,title', timeout, fetcher);
   return entries.flatMap(({ title, link, pubDate }) => {
     const label = textFromHtml(title);

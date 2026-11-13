@@ -83,7 +83,7 @@ test('runtime keeps trusted identity entities and limits copied source text', ()
 
 test('source failure serves dated reserve content and cached requests do not refetch', async () => {
   let calls = 0;
-  const loader = createNewsLoader({ collect: async () => { calls++; throw new Error('offline'); }, now: () => now, reserve: { items: [item(1)] } });
+  const loader = createNewsLoader({ collect: async () => { calls++; throw new Error('offline'); }, now: () => now, reserve: { items: [item(1)] }, store: null });
   const handle = createBlogHandler({ template: () => shell, towns: () => [], news: loader, now: () => now });
   const response = await handle(new Request('https://antenaszalla.com/blog/'));
   const html = await response.text();
@@ -99,6 +99,7 @@ test('a slow source retains verified reserve entries without replacing live head
   const live = { ...item(1), label: 'Titular original de la fuente' };
   const loader = createNewsLoader({
     now: () => now,
+    store: null,
     reserve: { items: [item(1), item(2), { ...item(3), date: '2025-01-01T00:00:00Z' }] },
     collect: async () => ({ statusCode: 200, body: JSON.stringify({ items: [live], partial: true }) })
   });
