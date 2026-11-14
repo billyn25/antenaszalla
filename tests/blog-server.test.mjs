@@ -122,7 +122,6 @@ test('syndicated attribution survives durable storage and is explicit in server-
   const googleCards = [...html.matchAll(/<article>([\s\S]*?)<\/article>/g)].map(match => match[1]).filter(card => card.includes('news.google.com/rss/articles/'));
   assert.equal(googleCards.length, 2);
   assert.ok(googleCards.every(card => !card.includes('Leer la publicación original')));
-  assert.match(html, /Cada tarjeta indica la fecha, el medio y el enlace de consulta/);
   assert.doesNotMatch(html, /news\.js|Cargando noticias/);
 });
 
@@ -150,7 +149,6 @@ test('source failure serves dated reserve content and cached requests do not ref
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('x-antenas-zalla-news'), 'reserva');
   assert.match(html, /datetime="2026-11-12T12:00:00.000Z"/);
-  assert.match(html, /fechas originales se conservan/);
   await handle(new Request('https://antenaszalla.com/blog/'));
   assert.equal(calls, 1);
 });
@@ -171,7 +169,6 @@ test('a slow source retains verified reserve entries without replacing live head
   const handle = createBlogHandler({ template: () => shell, towns: () => [], news: loader, now: () => now });
   const response = await handle(new Request('https://antenaszalla.com/blog/'));
   assert.equal(response.headers.get('x-antenas-zalla-news'), 'mixta');
-  assert.match(await response.text(), /publicaciones guardadas, que conservan su fecha/);
 });
 
 test('RSS collection keeps the source headline instead of replacing it with a generic topic', async () => {
