@@ -40,6 +40,16 @@ export function topicFor(title) {
   if (/\b(?:lasexta|telecinco|antena 3|la [12]|canales?|senal)\s+uhd\b|\buhd\s+spain\b/.test(text)) {
     return { type: 'UHD', label: /\blasexta\b/.test(text) ? 'Recepción de laSexta en ultra alta definición' : 'Novedades de televisión en ultra alta definición' };
   }
+  // RTVE, channel launches and pay-TV distribution are relevant to antenna
+  // installations. Do not admit audience rankings, ratings or TV gossip.
+  if (/\\b(?:audiencia|audiencias|share|cuota de pantalla|espectadores|reality|concursante)\\b/.test(text)) return null;
+  const channelChange = /\\b(?:estrena\\w*|nuevo\\w*|nueva\\w*|llega|llegada|incorpora\\w*|lanza\\w*|comienza|arranca|regresa|vuelve|retira\\w*|elimina\\w*|desaparece|cesa|deja de emitir|cambia\\w*|reorganiza\\w*|frecuencia\\w*|dial(?:es)?|emision\\w*)\\b/.test(text);
+  const tvContext = /\\b(?:rtve|la 1|la 2|teledeporte|canal 24 horas|clan|movistar plus|vodafone tv|orange tv|digi tv|television de pago|plataforma\\w*|canal(?:es)?|dial(?:es)?|parrilla)\\b/.test(text);
+  if (channelChange && tvContext) {
+    if (/\\b(?:movistar plus|vodafone tv|orange tv|digi tv|television de pago|paquetes?|dial(?:es)?)\\b/.test(text)) return { type: 'TV de pago', label: 'Cambios en canales y plataformas de pago' };
+    if (/\\b(?:rtve|la 1|la 2|teledeporte|canal 24 horas|clan)\\b/.test(text)) return { type: 'RTVE', label: 'Novedades de los canales de RTVE' };
+    return { type: 'Canales', label: 'Estrenos y cambios de canales de televisión' };
+  }
   return null;
 }
 
