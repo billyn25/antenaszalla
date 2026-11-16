@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   production:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -53,7 +53,7 @@ jobs:
   live-check:
     if: github.event_name == 'push' && github.ref == 'refs/heads/rapid-base-zalla'
     needs: production
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
