@@ -53,6 +53,7 @@ const tdtGuide=await text200(DOMAIN+TDT_GUIDE_ROUTE);
 if(!manifest.documents.some(doc=>doc.path===TDT_GUIDE_ROUTE&&doc.type==='guide'&&doc.indexable)||!tdtGuide.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)||metaOf(tdtGuide,'robots')!=='index,follow'||!tdtGuide.includes(`rel="canonical" href="${DOMAIN+TDT_GUIDE_ROUTE}"`))throw new Error('The La Séptima / UHD guide is not published with its canonical metadata');
 if(await text200(DOMAIN+'/assets/tdt-update-guide.css')!==TDT_GUIDE_CSS)throw new Error('The UHD guide stylesheet is not current');
 const blog=await text200(DOMAIN+'/blog/');
+if(metaOf(blog,'robots')!=='index,follow')throw new Error('Public blog is blocked by robots noindex');
 if(!blog.includes(`data-tdt-guide-release="${TDT_GUIDE_RELEASE}"`)||!blog.includes(`href="${TDT_GUIDE_ROUTE}"`))throw new Error('The server-rendered blog lost the UHD guide link');
 const redirects=new Map(manifest.redirects.map(r=>[r.from,r.to]));
 const expected = new Set(manifest.documents.filter(d=>d.indexable).map(d=>DOMAIN+d.path));

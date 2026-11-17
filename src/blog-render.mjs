@@ -127,6 +127,8 @@ export function renderBlogHtml(template, data, { page = 1, towns = [], now = Dat
   html = html.replace(/<title>[\s\S]*?<\/title>/i, () => `<title>${escapeHtml(title)}</title>`);
   html = html.replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i, () => `<link rel="canonical" href="${url}">`);
   html = replaceMeta(html, 'description', description);
+  // Every server-rendered blog page must remain indexable, including when a saved news snapshot is used.
+  html = replaceMeta(html, 'robots', 'index,follow');
   for (const [key, value] of Object.entries({ 'og:title': title, 'og:description': description, 'og:url': url, 'og:site_name': SEO_BRAND })) html = replaceMeta(html, key, value, true);
   for (const [key, value] of Object.entries({ 'twitter:title': title, 'twitter:description': description })) html = replaceMeta(html, key, value);
   html = html.replace(/(<h1\b[^>]*>)[\s\S]*?<\/h1>/i, (_, open) => `${open}${escapeHtml(heading)}</h1>`);

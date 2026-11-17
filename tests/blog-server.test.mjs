@@ -10,6 +10,15 @@ const item = index => ({ type: 'TDT', label: `Noticia ${index}`, url: `https://w
 const data = { items: Array.from({ length: 32 }, (_, index) => item(index)), satelliteChanges: [] };
 const handler = () => createBlogHandler({ template: () => shell, towns: () => [], news: async () => data, now: () => now });
 
+test('blog overrides a noindex template for both live and paginated pages', () => {
+  const blocked = shell.replace('content="index,follow"', 'content="noindex,nofollow"');
+  for (const page of [1, 2]) {
+    const html = renderBlogHtml(blocked, data, { page, now });
+    assert.match(html, /<meta name="robots" content="index,follow">/);
+    assert.doesNotMatch(html, /<meta name="robots" content="noindex/);
+  }
+});
+
 test('server delivers headlines and crawlable pagination without client rendering', async () => {
   const response = await handler()(new Request('https://antenaszalla.com/blog/'));
   const html = await response.text();
