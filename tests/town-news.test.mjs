@@ -15,3 +15,15 @@ test('municipal news selection is stable and adds only existing source headlines
   assert.equal(insertTownNews(updated, '/antenas-bizkaia/zalla', a), updated);
   assert.equal(insertTownNews(original, '/antenas-bizkaia/otra-localidad', a), original);
 });
+
+test('additional municipal pages receive distinct, crawlable news without changing their existing HTML', () => {
+  const towns = ['/antenas-bizkaia/gordexola','/antenas-bizkaia/galdames','/antenas-bizkaia/artzentales','/antenas-bizkaia/muskiz','/antenas-bizkaia/barakaldo','/antenas-bizkaia/bilbao','/antenas-bizkaia/getxo','/antenas-burgos/espinosa-de-los-monteros','/antenas-burgos/medina-de-pomar'];
+  for (const route of towns) {
+    const selected = selectTownNews(blog, route);
+    const html = insertTownNews('<html><main><h1>Ficha existente</h1></main></html>', route, selected);
+    assert.match(html, /Ficha existente/);
+    assert.match(html, /actualidad-television-local/);
+    assert.match(html, /datetime=/);
+    assert.match(html, /Fuente: Mundoplus/);
+  }
+});

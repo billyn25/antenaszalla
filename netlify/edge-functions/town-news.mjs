@@ -2,7 +2,11 @@
 // Only six priority municipal pages are affected; all existing page content is preserved.
 const priority = new Map([
   ['zalla', 'Zalla'], ['balmaseda', 'Balmaseda'], ['sopuerta', 'Sopuerta'],
-  ['guenes', 'Güeñes'], ['karrantza', 'Karrantza'], ['valle-de-mena', 'Valle de Mena']
+  ['guenes', 'Güeñes'], ['karrantza', 'Karrantza'], ['valle-de-mena', 'Valle de Mena'],
+  ['gordexola', 'Gordexola'], ['galdames', 'Galdames'], ['artzentales', 'Artzentales'],
+  ['muskiz', 'Muskiz'], ['barakaldo', 'Barakaldo'], ['bilbao', 'Bilbao'],
+  ['getxo', 'Getxo'], ['espinosa-de-los-monteros', 'Espinosa de los Monteros'],
+  ['medina-de-pomar', 'Medina de Pomar']
 ]);
 const escape = value => String(value).replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
 function hash(value) {
